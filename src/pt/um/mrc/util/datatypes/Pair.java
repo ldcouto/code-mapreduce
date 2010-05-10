@@ -9,4 +9,6 @@ public interface Pair<K, V>
     public void setKey(K k);
 
     public void setValue(V v);
+    
+    public boolean equals(Object other);
 }
