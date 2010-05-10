@@ -5,6 +5,9 @@ public class PairImpl<K, V> implements Pair<K, V>
     private K key;
     private V value;
 
+    public PairImpl()
+    {}
+
     /**
      * @param key
      * @param value
