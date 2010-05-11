@@ -1,15 +1,17 @@
 package pt.um.mrc.jobs.imprt;
 
+import java.io.IOException;
+
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Reducer;
 
-/**
- * This Reducer class is used to compute a project's list of packages.
- * @author Lu’s Duarte Couto
- * @author Tiago Alves Veloso
- */
-
 public class FindPackagesReducer extends Reducer<Text, Text, Text, Text>
 {
-
+    
+    @Override
+    protected void reduce(Text key, Iterable<Text> values, Context context) throws IOException,
+            InterruptedException
+    {
+        context.write(key, new Text(""));
+    }
 }

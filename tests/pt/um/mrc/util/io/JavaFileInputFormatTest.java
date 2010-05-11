@@ -4,6 +4,8 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
+import java.io.IOException;
+
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.Text;
@@ -42,22 +44,15 @@ public class JavaFileInputFormatTest
     }
 
     @Test
-    public final void testCreateRecordReader_InputSplit_TaskAttemptContext()
+    public final void testCreateRecordReader_InputSplit_TaskAttemptContext() throws IOException, InterruptedException
     {
         InputSplit split = null;
         TaskAttemptContext context = null;
-        
+
         RecordReader<Text, Text> result;
-        
-        // FIXME: Really not happy with this try/catch statement, not sure what my options are here.
-        try
-        {
-            result = javafile.createRecordReader(split, context);
-        } catch (Exception e)
-        {
-            result = null;
-        }
-        
+
+        result = javafile.createRecordReader(split, context);
+
         assertNotNull(result);
         assertTrue(result instanceof JavaFileRecordReader);
     }
