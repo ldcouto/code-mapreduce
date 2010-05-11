@@ -39,7 +39,6 @@ public class ClassHelperTest
     @Test
     public final void testFindClassAndSuperClass_InvalidInput()
     {
-
          String input = "public class Test{";
          
          ArrayList<Pair<String, String>> expected = new ArrayList<Pair<String,String>>();

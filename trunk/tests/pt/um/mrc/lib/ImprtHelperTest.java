@@ -25,7 +25,6 @@ public class ImprtHelperTest
     }
 
     @Test
-    // This test fails, we must be on the look out for the 'static' keyword
     public final void testFindImportedPackages_ValidInput02()
     {
         String input = "import org.junit.Test;\n" +
@@ -40,4 +39,15 @@ public class ImprtHelperTest
         assertEquals(expected, result);
     }
     
+    @Test
+    public final void testFindImportedPackages_InvalidInput02()
+    {
+        String input = "class java.util.ArrayList;";
+        
+        ArrayList<String> expected = new ArrayList<String>();
+        
+        ArrayList<String> result = ImprtHelper.findImportedPackages(input);
+        
+        assertEquals(expected, result);
+    }
 }
