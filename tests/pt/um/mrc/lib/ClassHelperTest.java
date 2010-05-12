@@ -2,7 +2,7 @@ package pt.um.mrc.lib;
 
 import java.util.ArrayList;
 
-import org.junit.Assert;
+import static org.junit.Assert.*;
 import org.junit.Test;
 
 import pt.um.mrc.util.datatypes.Pair;
@@ -10,6 +10,14 @@ import pt.um.mrc.util.datatypes.PairImpl;
 
 public class ClassHelperTest
 {
+    @Test
+    public final void testConstructor()
+    {
+        ClassHelper clasS = new ClassHelper();
+        
+        assertNotNull(clasS);
+    }
+    
     @Test
     public final void testFindClassAndSuperClass_ValidInput01()
     {
@@ -20,7 +28,7 @@ public class ClassHelperTest
          
          ArrayList<Pair<String, String>> result = ClassHelper.findClassAndSuperClass(input);
          
-         Assert.assertEquals(expected, result);
+         assertEquals(expected, result);
     }
 
     @Test
@@ -33,7 +41,7 @@ public class ClassHelperTest
          
          ArrayList<Pair<String, String>> result = ClassHelper.findClassAndSuperClass(input);
          
-         Assert.assertEquals(expected, result);
+         assertEquals(expected, result);
     }
     
     @Test
@@ -46,6 +54,6 @@ public class ClassHelperTest
          
          ArrayList<Pair<String, String>> result = ClassHelper.findClassAndSuperClass(input);
          
-         Assert.assertNotSame(expected, result);
+         assertNotSame(expected, result);
     }
 }

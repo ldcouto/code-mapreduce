@@ -38,10 +38,7 @@ public class ArrayWritablePrintable extends ArrayWritable implements Writable
         sb.append("}");
         
         return sb.toString();
-    }
-
-
-   
+    }   
 }
 
 

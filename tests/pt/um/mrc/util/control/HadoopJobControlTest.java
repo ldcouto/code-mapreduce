@@ -24,6 +24,14 @@ public class HadoopJobControlTest
     }
 
     @Test
+    public final void testConstructor()
+    {
+        HadoopJobControl cls = new HadoopJobControl();
+        
+        assertNotNull(cls);
+    }
+    
+    @Test
     public final void testConfigureSimpleJob() throws Exception
     {
         HadoopJobControl.configureSimpleJob(job, PackageByFileMapper.class,

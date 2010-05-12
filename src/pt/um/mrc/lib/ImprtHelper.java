@@ -5,8 +5,8 @@ import java.util.regex.Matcher;
 
 import pt.um.mrc.lib.Patterns;
 
-public abstract class ImprtHelper
-{
+public class ImprtHelper
+{    
     public static ArrayList<String> findImportedPackages(String text)
     {
         ArrayList<String> importedPackages = new ArrayList<String>();

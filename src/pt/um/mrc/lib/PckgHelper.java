@@ -4,8 +4,8 @@ import java.util.regex.Matcher;
 
 import pt.um.mrc.lib.Patterns;
 
-public abstract class PckgHelper
-{
+public class PckgHelper
+{    
     public static String findPackage(String text)
     {
         // Variable to return

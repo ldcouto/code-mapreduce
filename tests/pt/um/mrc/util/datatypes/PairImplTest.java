@@ -1,7 +1,9 @@
 package pt.um.mrc.util.datatypes;
 
-import static org.junit.Assert.assertEquals;
-import junit.framework.Assert;
+import static org.junit.Assert.*;
+import static org.hamcrest.core.Is.*;
+import static org.hamcrest.core.IsNot.*;
+
 
 import org.junit.Test;
 
@@ -47,7 +49,7 @@ public class PairImplTest
         Integer expected = 1;
         Integer result = p.getKey();
 
-        Assert.assertEquals(expected, result);
+        assertEquals(expected, result);
     }
 
     @Test
@@ -58,7 +60,7 @@ public class PairImplTest
         String expected = "Value";
         String result = p.getValue();
 
-        Assert.assertEquals(expected, result);
+        assertEquals(expected, result);
     }
 
     @Test
@@ -71,7 +73,7 @@ public class PairImplTest
 
         Integer result = p.getKey();
 
-        Assert.assertEquals(expected, result);
+        assertEquals(expected, result);
     }
 
     @Test
@@ -84,7 +86,7 @@ public class PairImplTest
 
         String result = p.getValue();
 
-        Assert.assertEquals(expected, result);
+        assertEquals(expected, result);
     }
 
     @Test
@@ -94,7 +96,7 @@ public class PairImplTest
 
         boolean result = p.equals(null);
 
-        Assert.assertFalse(result);
+        assertFalse(result);
     }
 
     @Test
@@ -104,7 +106,7 @@ public class PairImplTest
 
         boolean result = p.equals(p);
 
-        Assert.assertTrue(result);
+        assertTrue(result);
     }
 
     @Test
@@ -115,7 +117,7 @@ public class PairImplTest
 
         boolean result = p.equals(obj);
 
-        Assert.assertFalse(result);
+        assertFalse(result);
     }
 
     @Test
@@ -126,7 +128,7 @@ public class PairImplTest
 
         boolean result = p1.equals(p2);
 
-        Assert.assertFalse(result);
+        assertFalse(result);
     }
 
     @Test
@@ -137,7 +139,7 @@ public class PairImplTest
 
         boolean result = p1.equals(p2);
 
-        Assert.assertFalse(result);
+        assertFalse(result);
     }
 
     @Test
@@ -148,7 +150,7 @@ public class PairImplTest
 
         boolean result = p1.equals(p2);
 
-        Assert.assertFalse(result);
+        assertFalse(result);
     }
 
     @Test
@@ -159,7 +161,7 @@ public class PairImplTest
 
         boolean result = p1.equals(p2);
 
-        Assert.assertTrue(result);
+        assertTrue(result);
     }
 
     @Test
@@ -170,7 +172,7 @@ public class PairImplTest
 
         boolean result = p1.equals(p2);
 
-        Assert.assertFalse(result);
+        assertFalse(result);
     }
 
     @Test
@@ -181,7 +183,7 @@ public class PairImplTest
 
         boolean result = p1.equals(p2);
 
-        Assert.assertFalse(result);
+        assertFalse(result);
     }
 
     @Test
@@ -193,7 +195,7 @@ public class PairImplTest
 
         int result = p1.hashCode();
         
-        Assert.assertEquals(expected, result);
+        assertEquals(expected, result);
     }
     
     @Test
@@ -205,7 +207,7 @@ public class PairImplTest
         int hash1 = p1.hashCode();
         int hash2 = p2.hashCode();
         
-        Assert.assertTrue(hash1 == hash2);
+        assertThat(hash1, is(hash2));
     }
     
     @Test
@@ -217,6 +219,6 @@ public class PairImplTest
         int hash1 = p1.hashCode();
         int hash2 = p2.hashCode();
         
-        Assert.assertFalse(hash1 == hash2);
+        assertThat(hash1, not(hash2));
     }
 }
