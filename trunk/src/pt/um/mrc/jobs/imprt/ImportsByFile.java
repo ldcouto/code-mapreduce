@@ -11,7 +11,7 @@ import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 import org.apache.hadoop.util.GenericOptionsParser;
 
-import pt.um.mrc.util.datatypes.CollectionWritable;
+import pt.um.mrc.util.datatypes.ArrayWritablePrintable;
 import pt.um.mrc.util.io.JavaFileInputFormat;
 
 /**
@@ -74,7 +74,7 @@ public class ImportsByFile
 
         // the reduce output is Text, ArrayWritable
         job2.setOutputKeyClass(Text.class);
-        job2.setOutputValueClass(CollectionWritable.class);
+        job2.setOutputValueClass(ArrayWritablePrintable.class);
 
         job2.setInputFormatClass(JavaFileInputFormat.class);
 

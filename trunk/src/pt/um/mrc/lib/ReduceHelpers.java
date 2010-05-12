@@ -2,8 +2,8 @@ package pt.um.mrc.lib;
 
 import java.util.ArrayList;
 
-public abstract class Reducers
-{
+public class ReduceHelpers
+{    
     public static String[] toStringArray(Iterable<? extends java.lang.Object> values)
     {
         // Auxiliary ArrayList to serve as an intermidiate stucture in

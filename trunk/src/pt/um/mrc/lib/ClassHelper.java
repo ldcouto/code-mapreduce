@@ -7,8 +7,8 @@ import pt.um.mrc.lib.Patterns;
 import pt.um.mrc.util.datatypes.PairImpl;
 import pt.um.mrc.util.datatypes.Pair;
 
-public abstract class ClassHelper
-{
+public class ClassHelper
+{    
     public static ArrayList<Pair<String, String>> findClassAndSuperClass(String text)
     {
         ArrayList<Pair<String, String>> pairs = new ArrayList<Pair<String, String>>();

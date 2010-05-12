@@ -6,6 +6,14 @@ import org.junit.Test;
 
 public class PckgHelperTest
 {
+    @Test
+    public final void testConstructor()
+    {
+        PckgHelper cls = new PckgHelper();
+        
+        assertNotNull(cls);
+    }
+
 
     @Test
     public final void testFindPackage_ValidPackage()

@@ -10,6 +10,14 @@ public class ImprtHelperTest
 {
 
     @Test
+    public final void testConstructor()
+    {
+        ImprtHelper cls = new ImprtHelper();
+        
+        assertNotNull(cls);
+    }
+    
+    @Test
     public final void testFindImportedPackages_ValidInput01()
     {
         String input = "import org.junit.Test;\n" +

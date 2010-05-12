@@ -8,6 +8,7 @@ import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 import org.apache.hadoop.util.GenericOptionsParser;
 
+import pt.um.mrc.util.control.HadoopJobControl;
 import pt.um.mrc.util.io.JavaFileInputFormat;
 
 /**
@@ -33,23 +34,10 @@ public class PackageByFile
         // // Create a new Job
         Job job = new Job(conf,
                 "find defined packages, and list for each file what package it defines");
-        
-        // Define the Mapper and Reducer classes
-        job.setJarByClass(PackageByFile.class);
-        job.setMapperClass(PackageByFileMapper.class);
-        job.setReducerClass(PackageByFileReducer.class);
-        
-        // the map output is Text, Text
-        job.setMapOutputKeyClass(Text.class);
-        job.setMapOutputValueClass(Text.class);
-        
-        // the reduce output is Text, Text
-        job.setOutputKeyClass(Text.class);
-        job.setOutputValueClass(Text.class);
-        
-        // Set the input format to JavaFileInputFormat
-        job.setInputFormatClass(JavaFileInputFormat.class);
 
+        HadoopJobControl.configureSimpleJob(job, PackageByFile.class, PackageByFileMapper.class,
+                Text.class, Text.class, PackageByFileReducer.class, JavaFileInputFormat.class);
+        
         // Define the input and output paths
         FileInputFormat.addInputPath(job, new Path(otherArgs[0]));
         FileOutputFormat.setOutputPath(job, new Path(otherArgs[1]));
