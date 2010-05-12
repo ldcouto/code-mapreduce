@@ -8,7 +8,7 @@ import org.apache.hadoop.mrunit.mapreduce.MapReduceDriver;
 import org.junit.Before;
 import org.junit.Test;
 
-public class PackageByFileTest
+public class PackageByFileMapReduceTest
 {
     private Mapper<Text, Text, Text, Text> mapper;
     private Reducer<Text, Text, Text, Text> reducer;
