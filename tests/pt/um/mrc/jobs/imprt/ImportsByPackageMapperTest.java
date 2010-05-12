@@ -1,12 +1,14 @@
 package pt.um.mrc.jobs.imprt;
 
+import static org.junit.Assert.*;
+
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Mapper;
 import org.apache.hadoop.mrunit.mapreduce.MapDriver;
 import org.junit.Before;
 import org.junit.Test;
 
-public class FindPackagesMapperTest
+public class ImportsByPackageMapperTest
 {
     private Mapper<Text, Text, Text, Text> mapper;
     private MapDriver<Text, Text, Text, Text> driver;
@@ -14,15 +16,20 @@ public class FindPackagesMapperTest
     @Before
     public void setUp() throws Exception
     {
-        mapper = new FindPackagesMapper();
+        mapper = new ImportsByFileMapper();
         driver = new MapDriver<Text, Text, Text, Text>(mapper);
     }
 
     @Test
-    public final void testMap()
+    public final void testSetupContext()
     {
-        driver.withInput(new Text("File1.java"), new Text("package pt.um.mrc.jobs.imprt;"));
-        driver.withOutput(new Text("pt.um.mrc.jobs.imprt"), new Text(""));
-        driver.runTest();
+        fail("Not yet implemented"); // TODO
     }
+
+    @Test
+    public final void testMapTextTextContext()
+    {
+        fail("Not yet implemented"); // TODO
+    }
+
 }

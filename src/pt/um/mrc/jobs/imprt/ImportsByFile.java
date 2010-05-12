@@ -11,7 +11,7 @@ import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 import org.apache.hadoop.util.GenericOptionsParser;
 
-import pt.um.mrc.util.datatypes.ArrayWritablePrintable;
+import pt.um.mrc.util.control.HadoopJobControl;
 import pt.um.mrc.util.io.JavaFileInputFormat;
 
 /**
@@ -38,15 +38,10 @@ public class ImportsByFile
         }
 
         Job job1 = new Job(conf, "find project's internal packages");
-        job1.setJarByClass(ImportsByFile.class);
-        job1.setMapperClass(FindPackagesMapper.class);
-        job1.setReducerClass(FindPackagesReducer.class);
 
-        job1.setMapOutputKeyClass(Text.class);
-        job1.setMapOutputValueClass(Text.class);
+        HadoopJobControl.configureSimpleJob(job1, ImportsByFile.class, FindPackagesMapper.class,
+                Text.class, Text.class, FindPackagesReducer.class, JavaFileInputFormat.class);
 
-        job1.setInputFormatClass(JavaFileInputFormat.class);
-        
         FileInputFormat.addInputPath(job1, new Path(otherArgs[0]));
         FileOutputFormat.setOutputPath(job1, tmp);
 
@@ -64,26 +59,16 @@ public class ImportsByFile
         }
 
         Job job2 = new Job(conf, "find packages imported by a file");
-        job2.setJarByClass(ImportsByFile.class);
-        job2.setMapperClass(ImportsByFileMapper.class);
-        job2.setReducerClass(ImportsByFileReducer.class);
 
-        // the map output is Text, Text
-        job2.setMapOutputKeyClass(Text.class);
-        job2.setMapOutputValueClass(Text.class);
-
-        // the reduce output is Text, ArrayWritable
-        job2.setOutputKeyClass(Text.class);
-        job2.setOutputValueClass(ArrayWritablePrintable.class);
-
-        job2.setInputFormatClass(JavaFileInputFormat.class);
+        HadoopJobControl.configureSimpleJob(job2, ImportsByFile.class, ImportsByFileMapper.class,
+                Text.class, Text.class, ImportsByFileReducer.class, JavaFileInputFormat.class);
 
         FileInputFormat.addInputPath(job2, new Path(otherArgs[0]));
         FileOutputFormat.setOutputPath(job2, new Path(otherArgs[1]));
 
         boolean statusJob2 = job2.waitForCompletion(true);
 
-        fs.delete(tmp,true);
+        fs.delete(tmp, true);
 
         System.exit(statusJob2 ? 0 : 1);
     }

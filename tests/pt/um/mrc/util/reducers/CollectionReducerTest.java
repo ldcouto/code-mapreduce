@@ -1,5 +1,7 @@
 package pt.um.mrc.util.reducers;
 
+import static org.junit.Assert.*;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,6 +29,8 @@ public class CollectionReducerTest
     // FIXME I really don't know what's going on here.
     public final void testReduce()
     {
+        fail("Not yet implemented.");
+        
         String[] strings = { "one", "two", "three" };
 
         List<Text> inValues = new ArrayList<Text>();
