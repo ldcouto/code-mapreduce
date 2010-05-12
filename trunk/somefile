@@ -1,0 +1,9 @@
+package pt.um.mrc.util.reducers;
+
+import java.util.ArrayList;
+
+public class IdentityReducerTest {
+
+	private Reducer<Text,Text,Text,Text> reducer;
+
+}
