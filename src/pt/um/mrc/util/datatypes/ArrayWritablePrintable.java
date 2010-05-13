@@ -1,5 +1,7 @@
 package pt.um.mrc.util.datatypes;
 
+import java.io.Serializable;
+
 import org.apache.hadoop.io.ArrayWritable;
 import org.apache.hadoop.io.Writable;
 
@@ -10,13 +12,31 @@ import org.apache.hadoop.io.Writable;
  * @author Tiago Alves Veloso
  * @author Luis Duarte Couto
  */
+
 public class ArrayWritablePrintable extends ArrayWritable implements Writable
 {
-
+	//Supposedly necessary according to Hadoop Docs.
+	public ArrayWritablePrintable(){
+		super(ArrayWritablePrintable.class);
+	}
+	
 	public ArrayWritablePrintable(String[] strings) {
 		super(strings);
 	}
 	
+	public ArrayWritablePrintable(Class<? extends Writable> valueClass,
+			Writable[] values) {
+		super(valueClass, values);
+		// TODO Auto-generated constructor stub
+	}
+	
+	public ArrayWritablePrintable(Class<? extends Writable> valueClass) {
+		super(valueClass);
+		// TODO Auto-generated constructor stub
+	}
+
+
+
 	/**
 	 * Specialized
 	 */

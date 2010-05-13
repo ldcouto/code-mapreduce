@@ -16,6 +16,8 @@ public class ReduceHelpers
             aux.add(elem.toString());
         }
 
+        aux.trimToSize();
+          
         // Create and initialize a string array
         String[] array = aux.toArray(new String[aux.size()]);
 
