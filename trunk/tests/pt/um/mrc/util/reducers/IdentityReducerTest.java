@@ -28,7 +28,7 @@ public class IdentityReducerTest {
 
 
 	@Test
-	public void testReduceKIIterableOfVIContext() {
+	public final void testReduceKIIterableOfVIContext() {
 		driver.withInput(new Text("foo"), vis).withOutput(new Text("foo"), new Text("bar")).runTest();
 
 	}
