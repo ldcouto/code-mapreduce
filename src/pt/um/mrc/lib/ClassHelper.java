@@ -8,7 +8,10 @@ import pt.um.mrc.util.datatypes.PairImpl;
 import pt.um.mrc.util.datatypes.Pair;
 
 public class ClassHelper
-{    
+{
+    protected ClassHelper()
+    {}
+
     public static ArrayList<Pair<String, String>> findClassAndSuperClass(String text)
     {
         ArrayList<Pair<String, String>> pairs = new ArrayList<Pair<String, String>>();
@@ -30,7 +33,7 @@ public class ClassHelper
                 pairs.add(new PairImpl<String, String>(className, superClass));
             }
         }
-        
+
         return pairs;
     }
 }

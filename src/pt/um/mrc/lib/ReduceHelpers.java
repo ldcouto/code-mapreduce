@@ -3,7 +3,10 @@ package pt.um.mrc.lib;
 import java.util.ArrayList;
 
 public class ReduceHelpers
-{    
+{
+    protected ReduceHelpers()
+    {}
+
     public static String[] toStringArray(Iterable<? extends java.lang.Object> values)
     {
         // Auxiliary ArrayList to serve as an intermidiate stucture in
@@ -17,7 +20,7 @@ public class ReduceHelpers
         }
 
         aux.trimToSize();
-          
+
         // Create and initialize a string array
         String[] array = aux.toArray(new String[aux.size()]);
 
