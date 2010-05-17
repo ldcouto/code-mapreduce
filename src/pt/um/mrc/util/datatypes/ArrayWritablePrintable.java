@@ -1,7 +1,5 @@
 package pt.um.mrc.util.datatypes;
 
-import java.io.Serializable;
-
 import org.apache.hadoop.io.ArrayWritable;
 import org.apache.hadoop.io.Writable;
 
@@ -15,10 +13,6 @@ import org.apache.hadoop.io.Writable;
 
 public class ArrayWritablePrintable extends ArrayWritable implements Writable
 {
-	//Supposedly necessary according to Hadoop Docs.
-	public ArrayWritablePrintable(){
-		super(ArrayWritablePrintable.class);
-	}
 	
 	public ArrayWritablePrintable(String[] strings) {
 		super(strings);

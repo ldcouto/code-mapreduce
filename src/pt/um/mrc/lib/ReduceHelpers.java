@@ -22,7 +22,10 @@ public class ReduceHelpers
         aux.trimToSize();
 
         // Create and initialize a string array
-        String[] array = aux.toArray(new String[aux.size()]);
+        int size = aux.size();
+        String [] array;
+        array = new String[size];
+        array = aux.toArray(array);
 
         return array;
     }
