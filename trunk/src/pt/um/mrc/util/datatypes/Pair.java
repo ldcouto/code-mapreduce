@@ -11,4 +11,6 @@ public interface Pair<K, V>
     public void setValue(V v);
     
     public boolean equals(Object other);
+    
+    public int hashCode();
 }

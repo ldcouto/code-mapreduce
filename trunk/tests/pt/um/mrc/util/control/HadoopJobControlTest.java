@@ -1,6 +1,7 @@
 package pt.um.mrc.util.control;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 import javax.xml.soap.Text;
 

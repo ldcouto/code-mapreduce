@@ -3,9 +3,8 @@ package pt.um.mrc.lib;
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 
-import pt.um.mrc.lib.Patterns;
-import pt.um.mrc.util.datatypes.PairImpl;
 import pt.um.mrc.util.datatypes.Pair;
+import pt.um.mrc.util.datatypes.PairImpl;
 
 public class ClassHelper
 {

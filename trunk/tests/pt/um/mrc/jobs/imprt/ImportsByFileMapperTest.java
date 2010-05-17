@@ -1,6 +1,6 @@
 package pt.um.mrc.jobs.imprt;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.fail;
 
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Mapper;
@@ -21,15 +21,8 @@ public class ImportsByFileMapperTest
     }
     
     @Test
-    public final void testSetUp()
-    {
-        // TODO doesn't work without the distrivuted cache.
-        fail("Not yet implemented");
-    } 
-
-    @Test
-    public final void testMapTextTextContext()
-    {
+    public final void testMap()
+    {   
         // TODO Doesn't work without the distributed cache.
         fail("Not yet implemented");
     }

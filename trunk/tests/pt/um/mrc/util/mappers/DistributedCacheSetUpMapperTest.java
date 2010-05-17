@@ -1,4 +1,4 @@
-package pt.um.mrc.jobs.imprt;
+package pt.um.mrc.util.mappers;
 
 import static org.junit.Assert.fail;
 
@@ -8,7 +8,7 @@ import org.apache.hadoop.mrunit.mapreduce.MapDriver;
 import org.junit.Before;
 import org.junit.Test;
 
-public class ImportsByPackageMapperTest
+public class DistributedCacheSetUpMapperTest
 {
     private Mapper<Text, Text, Text, Text> mapper;
     private MapDriver<Text, Text, Text, Text> driver;
@@ -16,16 +16,14 @@ public class ImportsByPackageMapperTest
     @Before
     public void setUp() throws Exception
     {
-        mapper = new ImportsByFileMapper();
+        mapper = new DistributedCacheSetUpMapper<Text, Text, Text, Text>();
         driver = new MapDriver<Text, Text, Text, Text>(mapper);
     }
 
-
     @Test
-    public final void testMap()
+    public final void testSetup()
     {
-        // TODO Doesn't work without the distributed cache
-        fail("Not yet implemented"); 
+        // TODO Doesn't work without the distributed cache.
+        fail("Not yet implemented");
     }
-
 }

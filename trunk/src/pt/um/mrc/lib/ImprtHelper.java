@@ -3,8 +3,6 @@ package pt.um.mrc.lib;
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 
-import pt.um.mrc.lib.Patterns;
-
 public class ImprtHelper
 {
     protected ImprtHelper()

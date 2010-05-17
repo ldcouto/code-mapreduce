@@ -2,29 +2,30 @@ package pt.um.mrc.lib;
 
 import java.util.ArrayList;
 
+import org.apache.hadoop.io.Text;
+
 public class ReduceHelpers
 {
     protected ReduceHelpers()
     {}
 
-    public static String[] toStringArray(Iterable<? extends java.lang.Object> values)
+    public static Text[] toTextArray(Iterable<? extends Text> values)
     {
         // Auxiliary ArrayList to serve as an intermidiate stucture in
         // converting the values into a String array
-        ArrayList<String> aux = new ArrayList<String>();
+        ArrayList<Text> aux = new ArrayList<Text>();
 
         // Add all the values to the auxiliary ArrayList
-        for (Object elem : values)
+        for (Text elem : values)
         {
-            aux.add(elem.toString());
+            aux.add(elem);
         }
 
         aux.trimToSize();
 
         // Create and initialize a string array
         int size = aux.size();
-        String [] array;
-        array = new String[size];
+        Text[] array = new Text[size];
         array = aux.toArray(array);
 
         return array;

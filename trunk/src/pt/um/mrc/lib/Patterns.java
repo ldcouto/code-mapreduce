@@ -15,8 +15,6 @@ public class Patterns
 
     public static Pattern PACKAGE_PATTERN = Pattern.compile("package(\\s)+[a-zA-Z.]*(\\s)*;");
 
-    // TODO: Fix this regex to ignore statement keywords in comment and string
-    // blocks
     public static Pattern CONTROL_STATEMENT_PATTERN = Pattern
             .compile("(if|for|while|case|catch|\\&\\&|\\|\\|)");
 }

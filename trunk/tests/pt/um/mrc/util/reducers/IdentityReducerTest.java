@@ -4,11 +4,11 @@ package pt.um.mrc.util.reducers;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.junit.Before;
-import org.junit.Test;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Reducer;
 import org.apache.hadoop.mrunit.mapreduce.ReduceDriver;
+import org.junit.Before;
+import org.junit.Test;
 
 public class IdentityReducerTest {
 

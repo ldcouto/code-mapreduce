@@ -1,9 +1,11 @@
 package pt.um.mrc.lib;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.assertNotNull;
 
 import java.util.ArrayList;
 
+import org.apache.hadoop.io.Text;
 import org.junit.Test;
 
 public class ReducersTest
@@ -19,13 +21,13 @@ public class ReducersTest
     @Test
     public final void testToStringArray()
     {
-        ArrayList<String> input = new ArrayList<String>();
-        input.add("Uma");
-        input.add("lista");
+        ArrayList<Text> input = new ArrayList<Text>();
+        input.add(new Text("Uma"));
+        input.add(new Text("lista"));
 
-        String[] expected = { "Uma", "lista" };
+        Text[] expected = { new Text("Uma"), new Text("lista") };
 
-        String[] result = ReduceHelpers.toStringArray(input);
+        Text[] result = (Text[]) ReduceHelpers.toTextArray(input);
 
         assertArrayEquals(expected, result);
     }
