@@ -1,9 +1,33 @@
-package pt.um.mrc.util.reducers;
+package pt.um.mrc.jobs.imprt;
 
-import java.util.ArrayList;
+import java.io.IOException;
 
-public class IdentityReducerTest {
+import org.apache.hadoop.io.Text;
+import org.apache.hadoop.mapreduce.Mapper;
 
-	private Reducer<Text,Text,Text,Text> reducer;
+import pt.um.mrc.lib.PckgHelper;
 
+public class FindPackagesMapper extends Mapper<Text, Text, Text, Text>
+{
+    private Text packge = new Text();
+
+    @Override
+    protected void map(Text key, Text value, Context context) throws IOException,
+            InterruptedException
+    {
+        packge.set(PckgHelper.findPackage(value.toString()));
+        
+        context.write(packge, new Text(""));
+    }
+
+        public void visit(MethodDeclaration n, Object arg) 
+{
+
+            // here you can access the attributes of the method.
+            // this method will be called for all methods in this 
+            // CompilationUnit, including inner class methods
+            System.out.println(n.toString());System.out.println(n.haha());
+
+
+        }
 }
