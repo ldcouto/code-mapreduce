@@ -2,8 +2,6 @@ package pt.um.mrc.lib;
 
 import java.util.regex.Matcher;
 
-import pt.um.mrc.lib.Patterns;
-
 public class PckgHelper
 {
     protected PckgHelper()

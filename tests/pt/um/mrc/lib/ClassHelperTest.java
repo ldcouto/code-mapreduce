@@ -1,8 +1,11 @@
 package pt.um.mrc.lib;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNotSame;
+
 import java.util.ArrayList;
 
-import static org.junit.Assert.*;
 import org.junit.Test;
 
 import pt.um.mrc.util.datatypes.Pair;

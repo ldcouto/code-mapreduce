@@ -2,7 +2,7 @@ package pt.um.mrc.jobs.imprt;
 
 import org.apache.hadoop.io.Text;
 
-import pt.um.mrc.util.datatypes.ArrayWritablePrintable;
+import pt.um.mrc.util.datatypes.CollectionWritablePrintable;
 import pt.um.mrc.util.reducers.CollectionReducer;
 
 /**
@@ -14,7 +14,7 @@ import pt.um.mrc.util.reducers.CollectionReducer;
  */
 
 public class ImportsByPackageReducer extends
-                                    CollectionReducer<Text, Text, Text, ArrayWritablePrintable>
+                                    CollectionReducer<Text, Text, Text, CollectionWritablePrintable>
 {
     
 }
