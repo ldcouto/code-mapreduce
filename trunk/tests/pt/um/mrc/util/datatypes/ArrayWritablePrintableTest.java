@@ -18,7 +18,6 @@ public class ArrayWritablePrintableTest {
 	public void setUp() throws Exception {	
 		strings = new String[2];
 		strings[0]="foo";
-		strings[1]="bar";
 		awp = new ArrayWritablePrintable(strings);
 	}
 
@@ -39,7 +38,7 @@ public class ArrayWritablePrintableTest {
 
 	@Test
 	public void testToString() {
-		String expected = "{ foo bar}";
+		String expected = "{ foo}";
 		String actual = awp.toString();
 		assertEquals(expected, actual);
 	}
