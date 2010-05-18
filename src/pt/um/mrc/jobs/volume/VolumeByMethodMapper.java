@@ -3,9 +3,10 @@ package pt.um.mrc.jobs.volume;
 import java.io.IOException;
 
 import org.apache.hadoop.io.IntWritable;
-import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Mapper;
+
+import pt.um.mrc.util.datatypes.MethodID;
 
 /**
  * This class is the Mapper for the job that relates methods with their lines of
@@ -15,15 +16,20 @@ import org.apache.hadoop.mapreduce.Mapper;
  * @author Tiago Alves Veloso
  */
 
-public class VolumeByMethodMapper extends Mapper<LongWritable, Text, Text, IntWritable>
+public class VolumeByMethodMapper extends Mapper<MethodID, Text, Text, IntWritable>
 {
 
+    private Text outKey = new Text();
+    private IntWritable lines = new IntWritable();
+    
     @Override
-    protected void map(LongWritable key, Text value, Context context) throws IOException,
+    protected void map(MethodID key, Text value, Context context) throws IOException,
             InterruptedException
     {
-        // TODO Auto-generated method stub
-        super.map(key, value, context);
+        outKey.set(key.getPackageName()+"."+key.getFileName()+"."+key.getClassName()+"."+key.getMethodName());
+        lines.set(10);
+        
+        context.write(outKey, lines);
     }
 
 }

@@ -5,11 +5,10 @@ import static org.junit.Assert.assertEquals;
 
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.io.Writable;
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-public class TextArrayWritablePrintableTest
+public class CollectionWritablePrintableTest
 {
 
     CollectionWritablePrintable awp;
@@ -23,10 +22,6 @@ public class TextArrayWritablePrintableTest
         strings[1] = new Text("bar");
         awp = new CollectionWritablePrintable(Text.class,strings);
     }
-
-    @After
-    public void tearDown() throws Exception
-    {}
 
     @Test
     public void testArrayWritablePrintable()
