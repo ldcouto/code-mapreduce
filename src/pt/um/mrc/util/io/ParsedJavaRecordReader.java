@@ -49,7 +49,8 @@ public class ParsedJavaRecordReader extends RecordReader<MethodID, Text> {
 	private FSDataInputStream fileIn;
 	private List<MethodID> mKeys;
 	private int currM = -1;
-
+	private MethodID currMethodID;
+	private Text currMethod;
 	
 	public Map<MethodID, Text> getMethods() {
 		return methods;
@@ -95,6 +96,9 @@ public class ParsedJavaRecordReader extends RecordReader<MethodID, Text> {
 	public void initialize(InputSplit inSplit, TaskAttemptContext tac)
 		throws IOException, InterruptedException {
 
+		currMethodID = new MethodID();
+		currMethod = new Text();
+		
 		Configuration job = tac.getConfiguration();
 		fSplit = (FileSplit) inSplit;
 
@@ -131,8 +135,13 @@ public class ParsedJavaRecordReader extends RecordReader<MethodID, Text> {
 	@Override
 	public boolean nextKeyValue() throws IOException, InterruptedException {
 		if (mKeys != null) {
-			currM++;
-			return true;
+			if (currM < mKeys.size()-1)
+			{
+				//FIXME mudar para os currents!
+				//currMethodID
+				currM++;
+				return true;
+			}
 		}
 		return false;
 	}
@@ -179,7 +188,6 @@ public class ParsedJavaRecordReader extends RecordReader<MethodID, Text> {
 		if (fileIn != null) {
 			fileIn.close();
 		}
-		currM=Integer.MAX_VALUE;
 		methods=null;
 		mKeys=null;
 	}
@@ -195,7 +203,8 @@ public class ParsedJavaRecordReader extends RecordReader<MethodID, Text> {
 					MethodDeclaration md = (MethodDeclaration) td;
 					StringBuilder sb = new StringBuilder();
 					sb.append(md.getName());
-					sb.append(md.getParameters().toString());
+					if (md.getParameters()!=null)
+						sb.append(md.getParameters().toString());
 					aux.setMethodName(sb.toString());
 					methods.put(aux, new Text(td.toString()));
 				}
