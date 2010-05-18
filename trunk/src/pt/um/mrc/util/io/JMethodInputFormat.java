@@ -12,7 +12,7 @@ import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 
 import pt.um.mrc.util.datatypes.MethodID;
 
-public class JavaMethodInputFormat extends FileInputFormat<MethodID, Text>
+public class JMethodInputFormat extends FileInputFormat<MethodID, Text>
 {
     @Override
     protected boolean isSplitable(JobContext context, Path filename)
@@ -24,6 +24,6 @@ public class JavaMethodInputFormat extends FileInputFormat<MethodID, Text>
     public RecordReader<MethodID, Text> createRecordReader(InputSplit arg0, TaskAttemptContext arg1)
             throws IOException, InterruptedException
     {
-        return new ParsedJavaRecordReader();
+        return new JMethodRecordReader();
     }
 }

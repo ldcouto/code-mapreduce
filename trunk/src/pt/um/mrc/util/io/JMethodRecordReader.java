@@ -39,7 +39,7 @@ import pt.um.mrc.util.datatypes.MethodID;
  *
  */
 
-public class ParsedJavaRecordReader extends RecordReader<MethodID, Text> {
+public class JMethodRecordReader extends RecordReader<MethodID, Text> {
 
 	private Map<MethodID, Text> methods = new HashMap<MethodID, Text>();
 	private String packageName;
