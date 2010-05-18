@@ -10,8 +10,7 @@ import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 import org.apache.hadoop.util.GenericOptionsParser;
 
 import pt.um.mrc.util.control.HadoopJobControl;
-import pt.um.mrc.util.io.JavaFileInputFormat;
-import pt.um.mrc.util.io.JavaMethodInputFormat;
+import pt.um.mrc.util.io.JMethodInputFormat;
 
 /**
  * This class contains the configuration for the job that relates methods with
@@ -38,7 +37,7 @@ public class VolumeByMethod
 
         HadoopJobControl.configureSimpleJob(job, VolumeByMethod.class, VolumeByMethodMapper.class,
                 Text.class, IntWritable.class, VolumeByMethodReducer.class,
-                JavaMethodInputFormat.class);
+                JMethodInputFormat.class);
 
         // Define the input and output paths
         FileInputFormat.addInputPath(job, new Path(otherArgs[0]));
