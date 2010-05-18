@@ -10,7 +10,9 @@ import org.apache.hadoop.mapreduce.RecordReader;
 import org.apache.hadoop.mapreduce.TaskAttemptContext;
 import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 
-public class JavaMethodInputFormat extends FileInputFormat<Text, Text>
+import pt.um.mrc.util.datatypes.MethodID;
+
+public class JavaMethodInputFormat extends FileInputFormat<MethodID, Text>
 {
     @Override
     protected boolean isSplitable(JobContext context, Path filename)
@@ -19,10 +21,9 @@ public class JavaMethodInputFormat extends FileInputFormat<Text, Text>
     }
 
     @Override
-    public RecordReader<Text, Text> createRecordReader(InputSplit arg0, TaskAttemptContext arg1)
+    public RecordReader<MethodID, Text> createRecordReader(InputSplit arg0, TaskAttemptContext arg1)
             throws IOException, InterruptedException
     {
-        // TODO Auto-generated method stub
-        return null;
+        return new ParsedJavaRecordReader();
     }
 }
