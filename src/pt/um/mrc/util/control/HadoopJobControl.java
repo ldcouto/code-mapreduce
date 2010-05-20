@@ -1,24 +1,55 @@
 package pt.um.mrc.util.control;
 
-import org.apache.hadoop.mapreduce.InputFormat;
+import org.apache.hadoop.fs.FileStatus;
+import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.mapreduce.Job;
-import org.apache.hadoop.mapreduce.Mapper;
 import org.apache.hadoop.mapreduce.Reducer;
+import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
+import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
+import org.apache.hadoop.util.GenericOptionsParser;
 
-public class HadoopJobControl
-{
-    public static void configureSimpleJob(Job job, Class<?> classJar,
-            Class<? extends Mapper<?, ?, ?, ?>> mapper, Class<?> mapOutKey, Class<?> mapOutValue,
-            Class<? extends Reducer<?, ?, ?, ?>> reducer,
-            Class<? extends InputFormat<?, ?>> inputFormat) throws Exception
-    {
-        job.setJarByClass(classJar);
-        job.setMapperClass(mapper);
-        job.setReducerClass(reducer);
+public class HadoopJobControl {
 
-        job.setMapOutputKeyClass(mapOutKey);
-        job.setMapOutputValueClass(mapOutValue);
+	public static void configureSimpleJob(Job job, JobConfigurer jc,
+		MapperConfigurer mc, Class<? extends Reducer<?, ?, ?, ?>> reducer)
+		throws Exception {
 
-        job.setInputFormatClass(inputFormat);
-    }
+		FileSystem fs = FileSystem.get(job.getConfiguration());
+		
+		// Configure generic Job stuff
+		job.setJarByClass(jc.getClassJar());
+		job.setInputFormatClass(jc.getIntputFormat());
+		
+		FileOutputFormat.setOutputPath(job, jc.getOutputPath());
+		
+		// TODO NOT CHECKED YET!
+		for (FileStatus fstatus : fs.listStatus(jc.getInputPath())) {
+			if (fstatus.isDir()) {
+				FileInputFormat.addInputPath(job, fstatus.getPath());
+			}
+		}
+		
+		// Configure the Mapper Stuff
+		job.setMapperClass(mc.getMapperClass());
+		job.setMapOutputKeyClass(mc.getMapOutKey());
+		job.setMapOutputValueClass(mc.getMapOutValue());
+
+		// Configure the Reducer Class
+		job.setReducerClass(reducer);
+
+	}
+	
+	public static String[] checkArguments(String[] args, CheckedJobInfo cji)
+	{
+		 String[] otherArgs = new GenericOptionsParser(cji.getConf(), args).getRemainingArgs();
+	    
+	    if (otherArgs.length != 2)
+        {
+        	//TODO replace with log4j
+            System.err.println(cji.getUsageMessage());
+            System.exit(2);
+        }
+	    
+	    return otherArgs;
+	}
 }

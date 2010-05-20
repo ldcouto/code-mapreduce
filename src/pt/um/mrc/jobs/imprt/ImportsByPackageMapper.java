@@ -7,7 +7,7 @@ import org.apache.hadoop.io.Text;
 
 import pt.um.mrc.lib.ImprtHelper;
 import pt.um.mrc.lib.PckgHelper;
-import pt.um.mrc.util.mappers.DistributedCacheSetUpMapper;
+import pt.um.mrc.util.mappers.ImportsCommonMapper;
 
 /**
  * This class is the Mapper for the job that relates packages with the packages
@@ -17,7 +17,7 @@ import pt.um.mrc.util.mappers.DistributedCacheSetUpMapper;
  * @author Tiago Alves Veloso
  */
 
-public class ImportsByPackageMapper extends DistributedCacheSetUpMapper<Text, Text, Text, Text>
+public class ImportsByPackageMapper extends ImportsCommonMapper<Text, Text, Text, Text>
 {
     private Text packagename = new Text();
     private Text importedPackage = new Text();

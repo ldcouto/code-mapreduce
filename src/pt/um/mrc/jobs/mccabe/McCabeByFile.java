@@ -5,11 +5,11 @@ import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Job;
-import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
-import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 import org.apache.hadoop.util.GenericOptionsParser;
 
 import pt.um.mrc.util.control.HadoopJobControl;
+import pt.um.mrc.util.control.JobConfigurer;
+import pt.um.mrc.util.control.MapperConfigurer;
 import pt.um.mrc.util.io.JavaFileInputFormat;
 
 /**
@@ -20,30 +20,29 @@ import pt.um.mrc.util.io.JavaFileInputFormat;
  * @author Tiago Alves Veloso
  */
 
-public class McCabeByFile
-{
-    public static void main(String[] args) throws Exception
-    {
-        Configuration conf = new Configuration();
-        String[] otherArgs = new GenericOptionsParser(conf, args).getRemainingArgs();
-        if (otherArgs.length != 2)
-        {
-            System.err.println("Usage: McCabeByFile <in> <out>");
-            System.exit(2);
-        }
+public class McCabeByFile {
 
-        // // Create a new Job
-        Job job = new Job(conf,
-                "find the McCabe number for each file");
+	public static void main(String[] args) throws Exception {
+		Configuration conf = new Configuration();
+		String[] otherArgs = new GenericOptionsParser(conf, args).getRemainingArgs();
+		if (otherArgs.length != 2) {
+			System.err.println("Usage: McCabeByFile <in> <out>");
+			System.exit(2);
+		}
 
-        HadoopJobControl.configureSimpleJob(job, McCabeByFile.class, McCabeByFileMapper.class,
-                Text.class, IntWritable.class, McCabeByFileReducer.class, JavaFileInputFormat.class);
-        
-        // Define the input and output paths
-        FileInputFormat.addInputPath(job, new Path(otherArgs[0]));
-        FileOutputFormat.setOutputPath(job, new Path(otherArgs[1]));
+		// // Create a new Job
+		Job job = new Job(conf, "find the McCabe number for each file");
 
-        // Close the Job
-        System.exit(job.waitForCompletion(true) ? 0 : 1);
-    }
+		JobConfigurer jc =
+			new JobConfigurer(McCabeByFile.class, JavaFileInputFormat.class,
+				new Path(otherArgs[0]), new Path(otherArgs[1]));
+
+		MapperConfigurer mc =
+			new MapperConfigurer(McCabeByFileMapper.class, Text.class, IntWritable.class);
+
+		HadoopJobControl.configureSimpleJob(job, jc, mc, McCabeByFileReducer.class);
+		
+		// Close the Job
+		System.exit(job.waitForCompletion(true) ? 0 : 1);
+	}
 }
