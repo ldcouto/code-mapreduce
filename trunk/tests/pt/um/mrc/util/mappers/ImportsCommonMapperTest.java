@@ -8,7 +8,9 @@ import org.apache.hadoop.mrunit.mapreduce.MapDriver;
 import org.junit.Before;
 import org.junit.Test;
 
-public class DistributedCacheSetUpMapperTest
+import pt.um.mrc.jobs.imprt.ImportsCommonMapper;
+
+public class ImportsCommonMapperTest
 {
     private Mapper<Text, Text, Text, Text> mapper;
     private MapDriver<Text, Text, Text, Text> driver;
