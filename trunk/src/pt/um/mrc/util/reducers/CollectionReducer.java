@@ -6,7 +6,6 @@ import org.apache.hadoop.io.Text;
 import org.apache.hadoop.io.Writable;
 import org.apache.hadoop.mapreduce.Reducer;
 
-import pt.um.mrc.lib.ReduceHelpers;
 import pt.um.mrc.util.datatypes.CollectionWritablePrintable;
 
 public class CollectionReducer<KI, VI extends Text, KO extends KI, VO extends CollectionWritablePrintable>

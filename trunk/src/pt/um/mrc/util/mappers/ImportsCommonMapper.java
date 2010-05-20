@@ -1,4 +1,4 @@
-package pt.um.mrc.jobs.imprt;
+package pt.um.mrc.util.mappers;
 
 import java.io.IOException;
 import java.util.List;
@@ -6,20 +6,12 @@ import java.util.List;
 import org.apache.hadoop.io.Text;
 
 import pt.um.mrc.lib.ImprtHelper;
-import pt.um.mrc.util.mappers.ImportsCommonMapper;
 
-/**
- * This class is the Mapper for the job that relates files with the packages
- * they import.
- * 
- * @author Luis Duarte Couto
- * @author Tiago Alves Veloso
- */
-
-public class ImportsByFileMapper extends ImportsCommonMapper<Text, Text, Text, Text>
+public class ImportsCommonMapper<KI, VI, KO, VO> extends PackageInfoMapper<Text, Text, Text, Text>
 {
     private Text filename = new Text();
     private Text importedPackage = new Text();
+
     
     @Override
     protected void map(Text key, Text value, Context context) throws IOException,
@@ -34,7 +26,7 @@ public class ImportsByFileMapper extends ImportsCommonMapper<Text, Text, Text, T
         // Write to the output.
         for (String imprtPckg : importedPackages)
         {
-            for (String intrnPckg : super.internalPackages)
+            for (String intrnPckg : internalPackages)
             {
                 if (imprtPckg.indexOf(intrnPckg) >= 0)
                 {

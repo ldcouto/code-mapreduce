@@ -1,8 +1,9 @@
-package pt.um.mrc.lib;
+package pt.um.mrc.util.reducers;
 
 import java.util.ArrayList;
 
 import org.apache.hadoop.io.Text;
+
 
 public class ReduceHelpers
 {
@@ -11,7 +12,7 @@ public class ReduceHelpers
 
     public static Text[] toTextArray(Iterable<? extends Text> values)
     {
-        // Auxiliary ArrayList to serve as an intermidiate stucture in
+        // Auxiliary ArrayList to serve as an intermediate structure in
         // converting the values into a String array
         ArrayList<Text> aux = new ArrayList<Text>();
 

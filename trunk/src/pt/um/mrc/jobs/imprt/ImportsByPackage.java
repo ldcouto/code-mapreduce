@@ -7,11 +7,11 @@ import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Job;
-import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
-import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
-import org.apache.hadoop.util.GenericOptionsParser;
 
+import pt.um.mrc.util.control.CheckedJobInfo;
 import pt.um.mrc.util.control.HadoopJobControl;
+import pt.um.mrc.util.control.JobConfigurer;
+import pt.um.mrc.util.control.MapperConfigurer;
 import pt.um.mrc.util.io.JavaFileInputFormat;
 
 /**
@@ -22,55 +22,68 @@ import pt.um.mrc.util.io.JavaFileInputFormat;
  * @author Tiago Alves Veloso
  */
 
-public class ImportsByPackage
-{
-    public static void main(String[] args) throws Exception
-    {
-        Configuration conf = new Configuration();
-        FileSystem fs = FileSystem.get(conf);
-        Path tmp = new Path("tmp/");
+public class ImportsByPackage {
 
-        String[] otherArgs = new GenericOptionsParser(conf, args).getRemainingArgs();
-        if (otherArgs.length != 2)
-        {
-            System.err.println("Usage: ImportsByPackage <in> <out>");
-            System.exit(2);
-        }
+	static Configuration conf = new Configuration();
+	static FileSystem fs;
+	static Path tmp = new Path("tmp/");
 
-        Job job1 = new Job(conf, "find project's internal packages");
+	public static void main(String[] args) throws Exception {
 
-        HadoopJobControl.configureSimpleJob(job1, ImportsByPackage.class, FindPackagesMapper.class,
-                Text.class, Text.class, FindPackagesReducer.class, JavaFileInputFormat.class);
+		// Initialize FS
+		fs = FileSystem.get(conf);
 
-        FileInputFormat.addInputPath(job1, new Path(otherArgs[0]));
-        FileOutputFormat.setOutputPath(job1, tmp);
+		// Check Args
+		CheckedJobInfo cji = new CheckedJobInfo(conf, "Usage: ImportsByPackage <in> <our>");
+		String[] otherArgs = HadoopJobControl.checkArguments(args, cji);
 
-        boolean statusJob1 = job1.waitForCompletion(true);
+		runJob1(otherArgs);
 
-        if (!statusJob1)
-            System.exit(1);
+		// Set up the Cache
+		for (FileStatus fstatus : fs.listStatus(tmp)) {
+			if (!fstatus.isDir()) {
+				DistributedCache.addCacheFile(fstatus.getPath().toUri(), conf);
+			}
+		}
 
-        for (FileStatus fstatus : fs.listStatus(tmp))
-        {
-            if (!fstatus.isDir())
-            {
-                DistributedCache.addCacheFile(fstatus.getPath().toUri(), conf);
-            }
-        }
+		runJob2(otherArgs);
 
-        Job job2 = new Job(conf, "find packages imported by a file");
+	}
 
-        HadoopJobControl.configureSimpleJob(job2, ImportsByPackage.class,
-                ImportsByPackageMapper.class, Text.class, Text.class,
-                ImportsByPackageReducer.class, JavaFileInputFormat.class);
+	private static void runJob1(String[] otherArgs) throws Exception {
+		Job job1 = new Job(conf, "find project's internal packages");
 
-        FileInputFormat.addInputPath(job2, new Path(otherArgs[0]));
-        FileOutputFormat.setOutputPath(job2, new Path(otherArgs[1]));
+		JobConfigurer jc1 =
+			new JobConfigurer(ImportsByPackage.class, JavaFileInputFormat.class, new Path(
+				otherArgs[0]), new Path(otherArgs[1]));
 
-        boolean statusJob2 = job2.waitForCompletion(true);
+		MapperConfigurer mc1 =
+			new MapperConfigurer(FindPackagesMapper.class, Text.class, Text.class);
 
-        fs.delete(tmp, true);
+		HadoopJobControl.configureSimpleJob(job1, jc1, mc1, FindPackagesReducer.class);
 
-        System.exit(statusJob2 ? 0 : 1);
-    }
+		boolean statusJob1 = job1.waitForCompletion(true);
+
+		if (!statusJob1)
+			System.exit(1);
+	}
+
+	private static void runJob2(String[] otherArgs) throws Exception {
+		Job job2 = new Job(conf, "find packages imported by a file");
+
+		JobConfigurer jc2 =
+			new JobConfigurer(ImportsByPackage.class, JavaFileInputFormat.class, new Path(
+				otherArgs[0]), new Path(otherArgs[1]));
+
+		MapperConfigurer mc2 =
+			new MapperConfigurer(ImportsByPackageMapper.class, Text.class, Text.class);
+
+		HadoopJobControl.configureSimpleJob(job2, jc2, mc2, ImportsByPackageReducer.class);
+
+		boolean statusJob2 = job2.waitForCompletion(true);
+
+		fs.delete(tmp, true);
+
+		System.exit(statusJob2 ? 0 : 1);
+	}
 }
