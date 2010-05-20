@@ -1,10 +1,9 @@
 package pt.um.mrc.jobs.volume;
 
-import java.io.IOException;
-
 import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.Text;
-import org.apache.hadoop.mapreduce.Reducer;
+
+import pt.um.mrc.util.reducers.SumReducer;
 
 /**
  * This class is the reducer for the job that relates files with their lines of
@@ -14,15 +13,5 @@ import org.apache.hadoop.mapreduce.Reducer;
  * @author Tiago Alves Veloso
  */
 
-public class VolumeByFileReducer extends Reducer<Text, IntWritable, Text, IntWritable>
-{
-
-    @Override
-    protected void reduce(Text key, Iterable<IntWritable> values, Context context)
-            throws IOException, InterruptedException
-    {
-        // TODO Auto-generated method stub
-        super.reduce(key, values, context);
-    }
-
-}
+public class VolumeByFileReducer extends SumReducer<Text, IntWritable, Text, IntWritable>
+{}
