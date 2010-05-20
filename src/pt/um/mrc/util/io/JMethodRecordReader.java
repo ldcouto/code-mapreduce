@@ -49,9 +49,9 @@ public class JMethodRecordReader extends RecordReader<MethodID, Text> {
 	private FSDataInputStream fileIn;
 	private List<MethodID> mKeys;
 	private int currM = -1;
-	private MethodID currMethodID;
-	private Text currMethod;
-	
+//	private MethodID currMethodID;
+//	private Text currMethod;
+//	
 	public Map<MethodID, Text> getMethods() {
 		return methods;
 	}
@@ -96,9 +96,9 @@ public class JMethodRecordReader extends RecordReader<MethodID, Text> {
 	public void initialize(InputSplit inSplit, TaskAttemptContext tac)
 		throws IOException, InterruptedException {
 
-		currMethodID = new MethodID();
-		currMethod = new Text();
-		
+//		currMethodID = new MethodID();
+//		currMethod = new Text();
+//		
 		Configuration job = tac.getConfiguration();
 		fSplit = (FileSplit) inSplit;
 
