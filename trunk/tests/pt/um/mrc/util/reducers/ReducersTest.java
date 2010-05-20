@@ -1,4 +1,4 @@
-package pt.um.mrc.lib;
+package pt.um.mrc.util.reducers;
 
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertNotNull;
@@ -7,6 +7,8 @@ import java.util.ArrayList;
 
 import org.apache.hadoop.io.Text;
 import org.junit.Test;
+
+import pt.um.mrc.util.reducers.ReduceHelpers;
 
 public class ReducersTest
 {

@@ -16,7 +16,7 @@ public class DistributedCacheSetUpMapperTest
     @Before
     public void setUp() throws Exception
     {
-        mapper = new DistributedCacheSetUpMapper<Text, Text, Text, Text>();
+        mapper = new ImportsCommonMapper<Text, Text, Text, Text>();
         driver = new MapDriver<Text, Text, Text, Text>(mapper);
     }
 
