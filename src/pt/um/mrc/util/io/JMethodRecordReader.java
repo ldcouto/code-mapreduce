@@ -117,7 +117,9 @@ public class JMethodRecordReader extends RecordReader<MethodID, Text> {
 
 		if (cu.getBeginLine() > 0) {
 			fileName = fSplit.getPath().getName();
-			packageName = cu.getPackage().getName().toString();
+			if (cu.getPackage() != null)
+				packageName = cu.getPackage().getName().toString();
+			else packageName = "<default>";
 		}
 		
 		new ClassVisitor().visit(cu, null);
@@ -205,6 +207,7 @@ public class JMethodRecordReader extends RecordReader<MethodID, Text> {
 					sb.append(md.getName());
 					if (md.getParameters()!=null)
 						sb.append(md.getParameters().toString());
+					else sb.append("[ ]");
 					aux.setMethodName(sb.toString());
 					methods.put(aux, new Text(td.toString()));
 				}

@@ -13,25 +13,38 @@ import org.apache.hadoop.mapreduce.Mapper;
 public class PackageInfoMapper<KI, VI, KO, VO> extends Mapper<KI, VI, KO, VO>{
 
 	protected ArrayList<String> internalPackages = new ArrayList<String>();
-
     
-    @Override
+	public ArrayList<String> getInternalPackages() {
+		return internalPackages;
+	}
+
+	public void setInternalPackages(ArrayList<String> internalPackages) {
+		this.internalPackages = internalPackages;
+	}
+
+
+
+	@Override
     protected void setup(Context context) throws IOException, InterruptedException
     {
         Path[] localFiles = DistributedCache.getLocalCacheFiles(context.getConfiguration());
         
-        FileReader fr = new FileReader(localFiles[0].toString());
-        BufferedReader br = new BufferedReader(fr);
-
-        String aux;
-
-        while ((aux = br.readLine()) != null)
+        //TODO Should this guard stay?
+        if (localFiles != null)
         {
-            internalPackages.add(aux.trim());
+	        	
+	        FileReader fr = new FileReader(localFiles[0].toString());
+	        BufferedReader br = new BufferedReader(fr);
+	
+	        String aux;
+	
+	        while ((aux = br.readLine()) != null)
+	        {
+	            internalPackages.add(aux.trim());
+	        }
+	
+	        br.close();
         }
-
-        br.close();
-        
         super.setup(context);
     }
 	

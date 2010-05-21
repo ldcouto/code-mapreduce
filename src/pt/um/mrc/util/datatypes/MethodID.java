@@ -4,10 +4,10 @@ import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
 
-import org.apache.hadoop.io.Writable;
+import org.apache.hadoop.io.WritableComparable;
 
 
-public class MethodID implements Writable {
+public class MethodID implements WritableComparable<MethodID> {
 	
 	String methodName;
 	String className;
@@ -23,11 +23,18 @@ public class MethodID implements Writable {
 	
 	public MethodID(String methodName, String className, String fileName,
 		String packageName) {
-		super();
 		this.methodName = methodName;
 		this.className = className;
 		this.fileName = fileName;
 		this.packageName = packageName;
+	}
+	
+	public MethodID(String aggre){
+		String[] aux = aggre.split("-");
+		packageName=aux[0];
+		fileName=aux[1];
+		className=aux[2];
+		methodName=aux[3];
 	}
 
 	public String getMethodName() {
@@ -62,11 +69,24 @@ public class MethodID implements Writable {
 		this.packageName = packageName;
 	}
 
+	
+	public String prettyString() {
+		return "MethodID[" + "packageName=" + packageName + "fileName=" + fileName + "" +
+				"className=" + className + ", methodName=" + methodName + "]";
+	}
+
 	@Override
-	public String toString() {
-		return "MethodID[className=" + className + ", fileName=" + fileName
-			+ ", methodName=" + methodName + ", packageName=" + packageName
-			+ "]";
+	public String toString()
+	{
+		StringBuilder sb = new StringBuilder();
+		sb.append(packageName);
+		sb.append('-');
+		sb.append(fileName);
+		sb.append('-');
+		sb.append(className);
+		sb.append('-');
+		sb.append(methodName);
+		return sb.toString();
 	}
 
 	@Override
@@ -131,6 +151,27 @@ public class MethodID implements Writable {
 		} else if (!packageName.equals(other.packageName))
 			return false;
 		return true;
+	}
+
+	@Override
+	public int compareTo(MethodID o) {
+		int cmpPkg = this.packageName.compareTo(o.getPackageName());
+		if (cmpPkg !=0)
+			return cmpPkg;
+		
+		int cmpFile = this.fileName.compareTo(o.getFileName());
+		if (cmpFile !=0)
+			return cmpFile;
+		
+		int cmpClass = this.className.compareTo(o.getClassName());
+		if (cmpClass !=0)
+			return cmpClass;
+		
+		int cmpMetd = this.methodName.compareTo(o.getMethodName());
+		if (cmpMetd !=0)
+			return cmpMetd;
+		
+		return 0;
 	}
 
 
