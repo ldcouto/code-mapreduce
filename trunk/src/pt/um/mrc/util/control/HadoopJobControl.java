@@ -1,6 +1,5 @@
 package pt.um.mrc.util.control;
 
-import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.mapreduce.Job;
 import org.apache.hadoop.mapreduce.Reducer;
 import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
@@ -13,7 +12,7 @@ public class HadoopJobControl
             Class<? extends Reducer<?, ?, ?, ?>> reducer) throws Exception
     {
 
-        FileSystem fs = FileSystem.get(job.getConfiguration());
+//        FileSystem fs = FileSystem.get(job.getConfiguration());
 
         // Configure generic Job stuff
         job.setJarByClass(jc.getClassJar());
