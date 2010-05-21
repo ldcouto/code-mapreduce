@@ -16,11 +16,6 @@ public class CheckedJobInfo {
 		return usageMessage;
 	}
 
-	public void setUsageMessage(String usageMessage) {
-
-		this.usageMessage = usageMessage;
-	}
-
 	public Configuration getConf() {
 		return conf;
 	}
