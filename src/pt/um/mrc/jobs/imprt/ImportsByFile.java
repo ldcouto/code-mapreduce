@@ -22,72 +22,78 @@ import pt.um.mrc.util.io.JavaFileInputFormat;
  * @author Tiago Alves Veloso
  */
 
-public class ImportsByFile {
+public class ImportsByFile
+{
 
-	static Configuration conf = new Configuration();
-	static FileSystem fs;
-	static Path tmp = new Path("tmp/");
+    static Configuration conf = new Configuration();
+    static FileSystem fs;
+    static Path tmp = new Path("tmp/");
 
-	public static void main(String[] args) throws Exception {
-		// Initialize some stuff
-		fs = FileSystem.get(conf);
+    public static void main(String[] args) throws Exception
+    {
+        // Initialize some stuff
+        fs = FileSystem.get(conf);
 
-		// Check Arguments
-		CheckedJobInfo cji = new CheckedJobInfo(conf, "Usage: ImportsByFile <in> <our>");
-		String[] otherArgs = HadoopJobControl.checkArguments(args, cji);
+        // Check Arguments
+        CheckedJobInfo cji = new CheckedJobInfo(conf, "Usage: ImportsByFile <in> <our>");
+        String[] otherArgs = HadoopJobControl.checkArguments(args, cji);
 
-		runJob1(otherArgs);
+        runJob1(otherArgs);
 
-		// Prepare the Cache for the second Job
+        // Prepare the Cache for the second Job
 
-		for (FileStatus fstatus : fs.listStatus(tmp)) {
-			if (!fstatus.isDir()) {
-				DistributedCache.addCacheFile(fstatus.getPath().toUri(), conf);
-			}
-		}
+        for (FileStatus fstatus : fs.listStatus(tmp))
+        {
+            if (!fstatus.isDir())
+            {
+                DistributedCache.addCacheFile(fstatus.getPath().toUri(), conf);
+            }
+        }
 
-		runJob2(otherArgs);
-	}
+        runJob2(otherArgs);
+    }
 
-	private static void runJob1(String[] otherArgs) throws Exception {
+    private static void runJob1(String[] otherArgs) throws Exception
+    {
 
-		// Create and Set up the (1st) Job
-		Job job1 = new Job(conf, "find project's internal packages");
+        // Create and Set up the (1st) Job
+        Job job1 = new Job(conf, "find project's internal packages");
 
-		JobConfigurer jc1 =
-			new JobConfigurer(ImportsByFile.class, JavaFileInputFormat.class, new Path(otherArgs[0]),
-				tmp);
+        JobConfigurer jc1 = new JobConfigurer(ImportsByFile.class, JavaFileInputFormat.class,
+                new Path(otherArgs[0]), tmp);
 
-		MapperConfigurer mc1 = new MapperConfigurer(FindPackagesMapper.class, Text.class, Text.class);
+        MapperConfigurer mc1 = new MapperConfigurer(FindPackagesMapper.class, Text.class,
+                Text.class);
 
-		HadoopJobControl.configureSimpleJob(job1, jc1, mc1, FindPackagesReducer.class);
+        HadoopJobControl.configureSimpleJob(job1, jc1, mc1, FindPackagesReducer.class);
 
-		// Run the (1st) Job
-		boolean statusJob1 = job1.waitForCompletion(true);
+        // Run the (1st) Job
+        boolean statusJob1 = job1.waitForCompletion(true);
 
-		if (!statusJob1)
-			System.exit(1);
+        if (!statusJob1)
+            System.exit(1);
 
-	}
+    }
 
-	private static void runJob2(String[] otherArgs) throws Exception {
-		// Create and set up the (2nd) Job
-		Job job2 = new Job(conf, "find packages imported by a file");
+    private static void runJob2(String[] otherArgs) throws Exception
+    {
+        // Create and set up the (2nd) Job
+        Job job2 = new Job(conf, "find packages imported by a file");
 
-		JobConfigurer jc2 =
-			new JobConfigurer(ImportsByFile.class, JavaFileInputFormat.class, new Path(otherArgs[0]),
-				new Path(otherArgs[1]));
+        JobConfigurer jc2 = new JobConfigurer(ImportsByFile.class, JavaFileInputFormat.class,
+                new Path(otherArgs[0]), new Path(otherArgs[1]));
 
-		MapperConfigurer mc2 = new MapperConfigurer(ImportsByFileMapper.class, Text.class, Text.class);
+        MapperConfigurer mc2 = new MapperConfigurer(ImportsByFileMapper.class, Text.class,
+                Text.class);
 
-		HadoopJobControl.configureSimpleJob(job2, jc2, mc2, ImportsByFileReducer.class);
+        HadoopJobControl.configureSimpleJob(job2, jc2, mc2, ImportsByFileReducer.class);
 
-		// Run the (2nd) Job
-		boolean statusJob2 = job2.waitForCompletion(true);
+        // Run the (2nd) Job
+        boolean statusJob2 = job2.waitForCompletion(true);
 
-		// Clean up
-		fs.delete(tmp, true);
-		System.exit(statusJob2 ? 0 : 1);
+        // Clean up
+        fs.delete(tmp, true);
+        System.exit(statusJob2 ? 0 : 1);
 
-	}
+    }
 }
