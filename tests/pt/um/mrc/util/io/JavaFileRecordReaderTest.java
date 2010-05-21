@@ -37,10 +37,10 @@ public class JavaFileRecordReaderTest {
 
 	@Before
 	public void setUp() throws Exception {
-		fileSplitGood = new FileSplit(new Path("somefile"), 0, 149, null);
-		fileSplitEmpty1Char = new FileSplit(new Path("somefile_empty"), 0, 1,
+		fileSplitGood = new FileSplit(new Path("TestMats/somefile"), 0, 149, null);
+		fileSplitEmpty1Char = new FileSplit(new Path("TestMats/somefile_empty"), 0, 1,
 				null);
-		fileSplitEmpty = new FileSplit(new Path("somefile_empty"), 0, 0, null);
+		fileSplitEmpty = new FileSplit(new Path("TestMats/somefile_empty"), 0, 0, null);
 		Text foo = new Text("foo");
 		Text bar = new Text("bar");
 		Pair<Text, Text> p1 = new Pair<Text, Text>(foo, bar);
@@ -85,7 +85,7 @@ public class JavaFileRecordReaderTest {
 		
 		Configuration auxJob=mapMockContext.getConfiguration();
 		CompressionCodecFactory expectedFactory = new CompressionCodecFactory(auxJob);
-		Path auxPath=new Path("somefile");
+		Path auxPath=new Path("TestMats/somefile");
 		
 		FileSystem auxFS =  auxPath.getFileSystem(auxJob);
 		LineReader expectedReader = new LineReader(auxFS.open(auxPath), auxJob);

@@ -122,7 +122,6 @@ public class JMethodRecordReaderTest {
 			InterruptedException {
 		boolean expected = true;
 		boolean actual = javaRRGoodFile.nextKeyValue();
-		actual = javaRREmptyFile1Char.nextKeyValue();
 		Assert.assertEquals(expected, actual);
 	}
 
