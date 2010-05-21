@@ -4,23 +4,24 @@ package pt.um.mrc.jobs.volume;
 import java.util.ArrayList;
 
 import org.apache.hadoop.io.IntWritable;
-import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Reducer;
 import org.apache.hadoop.mrunit.mapreduce.ReduceDriver;
 import org.junit.Before;
 import org.junit.Test;
 
+import pt.um.mrc.util.datatypes.MethodID;
+
 public class VolumeByMethodReducerTest
 {
 
-    private Reducer<Text, IntWritable, Text, IntWritable> reducer;
-    private ReduceDriver<Text, IntWritable, Text, IntWritable> driver;
+    private Reducer<MethodID, IntWritable, MethodID, IntWritable> reducer;
+    private ReduceDriver<MethodID, IntWritable, MethodID, IntWritable> driver;
 
     @Before
     public void setUp() throws Exception
     {
         reducer = new VolumeByMethodReducer();
-        driver = new ReduceDriver<Text, IntWritable, Text, IntWritable>(reducer);
+        driver = new ReduceDriver<MethodID, IntWritable, MethodID, IntWritable>(reducer);
     }
     
     @Test
@@ -30,8 +31,10 @@ public class VolumeByMethodReducerTest
         values.add(new IntWritable(10));
         values.add(new IntWritable(20));
         
-        driver.withInput(new Text("some method"), values);
-        driver.withOutput(new Text("some method"), new IntWritable(30));
+        MethodID aux = new MethodID("foo", "bar", "foo.java", "foo.bar");
+        
+        driver.withInput(aux, values);
+        driver.withOutput(aux, new IntWritable(30));
         driver.runTest();
     }
 }

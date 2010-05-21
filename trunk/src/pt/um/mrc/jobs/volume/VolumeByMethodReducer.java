@@ -1,8 +1,8 @@
 package pt.um.mrc.jobs.volume;
 
 import org.apache.hadoop.io.IntWritable;
-import org.apache.hadoop.io.Text;
 
+import pt.um.mrc.util.datatypes.MethodID;
 import pt.um.mrc.util.reducers.SumReducer;
 
 /**
@@ -13,5 +13,5 @@ import pt.um.mrc.util.reducers.SumReducer;
  * @author Tiago Alves Veloso
  */
 
-public class VolumeByMethodReducer extends SumReducer<Text, IntWritable, Text, IntWritable>
+public class VolumeByMethodReducer extends SumReducer<MethodID, IntWritable, MethodID, IntWritable>
 {}

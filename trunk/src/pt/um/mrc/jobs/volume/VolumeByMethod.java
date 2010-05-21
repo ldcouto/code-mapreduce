@@ -3,13 +3,13 @@ package pt.um.mrc.jobs.volume;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.IntWritable;
-import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Job;
 import org.apache.hadoop.util.GenericOptionsParser;
 
 import pt.um.mrc.util.control.HadoopJobControl;
 import pt.um.mrc.util.control.JobConfigurer;
 import pt.um.mrc.util.control.MapperConfigurer;
+import pt.um.mrc.util.datatypes.MethodID;
 import pt.um.mrc.util.io.JMethodInputFormat;
 
 /**
@@ -38,7 +38,7 @@ public class VolumeByMethod {
 				new Path(otherArgs[1]));
 
 		MapperConfigurer mc =
-			new MapperConfigurer(VolumeByMethodMapper.class, Text.class, IntWritable.class);
+			new MapperConfigurer(VolumeByMethodMapper.class, MethodID.class, IntWritable.class);
 
 		HadoopJobControl.configureSimpleJob(job, jc, mc, VolumeByMethodReducer.class);
 

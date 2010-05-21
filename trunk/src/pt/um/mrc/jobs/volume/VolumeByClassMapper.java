@@ -15,15 +15,29 @@ import org.apache.hadoop.mapreduce.Mapper;
  * @author Tiago Alves Veloso
  */
 
-public class VolumeByClassMapper extends Mapper<LongWritable, Text, Text, IntWritable>
-{
+public class VolumeByClassMapper extends Mapper<LongWritable, Text, Text, IntWritable> {
 
-    @Override
-    protected void map(LongWritable key, Text value, Context context) throws IOException,
-            InterruptedException
-    {
-        // TODO Auto-generated method stub
-        super.map(key, value, context);
-    }
+	private Text outKey = new Text();
+	private IntWritable outValue = new IntWritable();
+
+	@Override
+	protected void map(LongWritable key, Text value, Context context) throws IOException,
+		InterruptedException {
+		
+		String[] aux1 = value.toString().split("\t");
+		String[] aux2 = aux1[0].split("\\-");
+		
+		StringBuilder sb = new StringBuilder();
+		sb.append(aux2[0]);
+		sb.append('-');
+		sb.append(aux2[1]);
+		sb.append('-');
+		sb.append(aux2[2]);
+
+		outKey.set(sb.toString());
+		outValue.set(Integer.parseInt(aux1[1]));
+
+		context.write(outKey, outValue);
+	}
 
 }
