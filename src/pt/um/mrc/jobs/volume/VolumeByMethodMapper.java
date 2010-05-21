@@ -6,6 +6,7 @@ import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Mapper;
 
+import pt.um.mrc.lib.VolumeHelper;
 import pt.um.mrc.util.datatypes.MethodID;
 
 /**
@@ -27,7 +28,7 @@ public class VolumeByMethodMapper extends Mapper<MethodID, Text, Text, IntWritab
             InterruptedException
     {
         outKey.set(key.getPackageName()+"."+key.getFileName()+"."+key.getClassName()+"."+key.getMethodName());
-        lines.set(10);
+        lines.set(VolumeHelper.countLinesOfCode(value.toString()));
         
         context.write(outKey, lines);
     }
