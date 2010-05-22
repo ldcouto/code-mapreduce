@@ -9,7 +9,8 @@ import org.apache.hadoop.mrunit.mapreduce.ReduceDriver;
 import org.junit.Before;
 import org.junit.Test;
 
-public class McCabeByFileReducerTest
+
+public class McCabeByPackageReducerTest
 {
     private Reducer<Text, IntWritable, Text, IntWritable> reducer;
     private ReduceDriver<Text, IntWritable, Text, IntWritable> driver;
@@ -17,7 +18,7 @@ public class McCabeByFileReducerTest
     @Before
     public void setUp() throws Exception
     {
-        reducer = new McCabeByFileReducer();
+        reducer = new McCabeByPackageReducer();
         driver = new ReduceDriver<Text, IntWritable, Text, IntWritable>(reducer);
     }
 
@@ -28,8 +29,8 @@ public class McCabeByFileReducerTest
         values.add(new IntWritable(10));
         values.add(new IntWritable(20));
 
-        driver.withInput(new Text("some file"), values);
-        driver.withOutput(new Text("some file"), new IntWritable(30));
+        driver.withInput(new Text("some package"), values);
+        driver.withOutput(new Text("some package"), new IntWritable(30));
         driver.runTest();
     }
 }
