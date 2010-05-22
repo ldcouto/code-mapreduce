@@ -22,17 +22,21 @@ public class ImportsCommonMapper<KI, VI, KO, VO> extends PackageInfoMapper<Text,
         // Write to the output.
         for (String imprtPckg : importedPackages)
         {
+            imprtPckg = imprtPckg.replaceAll("\\*", "");
             for (String intrnPckg : internalPackages)
             {
                 if (imprtPckg.indexOf(intrnPckg) >= 0)
                 {
                     importedPackage.set(imprtPckg);
                     context.write(key, importedPackage);    
-                }  
+                }
+                
+                if (intrnPckg.indexOf(imprtPckg) >= 0)
+                {
+                    importedPackage.set(intrnPckg);
+                    context.write(key, importedPackage);    
+                } 
             }
         }
     }
-    
-    
-    
 }

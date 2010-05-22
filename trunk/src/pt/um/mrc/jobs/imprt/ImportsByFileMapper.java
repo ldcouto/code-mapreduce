@@ -11,6 +11,4 @@ import org.apache.hadoop.io.Text;
  */
 
 public class ImportsByFileMapper extends ImportsCommonMapper<Text, Text, Text, Text>
-{
-   
-}
+{}
