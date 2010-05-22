@@ -8,7 +8,7 @@ import org.apache.hadoop.mrunit.mapreduce.MapDriver;
 import org.junit.Before;
 import org.junit.Test;
 
-public class McCabeByFileMapperTest
+public class McCabeByPackageMapperTest
 {
     private Mapper<LongWritable, Text, Text, IntWritable> mapper;
     private MapDriver<LongWritable, Text, Text, IntWritable> driver;
@@ -16,7 +16,7 @@ public class McCabeByFileMapperTest
     @Before
     public void setUp() throws Exception
     {
-        mapper = new McCabeByFileMapper();
+        mapper = new McCabeByPackageMapper();
         driver = new MapDriver<LongWritable, Text, Text, IntWritable>(mapper);
     }
 
@@ -26,9 +26,9 @@ public class McCabeByFileMapperTest
         LongWritable inKey = new LongWritable(10);
 
         Text inValues = new Text(
-                "pt.um.mrc.jobs.imprt-FindPackagesMapper.java-FindPackagesMapper\t5");
+                "pt.um.mrc.jobs.imprt-FindPackagesMapper.java\t5");
 
-        Text outKey = new Text("pt.um.mrc.jobs.imprt-FindPackagesMapper.java");
+        Text outKey = new Text("pt.um.mrc.jobs.imprt");
 
         IntWritable outValue = new IntWritable(5);
 

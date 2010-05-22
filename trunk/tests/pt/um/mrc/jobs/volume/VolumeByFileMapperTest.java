@@ -1,4 +1,4 @@
-package pt.um.mrc.jobs.mccabe;
+package pt.um.mrc.jobs.volume;
 
 import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.LongWritable;
@@ -8,7 +8,7 @@ import org.apache.hadoop.mrunit.mapreduce.MapDriver;
 import org.junit.Before;
 import org.junit.Test;
 
-public class McCabeByFileMapperTest
+public class VolumeByFileMapperTest
 {
     private Mapper<LongWritable, Text, Text, IntWritable> mapper;
     private MapDriver<LongWritable, Text, Text, IntWritable> driver;
@@ -16,7 +16,7 @@ public class McCabeByFileMapperTest
     @Before
     public void setUp() throws Exception
     {
-        mapper = new McCabeByFileMapper();
+        mapper = new VolumeByFileMapper();
         driver = new MapDriver<LongWritable, Text, Text, IntWritable>(mapper);
     }
 

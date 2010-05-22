@@ -11,7 +11,6 @@ import org.junit.Test;
 
 public class VolumeByFileReducerTest
 {
-
     private Reducer<Text, IntWritable, Text, IntWritable> reducer;
     private ReduceDriver<Text, IntWritable, Text, IntWritable> driver;
 

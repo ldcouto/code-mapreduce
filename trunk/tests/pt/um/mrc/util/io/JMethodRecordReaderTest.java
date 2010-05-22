@@ -9,6 +9,8 @@ import java.util.List;
 import java.util.Map;
 
 import org.junit.*;
+import org.hamcrest.*;
+import static org.hamcrest.core.Is.is;
 
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.FSDataInputStream;
@@ -129,7 +131,7 @@ public class JMethodRecordReaderTest {
 	public final void testNextKeyValue_EmptyFile() throws IOException,
 			InterruptedException {
 		boolean expected = false;
-		boolean actual = javaRREmptyFile1Char.nextKeyValue();
+		boolean actual = javaRREmptyFile.nextKeyValue();
 		Assert.assertEquals(expected, actual);
 	}
 
@@ -137,7 +139,7 @@ public class JMethodRecordReaderTest {
 	public final void testGetCurrentKey() throws IOException,
 			InterruptedException {
 		javaRRGoodFile.nextKeyValue();
-		MethodID expected = new MethodID("map[Text key, Text value, Context context]", "FindPackagesMapper", "somefile", "pt.um.mrc.jobs.imprt");
+		MethodID expected = new MethodID("jj_3R_173[ ]", "ASTParser", "somefile", "japa.parser");
 		MethodID actual = javaRRGoodFile.getCurrentKey();
 		Assert.assertEquals(expected, actual);
 	}
@@ -148,12 +150,21 @@ public class JMethodRecordReaderTest {
 		javaRRGoodFile.nextKeyValue();
 		
 		StringBuilder sb = new StringBuilder();
-		sb.append("@Override");
 		
-		sb.append("protected void map(Text key, Text value, Context context) throws IOException, InterruptedException {");
-		sb.append("packge.set(PckgHelper.findPackage(value.toString()));");
-		sb.append("context.write(packge, new Text(\"\"));");
-		sb.append("}");
+		sb.append("private boolean jj_3R_173() {\n");
+		sb.append("    Token xsp;\n");        
+		sb.append("    xsp = jj_scanpos;\n");
+		sb.append("    if (jj_3_6()) {\n");
+		sb.append("       jj_scanpos = xsp;\n");
+		sb.append("       if (jj_3R_200()) {\n");
+		sb.append("           jj_scanpos = xsp;\n");
+		sb.append("           if (jj_3R_201()) {\n");
+		sb.append("               return true;\n");
+		sb.append("           }\n");
+		sb.append("       }\n");
+		sb.append("    }\n");        
+		sb.append("    return false;\n");
+		sb.append("}\n");
 			
 		String expected = sb.toString().replaceAll("\\s", ""); 
 		
@@ -174,7 +185,7 @@ public class JMethodRecordReaderTest {
 	@Test
 	public final void testGetProgress_Underway() throws IOException,
 			InterruptedException {
-		float expected = 0.5f;
+		float expected = 0.0017793594161048532f;
 		javaRRGoodFile.nextKeyValue();
 		float actual = javaRRGoodFile.getProgress();
 		Assert.assertEquals(expected, actual, 0.001);
@@ -186,7 +197,7 @@ public class JMethodRecordReaderTest {
 		javaRRGoodFile.close();
 		
 		FSDataInputStream expectedFileIn=null;
-		int expectedCurrM=Integer.MAX_VALUE;
+		int expectedCurrM= -1;
 		Map<MethodID,Text> expectedMethods = null;
 		List<MethodID> expectedKeys = null;
 		
@@ -196,7 +207,7 @@ public class JMethodRecordReaderTest {
 		List<MethodID> actualKeys = javaRRGoodFile.getmKeys();
 		
 		//TODO Still can't compare the filesystems!
-	//	Assert.assertEquals(expectedFileIn, actualFileIn);
+		//Assert.assertEquals(expectedFileIn,actualFileIn);
 		Assert.assertEquals(expectedCurrM, actualCurrM);
 		Assert.assertEquals(expectedMethods, actualMethods);
 		Assert.assertEquals(expectedKeys, actualKeys);

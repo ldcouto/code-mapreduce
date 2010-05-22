@@ -3,8 +3,6 @@ package pt.um.mrc.lib;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
-import java.util.ArrayList;
-
 import org.junit.Before;
 import org.junit.Test;
 
@@ -40,11 +38,9 @@ public class McCabeHelperTest
                 + "        }\n" 
                 + "}\n";
 
-        ArrayList<String> expected = new ArrayList<String>();
-        expected.add("while");
-        expected.add("if");
+        int expected = 3;
 
-        ArrayList<String> result = McCabeHelper.findControlStatements(input);
+        int result = McCabeHelper.countMcCabeNumber(input);
 
         assertEquals(expected, result);
     }
@@ -52,10 +48,11 @@ public class McCabeHelperTest
     @Test
     public final void testFindControlStatements_InvalidInput()
     {
-        String input = "";
+        String input = "public void someMethod(){\n" +
+        		"}\n";
 
-        ArrayList<String> expected = new ArrayList<String>();
-        ArrayList<String> result = McCabeHelper.findControlStatements(input);
+        int expected = 1;
+        int result = McCabeHelper.countMcCabeNumber(input);
 
         assertEquals(expected, result);
     }

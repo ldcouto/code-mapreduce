@@ -126,7 +126,7 @@ public class MethodIDTest
     @Test
     public final void testToString()
     {
-        String expected = "MethodID[className=Mapper, fileName=Mapper.java, methodName=map, packageName=mapreduce]";
+        String expected = "mapreduce-Mapper.java-Mapper-map";
         String actual = testID.toString();
 
         assertEquals(expected, actual);

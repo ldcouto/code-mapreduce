@@ -10,7 +10,7 @@ import org.junit.Test;
 
 import pt.um.mrc.jobs.imprt.ImportsCommonMapper;
 
-public class ImportsCommonMapperTest
+public class PackageInfoMapperTest
 {
     private Mapper<Text, Text, Text, Text> mapper;
     private MapDriver<Text, Text, Text, Text> driver;
@@ -18,7 +18,7 @@ public class ImportsCommonMapperTest
     @Before
     public void setUp() throws Exception
     {
-        mapper = new ImportsCommonMapper<Text, Text, Text, Text>();
+        mapper = new PackageInfoMapper<Text, Text, Text, Text>();
         driver = new MapDriver<Text, Text, Text, Text>(mapper);
     }
 

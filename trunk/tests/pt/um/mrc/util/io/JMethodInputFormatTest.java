@@ -1,8 +1,6 @@
 package pt.um.mrc.util.io;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 import java.io.IOException;
 
@@ -17,39 +15,40 @@ import org.apache.hadoop.mapreduce.TaskAttemptContext;
 import org.junit.Before;
 import org.junit.Test;
 
-public class JavaFileInputFormatTest
+import pt.um.mrc.util.datatypes.MethodID;
+
+public class JMethodInputFormatTest
 {
-    private JavaFileInputFormat javafile;
+    private JMethodInputFormat javamethod;
 
     @Before
     public void setUp() throws Exception
     {
-        javafile = new JavaFileInputFormat();
+        javamethod = new JMethodInputFormat();
     }
 
     @Test
-    public final void testIsSplitable_JobContext_Path()
+    public final void testIsSplitable()
     {
         JobContext context = new JobContext(new Configuration(), new JobID());
         Path filename = new Path("Some File");
 
-        boolean result = javafile.isSplitable(context, filename);
+        boolean result = javamethod.isSplitable(context, filename);
 
         assertFalse(result);
     }
 
     @Test
-    public final void testCreateRecordReader_InputSplit_TaskAttemptContext() throws IOException, InterruptedException
+    public final void testCreateRecordReader() throws IOException, InterruptedException
     {
         InputSplit split = null;
         TaskAttemptContext context = null;
 
-        RecordReader<Text, Text> result;
+        RecordReader<MethodID, Text> result;
 
-        result = javafile.createRecordReader(split, context);
+        result = javamethod.createRecordReader(split, context);
 
         assertNotNull(result);
-        assertTrue(result instanceof JavaFileRecordReader);
+        assertTrue(result instanceof JMethodRecordReader);
     }
-
 }
