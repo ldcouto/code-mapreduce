@@ -1,6 +1,5 @@
 package pt.um.mrc.lib;
 
-import java.util.ArrayList;
 import java.util.regex.Matcher;
 
 public class McCabeHelper
@@ -8,19 +7,17 @@ public class McCabeHelper
     protected McCabeHelper()
     {}
 
-    public static ArrayList<String> findControlStatements(String text)
+    public static int countMcCabeNumber(String text)
     {
-        ArrayList<String> controlStatements = new ArrayList<String>();
-
+        int mcCabe = 1;
+        
         Matcher m = Patterns.CONTROL_STATEMENT_PATTERN.matcher(text);
 
         while (m.find())
         {
-            String matchedKey = m.group();
-
-            controlStatements.add(matchedKey);
+            mcCabe++;
         }
 
-        return controlStatements;
+        return mcCabe;
     }
 }
