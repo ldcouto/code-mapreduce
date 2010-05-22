@@ -15,6 +15,15 @@ public class Patterns
 
     public static Pattern PACKAGE_PATTERN = Pattern.compile("package(\\s)+[a-zA-Z.]*(\\s)*;");
 
+    private static String ifClause = "(^|\\s)+if(\\s)*\\(";
+    private static String forClause = "(^|\\s)+for(\\s)*\\(";
+    private static String whileClause = "(^|\\s|\\})+while(\\s)*\\(";
+    private static String caseClause = "(^|\\s)+case(\\s)+(.)\\;";
+    private static String catchClause = "(^|\\s)+catch(\\s)*\\(";
+    private static String andClause = "(^|\\s)+\\&\\&(\\s)+";
+    private static String orClause = "(^|\\s)+\\|\\|(\\s)+";
+    private static String controlStatementsClause = "("+ifClause+"|"+forClause+"|"+whileClause+"|"+caseClause+"|"+catchClause+"|"+andClause+"|"+orClause+")";
+    
     public static Pattern CONTROL_STATEMENT_PATTERN = Pattern
-            .compile("(if|for|while|case|catch|\\&\\&|\\|\\|)");
+            .compile(controlStatementsClause);
 }
