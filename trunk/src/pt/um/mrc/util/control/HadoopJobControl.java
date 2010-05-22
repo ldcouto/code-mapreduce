@@ -12,8 +12,6 @@ public class HadoopJobControl
             Class<? extends Reducer<?, ?, ?, ?>> reducer) throws Exception
     {
 
-//        FileSystem fs = FileSystem.get(job.getConfiguration());
-
         // Configure generic Job stuff
         job.setJarByClass(jc.getClassJar());
         job.setInputFormatClass(jc.getIntputFormat());
@@ -22,13 +20,7 @@ public class HadoopJobControl
         FileOutputFormat.setOutputPath(job, jc.getOutputPath());
 
         // TODO NOT CHECKED YET!
-//        for (FileStatus fstatus : fs.listStatus(jc.getInputPath()))
-//        {
-//            if (fstatus.isDir())
-//            {
-//                FileInputFormat.addInputPath(job, fstatus.getPath());
-//            }
-//        }
+        //configureInputs(job, jc.getInputPath());
 
         // Configure the Mapper Stuff
         job.setMapperClass(mc.getMapperClass());
@@ -39,6 +31,21 @@ public class HadoopJobControl
         job.setReducerClass(reducer);
 
     }
+
+//    private static void configureInputs(Job job, Path inputPath)
+//            throws IOException
+//    {
+//        FileSystem fs = FileSystem.get(job.getConfiguration());
+//        
+//        for (FileStatus fstatus : fs.listStatus(inputPath))
+//        {
+//            if (fstatus.isDir());
+//            {
+//                FileInputFormat.addInputPath(job, fstatus.getPath());
+//                configureInputs(job, fstatus.getPath());
+//            }
+//        }
+//    }
 
     public static String[] checkArguments(String[] args, CheckedJobInfo cji)
     {
