@@ -4,8 +4,8 @@ import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.mapreduce.Job;
-import org.apache.hadoop.util.GenericOptionsParser;
 
+import pt.um.mrc.util.control.CheckedJobInfo;
 import pt.um.mrc.util.control.HadoopJobControl;
 import pt.um.mrc.util.control.JobConfigurer;
 import pt.um.mrc.util.control.MapperConfigurer;
@@ -20,30 +20,29 @@ import pt.um.mrc.util.io.JMethodInputFormat;
  * @author Tiago Alves Veloso
  */
 
-public class VolumeByMethod {
+public class VolumeByMethod
+{
 
-	public static void main(String[] args) throws Exception {
-		Configuration conf = new Configuration();
-		String[] otherArgs = new GenericOptionsParser(conf, args).getRemainingArgs();
-		if (otherArgs.length != 2) {
-			System.err.println("Usage: VolumeByMethod <in> <out>");
-			System.exit(2);
-		}
+    public static void main(String[] args) throws Exception
+    {
 
-		// // Create a new Job
-		Job job = new Job(conf, "compute the LoC volume for each method");
+        Configuration conf = new Configuration();
 
-		JobConfigurer jc =
-			new JobConfigurer(VolumeByMethod.class, JMethodInputFormat.class, new Path(otherArgs[0]),
-				new Path(otherArgs[1]));
+        CheckedJobInfo cji = new CheckedJobInfo(conf, "Usage: VolumeByMethod <in> <out>");
+        String[] otherArgs = HadoopJobControl.checkArguments(args, cji);
 
-		MapperConfigurer mc =
-			new MapperConfigurer(VolumeByMethodMapper.class, MethodID.class, IntWritable.class);
+        // Create a new Job
+        Job job = new Job(conf, "compute the LoC volume for each method");
 
-		HadoopJobControl.configureSimpleJob(job, jc, mc, VolumeByMethodReducer.class);
+        JobConfigurer jc = new JobConfigurer(VolumeByMethod.class, JMethodInputFormat.class,
+                new Path(otherArgs[0]), new Path(otherArgs[1]));
 
+        MapperConfigurer mc = new MapperConfigurer(VolumeByMethodMapper.class, MethodID.class,
+                IntWritable.class);
 
-		// Close the Job
-		System.exit(job.waitForCompletion(true) ? 0 : 1);
-	}
+        HadoopJobControl.configureSimpleJob(job, jc, mc, VolumeByMethodReducer.class);
+
+        // Close the Job
+        System.exit(job.waitForCompletion(true) ? 0 : 1);
+    }
 }

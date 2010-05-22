@@ -19,19 +19,14 @@ import pt.um.mrc.util.datatypes.MethodID;
 
 public class VolumeByMethodMapper extends Mapper<MethodID, Text, MethodID, IntWritable>
 {
+    private IntWritable lines = new IntWritable();
 
-    private MethodID outKey = new MethodID();
-	private IntWritable lines = new IntWritable();
-    
     @Override
     protected void map(MethodID key, Text value, Context context) throws IOException,
             InterruptedException
     {
-    	outKey = key;
-    	
         lines.set(VolumeHelper.countLinesOfCode(value.toString()));
-        
-        context.write(outKey, lines);
+        context.write(key, lines);
     }
 
 }
