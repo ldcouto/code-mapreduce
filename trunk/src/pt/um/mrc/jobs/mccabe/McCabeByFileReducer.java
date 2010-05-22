@@ -14,5 +14,4 @@ import pt.um.mrc.util.reducers.SumReducer;
  */
 
 public class McCabeByFileReducer extends SumReducer<Text, IntWritable, Text, IntWritable>
-{
-}
+{}
