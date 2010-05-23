@@ -1,5 +1,10 @@
 package pt.um.mrc.util.control;
 
+import java.io.IOException;
+
+import org.apache.hadoop.fs.FileStatus;
+import org.apache.hadoop.fs.FileSystem;
+import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.mapreduce.Job;
 import org.apache.hadoop.mapreduce.Reducer;
 import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
@@ -19,8 +24,8 @@ public class HadoopJobControl
         FileInputFormat.setInputPaths(job, jc.getInputPath());
         FileOutputFormat.setOutputPath(job, jc.getOutputPath());
 
-        // TODO NOT CHECKED YET!
-        //configureInputs(job, jc.getInputPath());
+        //TODO uncomment me when the loop works
+//        configureInputs(job, jc.getInputPath());
 
         // Configure the Mapper Stuff
         job.setMapperClass(mc.getMapperClass());
@@ -32,6 +37,7 @@ public class HadoopJobControl
 
     }
 
+    //FIXME This doesn't work!
 //    private static void configureInputs(Job job, Path inputPath)
 //            throws IOException
 //    {

@@ -99,8 +99,7 @@ public class JavaFileRecordReaderTest {
 		CompressionCodecFactory actualFactory = jrrToTest.getCompressionCodecs();
 		LineReader actualReader = jrrToTest.getIn();
 		
-		// TODO: Codecs and line reader lue
-		
+		// TODO: Can't compare codecs and line reader
 		Assert.assertEquals(expectedKey, actualKey);
 		Assert.assertEquals(expectedValue, actualValue);
 		Assert.assertEquals(expectedStart, actualStart);

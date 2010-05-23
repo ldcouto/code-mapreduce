@@ -88,9 +88,7 @@ public class JMethodRecordReaderTest {
 		Configuration auxJob=tac.getConfiguration();
 		Path auxPath=new Path("TestMats/somefile_empty");
 		FileSystem auxFS = auxPath.getFileSystem(auxJob);
-	
 		FSDataInputStream expectedFileIn = auxFS.open(auxPath);
-		
 		
 		FSDataInputStream actualFileIn = jrrToTest.getFileIn();
 		Map<MethodID, Text> actualMethods=jrrToTest.getMethods();
@@ -110,8 +108,6 @@ public class JMethodRecordReaderTest {
 		Assert.assertEquals(expectedSplit, actualSplit);
 		Assert.assertEquals(expectedMKeys, actualMKeys);
 		Assert.assertEquals(expectedCurrM, actualCurrM);
-		
-	
 	}
 
 
@@ -202,7 +198,7 @@ public class JMethodRecordReaderTest {
 		Map<MethodID,Text> actualMethods = javaRRGoodFile.getMethods();
 		List<MethodID> actualKeys = javaRRGoodFile.getmKeys();
 		
-		//TODO Still can't compare the filesystems!
+		//TODO Can't compare the filesystems!
 		//Assert.assertEquals(expectedFileIn,actualFileIn);
 		Assert.assertEquals(expectedCurrM, actualCurrM);
 		Assert.assertEquals(expectedMethods, actualMethods);
