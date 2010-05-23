@@ -4,6 +4,8 @@ import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.io.Text;
 
+import pt.um.mrc.util.mappers.LineValuesMapper;
+
 /**
  * This class is the Mapper for the job that relates packages with their McCabe
  * number.
@@ -12,5 +14,5 @@ import org.apache.hadoop.io.Text;
  * @author Tiago Alves Veloso
  */
 
-public class McCabeByPackageMapper extends McCabeCommonMapper<LongWritable, Text, Text, IntWritable>
+public class McCabeByPackageMapper extends LineValuesMapper<LongWritable, Text, Text, IntWritable>
 {}

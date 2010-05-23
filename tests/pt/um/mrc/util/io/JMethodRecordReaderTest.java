@@ -8,10 +8,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.junit.*;
-import org.hamcrest.*;
-import static org.hamcrest.core.Is.is;
-
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.FSDataInputStream;
 import org.apache.hadoop.fs.FileSystem;
@@ -23,7 +19,7 @@ import org.apache.hadoop.mapreduce.lib.input.FileSplit;
 import org.apache.hadoop.mrunit.mapreduce.mock.MockMapContextWrapper;
 import org.apache.hadoop.mrunit.mapreduce.mock.MockMapContextWrapper.MockMapContext;
 import org.apache.hadoop.mrunit.types.Pair;
-import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -105,7 +101,7 @@ public class JMethodRecordReaderTest {
 		List<MethodID> actualMKeys=jrrToTest.getmKeys();
 		int actualCurrM=jrrToTest.getCurrM();
 		        
-		//FIXME can't seem to text the InputStreams
+		//FIXME can't seem to test the InputStreams
 	//	Assert.assertSame(expectedFileIn, actualFileIn);
 		Assert.assertEquals(expectedMethods, actualMethods);
 		Assert.assertEquals(expectedPackageName, actualPackageName);
