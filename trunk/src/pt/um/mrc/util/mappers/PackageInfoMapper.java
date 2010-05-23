@@ -25,9 +25,7 @@ public class PackageInfoMapper<KI, VI, KO, VO> extends Mapper<KI, VI, KO, VO> {
 	protected void setup(Context context) throws IOException, InterruptedException {
 		Path[] localFiles = DistributedCache.getLocalCacheFiles(context.getConfiguration());
 
-		// TODO Should this guard stay?
-		if (localFiles != null)
-			buildCache(localFiles);
+		buildCache(localFiles);
 
 		super.setup(context);
 	}

@@ -3,6 +3,7 @@ package pt.um.mrc.util.control;
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.fail;
 
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.Path;
@@ -71,12 +72,14 @@ public class HadoopJobControlTest {
 	public void testCheckArguments_BadArgs(){
 		//FIXME how to test error output
 		
-		String[] args = { "<in>"};
-		CheckedJobInfo cji = new CheckedJobInfo(new Configuration(), "Some usage message");
+//		String[] args = { "<in>"};
+//		CheckedJobInfo cji = new CheckedJobInfo(new Configuration(), "Some usage message");
+//
+//		String[] actualArgs = HadoopJobControl.checkArguments(args, cji);
+//
+//		assertArrayEquals(args, actualArgs);	
 
-		String[] actualArgs = HadoopJobControl.checkArguments(args, cji);
-
-		assertArrayEquals(args, actualArgs);	
-
+		fail("Not yet implemented");
+		
 	}
 }
