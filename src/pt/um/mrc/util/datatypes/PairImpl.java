@@ -1,16 +1,31 @@
 package pt.um.mrc.util.datatypes;
 
+/**
+ * The Class PairImpl.
+ *
+ * @param <K> the key type
+ * @param <V> the value type
+ */
 public class PairImpl<K, V> implements Pair<K, V>
 {
+    
+    /** The key. */
     private K key;
+    
+    /** The value. */
     private V value;
 
+    /**
+     * Instantiates a new pair.
+     */
     public PairImpl()
     {}
 
     /**
-     * @param key
-     * @param value
+     * Instantiates a new pair.
+     *
+     * @param key the key
+     * @param value the value
      */
     public PairImpl(K key, V value)
     {
@@ -19,30 +34,45 @@ public class PairImpl<K, V> implements Pair<K, V>
         this.value = value;
     }
 
+    /* (non-Javadoc)
+     * @see pt.um.mrc.util.datatypes.Pair#getKey()
+     */
     @Override
     public K getKey()
     {
         return key;
     }
 
+    /* (non-Javadoc)
+     * @see pt.um.mrc.util.datatypes.Pair#getValue()
+     */
     @Override
     public V getValue()
     {
         return value;
     }
 
+    /* (non-Javadoc)
+     * @see pt.um.mrc.util.datatypes.Pair#setKey(java.lang.Object)
+     */
     @Override
     public void setKey(K k)
     {
         this.key = k;
     }
 
+    /* (non-Javadoc)
+     * @see pt.um.mrc.util.datatypes.Pair#setValue(java.lang.Object)
+     */
     @Override
     public void setValue(V v)
     {
         this.value = v;
     }
 
+    /* (non-Javadoc)
+     * @see java.lang.Object#hashCode()
+     */
     @Override
     public int hashCode()
     {
@@ -53,6 +83,9 @@ public class PairImpl<K, V> implements Pair<K, V>
         return result;
     }
 
+    /* (non-Javadoc)
+     * @see java.lang.Object#equals(java.lang.Object)
+     */
     @SuppressWarnings("unchecked")
     @Override
     public boolean equals(Object obj)

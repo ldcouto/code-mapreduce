@@ -6,163 +6,302 @@ import java.io.IOException;
 
 import org.apache.hadoop.io.WritableComparable;
 
-public class MethodID implements WritableComparable<MethodID> {
+// TODO: Auto-generated Javadoc
+/**
+ * The Class MethodID represents an Identifier of a method. It's composed by the
+ * method name, the class name, the file name and the package name.
+ */
+public class MethodID implements WritableComparable<MethodID>
+{
 
-	String methodName;
-	String className;
-	String fileName;
-	String packageName;
+    /** The method name. */
+    String methodName;
 
-	public MethodID() {
-		methodName = "";
-		className = "";
-		fileName = "";
-		packageName = "";
-	}
+    /** The class name. */
+    String className;
 
-	public MethodID(String methodName, String className, String fileName, String packageName) {
-		this.methodName = methodName;
-		this.className = className;
-		this.fileName = fileName;
-		this.packageName = packageName;
-	}
+    /** The file name. */
+    String fileName;
 
-	public MethodID(String aggre) {
-		String[] aux = aggre.split("-");
-		packageName = aux[0];
-		fileName = aux[1];
-		className = aux[2];
-		methodName = aux[3];
-	}
+    /** The package name. */
+    String packageName;
 
-	public String getMethodName() {
-		return methodName;
-	}
+    /**
+     * Instantiates a new MethodID.
+     */
+    public MethodID()
+    {
+        methodName = "";
+        className = "";
+        fileName = "";
+        packageName = "";
+    }
 
-	public void setMethodName(String methodName) {
-		this.methodName = methodName;
-	}
+    /**
+     * Instantiates a new MethodID.
+     * 
+     * @param methodName
+     *            the method name
+     * @param className
+     *            the class name
+     * @param fileName
+     *            the file name
+     * @param packageName
+     *            the package name
+     */
+    public MethodID(String methodName, String className, String fileName, String packageName)
+    {
+        this.methodName = methodName;
+        this.className = className;
+        this.fileName = fileName;
+        this.packageName = packageName;
+    }
 
-	public String getClassName() {
-		return className;
-	}
+    /**
+     * Instantiates a new MethodID.
+     * 
+     * @param aggre
+     *            the aggre
+     */
+    public MethodID(String aggre)
+    {
+        String[] aux = aggre.split("-");
+        packageName = aux[0];
+        fileName = aux[1];
+        className = aux[2];
+        methodName = aux[3];
+    }
 
-	public void setClassName(String className) {
-		this.className = className;
-	}
+    /**
+     * Gets the method name.
+     * 
+     * @return the method name
+     */
+    public String getMethodName()
+    {
+        return methodName;
+    }
 
-	public String getFileName() {
-		return fileName;
-	}
+    /**
+     * Sets the method name.
+     * 
+     * @param methodName
+     *            the new method name
+     */
+    public void setMethodName(String methodName)
+    {
+        this.methodName = methodName;
+    }
 
-	public void setFileName(String fileName) {
-		this.fileName = fileName;
-	}
+    /**
+     * Gets the class name.
+     * 
+     * @return the class name
+     */
+    public String getClassName()
+    {
+        return className;
+    }
 
-	public String getPackageName() {
-		return packageName;
-	}
+    /**
+     * Sets the class name.
+     * 
+     * @param className
+     *            the new class name
+     */
+    public void setClassName(String className)
+    {
+        this.className = className;
+    }
 
-	public void setPackageName(String packageName) {
-		this.packageName = packageName;
-	}
+    /**
+     * Gets the file name.
+     * 
+     * @return the file name
+     */
+    public String getFileName()
+    {
+        return fileName;
+    }
 
-	public String prettyString() {
-		return "MethodID[" + "packageName=" + packageName + ", fileName=" + fileName
-			+ ", className=" + className + ", methodName=" + methodName + "]";
-	}
+    /**
+     * Sets the file name.
+     * 
+     * @param fileName
+     *            the new file name
+     */
+    public void setFileName(String fileName)
+    {
+        this.fileName = fileName;
+    }
 
-	@Override
-	public String toString() {
-		StringBuilder sb = new StringBuilder();
-		sb.append(packageName);
-		sb.append('-');
-		sb.append(fileName);
-		sb.append('-');
-		sb.append(className);
-		sb.append('-');
-		sb.append(methodName);
-		return sb.toString();
-	}
+    /**
+     * Gets the package name.
+     * 
+     * @return the package name
+     */
+    public String getPackageName()
+    {
+        return packageName;
+    }
 
-	@Override
-	public void readFields(DataInput in) throws IOException {
-		packageName = in.readUTF();
-		fileName = in.readUTF();
-		className = in.readUTF();
-		methodName = in.readUTF();
-	}
+    /**
+     * Sets the package name.
+     * 
+     * @param packageName
+     *            the new package name
+     */
+    public void setPackageName(String packageName)
+    {
+        this.packageName = packageName;
+    }
 
-	@Override
-	public void write(DataOutput out) throws IOException {
-		out.writeUTF(packageName);
-		out.writeUTF(fileName);
-		out.writeUTF(className);
-		out.writeUTF(methodName);
-	}
+    /**
+     * Generates a pretty string for this MethodID.
+     * 
+     * @return a pretty string representation of this MethodID
+     */
+    public String prettyString()
+    {
+        return "MethodID[" + "packageName=" + packageName + ", fileName=" + fileName
+                + ", className=" + className + ", methodName=" + methodName + "]";
+    }
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((className == null) ? 0 : className.hashCode());
-		result = prime * result + ((fileName == null) ? 0 : fileName.hashCode());
-		result = prime * result + ((methodName == null) ? 0 : methodName.hashCode());
-		result = prime * result + ((packageName == null) ? 0 : packageName.hashCode());
-		return result;
-	}
+    /*
+     * (non-Javadoc)
+     * 
+     * @see java.lang.Object#toString()
+     */
+    @Override
+    public String toString()
+    {
+        StringBuilder sb = new StringBuilder();
+        sb.append(packageName);
+        sb.append('-');
+        sb.append(fileName);
+        sb.append('-');
+        sb.append(className);
+        sb.append('-');
+        sb.append(methodName);
+        return sb.toString();
+    }
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		MethodID other = (MethodID) obj;
-		if (className == null) {
-			if (other.className != null)
-				return false;
-		} else if (!className.equals(other.className))
-			return false;
-		if (fileName == null) {
-			if (other.fileName != null)
-				return false;
-		} else if (!fileName.equals(other.fileName))
-			return false;
-		if (methodName == null) {
-			if (other.methodName != null)
-				return false;
-		} else if (!methodName.equals(other.methodName))
-			return false;
-		if (packageName == null) {
-			if (other.packageName != null)
-				return false;
-		} else if (!packageName.equals(other.packageName))
-			return false;
-		return true;
-	}
+    /*
+     * (non-Javadoc)
+     * 
+     * @see org.apache.hadoop.io.Writable#readFields(java.io.DataInput)
+     */
+    @Override
+    public void readFields(DataInput in) throws IOException
+    {
+        packageName = in.readUTF();
+        fileName = in.readUTF();
+        className = in.readUTF();
+        methodName = in.readUTF();
+    }
 
-	@Override
-	public int compareTo(MethodID o) {
-		int cmpPkg = this.packageName.compareTo(o.getPackageName());
-		if (cmpPkg != 0)
-			return cmpPkg;
+    /*
+     * (non-Javadoc)
+     * 
+     * @see org.apache.hadoop.io.Writable#write(java.io.DataOutput)
+     */
+    @Override
+    public void write(DataOutput out) throws IOException
+    {
+        out.writeUTF(packageName);
+        out.writeUTF(fileName);
+        out.writeUTF(className);
+        out.writeUTF(methodName);
+    }
 
-		int cmpFile = this.fileName.compareTo(o.getFileName());
-		if (cmpFile != 0)
-			return cmpFile;
+    /*
+     * (non-Javadoc)
+     * 
+     * @see java.lang.Object#hashCode()
+     */
+    @Override
+    public int hashCode()
+    {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((className == null) ? 0 : className.hashCode());
+        result = prime * result + ((fileName == null) ? 0 : fileName.hashCode());
+        result = prime * result + ((methodName == null) ? 0 : methodName.hashCode());
+        result = prime * result + ((packageName == null) ? 0 : packageName.hashCode());
+        return result;
+    }
 
-		int cmpClass = this.className.compareTo(o.getClassName());
-		if (cmpClass != 0)
-			return cmpClass;
+    /*
+     * (non-Javadoc)
+     * 
+     * @see java.lang.Object#equals(java.lang.Object)
+     */
+    @Override
+    public boolean equals(Object obj)
+    {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        MethodID other = (MethodID) obj;
+        if (className == null)
+        {
+            if (other.className != null)
+                return false;
+        }
+        else if (!className.equals(other.className))
+            return false;
+        if (fileName == null)
+        {
+            if (other.fileName != null)
+                return false;
+        }
+        else if (!fileName.equals(other.fileName))
+            return false;
+        if (methodName == null)
+        {
+            if (other.methodName != null)
+                return false;
+        }
+        else if (!methodName.equals(other.methodName))
+            return false;
+        if (packageName == null)
+        {
+            if (other.packageName != null)
+                return false;
+        }
+        else if (!packageName.equals(other.packageName))
+            return false;
+        return true;
+    }
 
-		int cmpMetd = this.methodName.compareTo(o.getMethodName());
-		if (cmpMetd != 0)
-			return cmpMetd;
+    /*
+     * (non-Javadoc)
+     * 
+     * @see java.lang.Comparable#compareTo(java.lang.Object)
+     */
+    @Override
+    public int compareTo(MethodID o)
+    {
+        int cmpPkg = this.packageName.compareTo(o.getPackageName());
+        if (cmpPkg != 0)
+            return cmpPkg;
 
-		return 0;
-	}
+        int cmpFile = this.fileName.compareTo(o.getFileName());
+        if (cmpFile != 0)
+            return cmpFile;
+
+        int cmpClass = this.className.compareTo(o.getClassName());
+        if (cmpClass != 0)
+            return cmpClass;
+
+        int cmpMetd = this.methodName.compareTo(o.getMethodName());
+        if (cmpMetd != 0)
+            return cmpMetd;
+
+        return 0;
+    }
 
 }

@@ -16,58 +16,116 @@ import org.apache.hadoop.mapreduce.lib.input.FileSplit;
 import org.apache.hadoop.util.LineReader;
 
 /**
- * Treats keys as filename and value as content.
+ * The JavaFileRecordReader extends org.apache.hadoop.mapreduce.RecordReader.
+ * 
+ * Treats the key as filename and value as the file content.
  * 
  * @author Tiago Alves Veloso
  * @author Luis Duarte Couto
  */
 public class JavaFileRecordReader extends RecordReader<Text, Text> {
+	
+	/** The key. */
 	private Text key = null;
+	
+	/** The value. */
 	private Text value = null;
+	
+	/** The start. */
 	private long start;
+	
+	/** The position in the file. */
 	private long pos;
+	
+	/** The end. */
 	private long end;
+	
+	/** The compression codecs. */
 	private CompressionCodecFactory compressionCodecs = null;
+	
+	/** The Line Reader. */
 	private LineReader in;
+	
+	/** The File Split. */
 	private FileSplit split;
 
 	
 	
-	public Text getKey() {
+	/**
+	 * Gets the key.
+	 *
+	 * @return the key
+	 */
+	protected Text getKey() {
 		return key;
 	}
 
 
-	public Text getValue() {
+	/**
+	 * Gets the value.
+	 *
+	 * @return the value
+	 */
+	protected Text getValue() {
 		return value;
 	}
 
 
-	public long getStart() {
+	/**
+	 * Gets the start.
+	 *
+	 * @return the start
+	 */
+	protected long getStart() {
 		return start;
 	}
 
 
-	public long getPos() {
+	/**
+	 * Gets the position in the file.
+	 *
+	 * @return the position in the file.
+	 */
+	protected long getPos() {
 		return pos;
 	}
 
 
-	public long getEnd() {
+	/**
+	 * Gets the end.
+	 *
+	 * @return the end
+	 */
+	protected long getEnd() {
 		return end;
 	}
 
 
-	public CompressionCodecFactory getCompressionCodecs() {
+	/**
+	 * Gets the compression codecs.
+	 *
+	 * @return the compression codecs
+	 */
+	protected CompressionCodecFactory getCompressionCodecs() {
 		return compressionCodecs;
 	}
 
 
+	/**
+	 * Gets the LineReader.
+	 *
+	 * @return the LineReader
+	 */
 	public LineReader getIn() {
 		return in;
 	}
 
 
+	/**
+	 * Gets the split.
+	 *
+	 * @return the split
+	 */
 	public FileSplit getSplit() {
 		return split;
 	}
@@ -75,6 +133,11 @@ public class JavaFileRecordReader extends RecordReader<Text, Text> {
 
 	/**
 	 * Called once at start up.
+	 *
+	 * @param genericSplit the generic split
+	 * @param context the context
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 * @throws InterruptedException the interrupted exception
 	 */
 	@Override
 	public void initialize(InputSplit genericSplit, TaskAttemptContext context)
@@ -102,9 +165,10 @@ public class JavaFileRecordReader extends RecordReader<Text, Text> {
 	/**
 	 * In this case it just stores the filename in <code>key</code> and reads
 	 * the contents of the file to <code>value</code>.
-	 * 
-	 * @return <code>true</code> if data was read, <code>false</code> if there
-	 *         is nothing more to read.
+	 *
+	 * @return false if there is nothing more to read.
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 * @throws InterruptedException the interrupted exception
 	 */
 	@Override
 	public boolean nextKeyValue() throws IOException, InterruptedException {
@@ -157,8 +221,10 @@ public class JavaFileRecordReader extends RecordReader<Text, Text> {
 
 	/**
 	 * Get the current key.
-	 * 
-	 * @return The current <code>key</code>.
+	 *
+	 * @return The current key.
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 * @throws InterruptedException the interrupted exception
 	 */
 	@Override
 	public Text getCurrentKey() throws IOException, InterruptedException {
@@ -167,8 +233,10 @@ public class JavaFileRecordReader extends RecordReader<Text, Text> {
 
 	/**
 	 * Get the current value.
-	 * 
-	 * @return The current <code>value</code>.
+	 *
+	 * @return The current value.
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 * @throws InterruptedException the interrupted exception
 	 */
 	@Override
 	public Text getCurrentValue() throws IOException, InterruptedException {
@@ -177,8 +245,10 @@ public class JavaFileRecordReader extends RecordReader<Text, Text> {
 
 	/**
 	 * Get the progress within the split.
-	 * 
+	 *
 	 * @return the progress of the reading process.
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 * @throws InterruptedException the interrupted exception
 	 */
 	@Override
 	public float getProgress() throws IOException, InterruptedException {
@@ -191,6 +261,8 @@ public class JavaFileRecordReader extends RecordReader<Text, Text> {
 
 	/**
 	 * Close the input stream when done.
+	 *
+	 * @throws IOException Signals that an I/O exception has occurred.
 	 */
 	@Override
 	public void close() throws IOException {
