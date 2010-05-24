@@ -21,7 +21,7 @@ public class PackageByFile implements JobInformable
 {
     public String getUsage()
     {
-        return "Usage: VolumeByClass <in> <out>";
+        return "Usage: PackageByFile <in> <out>";
     }
 
     public Class<? extends Mapper<?, ?, ?, ?>> getMapperClass()
