@@ -54,10 +54,23 @@ public class PckgHelperTest
 	public void testExtractPkgClassNames() {
     	String s = "foo.bar.Class";
     	
-    	String[] expected = {"foo.bar", "Class"};
+    	String[] expected = {"foo.bar", "foo.bar.Class"};
     	
     	String[] actual = PckgHelper.extractPkgClassNames(s);
     	
     	assertArrayEquals(expected, actual); 	
 	}
+    
+    @Test
+    public void testFindPackage(){
+    	StringBuilder sb = new StringBuilder();
+    	sb.append("package foo.bar;\n");
+    	sb.append("import f.b.*;\n)");
+    	sb.append("public class Class1{}");
+    	
+    	String expected = "foo.bar";
+    	String actual = PckgHelper.findPackage(sb.toString());
+    	
+    	assertEquals(expected, actual);
+    	}
 }

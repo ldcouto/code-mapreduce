@@ -1,7 +1,6 @@
 package pt.um.mrc.lib;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
@@ -75,16 +74,17 @@ public class ImprtHelper {
 
 	private static List<String> compSinglImport(String s,
 			Map<String, ArrayList<String>> internalClassPkgInfo) {
-
+		List<String> r = new ArrayList<String>(1);
+		
 		String[] pkgAndClass = PckgHelper.extractPkgClassNames(s);
 		
 		List<String> classes = internalClassPkgInfo.get(pkgAndClass[0]);
 		
 		for (String cls : classes)
 			if (cls.equals(pkgAndClass[1]))
-				return new ArrayList<String>(Arrays.asList(cls));
+				r.add(cls);
 		
-		return null;
+		return r;
 	}
 
 }
