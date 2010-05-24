@@ -1,5 +1,7 @@
 package pt.um.mrc.util.control;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.apache.hadoop.mapreduce.Job;
 import org.apache.hadoop.mapreduce.Reducer;
 import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
@@ -7,13 +9,16 @@ import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 import org.apache.hadoop.util.GenericOptionsParser;
 
 /**
- * The Class HadoopJobControl contains some helper methods to configure an Hadoop job.
+ * The Class HadoopJobControl contains some helper methods to configure an
+ * Hadoop job.
  * 
  * @author Tiago Alves Veloso
  * @author Luis Duarte Couto
  */
 public class HadoopJobControl
 {
+    protected static Log LOG = LogFactory.getLog(HadoopJobControl.class);
+
     /**
      * Configures a simple job.
      * 
@@ -25,6 +30,7 @@ public class HadoopJobControl
      *            the mc
      * @param reducer
      *            the reducer
+     * @throws Exception 
      * @throws Exception
      *             the exception
      */
@@ -83,8 +89,7 @@ public class HadoopJobControl
 
         if (otherArgs.length != 2)
         {
-            // TODO replace with log4j
-            System.err.println(cji.getUsageMessage());
+            LOG.fatal(cji.getUsageMessage());
             System.exit(2);
         }
 

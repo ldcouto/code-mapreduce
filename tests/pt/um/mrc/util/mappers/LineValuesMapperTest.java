@@ -21,7 +21,6 @@ public class LineValuesMapperTest
     {
         mapper = new LineValuesMapper<LongWritable, Text, Text, IntWritable>();
         driver = new MapDriver<LongWritable, Text, Text, IntWritable>(mapper);
-        mapper.lineContents = LineType.CLASS;
     }
 
     @After
@@ -29,8 +28,10 @@ public class LineValuesMapperTest
     {}
 
     @Test
-    public void testMapLongWritableTextContext()
+    public void testMap_CLASS()
     {
+        mapper.lineContents = LineType.CLASS;
+
         LongWritable inKey = new LongWritable(10);
 
         Text inValues = new Text(
@@ -45,4 +46,41 @@ public class LineValuesMapperTest
         driver.runTest();
     }
 
+    @Test
+    public void testMap_FILE()
+    {
+        mapper.lineContents = LineType.FILE;
+
+        LongWritable inKey = new LongWritable(10);
+
+        Text inValues = new Text(
+                "pt.um.mrc.jobs.imprt-PkgAndClassMapper.java-PkgAndClassMapper\t5");
+
+        Text outKey = new Text("pt.um.mrc.jobs.imprt-PkgAndClassMapper.java");
+
+        IntWritable outValue = new IntWritable(5);
+
+        driver.withInput(inKey, inValues);
+        driver.withOutput(outKey, outValue);
+        driver.runTest();
+    }
+    
+    @Test
+    public void testMap_PACKAGE()
+    {
+        mapper.lineContents = LineType.PACKAGE;
+
+        LongWritable inKey = new LongWritable(10);
+
+        Text inValues = new Text(
+                "pt.um.mrc.jobs.imprt-PkgAndClassMapper.java\t5");
+
+        Text outKey = new Text("pt.um.mrc.jobs.imprt");
+
+        IntWritable outValue = new IntWritable(5);
+
+        driver.withInput(inKey, inValues);
+        driver.withOutput(outKey, outValue);
+        driver.runTest();
+    }
 }
