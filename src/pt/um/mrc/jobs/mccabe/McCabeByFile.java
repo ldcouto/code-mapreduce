@@ -1,16 +1,14 @@
 package pt.um.mrc.jobs.mccabe;
 
-import org.apache.hadoop.conf.Configuration;
-import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.Text;
-import org.apache.hadoop.mapreduce.Job;
+import org.apache.hadoop.mapreduce.InputFormat;
+import org.apache.hadoop.mapreduce.Mapper;
+import org.apache.hadoop.mapreduce.Reducer;
 import org.apache.hadoop.mapreduce.lib.input.TextInputFormat;
 
-import pt.um.mrc.util.control.CheckedJobInfo;
-import pt.um.mrc.util.control.HadoopJobControl;
-import pt.um.mrc.util.control.JobConfigurer;
-import pt.um.mrc.util.control.MapperConfigurer;
+import pt.um.mrc.util.control.JobInformable;
+import pt.um.mrc.util.control.JobRunner;
 
 /**
  * This class contains the configuration for the job that relates files with
@@ -20,27 +18,42 @@ import pt.um.mrc.util.control.MapperConfigurer;
  * @author Tiago Alves Veloso
  */
 
-public class McCabeByFile
+public class McCabeByFile implements JobInformable
 {
+    public String getUsage()
+    {
+        return "Usage: McCabeByFile <in> <out>";
+    }
+
+    public Class<? extends Mapper<?, ?, ?, ?>> getMapperClass()
+    {
+        return McCabeByFileMapper.class;
+    }
+
+    public Class<?> getMapperKeyClass()
+    {
+        return Text.class;
+    }
+
+    public Class<?> getMapperValueClass()
+    {
+        return IntWritable.class;
+    }
+
+    public Class<? extends InputFormat<?, ?>> getInputFormatClass()
+    {
+        return TextInputFormat.class;
+    }
+
+    public Class<? extends Reducer<?, ?, ?, ?>> getReducerClass()
+    {
+        return McCabeByFileReducer.class;
+    }
+
     public static void main(String[] args) throws Exception
     {
-        Configuration conf = new Configuration();
-
-        CheckedJobInfo cji = new CheckedJobInfo(conf, "Usage: VolumeByClass <in> <out>");
-        String[] otherArgs = HadoopJobControl.checkArguments(args, cji);
-
-        // // Create a new Job
-        Job job = new Job(conf, "compute the LoC volume for each class");
-
-        JobConfigurer jc = new JobConfigurer(McCabeByFile.class, TextInputFormat.class, new Path(
-                otherArgs[0]), new Path(otherArgs[1]));
-
-        MapperConfigurer mc = new MapperConfigurer(McCabeByFileMapper.class, Text.class,
-                IntWritable.class);
-
-        HadoopJobControl.configureSimpleJob(job, jc, mc, McCabeByFileReducer.class);
-
-        // Close the Job
-        System.exit(job.waitForCompletion(true) ? 0 : 1);
+        McCabeByFile me = new McCabeByFile();
+        JobRunner.setJob(args, me);
+        JobRunner.runJob();
     }
 }

@@ -4,8 +4,6 @@ import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.mapreduce.Job;
 
-import pt.um.mrc.jobs.volume.VolumeByFileReducer;
-
 public class JobRunner {
 
 	static Configuration conf;
@@ -28,7 +26,7 @@ public class JobRunner {
 				new Path(otherArgs[1]));
 		
 		job = new Job(conf);
-		HadoopJobControl.configureSimpleJob(job, jc, mc, VolumeByFileReducer.class);
+		HadoopJobControl.configureSimpleJob(job, jc, mc, ji.getReducerClass());
 		
 		return 0;
 	}
