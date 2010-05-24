@@ -73,7 +73,7 @@ public class PackageByFile implements JobInformable
      * @param args the arguments
      * @throws Exception the exception
      */
-    public static void main(String[] args) throws Exception
+    public static void main(String[] args)
     {
         PackageByFile me = new PackageByFile();
         JobRunner.setJob(args, me);

@@ -88,7 +88,7 @@ public class McCabeByClass implements JobInformable
      * @throws Exception
      *             the exception
      */
-    public static void main(String[] args) throws Exception
+    public static void main(String[] args)
     {
         McCabeByClass me = new McCabeByClass();
         JobRunner.setJob(args, me);

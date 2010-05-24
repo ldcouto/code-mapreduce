@@ -89,7 +89,7 @@ public class McCabeByPackage implements JobInformable
      * @throws Exception
      *             the exception
      */
-    public static void main(String[] args) throws Exception
+    public static void main(String[] args)
     {
         McCabeByPackage me = new McCabeByPackage();
         JobRunner.setJob(args, me);

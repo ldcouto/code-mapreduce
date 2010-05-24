@@ -1,5 +1,7 @@
 package pt.um.mrc.util.control;
 
+import java.io.IOException;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.hadoop.mapreduce.Job;
@@ -30,7 +32,9 @@ public class HadoopJobControl
      *            the mc
      * @param reducer
      *            the reducer
-     * @throws Exception 
+     * @throws IOException 
+     * @throws IOException
+     * @throws Exception
      * @throws Exception
      *             the exception
      */
