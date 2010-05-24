@@ -88,7 +88,7 @@ public class McCabeByFile implements JobInformable
      * @throws Exception
      *             the exception
      */
-    public static void main(String[] args) throws Exception
+    public static void main(String[] args)
     {
         McCabeByFile me = new McCabeByFile();
         JobRunner.setJob(args, me);

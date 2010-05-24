@@ -89,7 +89,7 @@ public class VolumeByFile implements JobInformable
      * @throws Exception
      *             the exception
      */
-    public static void main(String[] args) throws Exception
+    public static void main(String[] args)
     {
         VolumeByFile me = new VolumeByFile();
         JobRunner.setJob(args, me);

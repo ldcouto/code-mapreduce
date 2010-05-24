@@ -1,5 +1,7 @@
 package pt.um.mrc.util.control;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.mapreduce.Job;
@@ -12,6 +14,8 @@ import org.apache.hadoop.mapreduce.Job;
  */
 public class JobRunner
 {
+    protected static Log LOG = LogFactory.getLog(JobRunner.class);
+    
     /** The configuration. */
     protected static Configuration conf;
 
@@ -38,7 +42,7 @@ public class JobRunner
      * @throws Exception
      *             the exception
      */
-    public static void setJob(String[] args, JobInformable ji) throws Exception
+    public static void setJob(String[] args, JobInformable ji)
     {
         conf = new Configuration();
         cji = new CheckedJobInfo(conf, ji.getUsage());
@@ -51,8 +55,16 @@ public class JobRunner
         jc = new JobConfigurer(ji.getClass(), ji.getInputFormatClass(), new Path(otherArgs[0]),
                 new Path(otherArgs[1]));
 
-        job = new Job(conf);
-        HadoopJobControl.configureSimpleJob(job, jc, mc, ji.getReducerClass());
+        try
+        {
+            job = new Job(conf);
+            HadoopJobControl.configureSimpleJob(job, jc, mc, ji.getReducerClass());
+
+        } catch (Exception e)
+        {
+            LOG.fatal(e.getMessage());
+            System.exit(2);
+        }
     }
 
     /**
@@ -61,9 +73,14 @@ public class JobRunner
      * @throws Exception
      *             the exception
      */
-    public static void runJob() throws Exception
+    public static void runJob()
     {
+        try{
         System.exit(job.waitForCompletion(true) ? 0 : 1);
+        } catch (Exception e) {
+            LOG.fatal(e.getMessage());
+            System.exit(2);
+        }
     }
 
 }

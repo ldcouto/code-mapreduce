@@ -11,7 +11,6 @@ import org.apache.hadoop.conf.Configuration;
  */
 public class CheckedJobInfo
 {
-
     /** How the Hadoop job should be used. */
     private String usageMessage;
 

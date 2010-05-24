@@ -89,7 +89,7 @@ public class VolumeByMethod implements JobInformable
      * @throws Exception
      *             the exception
      */
-    public static void main(String[] args) throws Exception
+    public static void main(String[] args)
     {
         VolumeByMethod me = new VolumeByMethod();
         JobRunner.setJob(args, me);
