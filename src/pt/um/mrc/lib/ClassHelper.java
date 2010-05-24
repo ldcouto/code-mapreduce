@@ -14,10 +14,10 @@ public class ClassHelper
     public static ArrayList<String> findClasses(String text){
     	ArrayList<String> r = new ArrayList<String>();
     	
-    	Matcher classMatcher = Patterns.CLASS_HEADER_PATTERN.matcher(text);
+    	Matcher classMatcher = Patterns.CLASS_NAME_PATTERN.matcher(text);
    
     	while (classMatcher.find()){
-    		String className = classMatcher.group(1);
+    		String className = classMatcher.group(2);
     		r.add(className);
     	}
 	

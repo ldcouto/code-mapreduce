@@ -8,7 +8,7 @@ public class Patterns
     {}
 
     public static Pattern CLASS_NAME_PATTERN = Pattern
-    .compile("public|protected|private|abstract|static|final|native|synchronized|transient|volatile|strictfp|\\s+class\\s+([a-zA-Z0-9.,<> \\_]*)\\s*\\{");
+    		.compile("(public|protected|private|abstract|static|final|native|synchronized|transient|volatile|strictfp|\\s+)class\\s+([a-zA-Z0-9.,<> \\_]*)\\s*\\{");
 
     
     public static Pattern CLASS_HEADER_PATTERN = Pattern
