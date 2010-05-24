@@ -1,52 +1,54 @@
 package pt.um.mrc.util.control;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
 
-import org.apache.hadoop.conf.Configuration;
-import org.apache.hadoop.fs.Path;
-import org.apache.hadoop.io.IntWritable;
-import org.apache.hadoop.io.Text;
-import org.apache.hadoop.mapreduce.Job;
-import org.apache.hadoop.mapreduce.lib.input.TextInputFormat;
 import org.junit.After;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
 import pt.um.mrc.jobs.volume.VolumeByFile;
-import pt.um.mrc.jobs.volume.VolumeByFileMapper;
 
+public class JobRunnerTest
+{
+    VolumeByFile volJob;
+    String[] args;
 
-public class JobRunnerTest {
-	VolumeByFile volJob;
-	String[] args;
-	
-	@Before
-	public void setUp() throws Exception {
-		volJob = new VolumeByFile();
-		String command ="foo.bar.JobClass/inputs/ /outputs/";
-		args = command.split("\\s");
-	}
+    @Before
+    public void setUp() throws Exception
+    {
+        volJob = new VolumeByFile();
+        String command = "foo.bar.JobClass/inputs/ /outputs/";
+        args = command.split("\\s");
+    }
 
-	@After
-	public void tearDown() throws Exception {
-	}
+    @After
+    public void tearDown() throws Exception
+    {}
 
-	@Test
-	public void testSetJob() throws Exception {
-		
-		//TODO this test is cheating
-		int expected =0;
-		int actual = JobRunner.setJob(args, volJob);
-		
-		assertEquals(expected, actual);
-		
-	}
+    @Test
+    public void testSetJob() throws Exception
+    {
+        Class<?> expectedMapper = volJob.getMapperClass();
+        Class<?> expectedMapperKey = volJob.getMapperKeyClass();
+        Class<?> expectedMapperValue = volJob.getMapperValueClass();
+        Class<?> expectedInputFormatClass = volJob.getInputFormatClass();
+        Class<?> expectedReducer = volJob.getReducerClass();
+        String expectedUsage = volJob.getUsage();
 
-	@Test
-	public void testRunJob() {
-		fail("Not yet implemented"); // TODO
-	}
+        JobRunner.setJob(args, volJob);
 
+        Class<?> actualMapper = JobRunner.job.getMapperClass();
+        Class<?> actualMapperKey = JobRunner.job.getMapOutputKeyClass();
+        Class<?> actualMapperValue = JobRunner.job.getMapOutputValueClass();
+        Class<?> actualInputFormatClass = JobRunner.job.getInputFormatClass();
+        Class<?> actualReducer = JobRunner.job.getReducerClass();
+        String actualUsage = JobRunner.cji.getUsageMessage();
+
+        assertEquals(expectedMapper, actualMapper);
+        assertEquals(expectedMapperKey, actualMapperKey);
+        assertEquals(expectedMapperValue, actualMapperValue);
+        assertEquals(expectedInputFormatClass, actualInputFormatClass);
+        assertEquals(expectedReducer, actualReducer);
+        assertEquals(expectedUsage, actualUsage);
+    }
 }
