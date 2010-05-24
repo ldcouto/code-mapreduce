@@ -12,9 +12,16 @@ import pt.um.mrc.util.datatypes.PairImpl;
 
 public class LineValuesMapper<KI, VI, KO, VO> extends Mapper<LongWritable, Text, Text, IntWritable> {
 
+    public enum LineType {
+        PACKAGE,
+        FILE,
+        CLASS
+    }
+	
 	private Text outKey = new Text();
 	private IntWritable outValue = new IntWritable();
-
+	protected LineType lineContents;
+	
 	@Override
 	protected void map(LongWritable key, Text value, Context context) throws IOException,
 		InterruptedException
@@ -33,10 +40,18 @@ public class LineValuesMapper<KI, VI, KO, VO> extends Mapper<LongWritable, Text,
 		String[] aux1 = text.split("\t");
 		String[] aux2 = aux1[0].split("\\-");
 
+		int auxLen=0;
+		
+		switch(lineContents) {
+		case PACKAGE: auxLen=1; break;
+		case FILE: auxLen=2; break;
+		case CLASS: auxLen=3; break;
+		}
+		
 		StringBuilder sb = new StringBuilder();
 		sb.append(aux2[0]);
 
-		for (int i = 1; i < aux2.length - 1; i++) {
+		for (int i = 1; i < auxLen; i++) {
 			sb.append('-');
 			sb.append(aux2[i]);
 		}
