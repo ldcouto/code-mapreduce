@@ -15,9 +15,11 @@ import pt.um.mrc.util.mappers.LineValuesMapper;
  * @author Luis Duarte Couto
  * @author Tiago Alves Veloso
  */
-
 public class McCabeByPackageMapper extends LineValuesMapper<LongWritable, Text, Text, IntWritable> {
 
+	/* (non-Javadoc)
+	 * @see org.apache.hadoop.mapreduce.Mapper#setup(org.apache.hadoop.mapreduce.Mapper.Context)
+	 */
 	@Override
 	protected void setup(Context context) throws IOException, InterruptedException {
 		lineContents = LineType.PACKAGE;

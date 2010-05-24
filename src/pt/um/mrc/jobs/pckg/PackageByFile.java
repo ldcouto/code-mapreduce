@@ -16,39 +16,63 @@ import pt.um.mrc.util.io.JavaFileInputFormat;
  * @author Luis Duarte Couto
  * @author Tiago Alves Veloso
  */
-
 public class PackageByFile implements JobInformable
 {
+    
+    /* (non-Javadoc)
+     * @see pt.um.mrc.util.control.JobInformable#getUsage()
+     */
     public String getUsage()
     {
         return "Usage: PackageByFile <in> <out>";
     }
 
+    /* (non-Javadoc)
+     * @see pt.um.mrc.util.control.JobInformable#getMapperClass()
+     */
     public Class<? extends Mapper<?, ?, ?, ?>> getMapperClass()
     {
         return PackageByFileMapper.class;
     }
 
+    /* (non-Javadoc)
+     * @see pt.um.mrc.util.control.JobInformable#getMapperKeyClass()
+     */
     public Class<?> getMapperKeyClass()
     {
         return Text.class;
     }
 
+    /* (non-Javadoc)
+     * @see pt.um.mrc.util.control.JobInformable#getMapperValueClass()
+     */
     public Class<?> getMapperValueClass()
     {
         return Text.class;
     }
 
+    /* (non-Javadoc)
+     * @see pt.um.mrc.util.control.JobInformable#getInputFormatClass()
+     */
     public Class<? extends InputFormat<?, ?>> getInputFormatClass()
     {
         return JavaFileInputFormat.class;
     }
 
+    /* (non-Javadoc)
+     * @see pt.um.mrc.util.control.JobInformable#getReducerClass()
+     */
     public Class<? extends Reducer<?, ?, ?, ?>> getReducerClass()
     {
         return PackageByFileReducer.class;
     }
 
+    /**
+     * The main method.
+     *
+     * @param args the arguments
+     * @throws Exception the exception
+     */
     public static void main(String[] args) throws Exception
     {
         PackageByFile me = new PackageByFile();

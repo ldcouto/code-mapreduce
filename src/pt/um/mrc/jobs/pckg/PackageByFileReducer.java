@@ -13,6 +13,4 @@ import pt.um.mrc.util.reducers.IdentityReducer;
  */
 
 public class PackageByFileReducer extends IdentityReducer<Text, Text, Text, Text>
-{
-    
-}
+{}
