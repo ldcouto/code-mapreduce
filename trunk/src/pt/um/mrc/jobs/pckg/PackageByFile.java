@@ -1,14 +1,12 @@
 package pt.um.mrc.jobs.pckg;
 
-import org.apache.hadoop.conf.Configuration;
-import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.Text;
-import org.apache.hadoop.mapreduce.Job;
+import org.apache.hadoop.mapreduce.InputFormat;
+import org.apache.hadoop.mapreduce.Mapper;
+import org.apache.hadoop.mapreduce.Reducer;
 
-import pt.um.mrc.util.control.CheckedJobInfo;
-import pt.um.mrc.util.control.HadoopJobControl;
-import pt.um.mrc.util.control.JobConfigurer;
-import pt.um.mrc.util.control.MapperConfigurer;
+import pt.um.mrc.util.control.JobInformable;
+import pt.um.mrc.util.control.JobRunner;
 import pt.um.mrc.util.io.JavaFileInputFormat;
 
 /**
@@ -19,29 +17,42 @@ import pt.um.mrc.util.io.JavaFileInputFormat;
  * @author Tiago Alves Veloso
  */
 
-public class PackageByFile
+public class PackageByFile implements JobInformable
 {
+    public String getUsage()
+    {
+        return "Usage: VolumeByClass <in> <out>";
+    }
+
+    public Class<? extends Mapper<?, ?, ?, ?>> getMapperClass()
+    {
+        return PackageByFileMapper.class;
+    }
+
+    public Class<?> getMapperKeyClass()
+    {
+        return Text.class;
+    }
+
+    public Class<?> getMapperValueClass()
+    {
+        return Text.class;
+    }
+
+    public Class<? extends InputFormat<?, ?>> getInputFormatClass()
+    {
+        return JavaFileInputFormat.class;
+    }
+
+    public Class<? extends Reducer<?, ?, ?, ?>> getReducerClass()
+    {
+        return PackageByFileReducer.class;
+    }
 
     public static void main(String[] args) throws Exception
     {
-        Configuration conf = new Configuration();
-
-        CheckedJobInfo cji = new CheckedJobInfo(conf, "Usage: ByFile <in> <out>");
-        String[] otherArgs = HadoopJobControl.checkArguments(args, cji);
-        
-        // // Create a new Job
-        Job job = new Job(conf,
-                "find defined packages, and list for each file what package it defines");
-
-        JobConfigurer jc = new JobConfigurer(PackageByFile.class, JavaFileInputFormat.class,
-                new Path(otherArgs[0]), new Path(otherArgs[1]));
-
-        MapperConfigurer mc = new MapperConfigurer(PackageByFileMapper.class, Text.class,
-                Text.class);
-
-        HadoopJobControl.configureSimpleJob(job, jc, mc, PackageByFileReducer.class);
-
-        // Close the Job
-        System.exit(job.waitForCompletion(true) ? 0 : 1);
+        PackageByFile me = new PackageByFile();
+        JobRunner.setJob(args, me);
+        JobRunner.runJob();
     }
 }
