@@ -7,8 +7,12 @@ public class Patterns
     protected Patterns()
     {}
 
+    public static Pattern CLASS_NAME_PATTERN = Pattern
+    .compile("public|protected|private|abstract|static|final|native|synchronized|transient|volatile|strictfp|\\s+class\\s+([a-zA-Z0-9.,<> \\_]*)\\s*\\{");
+
+    
     public static Pattern CLASS_HEADER_PATTERN = Pattern
-            .compile("(public|protected|private|abstract|static|final|native|synchronized|transient|volatile|strictfp|\\s)+class\\s+[a-zA-Z.,<> ]*\\s*\\{");
+            .compile("(public|protected|private|abstract|static|final|native|synchronized|transient|volatile|strictfp|\\s)+class\\s+[a-zA-Z0-9.,<> \\_]*\\s*\\{");
 
     public static Pattern IMPORT_PATTERN = Pattern
             .compile("import(static|\\s)+[\\w.]*(\\*)?(\\s)*;");

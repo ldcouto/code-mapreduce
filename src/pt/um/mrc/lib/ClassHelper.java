@@ -10,6 +10,19 @@ public class ClassHelper
 {
     protected ClassHelper()
     {}
+    
+    public static ArrayList<String> findClasses(String text){
+    	ArrayList<String> r = new ArrayList<String>();
+    	
+    	Matcher classMatcher = Patterns.CLASS_HEADER_PATTERN.matcher(text);
+   
+    	while (classMatcher.find()){
+    		String className = classMatcher.group(1);
+    		r.add(className);
+    	}
+	
+    	return r;
+    }
 
     public static ArrayList<Pair<String, String>> findClassAndSuperClass(String text)
     {
