@@ -16,7 +16,7 @@ public class FindPackagesReducerTest
     @Before
     public void setUp() throws Exception
     {
-        reducer = new FindPackagesReducer();
+        reducer = new PkgAndClassReducer();
         driver = new ReduceDriver<Text, Text, Text, Text>(reducer);
     }
 

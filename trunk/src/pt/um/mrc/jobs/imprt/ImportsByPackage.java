@@ -64,7 +64,7 @@ public class ImportsByPackage
         MapperConfigurer mc1 = new MapperConfigurer(PkgAndClassMapper.class, Text.class,
                 Text.class);
 
-        HadoopJobControl.configureSimpleJob(job1, jc1, mc1, FindPackagesReducer.class);
+        HadoopJobControl.configureSimpleJob(job1, jc1, mc1, PkgAndClassReducer.class);
 
         boolean statusJob1 = job1.waitForCompletion(true);
 

@@ -6,9 +6,9 @@ import java.util.List;
 import org.apache.hadoop.io.Text;
 
 import pt.um.mrc.lib.ImprtHelper;
-import pt.um.mrc.util.mappers.CachedInfoMapper;
+import pt.um.mrc.util.mappers.CachedPackageInfoMapper;
 
-public class ImportsCommonMapper<KI, VI, KO, VO> extends CachedInfoMapper<Text, Text, Text, Text> {
+public class ImportsCommonMapper<KI, VI, KO, VO> extends CachedPackageInfoMapper<Text, Text, Text, Text> {
 
 	private Text importedPackage = new Text();
 

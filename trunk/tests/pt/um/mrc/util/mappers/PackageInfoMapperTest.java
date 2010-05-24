@@ -16,13 +16,13 @@ import org.junit.Test;
 
 public class PackageInfoMapperTest
 {
-    private PackageInfoMapper<Text, Text, Text, Text> mapper;
+    private CachedPackageInfoMapper<Text, Text, Text, Text> mapper;
 //    private MapDriver<Text, Text, Text, Text> driver;
 
     @Before
     public void setUp() throws Exception
     {
-        mapper = new PackageInfoMapper<Text, Text, Text, Text>();
+        mapper = new CachedPackageInfoMapper<Text, Text, Text, Text>();
 //        driver = new MapDriver<Text, Text, Text, Text>(mapper);
     }
 
