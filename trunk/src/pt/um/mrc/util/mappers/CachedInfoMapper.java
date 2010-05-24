@@ -9,7 +9,7 @@ import org.apache.hadoop.filecache.DistributedCache;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.mapreduce.Mapper;
 
-public class PackageInfoMapper<KI, VI, KO, VO> extends Mapper<KI, VI, KO, VO> {
+public class CachedInfoMapper<KI, VI, KO, VO> extends Mapper<KI, VI, KO, VO> {
 
 	protected ArrayList<String> internalPackages = new ArrayList<String>();
 
