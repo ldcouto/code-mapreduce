@@ -68,18 +68,4 @@ public class HadoopJobControlTest {
 		assertArrayEquals(args, actualArgs);
 	}
 
-	@Test
-	public void testCheckArguments_BadArgs(){
-		//FIXME how to test error output
-		
-//		String[] args = { "<in>"};
-//		CheckedJobInfo cji = new CheckedJobInfo(new Configuration(), "Some usage message");
-//
-//		String[] actualArgs = HadoopJobControl.checkArguments(args, cji);
-//
-//		assertArrayEquals(args, actualArgs);	
-
-		fail("Not yet implemented");
-		
-	}
 }

@@ -56,6 +56,7 @@ public class ImportsByFile
     	
     	JobRunner.setJob(j2Args, job2);
     	JobRunner.runJob();
+    	//FIXME I can't quit!
 }
     
     protected static class PIBFJob1 implements JobInformable {
