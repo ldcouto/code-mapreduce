@@ -4,6 +4,7 @@ import org.apache.hadoop.io.ArrayWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.io.Writable;
 
+// TODO: Auto-generated Javadoc
 /**
  * This class is just a wrapper around the ArrayWritable class. It just
  * overrides the toString() method. The purpose is mostly to provide a simple
@@ -20,13 +21,21 @@ public class CollectionWritablePrintable extends ArrayWritable
         super(Text.class);
     }
 
+    /**
+     * Instantiates a new collection writable printable.
+     *
+     * @param valueClass the value class
+     * @param values the values
+     */
     public CollectionWritablePrintable(Class<? extends Writable> valueClass, Writable[] values)
     {
         super(valueClass, values);
     }
     
     /**
-     * Specialized
+     * Specialized toString method to compose an array representation of this collection.
+     *
+     * @return the string
      */
     @Override
     public String toString()
