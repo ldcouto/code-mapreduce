@@ -18,7 +18,7 @@ public class FindPackagesMapReduceTest
     public void setUp() throws Exception
     {
         mapper = new PkgAndClassMapper();
-        reducer = new FindPackagesReducer();
+        reducer = new PkgAndClassReducer();
         driver = new MapReduceDriver<Text, Text, Text, Text, Text, Text>(mapper,reducer);
     }
     

@@ -82,7 +82,7 @@ public class ImportsByFile
 
     	@Override
     	public Class<? extends Reducer<?, ?, ?, ?>> getReducerClass() {
-    		return FindPackagesReducer.class;
+    		return PkgAndClassReducer.class;
     	}
 
     	@Override
