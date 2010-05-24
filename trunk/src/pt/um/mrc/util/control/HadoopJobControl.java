@@ -1,18 +1,18 @@
 package pt.um.mrc.util.control;
 
-import java.io.IOException;
-
-import org.apache.hadoop.fs.FileStatus;
-import org.apache.hadoop.fs.FileSystem;
-import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.mapreduce.Job;
 import org.apache.hadoop.mapreduce.Reducer;
 import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 import org.apache.hadoop.util.GenericOptionsParser;
 
+/**
+ * @author ldc
+ *
+ */
 public class HadoopJobControl
 {
+	
     public static void configureSimpleJob(Job job, JobConfigurer jc, MapperConfigurer mc,
             Class<? extends Reducer<?, ?, ?, ?>> reducer) throws Exception
     {
