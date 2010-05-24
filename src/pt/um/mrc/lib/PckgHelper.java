@@ -1,35 +1,33 @@
 package pt.um.mrc.lib;
 
 import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
-public class PckgHelper
-{
-    protected PckgHelper()
-    {}
+public class PckgHelper {
 
-    public static String findPackage(String text)
-    {
-        // Variable to return
-        String pckg = "default package";
+	protected PckgHelper() {
+	}
 
-        // Package RegEx
-        Matcher packageMatcher = Patterns.PACKAGE_PATTERN.matcher(text);
+	public static String findPackage(String text) {
+		// Variable to return
+		String pckg = "default package";
 
-        // Get the package name
-        if (packageMatcher.find())
-        {
-            // Store the matched string, deleting the ';'
-            String matchedKey = packageMatcher.group().replaceAll(";", "");
+		// Package RegEx
+		Matcher packageMatcher = Patterns.PACKAGE_PATTERN.matcher(text);
 
-            // Split the string by white spaces
-            String[] tmp = matchedKey.split("\\s");
+		// Get the package name
+		if (packageMatcher.find()) {
+			// Store the matched string, deleting the ';'
+			String matchedKey = packageMatcher.group().replaceAll(";", "");
 
-            pckg = tmp[1];
-        }
+			// Split the string by white spaces
+			String[] tmp = matchedKey.split("\\s");
 
-        return pckg;
-    }
-    
+			pckg = tmp[1];
+		}
+
+		return pckg;
+	}
 
 	public static String extractPkgNameStar(String s) {
 		String r = s.replaceAll("(\\.\\*)", "");
@@ -39,19 +37,14 @@ public class PckgHelper
 	public static String[] extractPkgClassNames(String s) {
 		String[] r;
 		r = new String[2];
-		String[] aux = s.split("\\.");
-		StringBuilder sb= new StringBuilder();
-		
-		r[1]=aux[aux.length-1]; 
-		
-		for (int i=0; i<aux.length-1; i++)
-		{
-			sb.append(aux[i]);
-			if (i != aux.length-2)
-				sb.append('.');
-		}	
-		
-		r[0] = sb.toString();
+
+		Pattern p = Pattern.compile("([a-zA-Z0-9_.]*)\\.");
+		Matcher m = p.matcher(s);
+		m.find();
+
+		r[1] = s;
+		r[0] = m.group(1);
+
 		return r;
 	}
 }
