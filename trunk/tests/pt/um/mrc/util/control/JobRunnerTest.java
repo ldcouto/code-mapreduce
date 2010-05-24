@@ -1,6 +1,6 @@
 package pt.um.mrc.util.control;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 import org.junit.After;
 import org.junit.Before;
@@ -24,6 +24,15 @@ public class JobRunnerTest
     @After
     public void tearDown() throws Exception
     {}
+
+    @Test
+    public void testConstructor()
+    {
+        JobRunner jr = new JobRunner();
+
+        assertNotNull(jr);
+        assertTrue(jr instanceof JobRunner);
+    }
 
     @Test
     public void testSetJob() throws Exception

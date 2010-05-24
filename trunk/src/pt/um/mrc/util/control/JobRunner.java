@@ -12,7 +12,6 @@ import org.apache.hadoop.mapreduce.Job;
  */
 public class JobRunner
 {
-
     /** The configuration. */
     protected static Configuration conf;
 
@@ -35,6 +34,7 @@ public class JobRunner
      *            the arguments from the command line
      * @param ji
      *            the JobInformaer for the job to configure
+     * @throws Exception 
      * @throws Exception
      *             the exception
      */
