@@ -4,11 +4,11 @@ import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.mapreduce.InputFormat;
 import org.apache.hadoop.mapreduce.Mapper;
 import org.apache.hadoop.mapreduce.Reducer;
-import org.apache.hadoop.mapreduce.lib.input.TextInputFormat;
 
 import pt.um.mrc.util.control.JobInformable;
 import pt.um.mrc.util.control.JobRunner;
 import pt.um.mrc.util.datatypes.MethodID;
+import pt.um.mrc.util.io.JMethodInputFormat;
 
 /**
  * This class contains the configuration for the job that relates methods with
@@ -43,7 +43,7 @@ public class VolumeByMethod implements JobInformable
 
     public Class<? extends InputFormat<?, ?>> getInputFormatClass()
     {
-        return TextInputFormat.class;
+        return JMethodInputFormat.class;
     }
 
     public Class<? extends Reducer<?, ?, ?, ?>> getReducerClass()
