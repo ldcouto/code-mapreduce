@@ -8,35 +8,37 @@ import org.apache.hadoop.io.Text;
 import pt.um.mrc.lib.ImprtHelper;
 import pt.um.mrc.util.mappers.PackageInfoMapper;
 
-public class ImportsCommonMapper<KI, VI, KO, VO> extends PackageInfoMapper<Text, Text, Text, Text>
-{
-    private Text importedPackage = new Text();
+public class ImportsCommonMapper<KI, VI, KO, VO> extends PackageInfoMapper<Text, Text, Text, Text> {
 
-    @Override
-    protected void map(Text key, Text value, Context context) throws IOException,
-            InterruptedException
-    {    
-        // Find the imported packages
-        List<String> importedPackages = ImprtHelper.findImportedPackages(value.toString());
+	private Text importedPackage = new Text();
 
-        // Write to the output.
-        for (String imprtPckg : importedPackages)
-        {
-            imprtPckg = imprtPckg.replaceAll("\\*", "");
-            for (String intrnPckg : internalPackages)
-            {
-                if (imprtPckg.indexOf(intrnPckg) >= 0)
-                {
-                    importedPackage.set(imprtPckg);
-                    context.write(key, importedPackage);    
-                }
-                
-                if (intrnPckg.indexOf(imprtPckg) >= 0)
-                {
-                    importedPackage.set(intrnPckg);
-                    context.write(key, importedPackage);    
-                } 
-            }
-        }
-    }
+	@Override
+	protected void map(Text key, Text value, Context context) throws IOException,
+		InterruptedException {
+		// Find the imported packages
+//		List<String> importedPackages = ImprtHelper.findImportedPackages(value.toString());
+
+		for (String s : internalPackages) {
+			if (ImprtHelper.importMatcher(s, internalPackages)) {
+				importedPackage.set(s);
+				context.write(key, importedPackage);
+			}
+		}
+//		// Write to the output.
+//		for (String imprtPckg : importedPackages) {
+//
+//			imprtPckg = imprtPckg.replaceAll("\\*", "");
+//			for (String intrnPckg : internalPackages) {
+//				if (imprtPckg.indexOf(intrnPckg) >= 0) {
+//					importedPackage.set(imprtPckg);
+//					context.write(key, importedPackage);
+//				}
+//
+//				if (intrnPckg.indexOf(imprtPckg) >= 0) {
+//					importedPackage.set(intrnPckg);
+//					context.write(key, importedPackage);
+//				}
+//			}
+//		}
+	}
 }

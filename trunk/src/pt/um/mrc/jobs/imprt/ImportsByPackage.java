@@ -61,7 +61,7 @@ public class ImportsByPackage
         JobConfigurer jc1 = new JobConfigurer(ImportsByPackage.class, JavaFileInputFormat.class,
                 new Path(otherArgs[0]), tmp);
 
-        MapperConfigurer mc1 = new MapperConfigurer(FindPackagesMapper.class, Text.class,
+        MapperConfigurer mc1 = new MapperConfigurer(PkgAndClassMapper.class, Text.class,
                 Text.class);
 
         HadoopJobControl.configureSimpleJob(job1, jc1, mc1, FindPackagesReducer.class);

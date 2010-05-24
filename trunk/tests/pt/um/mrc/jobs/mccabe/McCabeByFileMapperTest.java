@@ -26,9 +26,9 @@ public class McCabeByFileMapperTest
         LongWritable inKey = new LongWritable(10);
 
         Text inValues = new Text(
-                "pt.um.mrc.jobs.imprt-FindPackagesMapper.java-FindPackagesMapper\t5");
+                "pt.um.mrc.jobs.imprt-PkgAndClassMapper.java-PkgAndClassMapper\t5");
 
-        Text outKey = new Text("pt.um.mrc.jobs.imprt-FindPackagesMapper.java");
+        Text outKey = new Text("pt.um.mrc.jobs.imprt-PkgAndClassMapper.java");
 
         IntWritable outValue = new IntWritable(5);
 

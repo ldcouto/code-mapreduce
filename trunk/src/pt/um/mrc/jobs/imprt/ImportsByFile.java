@@ -67,7 +67,7 @@ public class ImportsByFile
 
     	@Override
     	public Class<? extends Mapper<?, ?, ?, ?>> getMapperClass() {
-    		return FindPackagesMapper.class;
+    		return PkgAndClassMapper.class;
     	}
 
     	@Override

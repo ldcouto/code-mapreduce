@@ -31,9 +31,9 @@ public class LineValuesMapperTest {
 
 		Text inValues =
 			new Text(
-				"pt.um.mrc.jobs.imprt-FindPackagesMapper.java-FindPackagesMapper-map[Text key, Text value, Context context]\t5");
+				"pt.um.mrc.jobs.imprt-PkgAndClassMapper.java-PkgAndClassMapper-map[Text key, Text value, Context context]\t5");
 
-		Text outKey = new Text("pt.um.mrc.jobs.imprt-FindPackagesMapper.java-FindPackagesMapper");
+		Text outKey = new Text("pt.um.mrc.jobs.imprt-PkgAndClassMapper.java-PkgAndClassMapper");
 
 		IntWritable outValue = new IntWritable(5);
 

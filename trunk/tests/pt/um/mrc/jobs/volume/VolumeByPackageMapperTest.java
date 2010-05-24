@@ -27,7 +27,7 @@ public class VolumeByPackageMapperTest
         LongWritable inKey = new LongWritable(10);
 
         Text inValues = new Text(
-                "pt.um.mrc.jobs.imprt-FindPackagesMapper.java\t5");
+                "pt.um.mrc.jobs.imprt-PkgAndClassMapper.java\t5");
 
         Text outKey = new Text("pt.um.mrc.jobs.imprt");
 

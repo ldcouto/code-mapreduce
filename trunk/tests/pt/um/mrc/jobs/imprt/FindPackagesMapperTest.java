@@ -14,7 +14,7 @@ public class FindPackagesMapperTest
     @Before
     public void setUp() throws Exception
     {
-        mapper = new FindPackagesMapper();
+        mapper = new PkgAndClassMapper();
         driver = new MapDriver<Text, Text, Text, Text>(mapper);
     }
 
