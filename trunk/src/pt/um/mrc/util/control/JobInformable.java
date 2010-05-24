@@ -4,18 +4,52 @@ import org.apache.hadoop.mapreduce.InputFormat;
 import org.apache.hadoop.mapreduce.Mapper;
 import org.apache.hadoop.mapreduce.Reducer;
 
-public interface JobInformable {
+// TODO: Auto-generated Javadoc
+/**
+ * The Interface JobInformable.
+ */
+public interface JobInformable
+{
+    
+    /**
+     * Gets the usage message.
+     *
+     * @return the usage message
+     */
+    public abstract String getUsage();
 
-	public abstract String getUsage();
+    /**
+     * Gets the mapper class.
+     *
+     * @return the mapper class
+     */
+    public abstract Class<? extends Mapper<?, ?, ?, ?>> getMapperClass();
 
-	public abstract Class<? extends Mapper<?,?,?,?>> getMapperClass();
-	
-	public abstract Class<? extends Reducer<?,?,?,?>> getReducerClass();
+    /**
+     * Gets the reducer class.
+     *
+     * @return the reducer class
+     */
+    public abstract Class<? extends Reducer<?, ?, ?, ?>> getReducerClass();
 
-	public abstract Class<?> getMapperKeyClass();
+    /**
+     * Gets the mapper output key class.
+     *
+     * @return the mapper output key class
+     */
+    public abstract Class<?> getMapperKeyClass();
 
-	public abstract Class<?> getMapperValueClass();
-	
-	public abstract Class<? extends InputFormat<?,?>> getInputFormatClass();
+    /**
+     * Gets the mapper output value class.
+     *
+     * @return the mapper output value class
+     */
+    public abstract Class<?> getMapperValueClass();
 
+    /**
+     * Gets the InputFormatClass.
+     *
+     * @return the InputFormatClass
+     */
+    public abstract Class<? extends InputFormat<?, ?>> getInputFormatClass();
 }

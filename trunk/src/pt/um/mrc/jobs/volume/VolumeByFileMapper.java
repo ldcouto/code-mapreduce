@@ -16,11 +16,16 @@ import pt.um.mrc.util.mappers.LineValuesMapper;
  * @author Tiago Alves Veloso
  */
 
-public class VolumeByFileMapper extends LineValuesMapper<LongWritable, Text, Text, IntWritable> {
+public class VolumeByFileMapper extends LineValuesMapper<LongWritable, Text, Text, IntWritable>
+{
 
-	@Override
-	protected void setup(Context context) throws IOException, InterruptedException {
-		lineContents = LineType.FILE;
-		super.setup(context);
-	}
+    /* (non-Javadoc)
+     * @see org.apache.hadoop.mapreduce.Mapper#setup(org.apache.hadoop.mapreduce.Mapper.Context)
+     */
+    @Override
+    protected void setup(Context context) throws IOException, InterruptedException
+    {
+        lineContents = LineType.FILE;
+        super.setup(context);
+    }
 }

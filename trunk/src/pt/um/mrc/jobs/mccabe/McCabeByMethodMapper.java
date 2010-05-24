@@ -19,8 +19,13 @@ import pt.um.mrc.util.datatypes.MethodID;
 
 public class McCabeByMethodMapper extends Mapper<MethodID, Text, MethodID, IntWritable>
 {
+    
+    /** The McCabe number. */
     private IntWritable mcCabeNumber = new IntWritable();
     
+    /* (non-Javadoc)
+     * @see org.apache.hadoop.mapreduce.Mapper#map(KEYIN, VALUEIN, org.apache.hadoop.mapreduce.Mapper.Context)
+     */
     @Override
     protected void map(MethodID key, Text value, Context context) throws IOException,
             InterruptedException

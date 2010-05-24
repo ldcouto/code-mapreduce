@@ -21,36 +21,74 @@ import pt.um.mrc.util.io.JMethodInputFormat;
 public class VolumeByMethod implements JobInformable
 {
 
+    /*
+     * (non-Javadoc)
+     * 
+     * @see pt.um.mrc.util.control.JobInformable#getUsage()
+     */
     public String getUsage()
     {
         return "Usage: VolumeByMethod <in> <out>";
     }
 
+    /*
+     * (non-Javadoc)
+     * 
+     * @see pt.um.mrc.util.control.JobInformable#getMapperClass()
+     */
     public Class<? extends Mapper<?, ?, ?, ?>> getMapperClass()
     {
         return VolumeByMethodMapper.class;
     }
 
+    /*
+     * (non-Javadoc)
+     * 
+     * @see pt.um.mrc.util.control.JobInformable#getMapperKeyClass()
+     */
     public Class<?> getMapperKeyClass()
     {
         return MethodID.class;
     }
 
+    /*
+     * (non-Javadoc)
+     * 
+     * @see pt.um.mrc.util.control.JobInformable#getMapperValueClass()
+     */
     public Class<?> getMapperValueClass()
     {
         return IntWritable.class;
     }
 
+    /*
+     * (non-Javadoc)
+     * 
+     * @see pt.um.mrc.util.control.JobInformable#getInputFormatClass()
+     */
     public Class<? extends InputFormat<?, ?>> getInputFormatClass()
     {
         return JMethodInputFormat.class;
     }
 
+    /*
+     * (non-Javadoc)
+     * 
+     * @see pt.um.mrc.util.control.JobInformable#getReducerClass()
+     */
     public Class<? extends Reducer<?, ?, ?, ?>> getReducerClass()
     {
         return VolumeByMethodReducer.class;
     }
 
+    /**
+     * The main method.
+     * 
+     * @param args
+     *            the arguments from the command line
+     * @throws Exception
+     *             the exception
+     */
     public static void main(String[] args) throws Exception
     {
         VolumeByMethod me = new VolumeByMethod();

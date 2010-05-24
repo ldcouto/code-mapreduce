@@ -1,7 +1,7 @@
 package pt.um.mrc.util.datatypes;
 
 /**
- * The Interface Pair.
+ * The Interface Pair for Pairs.
  *
  * @param <K> the key type
  * @param <V> the value type

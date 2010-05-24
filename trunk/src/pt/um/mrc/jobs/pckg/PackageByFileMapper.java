@@ -14,13 +14,18 @@ import pt.um.mrc.lib.PckgHelper;
  * @author Luis Duarte Couto
  * @author Tiago Alves Veloso
  */
-
 public class PackageByFileMapper extends Mapper<Text, Text, Text, Text>
 {
+    
+    /** The packge. */
     private Text packge = new Text();
 
+    /** The filename. */
     private Text filename = new Text();
 
+    /* (non-Javadoc)
+     * @see org.apache.hadoop.mapreduce.Mapper#map(KEYIN, VALUEIN, org.apache.hadoop.mapreduce.Mapper.Context)
+     */
     @Override
     protected void map(Text key, Text value, Context context) throws IOException,
             InterruptedException
