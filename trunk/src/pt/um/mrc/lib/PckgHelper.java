@@ -29,4 +29,29 @@ public class PckgHelper
 
         return pckg;
     }
+    
+
+	public static String extractPkgNameStar(String s) {
+		String r = s.replaceAll("(\\.\\*)", "");
+		return r;
+	}
+
+	public static String[] extractPkgClassNames(String s) {
+		String[] r;
+		r = new String[2];
+		String[] aux = s.split("\\.");
+		StringBuilder sb= new StringBuilder();
+		
+		r[1]=aux[aux.length-1]; 
+		
+		for (int i=0; i<aux.length-1; i++)
+		{
+			sb.append(aux[i]);
+			if (i != aux.length-2)
+				sb.append('.');
+		}	
+		
+		r[0] = sb.toString();
+		return r;
+	}
 }

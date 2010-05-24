@@ -1,6 +1,6 @@
 package pt.um.mrc.lib;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 import static org.junit.Assert.assertNotNull;
 
 import org.junit.Test;
@@ -39,4 +39,25 @@ public class PckgHelperTest
         
         assertEquals(expected, result);
     }
+    
+    @Test
+	public void testExtractPkgNameStar() {
+    	String s = "foo.bar.*";
+    	
+    	String expected = "foo.bar";
+    	String actual = PckgHelper.extractPkgNameStar(s);
+    	
+    	assertEquals(expected, actual);
+	}
+
+    @Test
+	public void testExtractPkgClassNames() {
+    	String s = "foo.bar.Class";
+    	
+    	String[] expected = {"foo.bar", "Class"};
+    	
+    	String[] actual = PckgHelper.extractPkgClassNames(s);
+    	
+    	assertArrayEquals(expected, actual); 	
+	}
 }

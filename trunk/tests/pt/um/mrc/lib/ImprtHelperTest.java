@@ -24,7 +24,7 @@ public class ImprtHelperTest {
 		expected.add("org.junit.Test");
 		expected.add("java.util.ArrayList");
 
-		ArrayList<String> result = ImprtHelper.findImportedPackages(input);
+		ArrayList<String> result = ImprtHelper.findImports(input);
 
 		assertEquals(expected, result);
 	}
@@ -37,7 +37,7 @@ public class ImprtHelperTest {
 		expected.add("org.junit.Test");
 		expected.add("org.junit.Assert.*");
 
-		ArrayList<String> result = ImprtHelper.findImportedPackages(input);
+		ArrayList<String> result = ImprtHelper.findImports(input);
 
 		assertEquals(expected, result);
 	}
@@ -48,7 +48,7 @@ public class ImprtHelperTest {
 
 		ArrayList<String> expected = new ArrayList<String>();
 
-		ArrayList<String> result = ImprtHelper.findImportedPackages(input);
+		ArrayList<String> result = ImprtHelper.findImports(input);
 
 		assertEquals(expected, result);
 	}

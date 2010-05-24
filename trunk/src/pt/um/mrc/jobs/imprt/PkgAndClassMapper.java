@@ -22,6 +22,6 @@ public class PkgAndClassMapper extends Mapper<Text, Text, Text, Text> {
 		classes = ClassHelper.findClasses(value.toString());
 
 		for (String s : classes)
-			context.write(packge, new Text(s));
+			context.write(packge, new Text(packge.toString()+'.'+s));
 	}
 }
