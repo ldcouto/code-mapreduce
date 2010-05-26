@@ -3,7 +3,6 @@ package pt.um.mrc.util.io;
 import japa.parser.JavaParser;
 import japa.parser.ParseException;
 import japa.parser.ast.CompilationUnit;
-import japa.parser.ast.visitor.VoidVisitorAdapter;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -25,15 +24,14 @@ import org.apache.hadoop.mapreduce.lib.input.FileSplit;
 import pt.um.mrc.util.Constants;
 
 /**
- * A RecordReader that processes Java Files and feeds them to a Mapper. Files
+ * A generic RecordReader that processes Java Files and feeds them to a Mapper. Files
  * are processed and fed in a record-oriented manner. The reader passes
  * information in the form of (Key, Value) pairs.
  * 
- * The key is composed of the package, file, class and method name (including
- * parameters) and is represented by a MethodID.
+ * The key is must be a WritableComparable and is one of the parameters of the generic declaration. 
+ * The other parameter is the parser (and specifically Visitor) that will be used to generate the values.
  * 
- * The value is composed of the entire method body (including declaration) and
- * is represented by a Text object.
+ * This record reader should never be used directly. Rather, it should be extended by other, more specific ones.
  * 
  * @author Luis Duarte Couto
  * @author Tiago Alves Veloso
