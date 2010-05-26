@@ -1,7 +1,6 @@
 package pt.um.mrc.util.io;
 
 import japa.parser.JavaParser;
-import japa.parser.ParseException;
 import japa.parser.ast.CompilationUnit;
 
 import java.io.IOException;
@@ -25,14 +24,13 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import pt.um.mrc.util.datatypes.MethodID;
+import pt.um.mrc.util.datatypes.ClassID;
 
-public class JMethodRecordReaderTest
+public class JClassRecordReaderTest
 {
-
-    JMethodRecordReader javaRRGoodFile = new JMethodRecordReader();
-    JMethodRecordReader javaRREmptyFile = new JMethodRecordReader();
-    JMethodRecordReader javaRRClassFile = new JMethodRecordReader();
+    JClassRecordReader javaRRGoodFile = new JClassRecordReader();
+    JClassRecordReader javaRREmptyFile = new JClassRecordReader();
+    JClassRecordReader javaRRClassFile = new JClassRecordReader();
     FileSplit fileSplitGood;
     FileSplit fileSplitEmpty;
     FileSplit fileSplitClass;
@@ -62,25 +60,33 @@ public class JMethodRecordReaderTest
         tac = new TaskAttemptContext(mapMockContext.getConfiguration(), mapMockContext
                 .getTaskAttemptID());
 
-        javaRRGoodFile = new JMethodRecordReader();
+        javaRRGoodFile = new JClassRecordReader();
         javaRRGoodFile.initialize(fileSplitGood, tac);
 
-        javaRREmptyFile = new JMethodRecordReader();
+        javaRREmptyFile = new JClassRecordReader();
         javaRREmptyFile.initialize(fileSplitEmpty, tac);
     }
 
     @Test
-    public void testInitializeInputSplitTaskAttemptContext() throws Exception
+    public final void testConstructor(){
+        JClassRecordReader obj = new JClassRecordReader();
+        
+        Assert.assertNotNull(obj);
+        Assert.assertTrue(obj instanceof JClassRecordReader);
+    }
+    
+    @Test
+    public final void testInitialize() throws Exception
     {
-
-        JMethodRecordReader jrrToTest = new JMethodRecordReader();
+        JClassRecordReader jrrToTest = new JClassRecordReader();
         jrrToTest.initialize(fileSplitClass, tac);
 
-        Map<MethodID, Text> expectedMethods = new HashMap<MethodID, Text>();
+        Map<ClassID, Text> expectedMethods = new HashMap<ClassID, Text>();
+        expectedMethods.put(new ClassID("Potato","somefile_class","<default>"), new Text(""));
         String expectedPackageName = "<default>";
         String expectedFileName = "somefile_class";
         FileSplit expectedSplit = fileSplitClass;
-        List<MethodID> expectedMKeys = null;
+        List<ClassID> expectedMKeys = new ArrayList<ClassID>(expectedMethods.keySet());
         int expectedCurrM = -1;
 
         Configuration auxJob = tac.getConfiguration();
@@ -90,17 +96,14 @@ public class JMethodRecordReaderTest
         CompilationUnit expectedCU = JavaParser.parse(expectedFileIn);
 
         FSDataInputStream actualFileIn = jrrToTest.getFileIn();
-        Map<MethodID, Text> actualMethods = jrrToTest.getMethods();
+        Map<ClassID, Text> actualMethods = jrrToTest.getMethods();
         String actualPackageName = jrrToTest.getPackageName();
         String actualFileName = jrrToTest.getFileName();
         CompilationUnit actualCU = jrrToTest.getCu();
         FileSplit actualSplit = jrrToTest.getfSplit();
-        List<MethodID> actualMKeys = jrrToTest.getmKeys();
+        List<ClassID> actualMKeys = jrrToTest.getmKeys();
         int actualCurrM = jrrToTest.getCurrM();
 
-        // FIXME can't seem to test the InputStreams (will read from the stream
-        // and compare against expected
-        // Assert.assertSame(expectedFileIn, actualFileIn);
         Assert.assertEquals(expectedMethods, actualMethods);
         Assert.assertEquals(expectedPackageName, actualPackageName);
         Assert.assertEquals(expectedFileName, actualFileName);
@@ -123,7 +126,7 @@ public class JMethodRecordReaderTest
         boolean actual = javaRRGoodFile.nextKeyValue();
         Assert.assertEquals(expected, actual);
     }
-
+    
     @Test
     public final void testNextKeyValue_EmptyFile() throws IOException, InterruptedException
     {
@@ -136,11 +139,11 @@ public class JMethodRecordReaderTest
     public final void testGetCurrentKey() throws IOException, InterruptedException
     {
         javaRRGoodFile.nextKeyValue();
-        MethodID expected = new MethodID("jj_3R_173[ ]", "ASTParser", "somefile", "japa.parser");
-        MethodID actual = javaRRGoodFile.getCurrentKey();
+        ClassID expected = new ClassID("ASTParser", "somefile", "japa.parser");
+        ClassID actual = javaRRGoodFile.getCurrentKey();
         Assert.assertEquals(expected, actual);
     }
-
+    
     @Test
     public final void testGetCurrentValue() throws IOException, InterruptedException
     {
@@ -148,6 +151,7 @@ public class JMethodRecordReaderTest
 
         StringBuilder sb = new StringBuilder();
 
+        // TODO: Must rebuild the expected string
         sb.append("private boolean jj_3R_173() {\n");
         sb.append("    Token xsp;\n");
         sb.append("    xsp = jj_scanpos;\n");
@@ -178,11 +182,11 @@ public class JMethodRecordReaderTest
         float actual = javaRREmptyFile.getProgress();
         Assert.assertEquals(expected, actual, 0.001);
     }
-
+    
     @Test
     public final void testGetProgress_Underway() throws IOException, InterruptedException
     {
-        float expected = 0.0017793594161048532f;
+        float expected = 1.0f;
         javaRRGoodFile.nextKeyValue();
         float actual = javaRRGoodFile.getProgress();
         Assert.assertEquals(expected, actual, 0.001);
@@ -195,8 +199,8 @@ public class JMethodRecordReaderTest
         javaRRGoodFile.close();
 
         int expectedCurrM = -1;
-        Map<MethodID, Text> expectedMethods = null;
-        List<MethodID> expectedKeys = null;
+        Map<ClassID, Text> expectedMethods = null;
+        List<ClassID> expectedKeys = null;
         
         Configuration auxJob = tac.getConfiguration();
         Path auxPath = new Path("TestMats/somefile");
@@ -206,8 +210,8 @@ public class JMethodRecordReaderTest
         
         FSDataInputStream actualFileIn = javaRRGoodFile.getFileIn();
         int actualCurrM = javaRRGoodFile.getCurrM();
-        Map<MethodID, Text> actualMethods = javaRRGoodFile.getMethods();
-        List<MethodID> actualKeys = javaRRGoodFile.getmKeys();
+        Map<ClassID, Text> actualMethods = javaRRGoodFile.getMethods();
+        List<ClassID> actualKeys = javaRRGoodFile.getmKeys();
 
         Assert.assertEquals(expectedCurrM, actualCurrM);
         Assert.assertEquals(expectedMethods, actualMethods);
@@ -219,5 +223,4 @@ public class JMethodRecordReaderTest
         
         Assert.assertEquals(expectedPos, actualPos);
     }
-
 }
