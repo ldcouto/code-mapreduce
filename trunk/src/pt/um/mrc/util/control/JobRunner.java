@@ -73,14 +73,18 @@ public class JobRunner
      * @throws Exception
      *             the exception
      */
-    public static void runJob()
+    public static int runJob()
     {
+        int r = 2;
+        
         try{
-        System.exit(job.waitForCompletion(true) ? 0 : 1);
+        r = job.waitForCompletion(true) ? 0 : 1;
         } catch (Exception e) {
             LOG.fatal(e.getMessage());
             System.exit(2);
         }
+        
+        return r;
     }
 
 }
