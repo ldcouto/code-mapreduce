@@ -28,9 +28,9 @@ import pt.um.mrc.util.datatypes.MethodID;
 
 public class JMethodRecordReaderTest {
 
-	JMethodRecordReader javaRRGoodFile;
-	JMethodRecordReader javaRREmptyFile;
-	JMethodRecordReader javaRREmptyFile1Char;
+	JMethodRecordReader javaRRGoodFile = new JMethodRecordReader();
+	JMethodRecordReader javaRREmptyFile = new JMethodRecordReader();
+	JMethodRecordReader javaRREmptyFile1Char = new JMethodRecordReader();
 	FileSplit fileSplitGood;
 	FileSplit fileSplitEmpty;
 	FileSplit fileSplitEmpty1Char;
@@ -65,9 +65,7 @@ public class JMethodRecordReaderTest {
 
 		
 		javaRREmptyFile = new JMethodRecordReader();
-		javaRREmptyFile.initialize(fileSplitEmpty, tac);
-
-	
+		javaRREmptyFile.initialize(fileSplitEmpty, tac);	
 	}
 
 	
@@ -99,8 +97,9 @@ public class JMethodRecordReaderTest {
 		List<MethodID> actualMKeys=jrrToTest.getmKeys();
 		int actualCurrM=jrrToTest.getCurrM();
 		        
-		//FIXME can't seem to test the InputStreams
-	//	Assert.assertSame(expectedFileIn, actualFileIn);
+		
+		//FIXME can't seem to test the InputStreams (will read from the stream and compare against expected
+		Assert.assertSame(expectedFileIn, actualFileIn);
 		Assert.assertEquals(expectedMethods, actualMethods);
 		Assert.assertEquals(expectedPackageName, actualPackageName);
 		Assert.assertEquals(expectedFileName, actualFileName);

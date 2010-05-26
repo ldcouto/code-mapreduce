@@ -10,16 +10,10 @@ import pt.um.mrc.util.Constants;
 
 // TODO: Auto-generated Javadoc
 /**
- * The Class MethodID represents an Identifier of a method. It's composed by the
- * method name, the class name, the file name and the package name.
+ * The Class FileID represents an Identifier of a File. It's composed by the
+ * file name and the package name.
  */
-public class MethodID implements WritableComparable<MethodID> {
-
-	/** The method name. */
-	String methodName;
-
-	/** The class name. */
-	String className;
+public class FileID implements WritableComparable<FileID> {
 
 	/** The file name. */
 	String fileName;
@@ -28,84 +22,36 @@ public class MethodID implements WritableComparable<MethodID> {
 	String packageName;
 
 	/**
-	 * Instantiates a new MethodID.
+	 * Instantiates a new FileID.
 	 */
-	public MethodID() {
-		methodName = "";
-		className = "";
+	public FileID() {
 		fileName = "";
 		packageName = "";
 	}
 
 	/**
-	 * Instantiates a new MethodID.
+	 * Instantiates a new FileID.
 	 * 
-	 * @param methodName
-	 *            the method name
-	 * @param className
-	 *            the class name
 	 * @param fileName
 	 *            the file name
 	 * @param packageName
 	 *            the package name
 	 */
-	public MethodID(String methodName, String className, String fileName, String packageName) {
-		this.methodName = methodName;
-		this.className = className;
+	public FileID(String fileName, String packageName) {
 		this.fileName = fileName;
 		this.packageName = packageName;
 	}
-
+	
 	/**
-	 * Instantiates a new ClassID from a single String name.
+	 * Instantiates a new FileID from a single String name.
 	 * 
 	 * @param aggre
-	 *            the aggregate string name (ex: "package-file-class-method")
+	 *            the aggregate string name (ex: "package-files")
 	 */
-	public MethodID(String aggre) {
+	public FileID(String aggre) {
 		String[] aux = aggre.split("-");
 		packageName = aux[0];
 		fileName = aux[1];
-		className = aux[2];
-		methodName = aux[3];
-	}
-
-	/**
-	 * Gets the method name.
-	 * 
-	 * @return the method name
-	 */
-	public String getMethodName() {
-		return methodName;
-	}
-
-	/**
-	 * Sets the method name.
-	 * 
-	 * @param methodName
-	 *            the new method name
-	 */
-	public void setMethodName(String methodName) {
-		this.methodName = methodName;
-	}
-
-	/**
-	 * Gets the class name.
-	 * 
-	 * @return the class name
-	 */
-	public String getClassName() {
-		return className;
-	}
-
-	/**
-	 * Sets the class name.
-	 * 
-	 * @param className
-	 *            the new class name
-	 */
-	public void setClassName(String className) {
-		this.className = className;
 	}
 
 	/**
@@ -152,8 +98,7 @@ public class MethodID implements WritableComparable<MethodID> {
 	 * @return a pretty string representation of this MethodID
 	 */
 	public String prettyString() {
-		return "MethodID[" + "packageName=" + packageName + ", fileName=" + fileName
-				+ ", className=" + className + ", methodName=" + methodName + "]";
+		return "FileID[" + "packageName=" + packageName + ", fileName=" + fileName + "]";
 	}
 
 	/*
@@ -167,10 +112,6 @@ public class MethodID implements WritableComparable<MethodID> {
 		sb.append(packageName);
 		sb.append('-');
 		sb.append(fileName);
-		sb.append('-');
-		sb.append(className);
-		sb.append('-');
-		sb.append(methodName);
 		return sb.toString();
 	}
 
@@ -183,8 +124,6 @@ public class MethodID implements WritableComparable<MethodID> {
 	public void readFields(DataInput in) throws IOException {
 		packageName = in.readUTF();
 		fileName = in.readUTF();
-		className = in.readUTF();
-		methodName = in.readUTF();
 	}
 
 	/*
@@ -196,31 +135,17 @@ public class MethodID implements WritableComparable<MethodID> {
 	public void write(DataOutput out) throws IOException {
 		out.writeUTF(packageName);
 		out.writeUTF(fileName);
-		out.writeUTF(className);
-		out.writeUTF(methodName);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.lang.Object#hashCode()
-	 */
 	@Override
 	public int hashCode() {
 		final int prime = Constants.HASH_CODE_PRIME;
 		int result = 1;
-		result = prime * result + ((className == null) ? 0 : className.hashCode());
 		result = prime * result + ((fileName == null) ? 0 : fileName.hashCode());
-		result = prime * result + ((methodName == null) ? 0 : methodName.hashCode());
 		result = prime * result + ((packageName == null) ? 0 : packageName.hashCode());
 		return result;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.lang.Object#equals(java.lang.Object)
-	 */
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -229,21 +154,11 @@ public class MethodID implements WritableComparable<MethodID> {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		MethodID other = (MethodID) obj;
-		if (className == null) {
-			if (other.className != null)
-				return false;
-		} else if (!className.equals(other.className))
-			return false;
+		FileID other = (FileID) obj;
 		if (fileName == null) {
 			if (other.fileName != null)
 				return false;
 		} else if (!fileName.equals(other.fileName))
-			return false;
-		if (methodName == null) {
-			if (other.methodName != null)
-				return false;
-		} else if (!methodName.equals(other.methodName))
 			return false;
 		if (packageName == null) {
 			if (other.packageName != null)
@@ -253,13 +168,8 @@ public class MethodID implements WritableComparable<MethodID> {
 		return true;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.lang.Comparable#compareTo(java.lang.Object)
-	 */
 	@Override
-	public int compareTo(MethodID o) {
+	public int compareTo(FileID o) {
 		int cmpPkg = this.packageName.compareTo(o.getPackageName());
 		if (cmpPkg != 0)
 			return cmpPkg;
@@ -268,15 +178,8 @@ public class MethodID implements WritableComparable<MethodID> {
 		if (cmpFile != 0)
 			return cmpFile;
 
-		int cmpClass = this.className.compareTo(o.getClassName());
-		if (cmpClass != 0)
-			return cmpClass;
-
-		int cmpMetd = this.methodName.compareTo(o.getMethodName());
-		if (cmpMetd != 0)
-			return cmpMetd;
-
 		return 0;
 	}
+
 
 }
