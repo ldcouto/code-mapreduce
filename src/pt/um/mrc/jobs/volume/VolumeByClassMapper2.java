@@ -20,6 +20,8 @@ public class VolumeByClassMapper2 extends Mapper<ClassID, Text, Text, IntWritabl
     {
         keyOut.set(key.toString());
         valueOut.set(VolumeHelper.countLinesOfCode(value.toString()));
+        
+        context.write(keyOut, valueOut);
     }
     
 }
