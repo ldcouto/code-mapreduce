@@ -23,5 +23,4 @@ public class JMethodRecordReader extends JRecordReader<MethodID,MethodGrabClassV
 	public JMethodRecordReader(){
 		super(new MethodGrabClassVisitor());
 	}
-	
 }
