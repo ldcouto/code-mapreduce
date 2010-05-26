@@ -15,6 +15,8 @@ import org.apache.hadoop.mapreduce.TaskAttemptContext;
 import org.apache.hadoop.mapreduce.lib.input.FileSplit;
 import org.apache.hadoop.util.LineReader;
 
+import pt.um.mrc.util.Constants;
+
 /**
  * The JavaFileRecordReader extends org.apache.hadoop.mapreduce.RecordReader.
  * 
@@ -255,7 +257,7 @@ public class JavaFileRecordReader extends RecordReader<Text, Text> {
 		if (start == end) {
 			return 0.0f;
 		} else {
-			return Math.min(1.0f, (pos - start) / (float) (end - start));
+			return Math.min(Constants.HUNDRED_PERCENT, (pos - start) / (float) (end - start));
 		}
 	}
 
