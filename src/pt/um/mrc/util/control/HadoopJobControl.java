@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.mapreduce.Job;
 import org.apache.hadoop.mapreduce.Reducer;
 import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
@@ -46,9 +47,14 @@ public class HadoopJobControl
         job.setJarByClass(jc.getClassJar());
         job.setInputFormatClass(jc.getIntputFormat());
 
-        FileInputFormat.setInputPaths(job, jc.getInputPath());
-        FileOutputFormat.setOutputPath(job, jc.getOutputPath());
-
+        int i;
+        for (i=0; i<jc.getPaths().length-1;i++){
+        	
+        	FileInputFormat.addInputPath(job, new Path(jc.getPaths()[i]));
+        }
+//        FileInputFormat.setInputPaths(job, jc.getInputPath());
+        FileOutputFormat.setOutputPath(job, new Path(jc.getPaths()[i]));
+        
         // TODO uncomment me when the loop works
         // configureInputs(job, jc.getInputPath());
 
@@ -91,7 +97,7 @@ public class HadoopJobControl
     {
         String[] otherArgs = new GenericOptionsParser(cji.getConf(), args).getRemainingArgs();
 
-        if (otherArgs.length != 2)
+        if (otherArgs.length != cji.getArgNum())
         {
             LOG.fatal(cji.getUsageMessage());
             System.exit(2);

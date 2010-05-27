@@ -79,4 +79,9 @@ public class PackageByFile implements JobInformable
         JobRunner.setJob(args, me);
         JobRunner.runJob();
     }
+
+	@Override
+	public int getArgCount() {
+		return 2;
+	}
 }

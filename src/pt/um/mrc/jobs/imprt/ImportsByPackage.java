@@ -36,7 +36,7 @@ public class ImportsByPackage
         fs = FileSystem.get(conf);
 
         // Check Args
-        CheckedJobInfo cji = new CheckedJobInfo(conf, "Usage: ImportsByPackage <in> <our>");
+        CheckedJobInfo cji = new CheckedJobInfo("Usage: ImportsByPackage <in> <our>",conf, 2);
         String[] otherArgs = HadoopJobControl.checkArguments(args, cji);
 
         runJob1(otherArgs);
@@ -58,8 +58,7 @@ public class ImportsByPackage
     {
         Job job1 = new Job(conf, "find project's internal packages");
 
-        JobConfigurer jc1 = new JobConfigurer(ImportsByPackage.class, JavaFileInputFormat.class,
-                new Path(otherArgs[0]), tmp);
+        JobConfigurer jc1 = new JobConfigurer(ImportsByPackage.class, JavaFileInputFormat.class,otherArgs);
 
         MapperConfigurer mc1 = new MapperConfigurer(PkgAndClassMapper.class, Text.class,
                 Text.class);
@@ -76,8 +75,7 @@ public class ImportsByPackage
     {
         Job job2 = new Job(conf, "find packages imported by a file");
 
-        JobConfigurer jc2 = new JobConfigurer(ImportsByPackage.class, JavaFileInputFormat.class,
-                new Path(otherArgs[0]), new Path(otherArgs[1]));
+        JobConfigurer jc2 = new JobConfigurer(ImportsByPackage.class, JavaFileInputFormat.class,otherArgs);
 
         MapperConfigurer mc2 = new MapperConfigurer(ImportsByPackageMapper.class, Text.class,
                 Text.class);
