@@ -6,6 +6,7 @@ import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.io.Text;
 
+import pt.um.mrc.util.datatypes.IDType;
 import pt.um.mrc.util.mappers.LineValuesMapper;
 
 /**
@@ -23,7 +24,7 @@ public class VolumeByPackageMapper extends LineValuesMapper<LongWritable, Text, 
 	 */
 	@Override
 	protected void setup(Context context) throws IOException, InterruptedException {
-		lineContents = LineType.PACKAGE;
+		lineContents = IDType.PACKAGE;
 		super.setup(context);
 	}
 }

@@ -8,7 +8,7 @@ import org.apache.hadoop.mapreduce.Reducer;
 
 import pt.um.mrc.util.control.JobInformable;
 import pt.um.mrc.util.control.JobRunner;
-import pt.um.mrc.util.io.JClassFileInputFormat;
+import pt.um.mrc.util.io.JFileInputFormat;
 
 public class VolumeByFileMisc implements JobInformable
 {
@@ -16,7 +16,7 @@ public class VolumeByFileMisc implements JobInformable
     @Override
     public Class<? extends InputFormat<?, ?>> getInputFormatClass()
     {
-        return JClassFileInputFormat.class;
+        return JFileInputFormat.class;
     }
 
     @Override

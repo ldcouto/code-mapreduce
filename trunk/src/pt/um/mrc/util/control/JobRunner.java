@@ -91,5 +91,21 @@ public class JobRunner
         
         return r;
     }
+    
+    public static int runDoubleJob(JobInformable job1, JobInformable job2, String tempFolder, String[] args){
+		String[] argsJob1 = { args[1], tempFolder };
+		JobRunner.setJob(argsJob1, job1);
+
+		int status = JobRunner.runJob();
+		if (status != 0)
+			return status;
+
+		String[] argsJob2 = { args[0], tempFolder, args[2] };
+		JobRunner.setJob(argsJob2, job2);
+
+		status = JobRunner.runJob();
+		
+		return status;
+    }
 
 }

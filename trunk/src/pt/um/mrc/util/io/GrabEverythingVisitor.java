@@ -13,7 +13,7 @@ import java.util.Map;
 import org.apache.hadoop.io.Text;
 
 import pt.um.mrc.util.datatypes.GeneralID;
-import pt.um.mrc.util.datatypes.GeneralID.IDType;
+import pt.um.mrc.util.datatypes.IDType;
 //FIXME Jç NÌO FUNCIONO
 public class GrabEverythingVisitor extends GrabbingVisitor<GeneralID> {
 
