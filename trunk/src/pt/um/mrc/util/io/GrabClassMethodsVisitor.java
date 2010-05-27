@@ -23,7 +23,10 @@ public class GrabClassMethodsVisitor extends GrabbingVisitor<MethodID> {
 				else
 					sb.append("[ ]");
 				aux.setMethodName(sb.toString());
+				td.setAnnotations(null);
+				td.setJavaDoc(null);
 				elems.put(aux, new Text(td.toString()));
+				System.out.println("Enviei" + td.toString());
 			}
 		}
 	}

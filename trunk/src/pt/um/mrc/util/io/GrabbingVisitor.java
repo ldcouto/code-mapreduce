@@ -1,6 +1,5 @@
 package pt.um.mrc.util.io;
 
-import japa.parser.ast.CompilationUnit;
 import japa.parser.ast.body.ClassOrInterfaceDeclaration;
 import japa.parser.ast.visitor.VoidVisitorAdapter;
 
@@ -25,9 +24,7 @@ public abstract class GrabbingVisitor<ID extends WritableComparable<ID>> extends
 		this.packageName = packageName;
 		this.elems = elems;
 	}
-
-	public void visit(ClassOrInterfaceDeclaration c, Object arg) {
-	}
 	
-	public void visit(CompilationUnit c, Object arg){}
+	public void visit(ClassOrInterfaceDeclaration c, Object arg) {}
+		
 }
