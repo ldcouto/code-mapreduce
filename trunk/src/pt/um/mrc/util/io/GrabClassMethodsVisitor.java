@@ -26,7 +26,6 @@ public class GrabClassMethodsVisitor extends GrabbingVisitor<MethodID> {
 				td.setAnnotations(null);
 				td.setJavaDoc(null);
 				elems.put(aux, new Text(td.toString()));
-				System.out.println("Enviei" + td.toString());
 			}
 		}
 	}
