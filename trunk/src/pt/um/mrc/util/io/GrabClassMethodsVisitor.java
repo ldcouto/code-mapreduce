@@ -8,7 +8,7 @@ import org.apache.hadoop.io.Text;
 
 import pt.um.mrc.util.datatypes.MethodID;
 
-public class MethodGrabClassVisitor extends GrabClassVisitor<MethodID> {
+public class GrabClassMethodsVisitor extends GrabbingVisitor<MethodID> {
 
 
 	public void visit(ClassOrInterfaceDeclaration c, Object arg) {

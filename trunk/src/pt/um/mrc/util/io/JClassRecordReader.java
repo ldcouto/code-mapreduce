@@ -2,9 +2,9 @@ package pt.um.mrc.util.io;
 
 import pt.um.mrc.util.datatypes.ClassID;
 
-public class JClassRecordReader extends JRecordReader<ClassID, BodyGrabClassVisitor> {
+public class JClassRecordReader extends JRecordReader<ClassID, GrabClassMiscVisitor> {
 
 	public JClassRecordReader() {
-		super(new BodyGrabClassVisitor());
+		super(new GrabClassMiscVisitor());
 	}
 }

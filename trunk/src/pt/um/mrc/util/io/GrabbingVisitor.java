@@ -1,5 +1,6 @@
 package pt.um.mrc.util.io;
 
+import japa.parser.ast.CompilationUnit;
 import japa.parser.ast.body.ClassOrInterfaceDeclaration;
 import japa.parser.ast.visitor.VoidVisitorAdapter;
 
@@ -9,13 +10,13 @@ import java.util.Map;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.io.WritableComparable;
 
-public abstract class GrabClassVisitor<ID extends WritableComparable<ID>> extends VoidVisitorAdapter<Object> {
+public abstract class GrabbingVisitor<ID extends WritableComparable<ID>> extends VoidVisitorAdapter<Object> {
 
 	String fileName;
 	String packageName;
 	Map<ID, Text> elems= new HashMap<ID,Text>();
 
-	public GrabClassVisitor() {
+	public GrabbingVisitor() {
 		super();
 	}
 
@@ -27,4 +28,6 @@ public abstract class GrabClassVisitor<ID extends WritableComparable<ID>> extend
 
 	public void visit(ClassOrInterfaceDeclaration c, Object arg) {
 	}
+	
+	public void visit(CompilationUnit c, Object arg){}
 }

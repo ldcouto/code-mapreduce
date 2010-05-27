@@ -18,9 +18,9 @@ import pt.um.mrc.util.datatypes.MethodID;
  * 
  */
 
-public class JMethodRecordReader extends JRecordReader<MethodID,MethodGrabClassVisitor> {
+public class JMethodRecordReader extends JRecordReader<MethodID,GrabClassMethodsVisitor> {
 
 	public JMethodRecordReader(){
-		super(new MethodGrabClassVisitor());
+		super(new GrabClassMethodsVisitor());
 	}
 }
