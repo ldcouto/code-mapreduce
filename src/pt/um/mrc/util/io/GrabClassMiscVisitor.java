@@ -8,7 +8,7 @@ import org.apache.hadoop.io.Text;
 
 import pt.um.mrc.util.datatypes.ClassID;
 
-public class BodyGrabClassVisitor extends GrabClassVisitor<ClassID> {
+public class GrabClassMiscVisitor extends GrabbingVisitor<ClassID> {
 
 	public void visit(ClassOrInterfaceDeclaration c, Object arg) {
 		ClassID aux = new ClassID(c.getName(), fileName, packageName);

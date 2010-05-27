@@ -38,7 +38,7 @@ import pt.um.mrc.util.Constants;
  * 
  */
 
-public class JRecordReader<ID extends WritableComparable<ID>, V extends GrabClassVisitor<ID>> extends RecordReader<ID, Text> {
+public class JRecordReader<ID extends WritableComparable<ID>, V extends GrabbingVisitor<ID>> extends RecordReader<ID, Text> {
 
 	protected Map<ID, Text> elems = new HashMap<ID, Text>();
 	protected String packageName;
