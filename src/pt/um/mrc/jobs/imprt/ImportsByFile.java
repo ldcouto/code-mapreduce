@@ -1,8 +1,6 @@
 package pt.um.mrc.jobs.imprt;
 
 import org.apache.hadoop.conf.Configuration;
-import org.apache.hadoop.filecache.DistributedCache;
-import org.apache.hadoop.fs.FileStatus;
 import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.Text;
@@ -27,7 +25,7 @@ public class ImportsByFile
 
     static Configuration conf = new Configuration();
     static FileSystem fs;
-    static Path tmp = new Path("tmp/");
+    static String cache = "tmpCache/";
 
 
     
@@ -35,28 +33,25 @@ public class ImportsByFile
     {
     	PIBFJob1 job1 = new ImportsByFile.PIBFJob1();
     	String[] j1Args = args;
-    	j1Args[0]="/tmp/";
+    	j1Args[0]=cache;
     	
     	JobRunner.setJob(j1Args, job1);
-        JobRunner.runJob();
+        int status = JobRunner.runJob();
+    	if (status != 0)
+			System.exit(status);
     	
         // Prepare the Cache for the second Job
-
-        for (FileStatus fstatus : fs.listStatus(tmp))
-        {
-            if (!fstatus.isDir())
-            {
-                DistributedCache.addCacheFile(fstatus.getPath().toUri(), conf);
-            }
-        }
+        JobRunner.configureDistCache(new Path(cache));
         
        	PIBFJob2 job2 = new ImportsByFile.PIBFJob2();
     	String[] j2Args = args;
-    	j1Args[1]="/tmp/";
+    	j1Args[1]=cache;
     	
     	JobRunner.setJob(j2Args, job2);
-    	JobRunner.runJob();
-    	//FIXME I can't quit!
+    	status=JobRunner.runJob();
+    	FileSystem.get(JobRunner.getConf()).delete(new Path(cache), true);
+
+    	System.exit(status);
 }
     
     protected static class PIBFJob1 implements JobInformable {
@@ -88,7 +83,7 @@ public class ImportsByFile
 
     	@Override
     	public String getUsage() {
-    		return "Usage: ImportsByFile <in> <our>";
+    		return "Usage: ImportsByFile <in> <cache>";
     	}
 
 		@Override
@@ -127,7 +122,7 @@ public class ImportsByFile
 
     	@Override
     	public String getUsage() {
-    		return "Usage: ImportsByFile <in> <our>";
+    		return "Usage: ImportsByFile <cache> <out>";
     	}
 
 		@Override

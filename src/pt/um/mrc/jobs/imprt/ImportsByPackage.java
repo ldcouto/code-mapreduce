@@ -1,17 +1,15 @@
 package pt.um.mrc.jobs.imprt;
 
 import org.apache.hadoop.conf.Configuration;
-import org.apache.hadoop.filecache.DistributedCache;
-import org.apache.hadoop.fs.FileStatus;
 import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.Text;
-import org.apache.hadoop.mapreduce.Job;
+import org.apache.hadoop.mapreduce.InputFormat;
+import org.apache.hadoop.mapreduce.Mapper;
+import org.apache.hadoop.mapreduce.Reducer;
 
-import pt.um.mrc.util.control.CheckedJobInfo;
-import pt.um.mrc.util.control.HadoopJobControl;
-import pt.um.mrc.util.control.JobConfigurer;
-import pt.um.mrc.util.control.MapperConfigurer;
+import pt.um.mrc.util.control.JobInformable;
+import pt.um.mrc.util.control.JobRunner;
 import pt.um.mrc.util.io.JavaFileInputFormat;
 
 /**
@@ -22,70 +20,115 @@ import pt.um.mrc.util.io.JavaFileInputFormat;
  * @author Tiago Alves Veloso
  */
 
-public class ImportsByPackage
-{
+public class ImportsByPackage {
 
-    static Configuration conf = new Configuration();
-    static FileSystem fs;
-    static Path tmp = new Path("tmp/");
+	static Configuration conf = new Configuration();
+	static FileSystem fs;
+	static String cache = "tmpCacheIBP/";
 
-    public static void main(String[] args) throws Exception
-    {
+	public static void main(String[] args) throws Exception {
 
-        // Initialize FS
-        fs = FileSystem.get(conf);
+		PIBPJob1 job1 = new ImportsByPackage.PIBPJob1();
+		String[] j1Args = args;
+		j1Args[0] = cache;
 
-        // Check Args
-        CheckedJobInfo cji = new CheckedJobInfo("Usage: ImportsByPackage <in> <our>",conf, 2);
-        String[] otherArgs = HadoopJobControl.checkArguments(args, cji);
+		JobRunner.setJob(j1Args, job1);
+		int status = JobRunner.runJob();
+		if (status != 0)
+			System.exit(status);
 
-        runJob1(otherArgs);
+		// Prepare the Cache for the second Job
+		JobRunner.configureDistCache(new Path(cache));
 
-        // Set up the Cache
-        for (FileStatus fstatus : fs.listStatus(tmp))
-        {
-            if (!fstatus.isDir())
-            {
-                DistributedCache.addCacheFile(fstatus.getPath().toUri(), conf);
-            }
-        }
+		PIBPJob2 job2 = new ImportsByPackage.PIBPJob2();
+		String[] j2Args = args;
+		j1Args[1] = cache;
 
-        runJob2(otherArgs);
+		JobRunner.setJob(j2Args, job2);
+		status = JobRunner.runJob();
+		FileSystem.get(JobRunner.getConf()).delete(new Path(cache), true);
 
-    }
+		System.exit(status);
 
-    private static void runJob1(String[] otherArgs) throws Exception
-    {
-        Job job1 = new Job(conf, "find project's internal packages");
+	}
 
-        JobConfigurer jc1 = new JobConfigurer(ImportsByPackage.class, JavaFileInputFormat.class,otherArgs);
 
-        MapperConfigurer mc1 = new MapperConfigurer(PkgAndClassMapper.class, Text.class,
-                Text.class);
+	protected static class PIBPJob1 implements JobInformable {
 
-        HadoopJobControl.configureSimpleJob(job1, jc1, mc1, PkgAndClassReducer.class);
+		@Override
+		public int getArgCount() {
+			return 2;
+		}
 
-        boolean statusJob1 = job1.waitForCompletion(true);
+		@Override
+		public Class<? extends InputFormat<?, ?>> getInputFormatClass() {
+			return JavaFileInputFormat.class;
+		}
 
-        if (!statusJob1)
-            System.exit(1);
-    }
+		@Override
+		public Class<? extends Mapper<?, ?, ?, ?>> getMapperClass() {
+			return PkgAndClassMapper.class;
+		}
 
-    private static void runJob2(String[] otherArgs) throws Exception
-    {
-        Job job2 = new Job(conf, "find packages imported by a file");
+		@Override
+		public Class<?> getMapperKeyClass() {
+			return Text.class;
+		}
 
-        JobConfigurer jc2 = new JobConfigurer(ImportsByPackage.class, JavaFileInputFormat.class,otherArgs);
+		@Override
+		public Class<?> getMapperValueClass() {
+			return Text.class;
+		}
 
-        MapperConfigurer mc2 = new MapperConfigurer(ImportsByPackageMapper.class, Text.class,
-                Text.class);
+		@Override
+		public Class<? extends Reducer<?, ?, ?, ?>> getReducerClass() {
+			return ImportsByPackageReducer.class;
+		}
 
-        HadoopJobControl.configureSimpleJob(job2, jc2, mc2, ImportsByPackageReducer.class);
+		@Override
+		public String getUsage() {
+			return "Usage: ImportsByPackage <in> <cache>";
+		}
 
-        boolean statusJob2 = job2.waitForCompletion(true);
+	}
 
-        fs.delete(tmp, true);
 
-        System.exit(statusJob2 ? 0 : 1);
-    }
+	protected static class PIBPJob2 implements JobInformable {
+
+		@Override
+		public int getArgCount() {
+			return 2;
+		}
+
+		@Override
+		public Class<? extends InputFormat<?, ?>> getInputFormatClass() {
+			return JavaFileInputFormat.class;
+		}
+
+		@Override
+		public Class<? extends Mapper<?, ?, ?, ?>> getMapperClass() {
+			return ImportsByPackageMapper.class;
+		}
+
+		@Override
+		public Class<?> getMapperKeyClass() {
+			return Text.class;
+		}
+
+		@Override
+		public Class<?> getMapperValueClass() {
+			return Text.class;
+		}
+
+		@Override
+		public Class<? extends Reducer<?, ?, ?, ?>> getReducerClass() {
+			return ImportsByPackageReducer.class;
+		}
+
+		@Override
+		public String getUsage() {
+			return "Usage: ImportsByPackage <cache> <out>";
+		}
+
+	}
 }
