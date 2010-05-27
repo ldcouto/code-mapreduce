@@ -49,18 +49,6 @@ public class ClassID implements WritableComparable<ClassID> {
 		this.packageName = packageName;
 	}
 
-	/**
-	 * Instantiates a new ClassID from a single String name.
-	 * 
-	 * @param aggre
-	 *            the aggregate string name (ex: "package-file-class")
-	 */
-	public ClassID(String aggre) {
-		String[] aux = aggre.split("-");
-		packageName = aux[0];
-		fileName = aux[1];
-		className = aux[2];
-	}
 
 	
 	/**
