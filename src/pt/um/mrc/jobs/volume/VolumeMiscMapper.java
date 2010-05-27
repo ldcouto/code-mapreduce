@@ -9,7 +9,7 @@ import org.apache.hadoop.mapreduce.Mapper;
 import pt.um.mrc.lib.VolumeHelper;
 import pt.um.mrc.util.datatypes.ClassID;
 
-public class VolumeByClassMiscMapper extends Mapper<ClassID, Text, Text, IntWritable>
+public class VolumeMiscMapper extends Mapper<ClassID, Text, Text, IntWritable>
 {
     private Text keyOut = new Text();
     private IntWritable valueOut = new IntWritable();

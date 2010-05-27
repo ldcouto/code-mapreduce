@@ -1,5 +1,7 @@
 package pt.um.mrc.jobs.volume;
 
+import org.apache.hadoop.fs.FileSystem;
+import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.InputFormat;
@@ -28,7 +30,7 @@ public class VolumeByFile implements JobInformable
      */
     public String getUsage()
     {
-        return "Usage: VolumeByFile <in> <out>";
+        return "Usage: VolumeByFile <classVolumeLoc> <sourceFiles> <output>";
     }
 
     /*
@@ -81,23 +83,30 @@ public class VolumeByFile implements JobInformable
         return VolumeByFileReducer.class;
     }
 
-    /**
-     * The main method.
-     * 
-     * @param args
-     *            the arguments from the command line
-     * @throws Exception
-     *             the exception
-     */
-    public static void main(String[] args)
-    {
-        VolumeByFile me = new VolumeByFile();
-        JobRunner.setJob(args, me);
-        JobRunner.runJob();
-    }
-
 	@Override
 	public int getArgCount() {
 		return 2;
 	}
+    
+    /**
+     * The main method.
+     * 
+     * @param args
+     *            the arguments from the command line 
+     * @throws Exception
+     *             the exception
+     */
+    public static void main(String[] args) throws Exception{
+		VolumeByFileMisc j1 = new VolumeByFileMisc();
+		VolumeByFile j2 = new VolumeByFile();
+		String tempFolder = "tmpFile/";
+		
+		int status = JobRunner.runDoubleJob(j1, j2, tempFolder, args);
+		FileSystem.get(JobRunner.getConf()).delete(new Path(tempFolder), true);
+
+		System.exit(status);
+			
+    }
+
+
 }

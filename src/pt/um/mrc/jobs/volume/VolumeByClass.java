@@ -50,23 +50,33 @@ public class VolumeByClass implements JobInformable {
 	}
 
 	public static void main(String[] args) throws Exception {
-		VolumeByClassMisc me1 = new VolumeByClassMisc();
-		String tmpFolder = "tmp/";
-		String[] argsJob1 = { args[1], tmpFolder };
-		JobRunner.setJob(argsJob1, me1);
+		VolumeByClassMisc j1 = new VolumeByClassMisc();
+		VolumeByClass j2 = new VolumeByClass();
+		String tempFolder = "tmpCls/";
+		
+		int status = JobRunner.runDoubleJob(j1, j2, tempFolder, args);
+		FileSystem.get(JobRunner.getConf()).delete(new Path(tempFolder), true);
 
-		int jobStatus1 = JobRunner.runJob();
-		if (jobStatus1 != 0)
-			System.exit(jobStatus1);
-
-		VolumeByClass me2 = new VolumeByClass();
-		String[] argsJob2 = { args[0], tmpFolder, args[2] };
-		JobRunner.setJob(argsJob2, me2);
-
-		int jobStatus2 = JobRunner.runJob();
-		FileSystem.get(JobRunner.getConf()).delete(new Path(tmpFolder), true);
-
-		System.exit(jobStatus2);
+		System.exit(status);
+		
+		
+//		VolumeByClassMisc me1 = new VolumeByClassMisc();
+//		String tmpFolder = "tmpCls/";
+//		String[] argsJob1 = { args[1], tmpFolder };
+//		JobRunner.setJob(argsJob1, me1);
+//
+//		int jobStatus1 = JobRunner.runJob();
+//		if (jobStatus1 != 0)
+//			System.exit(jobStatus1);
+//
+//		VolumeByClass me2 = new VolumeByClass();
+//		String[] argsJob2 = { args[0], tmpFolder, args[2] };
+//		JobRunner.setJob(argsJob2, me2);
+//
+//		int jobStatus2 = JobRunner.runJob();
+//		FileSystem.get(JobRunner.getConf()).delete(new Path(tmpFolder), true);
+//
+//		System.exit(jobStatus2);
 	}
 
 }
