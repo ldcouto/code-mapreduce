@@ -14,7 +14,7 @@ import org.apache.hadoop.io.Text;
 
 import pt.um.mrc.util.datatypes.GeneralID;
 import pt.um.mrc.util.datatypes.GeneralID.IDType;
-
+//FIXME Jç NÌO FUNCIONO
 public class GrabEverythingVisitor extends GrabbingVisitor<GeneralID> {
 
 	String fileName;
