@@ -15,11 +15,6 @@ import org.apache.hadoop.io.WritableComparable;
 public class GeneralID implements WritableComparable<GeneralID>
 {
 
-    public enum IDType
-    {
-        METHOD, CLASS, FILE, PACKAGE;
-    }
-
     /** The method name. */
     String methodName;
 

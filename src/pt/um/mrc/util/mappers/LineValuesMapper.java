@@ -7,20 +7,16 @@ import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Mapper;
 
+import pt.um.mrc.util.datatypes.IDType;
 import pt.um.mrc.util.datatypes.Pair;
 import pt.um.mrc.util.datatypes.PairImpl;
 
 public class LineValuesMapper<KI, VI, KO, VO> extends Mapper<LongWritable, Text, Text, IntWritable>
 {
 
-    public enum LineType
-    {
-        PACKAGE, FILE, CLASS
-    }
-
     private Text outKey = new Text();
     private IntWritable outValue = new IntWritable();
-    protected LineType lineContents;
+    protected IDType lineContents;
 
     @Override
     protected void map(LongWritable key, Text value, Context context) throws IOException,

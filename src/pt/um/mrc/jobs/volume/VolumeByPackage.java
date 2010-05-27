@@ -1,7 +1,5 @@
 package pt.um.mrc.jobs.volume;
 
-import org.apache.hadoop.fs.FileSystem;
-import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.InputFormat;
@@ -20,85 +18,88 @@ import pt.um.mrc.util.control.JobRunner;
  * @author Tiago Alves Veloso
  */
 
-public class VolumeByPackage implements JobInformable {
+public class VolumeByPackage implements JobInformable
+{
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see pt.um.mrc.util.control.JobInformable#getUsage()
-	 */
-	public String getUsage() {
-		return "Usage: VolumeByPackage <in> <out>";
-	}
+    /*
+     * (non-Javadoc)
+     * 
+     * @see pt.um.mrc.util.control.JobInformable#getUsage()
+     */
+    public String getUsage()
+    {
+        return "Usage: VolumeByPackage <in> <out>";
+    }
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see pt.um.mrc.util.control.JobInformable#getMapperClass()
-	 */
-	public Class<? extends Mapper<?, ?, ?, ?>> getMapperClass() {
-		return VolumeByPackageMapper.class;
-	}
+    /*
+     * (non-Javadoc)
+     * 
+     * @see pt.um.mrc.util.control.JobInformable#getMapperClass()
+     */
+    public Class<? extends Mapper<?, ?, ?, ?>> getMapperClass()
+    {
+        return VolumeByPackageMapper.class;
+    }
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see pt.um.mrc.util.control.JobInformable#getMapperKeyClass()
-	 */
-	public Class<?> getMapperKeyClass() {
-		return Text.class;
-	}
+    /*
+     * (non-Javadoc)
+     * 
+     * @see pt.um.mrc.util.control.JobInformable#getMapperKeyClass()
+     */
+    public Class<?> getMapperKeyClass()
+    {
+        return Text.class;
+    }
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see pt.um.mrc.util.control.JobInformable#getMapperValueClass()
-	 */
-	public Class<?> getMapperValueClass() {
-		return IntWritable.class;
-	}
+    /*
+     * (non-Javadoc)
+     * 
+     * @see pt.um.mrc.util.control.JobInformable#getMapperValueClass()
+     */
+    public Class<?> getMapperValueClass()
+    {
+        return IntWritable.class;
+    }
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see pt.um.mrc.util.control.JobInformable#getInputFormatClass()
-	 */
-	public Class<? extends InputFormat<?, ?>> getInputFormatClass() {
-		return TextInputFormat.class;
-	}
+    /*
+     * (non-Javadoc)
+     * 
+     * @see pt.um.mrc.util.control.JobInformable#getInputFormatClass()
+     */
+    public Class<? extends InputFormat<?, ?>> getInputFormatClass()
+    {
+        return TextInputFormat.class;
+    }
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see pt.um.mrc.util.control.JobInformable#getReducerClass()
-	 */
-	public Class<? extends Reducer<?, ?, ?, ?>> getReducerClass() {
-		return VolumeByPackageReducer.class;
-	}
+    /*
+     * (non-Javadoc)
+     * 
+     * @see pt.um.mrc.util.control.JobInformable#getReducerClass()
+     */
+    public Class<? extends Reducer<?, ?, ?, ?>> getReducerClass()
+    {
+        return VolumeByPackageReducer.class;
+    }
+    
 
 	@Override
 	public int getArgCount() {
 		return 2;
 	}
 
-	/**
-	 * The main method.
-	 * 
-	 * @param args
-	 *            the arguments from the command line
-	 * @throws Exception
-	 *             the exception
-	 */
-	public static void main(String[] args) throws Exception {
-		VolumeByPackageMisc j1 = new VolumeByPackageMisc();
-		VolumeByClass j2 = new VolumeByClass();
-		String tempFolder = "tmpPkg/";
-
-		int status = JobRunner.runDoubleJob(j1, j2, tempFolder, args);
-		FileSystem.get(JobRunner.getConf()).delete(new Path(tempFolder), true);
-
-		System.exit(status);
-
-	}
+    /**
+     * The main method.
+     * 
+     * @param args
+     *            the arguments from the command line
+     * @throws Exception
+     *             the exception
+     */
+    public static void main(String[] args)
+    {
+        VolumeByPackage me = new VolumeByPackage();
+        JobRunner.setJob(args, me);
+        JobRunner.runJob();
+    }
 
 }
