@@ -57,20 +57,6 @@ public class MethodID implements WritableComparable<MethodID> {
 	}
 
 	/**
-	 * Instantiates a new ClassID from a single String name.
-	 * 
-	 * @param aggre
-	 *            the aggregate string name (ex: "package-file-class-method")
-	 */
-	public MethodID(String aggre) {
-		String[] aux = aggre.split("-");
-		packageName = aux[0];
-		fileName = aux[1];
-		className = aux[2];
-		methodName = aux[3];
-	}
-
-	/**
 	 * Gets the method name.
 	 * 
 	 * @return the method name

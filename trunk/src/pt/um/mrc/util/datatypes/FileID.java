@@ -42,17 +42,6 @@ public class FileID implements WritableComparable<FileID> {
 		this.packageName = packageName;
 	}
 	
-	/**
-	 * Instantiates a new FileID from a single String name.
-	 * 
-	 * @param aggre
-	 *            the aggregate string name (ex: "package-files")
-	 */
-	public FileID(String aggre) {
-		String[] aux = aggre.split("-");
-		packageName = aux[0];
-		fileName = aux[1];
-	}
 
 	/**
 	 * Gets the file name.
