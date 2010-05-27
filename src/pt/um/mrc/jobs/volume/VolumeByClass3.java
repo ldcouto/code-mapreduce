@@ -56,15 +56,7 @@ public class VolumeByClass3 implements JobInformable
     }
 
     public static void main(String[] args) throws Exception
-    {
-        VolumeByClass me = new VolumeByClass();
-        String[] argsJob1 = { "methods/", "tmp/" };
-        JobRunner.setJob(argsJob1, me);
-       
-        int jobStatus1 = JobRunner.runJob();
-        if (jobStatus1 != 0)
-            System.exit(jobStatus1);
-        
+    {        
         VolumeByClass2 me2 = new VolumeByClass2();
         String[] argsJob2 = {args[0] , "tmp2/"}; 
         JobRunner.setJob(argsJob2, me2);
@@ -94,7 +86,7 @@ public class VolumeByClass3 implements JobInformable
 
         job.setInputFormatClass(TextInputFormat.class);
 
-        FileInputFormat.addInputPath(job, new Path("tmp/"));
+        FileInputFormat.addInputPath(job, new Path("methods/"));
         FileInputFormat.addInputPath(job, new Path("tmp2/"));
         
         FileOutputFormat.setOutputPath(job, new Path(otherArgs[1]));
