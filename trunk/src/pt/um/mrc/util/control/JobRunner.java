@@ -3,7 +3,6 @@ package pt.um.mrc.util.control;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.hadoop.conf.Configuration;
-import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.mapreduce.Job;
 
 /**
@@ -31,7 +30,14 @@ public class JobRunner
     /** The Job to configure. */
     protected static Job job;
 
-    /**
+    
+    
+    
+	public static Configuration getConf() {
+		return conf;
+	}
+
+	/**
      * Sets up a job.
      * 
      * @param args
@@ -45,15 +51,14 @@ public class JobRunner
     public static void setJob(String[] args, JobInformable ji)
     {
         conf = new Configuration();
-        cji = new CheckedJobInfo(conf, ji.getUsage());
+        cji = new CheckedJobInfo(ji.getUsage(), conf, ji.getArgCount());
 
         String[] otherArgs = HadoopJobControl.checkArguments(args, cji);
 
         mc = new MapperConfigurer(ji.getMapperClass(), ji.getMapperKeyClass(), ji
                 .getMapperValueClass());
 
-        jc = new JobConfigurer(ji.getClass(), ji.getInputFormatClass(), new Path(otherArgs[0]),
-                new Path(otherArgs[1]));
+        jc = new JobConfigurer(ji.getClass(),ji.getInputFormatClass(), otherArgs);
 
         try
         {

@@ -10,7 +10,9 @@ import org.apache.hadoop.mapreduce.Reducer;
  */
 public interface JobInformable
 {
-    
+	
+	public abstract int getArgCount();
+	
     /**
      * Gets the usage message.
      *

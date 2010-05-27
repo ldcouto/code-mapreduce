@@ -1,6 +1,5 @@
 package pt.um.mrc.util.control;
 
-import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.mapreduce.InputFormat;
 
 /**
@@ -12,51 +11,24 @@ import org.apache.hadoop.mapreduce.InputFormat;
  */
 public class JobConfigurer {
 
+	private String[] paths;
+	
 	/** The class jar. */
 	private Class<?> classJar;
 	
-	/** The intput format. */
-	private Class<? extends InputFormat<?, ?>> intputFormat;
+	/** The input format. */
+	private Class<? extends InputFormat<?, ?>> inputFormat;
 	
-	/** The input path. */
-	private Path inputPath;
+
+
 	
-	/** The output path. */
-	private Path outputPath;
+    public JobConfigurer(Class<?> classjar, Class<? extends InputFormat<?, ?>> inputFormat, String[] args){
+    	this.classJar=classjar;
+    	this.inputFormat=inputFormat;
+    	this.paths=args;
+    }
 
-	/**
-	 * Instantiates a new job configurer.
-	 *
-	 * @param classJar the class jar
-	 * @param intputFormat the intput format
-	 * @param inputPath the input path
-	 * @param outputPath the output path
-	 */
-	public JobConfigurer(Class<?> classJar, Class<? extends InputFormat<?, ?>> intputFormat,
-		Path inputPath, Path outputPath) {
-		this.classJar = classJar;
-		this.intputFormat = intputFormat;
-		this.inputPath = inputPath;
-		this.outputPath = outputPath;
-	}
 
-	/**
-	 * Gets the input path.
-	 *
-	 * @return the input path
-	 */
-	public Path getInputPath() {
-		return inputPath;
-	}
-
-	/**
-	 * Gets the output path.
-	 *
-	 * @return the output path
-	 */
-	public Path getOutputPath() {
-		return outputPath;
-	}
 
 	/**
 	 * Gets the intput format.
@@ -64,7 +36,7 @@ public class JobConfigurer {
 	 * @return the intput format
 	 */
 	public Class<? extends InputFormat<?, ?>> getIntputFormat() {
-		return intputFormat;
+		return inputFormat;
 	}
 
 	/**
@@ -74,5 +46,14 @@ public class JobConfigurer {
 	 */
 	public Class<?> getClassJar() {
 		return classJar;
+	}	
+	
+	public String[] getPaths() {
+		return paths;
 	}
+
+	public Class<? extends InputFormat<?, ?>> getInputFormat() {
+		return inputFormat;
+	}
+
 }

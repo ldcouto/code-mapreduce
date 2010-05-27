@@ -91,6 +91,11 @@ public class ImportsByFile
     		return "Usage: ImportsByFile <in> <our>";
     	}
 
+		@Override
+		public int getArgCount() {
+			return 2;
+		}
+
     }
     
     protected static class PIBFJob2 implements JobInformable {
@@ -124,6 +129,11 @@ public class ImportsByFile
     	public String getUsage() {
     		return "Usage: ImportsByFile <in> <our>";
     	}
+
+		@Override
+		public int getArgCount() {
+			return 2;
+		}
 
     }
    
