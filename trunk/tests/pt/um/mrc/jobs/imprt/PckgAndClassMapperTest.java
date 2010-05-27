@@ -14,7 +14,7 @@ import org.junit.Test;
 
 import pt.um.mrc.util.datatypes.CollectionWritablePrintable;
 
-public class FindPackagesReducerTest
+public class PckgAndClassMapperTest
 {
     private Reducer<Text, Text, Text, CollectionWritablePrintable> reducer;
     private ReduceDriver<Text, Text, Text, CollectionWritablePrintable> driver;
