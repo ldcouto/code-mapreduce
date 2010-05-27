@@ -1,6 +1,7 @@
 package pt.um.mrc.jobs.volume;
 
 import org.apache.hadoop.conf.Configuration;
+import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.Text;
@@ -52,28 +53,31 @@ public class VolumeByClass3 implements JobInformable
     @Override
     public String getUsage()
     {
-        return "Usage: VolumeByClass3 <in> <out>";
+        return "Usage: VolumeByClass3 <methodloc> <in> <out>";
     }
 
     public static void main(String[] args) throws Exception
     {        
         VolumeByClass2 me2 = new VolumeByClass2();
-        String[] argsJob2 = {args[0] , "tmp2/"}; 
-        JobRunner.setJob(argsJob2, me2);
+        String[] argsJob1 = {args[1] , "tmp2/"}; 
+        JobRunner.setJob(argsJob1, me2);
         
-        int jobStatus2 = JobRunner.runJob();
-        if (jobStatus2 != 0)
-            System.exit(jobStatus2);
+        int jobStatus1 = JobRunner.runJob();
+        if (jobStatus1 != 0)
+            System.exit(jobStatus1);
         
         // Making sure the job is being correctly executed
         Configuration conf = new Configuration();
+        FileSystem fs = FileSystem.get(conf);
+        Path tmp = new Path("tmp");
+        
         String[] otherArgs = new GenericOptionsParser(conf, args).getRemainingArgs();
         if (otherArgs.length != 2)
         {
-            System.err.println("Usage: ExtendsByClass <in> <out>");
+            System.err.println("Usage: VolumeByClass3 <methodloc> <in> <out>");
             System.exit(2);
         }
-
+        
         // Configuring the job
         Job job = new Job(conf);
         job.setJarByClass(VolumeByClass3.class);
@@ -86,10 +90,15 @@ public class VolumeByClass3 implements JobInformable
 
         job.setInputFormatClass(TextInputFormat.class);
 
-        FileInputFormat.addInputPath(job, new Path("methods/"));
-        FileInputFormat.addInputPath(job, new Path("tmp2/"));
+        FileInputFormat.addInputPath(job, new Path(args[0]));
+        FileInputFormat.addInputPath(job, tmp);
         
-        FileOutputFormat.setOutputPath(job, new Path(otherArgs[1]));
-        System.exit(job.waitForCompletion(true) ? 0 : 1);
+        FileOutputFormat.setOutputPath(job, new Path(otherArgs[2]));
+        
+        boolean jobStatus2 = job.waitForCompletion(true);
+       
+        fs.delete(tmp,true);
+        
+        System.exit(jobStatus2 ? 0 : 1);
     }
 }

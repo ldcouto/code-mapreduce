@@ -40,7 +40,7 @@ public class VolumeByClass2 implements JobInformable
     @Override
     public Class<? extends Reducer<?, ?, ?, ?>> getReducerClass()
     {
-        return VolumeByClassReducer2.class;
+        return VolumeByClassReducer.class;
     }
 
     @Override
