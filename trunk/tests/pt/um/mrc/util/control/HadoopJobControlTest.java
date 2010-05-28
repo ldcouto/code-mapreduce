@@ -5,7 +5,6 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 import org.apache.hadoop.conf.Configuration;
-import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Job;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
@@ -36,10 +35,11 @@ public class HadoopJobControlTest {
 	public final void testConfigureSimpleJob() throws Exception {
 		Class<HadoopJobControlTest> classJar = HadoopJobControlTest.class;
 		Class<JavaFileInputFormat> inputFormat = JavaFileInputFormat.class;
-		Path inputPath = new Path("some/dir");
-		Path outputPath = new Path("other/dir");
+		String inputPath = "some/dir";
+		String outputPath = "other/dir";
+		String[] args = {inputPath, outputPath};
 
-		JobConfigurer jc = new JobConfigurer(classJar, inputFormat, inputPath, outputPath);
+		JobConfigurer jc = new JobConfigurer(classJar, inputFormat, args);
 
 		MapperConfigurer mc =
 			new MapperConfigurer(PackageByFileMapper.class, Text.class, Text.class);
@@ -52,19 +52,19 @@ public class HadoopJobControlTest {
 		assertEquals(Text.class, job.getMapOutputValueClass());
 		assertEquals(JavaFileInputFormat.class, job.getInputFormatClass());
 
-		// FIXME expected value is much more simpler than the actual value
-		// assertEquals(inputPath, FileInputFormat.getInputPaths(job)[0]);
-		assertEquals(outputPath, FileOutputFormat.getOutputPath(job));
+		// Can't compare this. While setting the input path, the path given is resolved to a full path
+		//assertEquals(inputPath, FileInputFormat.getInputPaths(job).toString());
+		assertEquals(outputPath, FileOutputFormat.getOutputPath(job).toString());
 	}
 
 	@Test
 	public final void testCheckArguments() throws Exception {
-		String[] args = { "<in>", "<out<" };
-		CheckedJobInfo cji = new CheckedJobInfo(new Configuration(), "Some usage message");
+		String[] expectedArgs = { "<in>", "<out>" };
+		CheckedJobInfo cji = new CheckedJobInfo("Some usage message", new Configuration(), 2);
 
-		String[] actualArgs = HadoopJobControl.checkArguments(args, cji);
+		String[] actualArgs = HadoopJobControl.checkArguments(expectedArgs, cji);
 
-		assertArrayEquals(args, actualArgs);
+		assertArrayEquals(expectedArgs, actualArgs);
 	}
 
 }

@@ -8,7 +8,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import pt.um.mrc.util.mappers.LineValuesMapper.LineType;
+import pt.um.mrc.util.datatypes.IDType;
 
 public class LineValuesMapperTest
 {
@@ -30,7 +30,7 @@ public class LineValuesMapperTest
     @Test
     public void testMap_CLASS()
     {
-        mapper.lineContents = LineType.CLASS;
+        mapper.lineContents = IDType.CLASS;
 
         LongWritable inKey = new LongWritable(10);
 
@@ -49,7 +49,7 @@ public class LineValuesMapperTest
     @Test
     public void testMap_FILE()
     {
-        mapper.lineContents = LineType.FILE;
+        mapper.lineContents = IDType.FILE;
 
         LongWritable inKey = new LongWritable(10);
 
@@ -68,7 +68,7 @@ public class LineValuesMapperTest
     @Test
     public void testMap_PACKAGE()
     {
-        mapper.lineContents = LineType.PACKAGE;
+        mapper.lineContents = IDType.PACKAGE;
 
         LongWritable inKey = new LongWritable(10);
 

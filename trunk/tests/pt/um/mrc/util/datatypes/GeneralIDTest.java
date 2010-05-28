@@ -19,7 +19,7 @@ import java.io.IOException;
 import org.junit.Before;
 import org.junit.Test;
 
-import pt.um.mrc.util.datatypes.GeneralID.IDType;
+import pt.um.mrc.util.datatypes.IDType;
 
 public class GeneralIDTest
 {
@@ -62,6 +62,25 @@ public class GeneralIDTest
         assertEquals(expectedFileName, actualFileName);
         assertEquals(expectadPackageName, actualPackageName);
         assertEquals(expectedIDType, actualIDType);
+    }
+
+    @Test
+    public final void testGetType()
+    {
+        IDType expectedType = IDType.METHOD;
+        IDType actualType = genID.getType();
+
+        assertEquals(expectedType, actualType);
+    }
+
+    @Test
+    public final void testSetType()
+    {
+        IDType expectedType = IDType.CLASS;
+        genID.setType(IDType.CLASS);
+        IDType actualType = genID.getType();
+
+        assertEquals(expectedType, actualType);
     }
 
     @Test
@@ -141,7 +160,7 @@ public class GeneralIDTest
     }
 
     @Test
-    public final void testToString()
+    public final void testToString_METHOD()
     {
         String expected = "mapreduce-Mapper.java-Mapper-map";
         String actual = genID.toString();
@@ -150,23 +169,63 @@ public class GeneralIDTest
     }
 
     @Test
-    public final void testPrettyString()
+    public final void testToString_CLASS()
     {
-        String expected = "MethodID[packageName=mapreduce, fileName=Mapper.java, className=Mapper, methodName=map]";
-
-        String actual = genID.prettyString();
+        genID.setType(IDType.CLASS);
+        String expected = "mapreduce-Mapper.java-Mapper";
+        String actual = genID.toString();
 
         assertEquals(expected, actual);
     }
 
     @Test
-    public final void testReadWrite() throws IOException
+    public final void testToString_FILE()
     {
-        DataOutput out = new DataOutputStream(new FileOutputStream("TestMats/methodid"));
-        DataInput in = new DataInputStream(new FileInputStream("TestMats/methodid"));
+        genID.setType(IDType.FILE);
+        String expected = "mapreduce-Mapper.java";
+        String actual = genID.toString();
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public final void testReadWrite_METHOD() throws IOException
+    {
+        DataOutput out = new DataOutputStream(new FileOutputStream("TestMats/GeneralID"));
+        DataInput in = new DataInputStream(new FileInputStream("TestMats/GeneralID"));
 
         GeneralID expected = new GeneralID();
 
+        genID.write(out);
+        expected.readFields(in);
+
+        assertEquals(expected, genID);
+    }
+
+    @Test
+    public final void testReadWrite_CLASS() throws IOException
+    {
+        DataOutput out = new DataOutputStream(new FileOutputStream("TestMats/GeneralID"));
+        DataInput in = new DataInputStream(new FileInputStream("TestMats/GeneralID"));
+
+        GeneralID expected = new GeneralID();
+
+        genID.setType(IDType.CLASS);
+        genID.write(out);
+        expected.readFields(in);
+
+        assertEquals(expected, genID);
+    }
+
+    @Test
+    public final void testReadWrite_FILE() throws IOException
+    {
+        DataOutput out = new DataOutputStream(new FileOutputStream("TestMats/GeneralID"));
+        DataInput in = new DataInputStream(new FileInputStream("TestMats/GeneralID"));
+
+        GeneralID expected = new GeneralID();
+
+        genID.setType(IDType.FILE);
         genID.write(out);
         expected.readFields(in);
 
@@ -245,7 +304,7 @@ public class GeneralIDTest
     public final void testEquals_DifferentID()
     {
         GeneralID id1 = new GeneralID("map", "Mapper", "Mapper.java", "mapreduce", IDType.METHOD);
-        GeneralID id2 = new GeneralID("reduce", "reducer", "Reducer.java", "mapred", IDType.METHOD);
+        GeneralID id2 = new GeneralID("reduce", "reducer", "Reducer.java", "mapred", IDType.CLASS);
 
         boolean result = id1.equals(id2);
 
@@ -257,6 +316,17 @@ public class GeneralIDTest
     {
         GeneralID id1 = new GeneralID("map", "Mapper", "Mapper.java", "mapreduce", IDType.METHOD);
         GeneralID id2 = new GeneralID("map", "Mapper", "Mapper.java", "mapreduce", IDType.METHOD);
+
+        boolean result = id1.equals(id2);
+
+        assertTrue(result);
+    }
+
+    @Test
+    public final void testEquals_EqualPackageID()
+    {
+        GeneralID id1 = new GeneralID(null, null, null, "mapreduce", IDType.PACKAGE);
+        GeneralID id2 = new GeneralID(null, null, null, "mapreduce", IDType.PACKAGE);
 
         boolean result = id1.equals(id2);
 
@@ -277,8 +347,8 @@ public class GeneralIDTest
     @Test
     public final void testEquals_ClassNameNullID()
     {
-        MethodID id1 = new MethodID("map", null, "Mapper.java", "mapreduce");
-        MethodID id2 = new MethodID("map", "Mapper", "Mapper.java", "mapreduce");
+        GeneralID id1 = new GeneralID("map", null, "Mapper.java", "mapreduce", IDType.METHOD);
+        GeneralID id2 = new GeneralID("map", "Mapper", "Mapper.java", "mapreduce", IDType.METHOD);
 
         boolean result = id1.equals(id2);
 
@@ -300,6 +370,17 @@ public class GeneralIDTest
     public final void testEquals_PackageNameNullID()
     {
         GeneralID id1 = new GeneralID("map", "Mapper", "Mapper.java", null, IDType.METHOD);
+        GeneralID id2 = new GeneralID("map", "Mapper", "Mapper.java", "mapreduce", IDType.METHOD);
+
+        boolean result = id1.equals(id2);
+
+        assertFalse(result);
+    }
+
+    @Test
+    public final void testEquals_TypeNullID()
+    {
+        GeneralID id1 = new GeneralID("map", "Mapper", "Mapper.java", "mapreduce", null);
         GeneralID id2 = new GeneralID("map", "Mapper", "Mapper.java", "mapreduce", IDType.METHOD);
 
         boolean result = id1.equals(id2);
@@ -350,6 +431,18 @@ public class GeneralIDTest
         GeneralID id2 = new GeneralID("map", "Mapper", "Mapper.java", "mapreduce", IDType.METHOD);
 
         int expected = 0;
+        int actual = id1.compareTo(id2);
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public final void testCompareTo_DiffType()
+    {
+        GeneralID id1 = new GeneralID("map", "Mapper", "Mapper.java", "mapreduce", IDType.METHOD);
+        GeneralID id2 = new GeneralID("map", "Mapper", "Mapper.java", "mapred", IDType.CLASS);
+
+        int expected = IDType.METHOD.compareTo(IDType.CLASS);
         int actual = id1.compareTo(id2);
 
         assertEquals(expected, actual);

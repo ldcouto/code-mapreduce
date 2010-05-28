@@ -13,10 +13,12 @@ public class CheckedJobInfoTest
     {
         String expectedMessage = "Some usage message";
         Configuration expectedConf = new Configuration();
+        int expectedArgNum = 3;
         
-        CheckedJobInfo cji = new CheckedJobInfo(new Configuration(), "Some usage message");
+        CheckedJobInfo cji = new CheckedJobInfo("Some usage message", new Configuration(), 3);
         
         assertEquals(expectedMessage, cji.getUsageMessage());
         assertEquals(expectedConf.toString(), cji.getConf().toString());
+        assertEquals(expectedArgNum, cji.getArgNum());
     }
 }

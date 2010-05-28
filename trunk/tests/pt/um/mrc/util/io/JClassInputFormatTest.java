@@ -1,10 +1,8 @@
 package pt.um.mrc.util.io;
 
-import static org.junit.Assert.*;
-
-import java.io.IOException;
-
-import japa.parser.ast.body.VariableDeclaratorId;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.Path;
@@ -19,10 +17,10 @@ import org.junit.Test;
 import pt.um.mrc.util.datatypes.ClassID;
 
 
-public class JClassFileInputFormatTest
+public class JClassInputFormatTest
 {
 
-    private JClassFileInputFormat jcfi = new JClassFileInputFormat();
+    private JClassInputFormat jcfi = new JClassInputFormat();
     private JobContext context = new JobContext(new Configuration(), new JobID());
     private Path file= new Path("some file");
     

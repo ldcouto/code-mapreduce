@@ -21,7 +21,7 @@ public class VolumeByFileTest
     @Test
     public final void testGetUsage()
     {
-        String expected = "Usage: VolumeByFile <in> <out>";
+        String expected = "Usage: VolumeByFile <classVolumeLoc> <sourceFiles> <output>";
         
         String actual = driver.getUsage();
         
