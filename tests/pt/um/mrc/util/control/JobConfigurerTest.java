@@ -17,7 +17,7 @@ public class JobConfigurerTest
         String[] expectedInputOutputPaths = { "Some/In/Path", "Some/Other/In/Path", "Some/Out/Path" };
 
         String[] paths = { "Some/In/Path", "Some/Other/In/Path", "Some/Out/Path" };
-        JobConfigurer jc = new JobConfigurer(JobConfigurerTest.class, JMethodInputFormat.class,
+        JobConfigHolder jc = new JobConfigHolder(JobConfigurerTest.class, JMethodInputFormat.class,
                 paths);
 
         assertEquals(expectedClassJar, jc.getClassJar());

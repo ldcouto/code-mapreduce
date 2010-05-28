@@ -39,14 +39,14 @@ public interface JobInformable
      *
      * @return the mapper output key class
      */
-    public abstract Class<?> getMapperKeyClass();
+    public abstract Class<?> getMapperKeyOutClass();
 
     /**
      * Gets the mapper output value class.
      *
      * @return the mapper output value class
      */
-    public abstract Class<?> getMapperValueClass();
+    public abstract Class<?> getMapperValueOutClass();
 
     /**
      * Gets the InputFormatClass.

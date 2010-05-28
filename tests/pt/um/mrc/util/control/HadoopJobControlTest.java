@@ -39,10 +39,10 @@ public class HadoopJobControlTest {
 		String outputPath = "other/dir";
 		String[] args = {inputPath, outputPath};
 
-		JobConfigurer jc = new JobConfigurer(classJar, inputFormat, args);
+		JobConfigHolder jc = new JobConfigHolder(classJar, inputFormat, args);
 
-		MapperConfigurer mc =
-			new MapperConfigurer(PackageByFileMapper.class, Text.class, Text.class);
+		MapperConfigHolder mc =
+			new MapperConfigHolder(PackageByFileMapper.class, Text.class, Text.class);
 
 		HadoopJobControl.configureSimpleJob(job, jc, mc, PackageByFileReducer.class);
 

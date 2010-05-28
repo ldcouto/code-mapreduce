@@ -48,7 +48,7 @@ public class VolumeByFile implements JobInformable
      * 
      * @see pt.um.mrc.util.control.JobInformable#getMapperKeyClass()
      */
-    public Class<?> getMapperKeyClass()
+    public Class<?> getMapperKeyOutClass()
     {
         return Text.class;
     }
@@ -58,7 +58,7 @@ public class VolumeByFile implements JobInformable
      * 
      * @see pt.um.mrc.util.control.JobInformable#getMapperValueClass()
      */
-    public Class<?> getMapperValueClass()
+    public Class<?> getMapperValueOutClass()
     {
         return IntWritable.class;
     }

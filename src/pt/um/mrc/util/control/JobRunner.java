@@ -26,11 +26,11 @@ public class JobRunner
     /** The auxiliary CheckedJobInfo. */
     protected static CheckedJobInfo cji;
 
-    /** The auxiliary JobConfigurer. */
-    protected static JobConfigurer jc;
+    /** The auxiliary JobConfigHolder. */
+    protected static JobConfigHolder jc;
 
-    /** The auxiliary MapperConfigurer. */
-    protected static MapperConfigurer mc;
+    /** The auxiliary MapperConfigHolder. */
+    protected static MapperConfigHolder mc;
 
     /** The Job to configure. */
     protected static Job job;
@@ -58,10 +58,10 @@ public class JobRunner
 
         String[] otherArgs = HadoopJobControl.checkArguments(args, cji);
 
-        mc = new MapperConfigurer(ji.getMapperClass(), ji.getMapperKeyClass(), ji
-                .getMapperValueClass());
+        mc = new MapperConfigHolder(ji.getMapperClass(), ji.getMapperKeyOutClass(), ji
+                .getMapperValueOutClass());
 
-        jc = new JobConfigurer(ji.getClass(), ji.getInputFormatClass(), otherArgs);
+        jc = new JobConfigHolder(ji.getClass(), ji.getInputFormatClass(), otherArgs);
 
         try
         {

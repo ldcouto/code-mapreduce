@@ -23,13 +23,13 @@ public class PkgAndClassChache implements JobInformable
     }
 
     @Override
-    public Class<?> getMapperKeyClass()
+    public Class<?> getMapperKeyOutClass()
     {
         return Text.class;
     }
 
     @Override
-    public Class<?> getMapperValueClass()
+    public Class<?> getMapperValueOutClass()
     {
         return Text.class;
     }

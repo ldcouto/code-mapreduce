@@ -28,7 +28,7 @@ public class HadoopJobControl
      * @param job
      *            the Job to be configured
      * @param jc
-     *            the JobConfigurer to use in configuration of the Job
+     *            the JobConfigHolder to use in configuration of the Job
      * @param mc
      *            the mc
      * @param reducer
@@ -39,7 +39,7 @@ public class HadoopJobControl
      * @throws Exception
      *             the exception
      */
-    public static void configureSimpleJob(Job job, JobConfigurer jc, MapperConfigurer mc,
+    public static void configureSimpleJob(Job job, JobConfigHolder jc, MapperConfigHolder mc,
             Class<? extends Reducer<?, ?, ?, ?>> reducer) throws Exception
     {
 

@@ -16,7 +16,7 @@ public class MapperConfigurerTest
         Class<Text> expectedMapOutKey = Text.class;
         Class<Text> expectedMapOutValue = Text.class;
         
-        MapperConfigurer mc = new MapperConfigurer(PackageByFileMapper.class, Text.class, Text.class);
+        MapperConfigHolder mc = new MapperConfigHolder(PackageByFileMapper.class, Text.class, Text.class);
         
         assertEquals(expectedMapperClass, mc.getMapperClass());
         assertEquals(expectedMapOutKey, mc.getMapOutKey());
