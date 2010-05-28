@@ -9,7 +9,6 @@ import org.apache.hadoop.mapreduce.Reducer;
 
 import pt.um.mrc.util.control.JobInformable;
 import pt.um.mrc.util.control.JobRunner;
-import pt.um.mrc.util.io.JFileInputFormat;
 import pt.um.mrc.util.io.JavaFileInputFormat;
 
 /**
@@ -20,98 +19,62 @@ import pt.um.mrc.util.io.JavaFileInputFormat;
  * @author Tiago Alves Veloso
  */
 
-public class ImportsByPackage {
+public class ImportsByPackage implements JobInformable
+{
 
-	static Configuration conf = new Configuration();
-	static FileSystem fs;
-	static String cache = "tmpCacheIBP/";
+    static Configuration conf = new Configuration();
+    static FileSystem fs;
+    static String cache = "tmpCacheIBP/";
 
-	public static void main(String[] args) throws Exception {
-		PIBPJob1 job1 = new ImportsByPackage.PIBPJob1();
-		PIBPJob2 job2 = new ImportsByPackage.PIBPJob2();
+    public static void main(String[] args) throws Exception
+    {
+        PkgAndClassChache job1 = new PkgAndClassChache();
+        ImportsByPackage job2 = new ImportsByPackage();
 
-		int status = JobRunner.runCachedJob(job1, job2, cache, args);
-		System.exit(status);
+        int status = JobRunner.runCachedJob(job1, job2, cache, args);
+        System.exit(status);
 
-	}
+    }
 
+    @Override
+    public int getArgCount()
+    {
+        return 2;
+    }
 
-	protected static class PIBPJob1 implements JobInformable {
+    @Override
+    public Class<? extends InputFormat<?, ?>> getInputFormatClass()
+    {
+        return JavaFileInputFormat.class;
+    }
 
-		@Override
-		public int getArgCount() {
-			return 2;
-		}
+    @Override
+    public Class<? extends Mapper<?, ?, ?, ?>> getMapperClass()
+    {
+        return ImportsByPackageMapper.class;
+    }
 
-		@Override
-		public Class<? extends InputFormat<?, ?>> getInputFormatClass() {
-			return JFileInputFormat.class;
-		}
+    @Override
+    public Class<?> getMapperKeyClass()
+    {
+        return Text.class;
+    }
 
-		@Override
-		public Class<? extends Mapper<?, ?, ?, ?>> getMapperClass() {
-			return PkgAndClassMapper.class;
-		}
+    @Override
+    public Class<?> getMapperValueClass()
+    {
+        return Text.class;
+    }
 
-		@Override
-		public Class<?> getMapperKeyClass() {
-			return Text.class;
-		}
+    @Override
+    public Class<? extends Reducer<?, ?, ?, ?>> getReducerClass()
+    {
+        return ImportsByPackageReducer.class;
+    }
 
-		@Override
-		public Class<?> getMapperValueClass() {
-			return Text.class;
-		}
-
-		@Override
-		public Class<? extends Reducer<?, ?, ?, ?>> getReducerClass() {
-			return ImportsByPackageReducer.class;
-		}
-
-		@Override
-		public String getUsage() {
-			return "Usage: ImportsByPackage <in> <cache>";
-		}
-
-	}
-
-
-	protected static class PIBPJob2 implements JobInformable {
-
-		@Override
-		public int getArgCount() {
-			return 2;
-		}
-
-		@Override
-		public Class<? extends InputFormat<?, ?>> getInputFormatClass() {
-			return JavaFileInputFormat.class;
-		}
-
-		@Override
-		public Class<? extends Mapper<?, ?, ?, ?>> getMapperClass() {
-			return ImportsByPackageMapper.class;
-		}
-
-		@Override
-		public Class<?> getMapperKeyClass() {
-			return Text.class;
-		}
-
-		@Override
-		public Class<?> getMapperValueClass() {
-			return Text.class;
-		}
-
-		@Override
-		public Class<? extends Reducer<?, ?, ?, ?>> getReducerClass() {
-			return ImportsByPackageReducer.class;
-		}
-
-		@Override
-		public String getUsage() {
-			return "Usage: ImportsByPackage <cache> <out>";
-		}
-
-	}
+    @Override
+    public String getUsage()
+    {
+        return "Usage: ImportsByPackage <cache> <out>";
+    }
 }

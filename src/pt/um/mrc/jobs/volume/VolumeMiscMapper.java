@@ -4,18 +4,18 @@ import java.io.IOException;
 
 import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.Text;
+import org.apache.hadoop.io.WritableComparable;
 import org.apache.hadoop.mapreduce.Mapper;
 
 import pt.um.mrc.lib.VolumeHelper;
-import pt.um.mrc.util.datatypes.ClassID;
 
-public class VolumeMiscMapper extends Mapper<ClassID, Text, Text, IntWritable>
+public class VolumeMiscMapper extends Mapper<WritableComparable<?>, Text, Text, IntWritable>
 {
     private Text keyOut = new Text();
     private IntWritable valueOut = new IntWritable();
     
     @Override
-    protected void map(ClassID key, Text value, Context context)
+    protected void map(WritableComparable<?> key, Text value, Context context)
             throws IOException, InterruptedException
     {
         keyOut.set(key.toString());
@@ -23,5 +23,4 @@ public class VolumeMiscMapper extends Mapper<ClassID, Text, Text, IntWritable>
         
         context.write(keyOut, valueOut);
     }
-    
 }

@@ -83,30 +83,31 @@ public class VolumeByFile implements JobInformable
         return VolumeByFileReducer.class;
     }
 
-	@Override
-	public int getArgCount() {
-		return 3;
-	}
-    
+    @Override
+    public int getArgCount()
+    {
+        return 3;
+    }
+
     /**
      * The main method.
      * 
      * @param args
-     *            the arguments from the command line 
+     *            the arguments from the command line
      * @throws Exception
      *             the exception
      */
-    public static void main(String[] args) throws Exception{
-		VolumeByFileMisc j1 = new VolumeByFileMisc();
-		VolumeByFile j2 = new VolumeByFile();
-		String tempFolder = "tmpFile/";
-		
-		int status = JobRunner.runDoubleJob(j1, j2, tempFolder, args);
-		FileSystem.get(JobRunner.getConf()).delete(new Path(tempFolder), true);
+    public static void main(String[] args) throws Exception
+    {
+        VolumeByFileMisc j1 = new VolumeByFileMisc();
+        VolumeByFile j2 = new VolumeByFile();
+        String tempFolder = "tmpFile/";
 
-		System.exit(status);
-			
+        int status = JobRunner.runDoubleJob(j1, j2, tempFolder, args);
+        FileSystem.get(JobRunner.getConf()).delete(new Path(tempFolder), true);
+
+        System.exit(status);
+
     }
-
 
 }
