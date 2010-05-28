@@ -57,13 +57,14 @@ public class CachedPackageInfoMapperTest
         mapper.buildCache(parray);
 
         Map<String, ArrayList<String>> expected = new HashMap<String, ArrayList<String>>();
-        expected.put("pt.um.mrc.util.reducers", new ArrayList<String>(Arrays.asList(
-                "pt.um.mrc.util.reducers.CollectionReducer",
-                "pt.um.mrc.util.reducers.IdentityReducer", "pt.um.mrc.util.reducers.ReduceHelpers",
-                "pt.um.mrc.util.reducers.SumReducer")));
-        expected.put("pt.um.mrc.util.mappers", new ArrayList<String>(Arrays.asList(
-                "pt.um.mrc.util.mappers.CachedPackageInfoMapper",
-                "pt.um.mrc.util.mappers.LineValuesMapper")));
+        
+        
+        expected.put("japa.parser", new ArrayList<String>(Arrays.asList(
+                "japa.parser.ASTParser",
+                "japa.parser.JavaParser", "japa.parser.Token",
+                "japa.parser.TokenMgrError",
+                "japa.parser.ParseException","japa.parser.ASTHelper",
+                "japa.parser.JavaCharStream","japa.parser.ASTParserTokenManager")));
 
         Map<String, ArrayList<String>> actual = mapper.getInternalPackages();
 

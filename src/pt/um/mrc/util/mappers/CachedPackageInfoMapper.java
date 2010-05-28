@@ -54,8 +54,6 @@ public class CachedPackageInfoMapper<KI, VI, KO, VO> extends Mapper<KI, VI, KO, 
             {
                 pkgAndClass = line.split("\\t");
 
-                System.out.println(pkgAndClass[0]);
-
                 classes = new ArrayList<String>(Arrays.asList(pkgAndClass[1].replaceAll("\\{|\\}",
                         "").trim().split(" ")));
                 internalClassPkgInfo.put(pkgAndClass[0], classes);
@@ -65,3 +63,4 @@ public class CachedPackageInfoMapper<KI, VI, KO, VO> extends Mapper<KI, VI, KO, 
     }
 
 }
+
