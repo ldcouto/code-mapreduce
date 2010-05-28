@@ -2,7 +2,6 @@ package pt.um.mrc.jobs.imprt;
 
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.FileSystem;
-import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.InputFormat;
 import org.apache.hadoop.mapreduce.Mapper;
@@ -27,27 +26,10 @@ public class ImportsByPackage {
 	static String cache = "tmpCacheIBP/";
 
 	public static void main(String[] args) throws Exception {
-
 		PIBPJob1 job1 = new ImportsByPackage.PIBPJob1();
-		String[] j1Args = args;
-		j1Args[0] = cache;
-
-		JobRunner.setJob(j1Args, job1);
-		int status = JobRunner.runJob();
-		if (status != 0)
-			System.exit(status);
-
-		// Prepare the Cache for the second Job
-		JobRunner.configureDistCache(new Path(cache));
-
 		PIBPJob2 job2 = new ImportsByPackage.PIBPJob2();
-		String[] j2Args = args;
-		j1Args[1] = cache;
 
-		JobRunner.setJob(j2Args, job2);
-		status = JobRunner.runJob();
-		FileSystem.get(JobRunner.getConf()).delete(new Path(cache), true);
-
+		int status = JobRunner.runCachedJob(job1, job2, cache, args);
 		System.exit(status);
 
 	}
