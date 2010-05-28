@@ -26,13 +26,13 @@ public class VolumeByClassMisc implements JobInformable
     }
 
     @Override
-    public Class<?> getMapperKeyClass()
+    public Class<?> getMapperKeyOutClass()
     {
         return Text.class;
     }
 
     @Override
-    public Class<?> getMapperValueClass()
+    public Class<?> getMapperValueOutClass()
     {
         return IntWritable.class;
     }

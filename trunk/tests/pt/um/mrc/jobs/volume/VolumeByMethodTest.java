@@ -44,7 +44,7 @@ public class VolumeByMethodTest
     {
         Class<?> expected = MethodID.class;
         
-        Class<?> actual = driver.getMapperKeyClass();
+        Class<?> actual = driver.getMapperKeyOutClass();
         
         assertEquals(expected, actual);
     }
@@ -54,7 +54,7 @@ public class VolumeByMethodTest
     {
         Class<?> expected = IntWritable.class;
         
-        Class<?> actual = driver.getMapperValueClass();
+        Class<?> actual = driver.getMapperValueOutClass();
         
         assertEquals(expected, actual);
     }

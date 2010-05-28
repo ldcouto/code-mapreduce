@@ -3,13 +3,13 @@ package pt.um.mrc.util.control;
 import org.apache.hadoop.mapreduce.InputFormat;
 
 /**
- * The Class JobConfigurer is used as an auxiliary class to configure a Hadoop
+ * The Class JobConfigHolder is used as an auxiliary class to configure a Hadoop
  * job.
  * 
  * @author Tiago Alves Veloso
  * @author Luis Duarte Couto
  */
-public class JobConfigurer
+public class JobConfigHolder
 {
 
     private String[] paths;
@@ -20,7 +20,7 @@ public class JobConfigurer
     /** The input format. */
     private Class<? extends InputFormat<?, ?>> inputFormat;
 
-    public JobConfigurer(Class<?> classjar, Class<? extends InputFormat<?, ?>> inputFormat,
+    public JobConfigHolder(Class<?> classjar, Class<? extends InputFormat<?, ?>> inputFormat,
             String[] args)
     {
         this.classJar = classjar;

@@ -46,7 +46,7 @@ public class VolumeByMethod implements JobInformable
      * 
      * @see pt.um.mrc.util.control.JobInformable#getMapperKeyClass()
      */
-    public Class<?> getMapperKeyClass()
+    public Class<?> getMapperKeyOutClass()
     {
         return MethodID.class;
     }
@@ -56,7 +56,7 @@ public class VolumeByMethod implements JobInformable
      * 
      * @see pt.um.mrc.util.control.JobInformable#getMapperValueClass()
      */
-    public Class<?> getMapperValueClass()
+    public Class<?> getMapperValueOutClass()
     {
         return IntWritable.class;
     }

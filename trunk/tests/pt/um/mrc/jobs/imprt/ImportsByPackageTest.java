@@ -53,7 +53,7 @@ public class ImportsByPackageTest
     {
         Class<?> expected = Text.class;
         
-        Class<?> actual = driver.getMapperKeyClass();
+        Class<?> actual = driver.getMapperKeyOutClass();
         
         assertEquals(expected, actual);
     }
@@ -63,7 +63,7 @@ public class ImportsByPackageTest
     {
         Class<?> expected = Text.class;
         
-        Class<?> actual = driver.getMapperValueClass();
+        Class<?> actual = driver.getMapperValueOutClass();
         
         assertEquals(expected, actual);
     }

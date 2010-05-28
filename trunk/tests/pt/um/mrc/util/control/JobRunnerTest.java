@@ -36,8 +36,8 @@ public class JobRunnerTest
     public final void testSetJob() throws Exception
     {
         Class<?> expectedMapper = volJob.getMapperClass();
-        Class<?> expectedMapperKey = volJob.getMapperKeyClass();
-        Class<?> expectedMapperValue = volJob.getMapperValueClass();
+        Class<?> expectedMapperKey = volJob.getMapperKeyOutClass();
+        Class<?> expectedMapperValue = volJob.getMapperValueOutClass();
         Class<?> expectedInputFormatClass = volJob.getInputFormatClass();
         Class<?> expectedReducer = volJob.getReducerClass();
         String expectedUsage = volJob.getUsage();

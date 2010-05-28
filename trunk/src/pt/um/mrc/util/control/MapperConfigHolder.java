@@ -4,10 +4,10 @@ import org.apache.hadoop.mapreduce.Mapper;
 
 // TODO: Auto-generated Javadoc
 /**
- * The Class MapperConfigurer is an auxiliary class to provide the configuration
+ * The Class MapperConfigHolder is an auxiliary class to provide the configuration
  * parameters of a Mapper.
  */
-public class MapperConfigurer
+public class MapperConfigHolder
 {
 
     /** The Mapper class. */
@@ -20,7 +20,7 @@ public class MapperConfigurer
     private Class<?> mapOutValue;
 
     /**
-     * Instantiates a new MapperConfigurer.
+     * Instantiates a new MapperConfigHolder.
      * 
      * @param mapper
      *            the Mapper class
@@ -29,7 +29,7 @@ public class MapperConfigurer
      * @param mapOutValue
      *            the Map Output Value
      */
-    public MapperConfigurer(Class<? extends Mapper<?, ?, ?, ?>> mapper, Class<?> mapOutKey,
+    public MapperConfigHolder(Class<? extends Mapper<?, ?, ?, ?>> mapper, Class<?> mapOutKey,
             Class<?> mapOutValue)
     {
         this.mapperClass = mapper;
