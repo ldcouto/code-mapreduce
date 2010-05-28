@@ -16,22 +16,23 @@ public class CheckedJobInfo
 
     /** The configuration for the job. */
     private Configuration conf;
-    
+
     private int argNum;
 
+    public CheckedJobInfo(String usageMessage, Configuration conf, int argNum)
+    {
+        super();
+        this.usageMessage = usageMessage;
+        this.conf = conf;
+        this.argNum = argNum;
+    }
 
-	public CheckedJobInfo(String usageMessage, Configuration conf, int argNum) {
-		super();
-		this.usageMessage = usageMessage;
-		this.conf = conf;
-		this.argNum = argNum;
-	}
+    public int getArgNum()
+    {
+        return argNum;
+    }
 
-	public int getArgNum() {
-		return argNum;
-	}
-
-	/**
+    /**
      * Gets the usage message.
      * 
      * @return the usage message

@@ -12,7 +12,7 @@ import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 
 import pt.um.mrc.util.datatypes.ClassID;
 
-public class JClassFileInputFormat extends FileInputFormat<ClassID, Text>
+public class JClassInputFormat extends FileInputFormat<ClassID, Text>
 {
 
     @Override
