@@ -20,7 +20,7 @@ public class GrabMcCabeClassVisitor extends GrabbingVisitor<ClassID> {
 				sb.append("\n");
 			}
 		}
-
-		elems.put(aux, new Text(sb.toString()));
+		if (sb.toString().length()>0)
+			elems.put(aux, new Text(sb.toString()));
 	}
 }

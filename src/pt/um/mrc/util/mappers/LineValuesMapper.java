@@ -23,7 +23,8 @@ public class LineValuesMapper<KI, VI, KO, VO> extends Mapper<LongWritable, Text,
             InterruptedException
     {
         Pair<String, Integer> kv = this.processLine(value.toString());
-
+        
+        //TODO remove this debug item
         outKey.set(kv.getKey());
         outValue.set(kv.getValue());
 
