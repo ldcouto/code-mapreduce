@@ -43,11 +43,11 @@ public class JRecordReader<ID extends WritableComparable<ID>, V extends Grabbing
 	protected Map<ID, Text> elems = new HashMap<ID, Text>();
 	protected String packageName;
 	protected String fileName;
-	private CompilationUnit cu;
-	private FileSplit fSplit;
-	private FSDataInputStream fileIn;
-	private List<ID> keys;
-	private int curr = -1;
+	protected CompilationUnit cu;
+	protected FileSplit fSplit;
+	protected FSDataInputStream fileIn;
+	protected List<ID> keys;
+	protected int curr = -1;
 	protected V visitor;
 	
 	public Map<ID, Text> getMethods() {
@@ -86,6 +86,18 @@ public class JRecordReader<ID extends WritableComparable<ID>, V extends Grabbing
 		visitor = v;
 	}
 	
+	
+	
+	
+	public List<ID> getKeys() {
+		return keys;
+	}
+
+	
+	public void setKeys(List<ID> keys) {
+		this.keys = keys;
+	}
+
 	/**
 	 * Called at startup. Reads the file, applies the parser and loads the
 	 * auxiliary control structures. The parameters are only used internally by
@@ -160,6 +172,7 @@ public class JRecordReader<ID extends WritableComparable<ID>, V extends Grabbing
 	 */
 	@Override
 	public ID getCurrentKey() throws IOException, InterruptedException {
+	//TODO remove	System.out.println("Passei a chave" + keys.get(curr).toString());
 		return keys.get(curr);
 	}
 
@@ -172,6 +185,7 @@ public class JRecordReader<ID extends WritableComparable<ID>, V extends Grabbing
 	 */
 	@Override
 	public Text getCurrentValue() throws IOException, InterruptedException {
+	//TODO remove	System.out.println("Passei a chave" + elems.get(keys.get(curr).toString()));
 		return elems.get(keys.get(curr));
 	}
 

@@ -24,7 +24,7 @@ public class ImportsByFile implements JobInformable
 
     public static void main(String[] args) throws Exception
     {
-        PkgAndClassChache job1 = new PkgAndClassChache();
+        PkgAndClassCache job1 = new PkgAndClassCache();
         ImportsByFile job2 = new ImportsByFile();
 
         int status = JobRunner.runCachedJob(job1, job2, cache, args);

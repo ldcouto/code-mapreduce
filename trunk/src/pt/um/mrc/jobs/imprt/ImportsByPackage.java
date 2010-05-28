@@ -29,7 +29,7 @@ public class ImportsByPackage implements JobInformable
 
     public static void main(String[] args) throws Exception
     {
-        PkgAndClassChache job1 = new PkgAndClassChache();
+        PkgAndClassCache job1 = new PkgAndClassCache();
         ImportsByPackage job2 = new ImportsByPackage();
 
         int status = JobRunner.runCachedJob(job1, job2, cache, args);

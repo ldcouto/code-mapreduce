@@ -36,16 +36,19 @@ public class ReduceHelpers
         // Add all the values to the auxiliary ArrayList
         for (Text elem : values)
         {
-            aux.add(elem);
+        	//TODO investigate why this silly workaround is needed
+            aux.add(new Text(elem.toString()));
+
         }
 
+        
         aux.trimToSize();
 
+        
         // Create and initialize a string array
         int size = aux.size();
         Text[] array = new Text[size];
         array = aux.toArray(array);
-
         return array;
     }
 }
