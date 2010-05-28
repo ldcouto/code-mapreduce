@@ -225,12 +225,12 @@ public class GeneralID implements WritableComparable<GeneralID>
         {
             fileName = in.readUTF();
         }
-        if (type.equals(IDType.CLASS))
+        else if (type.equals(IDType.CLASS))
         {
             fileName = in.readUTF();
             className = in.readUTF();
         }
-        if (type.equals(IDType.METHOD))
+        else if (type.equals(IDType.METHOD))
         {
             fileName = in.readUTF();
             className = in.readUTF();
@@ -252,12 +252,12 @@ public class GeneralID implements WritableComparable<GeneralID>
         {
             out.writeUTF(fileName);
         }
-        if (type.equals(IDType.CLASS))
+        else if (type.equals(IDType.CLASS))
         {
             out.writeUTF(fileName);
             out.writeUTF(className);
         }
-        if (type.equals(IDType.METHOD))
+        else if (type.equals(IDType.METHOD))
         {
             out.writeUTF(fileName);
             out.writeUTF(className);
@@ -288,34 +288,6 @@ public class GeneralID implements WritableComparable<GeneralID>
         if (getClass() != obj.getClass())
             return false;
         GeneralID other = (GeneralID) obj;
-        if (className == null)
-        {
-            if (other.className != null)
-                return false;
-        }
-        else if (!className.equals(other.className))
-            return false;
-        if (fileName == null)
-        {
-            if (other.fileName != null)
-                return false;
-        }
-        else if (!fileName.equals(other.fileName))
-            return false;
-        if (methodName == null)
-        {
-            if (other.methodName != null)
-                return false;
-        }
-        else if (!methodName.equals(other.methodName))
-            return false;
-        if (packageName == null)
-        {
-            if (other.packageName != null)
-                return false;
-        }
-        else if (!packageName.equals(other.packageName))
-            return false;
         if (type == null)
         {
             if (other.type != null)
@@ -323,7 +295,85 @@ public class GeneralID implements WritableComparable<GeneralID>
         }
         else if (!type.equals(other.type))
             return false;
+
+        if (packageName == null)
+        {
+            if (other.packageName != null)
+                return false;
+        }
+        else if (!packageName.equals(other.packageName))
+            return false;
+
+        if (type == IDType.FILE)
+        {
+            return fileEquals(other);
+        }
+
+        if (type == IDType.CLASS)
+        {
+            return classEquals(other);
+        }
+
+        if (type == IDType.METHOD)
+        {
+            return methodEquals(other);
+        }
+
         return true;
+    }
+
+    private boolean fileEquals(GeneralID other)
+    {
+        if (fileName == null)
+        {
+            if (other.fileName != null)
+                return false;
+        }
+        else if (!fileName.equals(other.fileName))
+        {
+            return false;
+        }
+        return true;
+    }
+
+    private boolean classEquals(GeneralID other)
+    {
+        if (fileEquals(other))
+        {
+            if (className == null)
+            {
+                if (other.className != null)
+                    return false;
+            }
+            else if (!className.equals(other.className))
+                return false;
+
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    private boolean methodEquals(GeneralID other)
+    {
+        if (classEquals(other))
+        {
+            if (methodName == null)
+            {
+                if (other.methodName != null)
+                    return false;
+            }
+            else if (!methodName.equals(other.methodName))
+                return false;
+
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 
     /*
@@ -338,7 +388,7 @@ public class GeneralID implements WritableComparable<GeneralID>
         int cmpTyp = this.type.compareTo(o.getType());
         if (cmpTyp != 0)
             return cmpTyp;
-        
+
         int cmpPkg = this.packageName.compareTo(o.getPackageName());
         if (cmpPkg != 0)
             return cmpPkg;
