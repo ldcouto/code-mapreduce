@@ -75,6 +75,29 @@ public class JobRunner
         }
     }
 
+    public static void setJob(String[] args, JobInformable ji, Configuration conf)
+    {
+        cji = new CheckedJobInfo(ji.getUsage(), conf, ji.getArgCount());
+
+        String[] otherArgs = HadoopJobControl.checkArguments(args, cji);
+
+        mc = new MapperConfigHolder(ji.getMapperClass(), ji.getMapperKeyOutClass(), ji
+                .getMapperValueOutClass());
+
+        jc = new JobConfigHolder(ji.getClass(), ji.getInputFormatClass(), otherArgs);
+
+        try
+        {
+            job = new Job(conf);
+            HadoopJobControl.configureSimpleJob(job, jc, mc, ji.getReducerClass());
+
+        } catch (Exception e)
+        {
+            LOG.fatal(e.getMessage());
+            System.exit(2);
+        }
+    }
+    
     /**
      * Run job.
      * 
@@ -115,11 +138,11 @@ public class JobRunner
         return status;
     }
 
-    public static int runCachedJob(JobInformable job1, JobInformable job2, String cacheFolder,
+    public static int runCachedJob(JobInformable job1, JobInformable job2, Path cacheFolder,
             String[] args) throws Exception
     {
         String[] j1Args = args.clone();
-        j1Args[1] = cacheFolder;
+        j1Args[1] = cacheFolder.getName();
 
         JobRunner.setJob(j1Args, job1);
         int status = JobRunner.runJob();
@@ -127,13 +150,13 @@ public class JobRunner
             return status;
 
         // Prepare the Cache for the second Job
-        JobRunner.configureDistCache(new Path(cacheFolder));
+        JobRunner.configureDistCache(cacheFolder);
 
         String[] j2Args = args.clone();
 
-        JobRunner.setJob(j2Args, job2);
+        JobRunner.setJob(j2Args, job2, JobRunner.getConf());
         status = JobRunner.runJob();
-        FileSystem.get(JobRunner.getConf()).delete(new Path(cacheFolder), true);
+        FileSystem.get(JobRunner.getConf()).delete(cacheFolder, true);
 
         return status;
     }
