@@ -85,7 +85,7 @@ public class VolumeByFile implements JobInformable
 
 	@Override
 	public int getArgCount() {
-		return 2;
+		return 3;
 	}
     
     /**
