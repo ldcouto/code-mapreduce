@@ -1,2 +1,1 @@
-pt.um.mrc.util.reducers	{ pt.um.mrc.util.reducers.CollectionReducer pt.um.mrc.util.reducers.IdentityReducer pt.um.mrc.util.reducers.ReduceHelpers pt.um.mrc.util.reducers.SumReducer }	
-pt.um.mrc.util.mappers	{ pt.um.mrc.util.mappers.CachedPackageInfoMapper pt.um.mrc.util.mappers.LineValuesMapper }
+japa.parser	{ japa.parser.ASTParser japa.parser.JavaParser japa.parser.Token japa.parser.TokenMgrError japa.parser.ParseException japa.parser.ASTHelper japa.parser.JavaCharStream japa.parser.ASTParserTokenManager}
