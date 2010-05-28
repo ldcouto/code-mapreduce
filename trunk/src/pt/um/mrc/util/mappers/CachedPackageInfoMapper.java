@@ -8,12 +8,15 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.apache.hadoop.filecache.DistributedCache;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.mapreduce.Mapper;
 
 public class CachedPackageInfoMapper<KI, VI, KO, VO> extends Mapper<KI, VI, KO, VO>
 {
+    static final Log LOG = LogFactory.getLog(CachedPackageInfoMapper.class);
 
     protected Map<String, ArrayList<String>> internalClassPkgInfo = new HashMap<String, ArrayList<String>>();
 
@@ -39,29 +42,22 @@ public class CachedPackageInfoMapper<KI, VI, KO, VO> extends Mapper<KI, VI, KO, 
 
     public void buildCache(Path[] localFiles) throws IOException
     {
+        FileReader fr = new FileReader(localFiles[0].toString());
+        BufferedReader br = new BufferedReader(fr);
 
-        // TODO Should this guard stay?
-        if (localFiles != null)
+        String line;
+        String[] pkgAndClass;
+        ArrayList<String> classes;
+
+        while ((line = br.readLine()) != null)
         {
-            FileReader fr = new FileReader(localFiles[0].toString());
-            BufferedReader br = new BufferedReader(fr);
+            pkgAndClass = line.split("\\t");
 
-            String line;
-            String[] pkgAndClass;
-            ArrayList<String> classes;
-
-            while ((line = br.readLine()) != null)
-            {
-                pkgAndClass = line.split("\\t");
-
-                System.out.println(pkgAndClass[0]);
-
-                classes = new ArrayList<String>(Arrays.asList(pkgAndClass[1].replaceAll("\\{|\\}",
-                        "").trim().split(" ")));
-                internalClassPkgInfo.put(pkgAndClass[0], classes);
-            }
-            br.close();
+            classes = new ArrayList<String>(Arrays.asList(pkgAndClass[1].replaceAll("\\{|\\}", "")
+                    .trim().split(" ")));
+            internalClassPkgInfo.put(pkgAndClass[0], classes);
         }
+        br.close();
     }
 
 }
