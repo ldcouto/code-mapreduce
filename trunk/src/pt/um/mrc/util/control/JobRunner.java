@@ -107,6 +107,28 @@ public class JobRunner {
 		return status;
 	}
 
+	public static int runCachedJob(JobInformable job1, JobInformable job2, String cacheFolder, String[] args) throws Exception{
+    	String[] j1Args = args;
+    	j1Args[0]=cacheFolder;
+    	
+    	JobRunner.setJob(j1Args, job1);
+        int status = JobRunner.runJob();
+    	if (status != 0)
+			return status;
+    	
+        // Prepare the Cache for the second Job
+        JobRunner.configureDistCache(new Path(cacheFolder));
+        
+        String[] j2Args = args;
+    	j2Args[1]=cacheFolder;
+    	
+    	JobRunner.setJob(j2Args, job2);
+    	status=JobRunner.runJob();
+    	FileSystem.get(JobRunner.getConf()).delete(new Path(cacheFolder), true);
+
+    	return status;
+	}
+	
 	public static void configureDistCache(Path path) throws Exception {
 		for (FileStatus fstatus : FileSystem.get(conf).listStatus(path)) {
 			if (!fstatus.isDir()) {
