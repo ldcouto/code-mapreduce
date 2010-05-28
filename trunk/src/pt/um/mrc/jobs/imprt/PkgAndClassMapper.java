@@ -8,17 +8,17 @@ import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Mapper;
 
 import pt.um.mrc.lib.ClassHelper;
-import pt.um.mrc.lib.PckgHelper;
+import pt.um.mrc.util.datatypes.FileID;
 
-public class PkgAndClassMapper extends Mapper<Text, Text, Text, Text> {
+public class PkgAndClassMapper extends Mapper<FileID, Text, Text, Text> {
 
 	List<String> classes = new ArrayList<String>();
 	private Text packge = new Text();
 
 	@Override
-	protected void map(Text key, Text value, Context context) throws IOException,
+	protected void map(FileID key, Text value, Context context) throws IOException,
 		InterruptedException {
-		packge.set(PckgHelper.findPackage(value.toString()));
+		packge.set(key.getPackageName());
 		classes = ClassHelper.findClasses(value.toString());
 
 		for (String s : classes)

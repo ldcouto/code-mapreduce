@@ -31,7 +31,7 @@ public class JFileRecordReader extends RecordReader<FileID, Text> {
 	private FSDataInputStream fileIn;
 	private int status = -1;
 	private FileID currKey;
-	private String everything;
+	protected String everything;
 
 	@Override
 	public void close() throws IOException {
@@ -84,10 +84,11 @@ public class JFileRecordReader extends RecordReader<FileID, Text> {
 				auxPKG = cu.getPackage().getName().toString();
 			else
 				auxPKG = "<default>";
-			currKey= new FileID(auxPKG, auxFN);
+			currKey= new FileID(auxFN,auxPKG);
 		}
 		
 		new MiscClassVisitor().visit(cu, null);
+		
 
 	}
 
@@ -101,7 +102,7 @@ public class JFileRecordReader extends RecordReader<FileID, Text> {
 	}
 
 
-	private static class MiscClassVisitor extends VoidVisitorAdapter<Object> {
+	private class MiscClassVisitor extends VoidVisitorAdapter<Object> {
 
 		public void visit(CompilationUnit c, Object arg) {
 			StringBuilder sb = new StringBuilder();
@@ -131,6 +132,7 @@ public class JFileRecordReader extends RecordReader<FileID, Text> {
 					}
 				}
 			}
+			everything = sb.toString();
 		}
 	}
 
