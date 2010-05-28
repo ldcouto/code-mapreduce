@@ -59,4 +59,21 @@ public class ClassHelperTest
          
          assertNotSame(expected, result);
     }
+    
+    @Test
+    public final void testFindClasses_ValidInput()
+    {
+         String input = "public class Test{\n" +
+         		"   public class Sapo{\n" +
+         		"   }\n" +
+         		"}\n";
+         
+         ArrayList<String> expected = new ArrayList<String>();
+         expected.add(new String("Test"));
+         expected.add(new String("Sapo"));
+
+         ArrayList<String> result = ClassHelper.findClasses(input);
+         
+         assertEquals(expected, result);
+    }
 }

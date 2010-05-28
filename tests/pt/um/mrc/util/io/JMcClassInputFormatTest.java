@@ -1,6 +1,8 @@
 package pt.um.mrc.util.io;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.Path;
@@ -14,7 +16,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import pt.um.mrc.util.datatypes.ClassID;
-import pt.um.mrc.util.datatypes.FileID;
 
 public class JMcClassInputFormatTest
 {
