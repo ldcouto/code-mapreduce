@@ -78,4 +78,14 @@ public class VolumeByMethodTest
         
         assertEquals(expected, actual);
     }
+    
+    @Test
+    public final void textGetArgsCount()
+    {
+        int expected = 2;
+        
+        int actual = driver.getArgCount();
+        
+        assertEquals(expected, actual);
+    }
 }
