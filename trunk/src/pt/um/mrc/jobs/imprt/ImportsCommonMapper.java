@@ -9,15 +9,19 @@ import org.apache.hadoop.io.Text;
 import pt.um.mrc.lib.ImprtHelper;
 import pt.um.mrc.util.mappers.CachedPackageInfoMapper;
 
-public class ImportsCommonMapper<KI, VI, KO, VO> extends
-                                                 CachedPackageInfoMapper<Text, Text, Text, Text>
+public class ImportsCommonMapper<KI, VI, KO, VO> extends CachedPackageInfoMapper<Text, Text, Text, Text>
 {
 
     private Text importedPackage = new Text();
 
     @Override
-    protected void map(Text key, Text value, Context context) throws IOException,
-            InterruptedException
+    protected void setup(Context context) throws IOException, InterruptedException
+    {
+        super.setup(context);
+    }
+
+    @Override
+    protected void map(Text key, Text value, Context context) throws IOException, InterruptedException
     {
         // Find the imported packages
         List<String> imports = ImprtHelper.findImports(value.toString());
@@ -26,11 +30,14 @@ public class ImportsCommonMapper<KI, VI, KO, VO> extends
 
         for (String s : imports)
         {
-            aux = ImprtHelper.compImportedClasses(s, internalClassPkgInfo);
-            for (String s2 : aux)
+            aux = ImprtHelper.compImportedClasses(s, super.internalClassPkgInfo);
+            if (aux != null)
             {
-                importedPackage.set(s2);
-                context.write(key, importedPackage);
+                for (String s2 : aux)
+                {
+                    importedPackage.set(s2);
+                    context.write(key, importedPackage);
+                }
             }
         }
         //		
