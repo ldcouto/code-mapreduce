@@ -21,7 +21,7 @@ public class VolumeByClassTest
     @Test
     public final void testGetUsage()
     {
-        String expected = "Usage: VolumeByClass <in> <out>";
+        String expected = "Usage: VolumeByClass <methodloc> <in> <out>";
         
         String actual = driver.getUsage();
         
