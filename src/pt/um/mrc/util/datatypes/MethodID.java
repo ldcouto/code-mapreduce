@@ -132,16 +132,6 @@ public class MethodID implements WritableComparable<MethodID> {
 		this.packageName = packageName;
 	}
 
-	/**
-	 * Generates a pretty string for this MethodID.
-	 * 
-	 * @return a pretty string representation of this MethodID
-	 */
-	public String prettyString() {
-		return "MethodID[" + "packageName=" + packageName + ", fileName=" + fileName
-				+ ", className=" + className + ", methodName=" + methodName + "]";
-	}
-
 	/*
 	 * (non-Javadoc)
 	 * 
