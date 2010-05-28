@@ -41,10 +41,10 @@ public class CollectionReducer<KI, VI extends Text, KO extends KI, VO extends Co
     @Override
     public void reduce(KI key, Iterable<Text> values, Context context) throws IOException,
             InterruptedException
-    {
+    {	
         CollectionWritablePrintable valuesCollection = new CollectionWritablePrintable(
                 Writable.class, ReduceHelpers.toTextArray(values));
-
+        
         context.write(key, valuesCollection);
     }
 }

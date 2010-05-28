@@ -270,9 +270,9 @@ public class GeneralID implements WritableComparable<GeneralID>
     {
         final int prime = 31;
         int result = 1;
+        result = prime * result + ((methodName == null) ? 0 : methodName.hashCode());
         result = prime * result + ((className == null) ? 0 : className.hashCode());
         result = prime * result + ((fileName == null) ? 0 : fileName.hashCode());
-        result = prime * result + ((methodName == null) ? 0 : methodName.hashCode());
         result = prime * result + ((packageName == null) ? 0 : packageName.hashCode());
         result = prime * result + ((type == null) ? 0 : type.hashCode());
         return result;

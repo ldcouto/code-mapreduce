@@ -6,14 +6,15 @@ import org.apache.hadoop.mapreduce.Mapper;
 import org.apache.hadoop.mapreduce.Reducer;
 
 import pt.um.mrc.util.control.JobInformable;
-import pt.um.mrc.util.io.JavaFileInputFormat;
+import pt.um.mrc.util.control.JobRunner;
+import pt.um.mrc.util.io.JClassAndPkgInputFormat;
 
-public class PkgAndClassChache implements JobInformable
+public class PkgAndClassCache implements JobInformable
 {
     @Override
     public Class<? extends InputFormat<?, ?>> getInputFormatClass()
     {
-        return JavaFileInputFormat.class;
+        return JClassAndPkgInputFormat.class;
     }
 
     @Override
@@ -51,4 +52,10 @@ public class PkgAndClassChache implements JobInformable
     {
         return 2;
     }
+    
+	public static void main(String[] args) {
+		PkgAndClassCache me = new PkgAndClassCache();
+		JobRunner.setJob(args, me);
+		JobRunner.runJob();
+	}
 }

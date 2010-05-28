@@ -10,12 +10,12 @@ import pt.um.mrc.util.io.JFileInputFormat;
 
 public class PkgAndClassChacheTest
 {
-    private PkgAndClassChache driver;
+    private PkgAndClassCache driver;
     
     @Before
     public void setUp() throws Exception
     {
-        driver = new PkgAndClassChache();
+        driver = new PkgAndClassCache();
     }
 
     @Test

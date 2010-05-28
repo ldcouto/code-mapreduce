@@ -415,7 +415,7 @@ public class GeneralIDTest
     @Test
     public final void testHashCode_DifferentIDs()
     {
-        GeneralID id1 = new GeneralID("reduce", "Reducer", "Reducer.java", "mapred", IDType.METHOD);
+        GeneralID id1 = new GeneralID("reduce", "Mapper", "Mapper.java", "mapreduce", IDType.METHOD);
         GeneralID id2 = new GeneralID("map", "Mapper", "Mapper.java", "mapreduce", IDType.METHOD);
 
         int hash1 = id1.hashCode();
