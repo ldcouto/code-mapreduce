@@ -1,6 +1,6 @@
 package pt.um.mrc.jobs.mccabe;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.Text;
@@ -74,6 +74,16 @@ public class McCabeByFileTest
         Class<?> expected = McCabeByFileReducer.class;
         
         Class<?> actual = driver.getReducerClass();
+        
+        assertEquals(expected, actual);
+    }
+    
+    @Test
+    public final void testGetArgCount()
+    {
+        int expected = 2;
+        
+        int actual = driver.getArgCount();
         
         assertEquals(expected, actual);
     }
