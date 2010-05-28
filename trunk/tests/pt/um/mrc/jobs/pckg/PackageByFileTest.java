@@ -1,12 +1,12 @@
 package pt.um.mrc.jobs.pckg;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import org.apache.hadoop.io.Text;
 import org.junit.Before;
 import org.junit.Test;
 
-import pt.um.mrc.util.io.JavaFileInputFormat;
+import pt.um.mrc.util.io.JFileInputFormat;
 
 public class PackageByFileTest
 {
@@ -61,7 +61,7 @@ public class PackageByFileTest
     @Test
     public final void testGetInputFormatClass()
     {
-        Class<?> expected = JavaFileInputFormat.class;
+        Class<?> expected = JFileInputFormat.class;
         
         Class<?> actual = driver.getInputFormatClass();
         
