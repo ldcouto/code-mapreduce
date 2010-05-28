@@ -346,6 +346,10 @@ public class GeneralID implements WritableComparable<GeneralID>
     // FIXME add ifs
     public int compareTo(GeneralID o)
     {
+        int cmpTyp = this.type.compareTo(o.getType());
+        if (cmpTyp != 0)
+            return cmpTyp;
+        
         int cmpPkg = this.packageName.compareTo(o.getPackageName());
         if (cmpPkg != 0)
             return cmpPkg;
