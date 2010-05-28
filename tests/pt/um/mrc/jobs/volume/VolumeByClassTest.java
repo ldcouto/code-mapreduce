@@ -11,7 +11,7 @@ import org.junit.Test;
 public class VolumeByClassTest
 {
     private VolumeByClass driver;
-    
+
     @Before
     public void setUp() throws Exception
     {
@@ -22,9 +22,9 @@ public class VolumeByClassTest
     public final void testGetUsage()
     {
         String expected = "Usage: VolumeByClass <methodloc> <in> <out>";
-        
+
         String actual = driver.getUsage();
-        
+
         assertEquals(expected, actual);
     }
 
@@ -32,9 +32,9 @@ public class VolumeByClassTest
     public final void testGetMapperClass()
     {
         Class<?> expected = VolumeByClassMapper.class;
-        
+
         Class<?> actual = driver.getMapperClass();
-        
+
         assertEquals(expected, actual);
     }
 
@@ -42,9 +42,9 @@ public class VolumeByClassTest
     public final void testGetMapperKeyClass()
     {
         Class<?> expected = Text.class;
-        
+
         Class<?> actual = driver.getMapperKeyClass();
-        
+
         assertEquals(expected, actual);
     }
 
@@ -52,9 +52,9 @@ public class VolumeByClassTest
     public final void testGetMapperValueClass()
     {
         Class<?> expected = IntWritable.class;
-        
+
         Class<?> actual = driver.getMapperValueClass();
-        
+
         assertEquals(expected, actual);
     }
 
@@ -62,9 +62,9 @@ public class VolumeByClassTest
     public final void testGetInputFormatClass()
     {
         Class<?> expected = TextInputFormat.class;
-        
+
         Class<?> actual = driver.getInputFormatClass();
-        
+
         assertEquals(expected, actual);
     }
 
@@ -72,8 +72,18 @@ public class VolumeByClassTest
     public final void testGetReducerClass()
     {
         Class<?> expected = VolumeByClassReducer.class;
-        
+
         Class<?> actual = driver.getReducerClass();
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public final void testGetArgCount()
+    {
+        int expected = 3;
+
+        int actual = driver.getArgCount();
         
         assertEquals(expected, actual);
     }

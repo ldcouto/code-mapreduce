@@ -2,28 +2,30 @@ package pt.um.mrc.jobs.volume;
 
 import static org.junit.Assert.*;
 
+
 import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.Text;
-import org.apache.hadoop.mapreduce.lib.input.TextInputFormat;
 import org.junit.Before;
 import org.junit.Test;
 
-public class VolumeByFileTest
-{
-    VolumeByFile driver;
+import pt.um.mrc.util.io.JFileInputFormat;
 
+public class VolumeByFileMiscTest
+{
+    private VolumeByFileMisc driver;
+    
     @Before
     public void setUp() throws Exception
     {
-        driver = new VolumeByFile();
+        driver = new VolumeByFileMisc();
     }
 
     @Test
-    public final void testGetUsage()
+    public final void testGetInputFormatClass()
     {
-        String expected = "Usage: VolumeByFile <classVolumeLoc> <sourceFiles> <output>";
+        Class<?> expected = JFileInputFormat.class;
         
-        String actual = driver.getUsage();
+        Class<?> actual = driver.getInputFormatClass();
         
         assertEquals(expected, actual);
     }
@@ -31,7 +33,7 @@ public class VolumeByFileTest
     @Test
     public final void testGetMapperClass()
     {
-        Class<?> expected = VolumeByFileMapper.class;
+        Class<?> expected = VolumeMiscMapper.class;
         
         Class<?> actual = driver.getMapperClass();
         
@@ -59,16 +61,6 @@ public class VolumeByFileTest
     }
 
     @Test
-    public final void testGetInputFormatClass()
-    {
-        Class<?> expected = TextInputFormat.class;
-        
-        Class<?> actual = driver.getInputFormatClass();
-        
-        assertEquals(expected, actual);
-    }
-
-    @Test
     public final void testGetReducerClass()
     {
         Class<?> expected = VolumeByFileReducer.class;
@@ -77,11 +69,21 @@ public class VolumeByFileTest
         
         assertEquals(expected, actual);
     }
-    
+
+    @Test
+    public final void testGetUsage()
+    {
+        String expected = "Usage: VolumeByFileMisc <sourceFiles> <output>";
+        
+        String actual = driver.getUsage();
+        
+        assertEquals(expected, actual);
+    }
+
     @Test
     public final void testGetArgCount()
     {
-        int expected = 3;
+        int expected = 2;
         
         int actual = driver.getArgCount();
         
