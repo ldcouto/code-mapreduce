@@ -2,22 +2,21 @@ package pt.um.mrc.lib;
 
 import java.util.regex.Matcher;
 
-public class McCabeHelper
-{
-    protected McCabeHelper()
-    {}
+public class McCabeHelper {
 
-    public static int countMcCabeNumber(String text)
-    {
-        int mcCabe = 1;
-        
-        Matcher m = Patterns.CONTROL_STATEMENT_PATTERN.matcher(text);
+	protected McCabeHelper() {
+	}
 
-        while (m.find())
-        {
-            mcCabe++;
-        }
+	public static int countMcCabe(String text) {
+		int mcCabe = 1;
 
-        return mcCabe;
-    }
+		Matcher m = Patterns.CONTROL_STATEMENT_PATTERN.matcher(text);
+
+		while (m.find()) {
+			mcCabe++;
+		}
+
+		return mcCabe;
+	}
+
 }

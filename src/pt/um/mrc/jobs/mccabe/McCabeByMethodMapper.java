@@ -30,7 +30,7 @@ public class McCabeByMethodMapper extends Mapper<MethodID, Text, MethodID, IntWr
     protected void map(MethodID key, Text value, Context context) throws IOException,
             InterruptedException
     {
-        mcCabeNumber.set(McCabeHelper.countMcCabeNumber(value.toString()));
+        mcCabeNumber.set(McCabeHelper.countMcCabe(value.toString()));
         context.write(key, mcCabeNumber);
     }
 

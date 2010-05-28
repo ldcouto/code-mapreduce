@@ -40,7 +40,7 @@ public class McCabeHelperTest
 
         int expected = 3;
 
-        int result = McCabeHelper.countMcCabeNumber(input);
+        int result = McCabeHelper.countMcCabe(input);
 
         assertEquals(expected, result);
     }
@@ -52,7 +52,7 @@ public class McCabeHelperTest
         		"}\n";
 
         int expected = 1;
-        int result = McCabeHelper.countMcCabeNumber(input);
+        int result = McCabeHelper.countMcCabe(input);
 
         assertEquals(expected, result);
     }
