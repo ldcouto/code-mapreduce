@@ -7,7 +7,7 @@ import org.apache.hadoop.mapreduce.Reducer;
 
 import pt.um.mrc.util.control.JobInformable;
 import pt.um.mrc.util.control.JobRunner;
-import pt.um.mrc.util.io.JavaFileInputFormat;
+import pt.um.mrc.util.io.JFileInputFormat;
 
 /**
  * This class contains the configuration for the job that relates files with the
@@ -56,7 +56,7 @@ public class PackageByFile implements JobInformable
      */
     public Class<? extends InputFormat<?, ?>> getInputFormatClass()
     {
-        return JavaFileInputFormat.class;
+        return JFileInputFormat.class;
     }
 
     /* (non-Javadoc)

@@ -9,6 +9,7 @@ import org.apache.hadoop.mapreduce.Reducer;
 
 import pt.um.mrc.util.control.JobInformable;
 import pt.um.mrc.util.control.JobRunner;
+import pt.um.mrc.util.io.JFileInputFormat;
 import pt.um.mrc.util.io.JavaFileInputFormat;
 
 /**
@@ -44,7 +45,7 @@ public class ImportsByPackage {
 
 		@Override
 		public Class<? extends InputFormat<?, ?>> getInputFormatClass() {
-			return JavaFileInputFormat.class;
+			return JFileInputFormat.class;
 		}
 
 		@Override
