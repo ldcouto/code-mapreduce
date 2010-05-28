@@ -18,6 +18,7 @@ public class McCabeMiscMapper extends Mapper<ClassID, Text, Text, IntWritable>
     protected void map(ClassID key, Text value, Context context)
             throws IOException, InterruptedException
     {
+    //	System.out.println("Vou processar "+ key.toString() + " " + value.toString());
         keyOut.set(key.toString());
         mcCabeNumber.set(McCabeHelper.countMcCabe(value.toString()));
         
