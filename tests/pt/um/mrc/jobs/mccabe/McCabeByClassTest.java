@@ -78,4 +78,13 @@ public class McCabeByClassTest
         assertEquals(expected, actual);
     }
 
+    @Test
+    public final void testGetArgCount()
+    {
+        int expected = 3;
+        
+        int actual = driver.getArgCount();
+        
+        assertEquals(expected, actual);
+    }
 }
