@@ -118,8 +118,8 @@ public class JobRunner
     public static int runCachedJob(JobInformable job1, JobInformable job2, String cacheFolder,
             String[] args) throws Exception
     {
-        String[] j1Args = args;
-        j1Args[0] = cacheFolder;
+        String[] j1Args = args.clone();
+        j1Args[1] = cacheFolder;
 
         JobRunner.setJob(j1Args, job1);
         int status = JobRunner.runJob();
@@ -129,8 +129,7 @@ public class JobRunner
         // Prepare the Cache for the second Job
         JobRunner.configureDistCache(new Path(cacheFolder));
 
-        String[] j2Args = args;
-        j2Args[1] = cacheFolder;
+        String[] j2Args = args.clone();
 
         JobRunner.setJob(j2Args, job2);
         status = JobRunner.runJob();
