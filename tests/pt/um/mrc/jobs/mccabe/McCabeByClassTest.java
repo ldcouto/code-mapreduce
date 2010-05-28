@@ -1,6 +1,6 @@
 package pt.um.mrc.jobs.mccabe;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.Text;

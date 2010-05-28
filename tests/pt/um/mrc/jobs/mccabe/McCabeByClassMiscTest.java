@@ -1,11 +1,12 @@
 package pt.um.mrc.jobs.mccabe;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
+import org.apache.hadoop.io.IntWritable;
+import org.apache.hadoop.io.Text;
 import org.junit.Before;
 import org.junit.Test;
 
-import pt.um.mrc.util.io.JClassInputFormat;
 import pt.um.mrc.util.io.JMcClassInputFormat;
 
 public class McCabeByClassMiscTest
@@ -41,30 +42,50 @@ public class McCabeByClassMiscTest
     @Test
     public final void testGetMapperKeyClass()
     {
+        Class<?> expected = Text.class;
+        
+        Class<?> actual = driver.getMapperKeyOutClass();
+        
+        assertEquals(expected, actual);
     }
 
     @Test
     public final void testGetMapperValueClass()
     {
-        fail("Not yet implemented"); // TODO
+        Class<?> expected = IntWritable.class;
+        
+        Class<?> actual = driver.getMapperValueOutClass();
+        
+        assertEquals(expected, actual);
     }
 
     @Test
     public final void testGetReducerClass()
     {
-        fail("Not yet implemented"); // TODO
+        Class<?> expected = McCabeByClassReducer.class;
+        
+        Class<?> actual = driver.getReducerClass();
+        
+        assertEquals(expected, actual);
     }
 
     @Test
     public final void testGetUsage()
     {
-        fail("Not yet implemented"); // TODO
+        String expected = "Usage: McCabeByClassMisc <in> <out>";
+        
+        String actual = driver.getUsage();
+        
+        assertEquals(expected, actual);
     }
 
     @Test
     public final void testGetArgCount()
     {
-        fail("Not yet implemented"); // TODO
+        int expected = 2;
+        
+        int actual = driver.getArgCount();
+        
+        assertEquals(expected, actual);
     }
-
 }
