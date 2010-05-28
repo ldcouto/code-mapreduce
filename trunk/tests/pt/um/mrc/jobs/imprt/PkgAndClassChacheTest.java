@@ -1,29 +1,29 @@
-package pt.um.mrc.jobs.volume;
+package pt.um.mrc.jobs.imprt;
 
 import static org.junit.Assert.*;
 
-import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.Text;
-import org.apache.hadoop.mapreduce.lib.input.TextInputFormat;
 import org.junit.Before;
 import org.junit.Test;
 
-public class VolumeByPackageTest
-{
-    private VolumeByPackage driver;
+import pt.um.mrc.util.io.JFileInputFormat;
 
+public class PkgAndClassChacheTest
+{
+    private PkgAndClassChache driver;
+    
     @Before
     public void setUp() throws Exception
     {
-        driver = new VolumeByPackage();
+        driver = new PkgAndClassChache();
     }
 
     @Test
-    public final void testGetUsage()
+    public final void testGetInputFormatClass()
     {
-        String expected = "Usage: VolumeByPackage <in> <out>";
+        Class<?> expected = JFileInputFormat.class;
         
-        String actual = driver.getUsage();
+        Class<?> actual = driver.getInputFormatClass();
         
         assertEquals(expected, actual);
     }
@@ -31,7 +31,7 @@ public class VolumeByPackageTest
     @Test
     public final void testGetMapperClass()
     {
-        Class<?> expected = VolumeByPackageMapper.class;
+        Class<?> expected = PkgAndClassMapper.class;
         
         Class<?> actual = driver.getMapperClass();
         
@@ -51,7 +51,7 @@ public class VolumeByPackageTest
     @Test
     public final void testGetMapperValueClass()
     {
-        Class<?> expected = IntWritable.class;
+        Class<?> expected = Text.class;
         
         Class<?> actual = driver.getMapperValueClass();
         
@@ -59,27 +59,27 @@ public class VolumeByPackageTest
     }
 
     @Test
-    public final void testGetInputFormatClass()
-    {
-        Class<?> expected = TextInputFormat.class;
-        
-        Class<?> actual = driver.getInputFormatClass();
-        
-        assertEquals(expected, actual);
-    }
-
-    @Test
     public final void testGetReducerClass()
     {
-        Class<?> expected = VolumeByPackageReducer.class;
+        Class<?> expected = PkgAndClassReducer.class;
         
         Class<?> actual = driver.getReducerClass();
         
         assertEquals(expected, actual);
     }
-    
-    @Test 
-    public final void testGetArgsCount()
+
+    @Test
+    public final void testGetUsage()
+    {
+        String expected = "Usage: PkgAndClassCache <in> <cache>";
+        
+        String actual = driver.getUsage();
+        
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public final void testGetArgCount()
     {
         int expected = 2;
         

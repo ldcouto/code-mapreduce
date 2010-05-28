@@ -1,9 +1,6 @@
 package pt.um.mrc.jobs.volume;
 
-import static org.junit.Assert.*;
-
 import org.apache.hadoop.io.IntWritable;
-import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.io.WritableComparable;
 import org.apache.hadoop.mapreduce.Mapper;

@@ -21,7 +21,7 @@ public class McCabeByClassTest
     @Test
     public final void testGetUsage()
     {
-        String expected = "Usage: McCabeByClass <in> <out>";
+        String expected = "Usage: McCabeByClass <methodloc> <in> <out>";
 
         String actual = driver.getUsage();
 

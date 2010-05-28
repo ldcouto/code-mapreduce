@@ -1,29 +1,29 @@
-package pt.um.mrc.jobs.volume;
+package pt.um.mrc.jobs.imprt;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
-import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.Text;
-import org.apache.hadoop.mapreduce.lib.input.TextInputFormat;
 import org.junit.Before;
 import org.junit.Test;
 
-public class VolumeByPackageTest
+import pt.um.mrc.util.io.JavaFileInputFormat;
+
+public class ImportsByFileTest
 {
-    private VolumeByPackage driver;
+    private ImportsByFile driver;
 
     @Before
     public void setUp() throws Exception
     {
-        driver = new VolumeByPackage();
+        driver = new ImportsByFile();
     }
 
     @Test
-    public final void testGetUsage()
+    public final void testGetInputFormatClass()
     {
-        String expected = "Usage: VolumeByPackage <in> <out>";
+        Class<?> expected = JavaFileInputFormat.class;
         
-        String actual = driver.getUsage();
+        Class<?> actual = driver.getInputFormatClass();
         
         assertEquals(expected, actual);
     }
@@ -31,7 +31,7 @@ public class VolumeByPackageTest
     @Test
     public final void testGetMapperClass()
     {
-        Class<?> expected = VolumeByPackageMapper.class;
+        Class<?> expected = ImportsByFileMapper.class;
         
         Class<?> actual = driver.getMapperClass();
         
@@ -51,7 +51,7 @@ public class VolumeByPackageTest
     @Test
     public final void testGetMapperValueClass()
     {
-        Class<?> expected = IntWritable.class;
+        Class<?> expected = Text.class;
         
         Class<?> actual = driver.getMapperValueClass();
         
@@ -59,27 +59,27 @@ public class VolumeByPackageTest
     }
 
     @Test
-    public final void testGetInputFormatClass()
-    {
-        Class<?> expected = TextInputFormat.class;
-        
-        Class<?> actual = driver.getInputFormatClass();
-        
-        assertEquals(expected, actual);
-    }
-
-    @Test
     public final void testGetReducerClass()
     {
-        Class<?> expected = VolumeByPackageReducer.class;
+        Class<?> expected = ImportsByFileReducer.class;
         
         Class<?> actual = driver.getReducerClass();
         
         assertEquals(expected, actual);
     }
-    
-    @Test 
-    public final void testGetArgsCount()
+
+    @Test
+    public final void testGetUsage()
+    {
+        String expected = "Usage: ImportsByFile <cache> <out>";
+        
+        String actual = driver.getUsage();
+        
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public final void testGetArgCount()
     {
         int expected = 2;
         
