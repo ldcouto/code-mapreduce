@@ -77,5 +77,15 @@ public class PackageByFileTest
         
         assertEquals(expected, actual);
     }
+    
+    @Test
+    public final void testGetArgCount()
+    {
+        int expected = 2;
+        
+        int actual = driver.getArgCount();
+        
+        assertEquals(expected, actual);
+    }
 
 }

@@ -28,5 +28,4 @@ public class PackageByFileMapperTest
         driver.withOutput(new Text("File1.java"), new Text("pt.um.mrc.jobs.pckg"));
         driver.runTest();
     }
-
 }
