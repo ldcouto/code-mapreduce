@@ -19,87 +19,92 @@ import pt.um.mrc.util.control.JobRunner;
  * @author Luis Duarte Couto
  * @author Tiago Alves Veloso
  */
-public class McCabeByClass implements JobInformable {
+public class McCabeByClass implements JobInformable
+{
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see pt.um.mrc.util.control.JobInformable#getUsage()
-	 */
-	public String getUsage() {
-		return "Usage: McCabeByClass <methodloc> <in> <out>";
-	}
+    /*
+     * (non-Javadoc)
+     * 
+     * @see pt.um.mrc.util.control.JobInformable#getUsage()
+     */
+    public String getUsage()
+    {
+        return "Usage: McCabeByClass <methodloc> <in> <out>";
+    }
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see pt.um.mrc.util.control.JobInformable#getMapperClass()
-	 */
-	public Class<? extends Mapper<?, ?, ?, ?>> getMapperClass() {
-		return McCabeByClassMapper.class;
-	}
+    /*
+     * (non-Javadoc)
+     * 
+     * @see pt.um.mrc.util.control.JobInformable#getMapperClass()
+     */
+    public Class<? extends Mapper<?, ?, ?, ?>> getMapperClass()
+    {
+        return McCabeByClassMapper.class;
+    }
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see pt.um.mrc.util.control.JobInformable#getMapperKeyClass()
-	 */
-	public Class<?> getMapperKeyOutClass() {
-		return Text.class;
-	}
+    /*
+     * (non-Javadoc)
+     * 
+     * @see pt.um.mrc.util.control.JobInformable#getMapperKeyClass()
+     */
+    public Class<?> getMapperKeyOutClass()
+    {
+        return Text.class;
+    }
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see pt.um.mrc.util.control.JobInformable#getMapperValueClass()
-	 */
-	public Class<?> getMapperValueOutClass() {
-		return IntWritable.class;
-	}
+    /*
+     * (non-Javadoc)
+     * 
+     * @see pt.um.mrc.util.control.JobInformable#getMapperValueClass()
+     */
+    public Class<?> getMapperValueOutClass()
+    {
+        return IntWritable.class;
+    }
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see pt.um.mrc.util.control.JobInformable#getInputFormatClass()
-	 */
-	public Class<? extends InputFormat<?, ?>> getInputFormatClass() {
-		return TextInputFormat.class;
-	}
+    /*
+     * (non-Javadoc)
+     * 
+     * @see pt.um.mrc.util.control.JobInformable#getInputFormatClass()
+     */
+    public Class<? extends InputFormat<?, ?>> getInputFormatClass()
+    {
+        return TextInputFormat.class;
+    }
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see pt.um.mrc.util.control.JobInformable#getReducerClass()
-	 */
-	public Class<? extends Reducer<?, ?, ?, ?>> getReducerClass() {
-		return McCabeByClassReducer.class;
-	}
+    /*
+     * (non-Javadoc)
+     * 
+     * @see pt.um.mrc.util.control.JobInformable#getReducerClass()
+     */
+    public Class<? extends Reducer<?, ?, ?, ?>> getReducerClass()
+    {
+        return McCabeByClassReducer.class;
+    }
 
-	@Override
-	public int getArgCount() {
-		return 3;
-	}
+    @Override
+    public int getArgCount()
+    {
+        return 3;
+    }
 
-	/**
-	 * The main method.
-	 * 
-	 * @param args
-	 *            the arguments from the command line
-	 * @throws Exception
-	 *             the exception
-	 */
-	public static void main(String[] args) throws Exception {
-		McCabeByClassMisc j1 = new McCabeByClassMisc();
-		McCabeByClass j2 = new McCabeByClass();
-		String tempFolder = "tmpCls/";
-		
-		int status = JobRunner.runDoubleJob(j1, j2, tempFolder, args);
-		FileSystem.get(JobRunner.getConf()).delete(new Path(tempFolder), true);
+    /**
+     * The main method.
+     * 
+     * @param args
+     *            the arguments from the command line
+     * @throws Exception
+     *             the exception
+     */
+    public static void main(String[] args) throws Exception
+    {
+        McCabeByClassMisc j1 = new McCabeByClassMisc();
+        McCabeByClass j2 = new McCabeByClass();
+        String tempFolder = "tmpCls/";
 
-		System.exit(status);
-		McCabeByClass me = new McCabeByClass();
-		JobRunner.setJob(args, me);
-		JobRunner.runJob();
-	}
+        int status = JobRunner.runDoubleJob(j1, j2, tempFolder, args);
+        FileSystem.get(JobRunner.getConf()).delete(new Path(tempFolder), true);
 
+        System.exit(status);
+    }
 }
