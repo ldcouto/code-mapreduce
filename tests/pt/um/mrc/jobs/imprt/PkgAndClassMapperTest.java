@@ -6,29 +6,26 @@ import org.apache.hadoop.mrunit.mapreduce.MapDriver;
 import org.junit.Before;
 import org.junit.Test;
 
+import pt.um.mrc.util.datatypes.ClassID;
+
 public class PkgAndClassMapperTest {
 
-	private Mapper<Text, Text, Text, Text> mapper;
-	private MapDriver<Text, Text, Text, Text> driver;
+	private Mapper<ClassID, Text, Text, Text> mapper;
+	private MapDriver<ClassID, Text, Text, Text> driver;
 
 	@Before
 	public void setUp() throws Exception {
 		mapper = new PkgAndClassMapper();
-		driver = new MapDriver<Text, Text, Text, Text>(mapper);
+		driver = new MapDriver<ClassID, Text, Text, Text>(mapper);
 	}
 
 	@Test
 	public final void testMap() {
-		StringBuilder sb = new StringBuilder();
-		sb.append("package pt.um.mrc.jobs.imprt;\n");
-		sb.append("public class Foo_Bar{}\n");
-		sb.append("public class Foo_Bar2{}");
-		driver.withInput(new Text("pt.um.mrc.jobs.imprt-File1.java"), new Text(sb.toString()));
-
+		
+		ClassID c1 = new ClassID("Foo_Bar","File1.java","pt.um.mrc.jobs.imprt");
+		driver.withInput(c1, new Text(""));
 		driver.withOutput(new Text("pt.um.mrc.jobs.imprt"),
 				new Text("pt.um.mrc.jobs.imprt.Foo_Bar"));
-		driver.withOutput(new Text("pt.um.mrc.jobs.imprt"), new Text(
-				"pt.um.mrc.jobs.imprt.Foo_Bar2"));
 		driver.runTest();
 	}
 }

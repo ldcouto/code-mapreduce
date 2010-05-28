@@ -6,6 +6,7 @@ import org.apache.hadoop.io.Text;
 import org.junit.Before;
 import org.junit.Test;
 
+import pt.um.mrc.util.io.JClassAndPkgInputFormat;
 import pt.um.mrc.util.io.JFileInputFormat;
 
 public class PkgAndClassChacheTest
@@ -21,7 +22,7 @@ public class PkgAndClassChacheTest
     @Test
     public final void testGetInputFormatClass()
     {
-        Class<?> expected = JFileInputFormat.class;
+        Class<?> expected = JClassAndPkgInputFormat.class;
         
         Class<?> actual = driver.getInputFormatClass();
         
