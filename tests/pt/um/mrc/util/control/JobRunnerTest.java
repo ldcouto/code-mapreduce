@@ -1,8 +1,10 @@
 package pt.um.mrc.util.control;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
-import org.junit.After;
+import org.apache.hadoop.conf.Configuration;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -17,16 +19,12 @@ public class JobRunnerTest
     public void setUp() throws Exception
     {
         volJob = new VolumeByFile();
-        String command = "foo.bar.JobClass/inputs/ /outputs/";
+        String command = "arg1 arg2 arg3";
         args = command.split("\\s");
     }
 
-    @After
-    public void tearDown() throws Exception
-    {}
-
     @Test
-    public void testConstructor()
+    public final void testConstructor()
     {
         JobRunner jr = new JobRunner();
 
@@ -35,7 +33,7 @@ public class JobRunnerTest
     }
 
     @Test
-    public void testSetJob() throws Exception
+    public final void testSetJob() throws Exception
     {
         Class<?> expectedMapper = volJob.getMapperClass();
         Class<?> expectedMapperKey = volJob.getMapperKeyClass();
@@ -43,6 +41,7 @@ public class JobRunnerTest
         Class<?> expectedInputFormatClass = volJob.getInputFormatClass();
         Class<?> expectedReducer = volJob.getReducerClass();
         String expectedUsage = volJob.getUsage();
+        Configuration expectedConfiguration = new Configuration();
 
         JobRunner.setJob(args, volJob);
 
@@ -52,6 +51,7 @@ public class JobRunnerTest
         Class<?> actualInputFormatClass = JobRunner.job.getInputFormatClass();
         Class<?> actualReducer = JobRunner.job.getReducerClass();
         String actualUsage = JobRunner.cji.getUsageMessage();
+        Configuration actualConfiguration = JobRunner.getConf();
 
         assertEquals(expectedMapper, actualMapper);
         assertEquals(expectedMapperKey, actualMapperKey);
@@ -59,5 +59,6 @@ public class JobRunnerTest
         assertEquals(expectedInputFormatClass, actualInputFormatClass);
         assertEquals(expectedReducer, actualReducer);
         assertEquals(expectedUsage, actualUsage);
+        assertEquals(expectedConfiguration.toString(), actualConfiguration.toString());
     }
 }
