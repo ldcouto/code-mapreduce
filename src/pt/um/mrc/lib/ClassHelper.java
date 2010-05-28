@@ -10,18 +10,38 @@ public class ClassHelper
 {
     protected ClassHelper()
     {}
-    
-    public static ArrayList<String> findClasses(String text){
-    	ArrayList<String> r = new ArrayList<String>();
-    	
-    	Matcher classMatcher = Patterns.CLASS_NAME_PATTERN.matcher(text);
-   
-    	while (classMatcher.find()){
-    		String className = classMatcher.group(2);
-    		r.add(className);
-    	}
-	
-    	return r;
+
+    public static ArrayList<String> findClasses(String text)
+    {
+        ArrayList<String> r = new ArrayList<String>();
+
+        Matcher classMatcher = Patterns.CLASS_HEADER_PATTERN.matcher(text);
+        
+        
+        while (classMatcher.find())
+        {
+            String classHeader = new String(classMatcher.group().replaceAll("\\{", ""));
+            if (classHeader.indexOf("extends") >= 0)
+            {
+                String[] classTmp = classHeader.split("extends");
+
+                classHeader = classTmp[0].trim();
+            }
+
+            if (classHeader.indexOf("implements") >= 0)
+            {
+                String[] classTmp = classHeader.split("implements");
+
+                classHeader = classTmp[0].trim();
+            }
+
+            String[] classNameAux = classHeader.split("class");
+            classHeader = classNameAux[1].trim();
+
+            r.add(classHeader);
+        }
+
+        return r;
     }
 
     public static ArrayList<Pair<String, String>> findClassAndSuperClass(String text)
