@@ -3,6 +3,7 @@ package pt.um.mrc.util.io;
 import japa.parser.ast.CompilationUnit;
 import japa.parser.ast.body.BodyDeclaration;
 import japa.parser.ast.body.ClassOrInterfaceDeclaration;
+import japa.parser.ast.body.ConstructorDeclaration;
 import japa.parser.ast.body.EnumDeclaration;
 import japa.parser.ast.body.MethodDeclaration;
 import japa.parser.ast.body.TypeDeclaration;
@@ -64,6 +65,18 @@ public class GrabEverythingVisitor extends GrabbingVisitor<GeneralID> {
 							// b.setJavaDoc(null);
 							// b.setAnnotations(null);
 							elems.put(aux, new Text(md.toString()));
+						} else if (b instanceof ConstructorDeclaration){
+							ConstructorDeclaration cd = (ConstructorDeclaration) b;
+							StringBuilder sb = new StringBuilder();
+							sb.append(cd.getName());
+							if (cd.getParameters() != null)
+								sb.append(cd.getParameters().toString());
+							else
+								sb.append("[ ]");
+							aux.setMethodName(sb.toString());
+							cd.setAnnotations(null);
+							cd.setJavaDoc(null);
+							elems.put(aux, new Text(cd.toString()));
 						}
 					}
 				} else {
