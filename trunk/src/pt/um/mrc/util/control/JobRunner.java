@@ -54,25 +54,7 @@ public class JobRunner
     public static void setJob(String[] args, JobInformable ji)
     {
         conf = new Configuration();
-        cji = new CheckedJobInfo(ji.getUsage(), conf, ji.getArgCount());
-
-        String[] otherArgs = HadoopJobControl.checkArguments(args, cji);
-
-        mc = new MapperConfigHolder(ji.getMapperClass(), ji.getMapperKeyOutClass(), ji
-                .getMapperValueOutClass());
-
-        jc = new JobConfigHolder(ji.getClass(), ji.getInputFormatClass(), otherArgs);
-
-        try
-        {
-            job = new Job(conf);
-            HadoopJobControl.configureSimpleJob(job, jc, mc, ji.getReducerClass());
-
-        } catch (Exception e)
-        {
-            LOG.fatal(e.getMessage());
-            System.exit(2);
-        }
+        setJob(args, ji, conf);
     }
 
     public static void setJob(String[] args, JobInformable ji, Configuration conf)
@@ -81,8 +63,7 @@ public class JobRunner
 
         String[] otherArgs = HadoopJobControl.checkArguments(args, cji);
 
-        mc = new MapperConfigHolder(ji.getMapperClass(), ji.getMapperKeyOutClass(), ji
-                .getMapperValueOutClass());
+        mc = new MapperConfigHolder(ji.getMapperClass(), ji.getMapperKeyOutClass(), ji.getMapperValueOutClass());
 
         jc = new JobConfigHolder(ji.getClass(), ji.getInputFormatClass(), otherArgs);
 
@@ -97,7 +78,7 @@ public class JobRunner
             System.exit(2);
         }
     }
-    
+
     /**
      * Run job.
      * 
@@ -120,8 +101,7 @@ public class JobRunner
         return r;
     }
 
-    public static int runDoubleJob(JobInformable job1, JobInformable job2, String tempFolder,
-            String[] args)
+    public static int runDoubleJob(JobInformable job1, JobInformable job2, String tempFolder, String[] args)
     {
         String[] argsJob1 = { args[1], tempFolder };
         JobRunner.setJob(argsJob1, job1);
@@ -138,8 +118,7 @@ public class JobRunner
         return status;
     }
 
-    public static int runCachedJob(JobInformable job1, JobInformable job2, Path cacheFolder,
-            String[] args) throws Exception
+    public static int runCachedJob(JobInformable job1, JobInformable job2, Path cacheFolder, String[] args) throws Exception
     {
         String[] j1Args = args.clone();
         j1Args[1] = cacheFolder.getName();
