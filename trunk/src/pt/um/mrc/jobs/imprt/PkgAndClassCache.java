@@ -6,7 +6,6 @@ import org.apache.hadoop.mapreduce.Mapper;
 import org.apache.hadoop.mapreduce.Reducer;
 
 import pt.um.mrc.util.control.JobInformable;
-import pt.um.mrc.util.control.JobRunner;
 import pt.um.mrc.util.io.JClassAndPkgInputFormat;
 
 public class PkgAndClassCache implements JobInformable
@@ -53,9 +52,9 @@ public class PkgAndClassCache implements JobInformable
         return 2;
     }
     
-	public static void main(String[] args) {
-		PkgAndClassCache me = new PkgAndClassCache();
-		JobRunner.setJob(args, me);
-		JobRunner.runJob();
-	}
+    // public static void main(String[] args) {
+    // PkgAndClassCache me = new PkgAndClassCache();
+    // JobRunner.setJob(args, me);
+    // JobRunner.runJob();
+    // }
 }
