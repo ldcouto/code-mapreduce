@@ -7,7 +7,6 @@ import org.apache.hadoop.mapreduce.Mapper;
 import org.apache.hadoop.mapreduce.Reducer;
 
 import pt.um.mrc.util.control.JobInformable;
-import pt.um.mrc.util.control.JobRunner;
 import pt.um.mrc.util.io.JMcClassInputFormat;
 
 public class McCabeByClassMisc implements JobInformable
@@ -48,17 +47,17 @@ public class McCabeByClassMisc implements JobInformable
     {
         return "Usage: McCabeByClassMisc <in> <out>";
     }
-    
-    public static void main(String[] args)
+
+    // public static void main(String[] args)
+    // {
+    // McCabeByClassMisc me = new McCabeByClassMisc();
+    // JobRunner.setJob(args, me);
+    // JobRunner.runJob();
+    // }
+
+    @Override
+    public int getArgCount()
     {
-        McCabeByClassMisc me = new McCabeByClassMisc();
-        JobRunner.setJob(args, me);
-        JobRunner.runJob();
+        return 2;
     }
-
-	@Override
-	public int getArgCount() {
-		return 2;
-	}
-
 }

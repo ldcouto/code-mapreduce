@@ -7,7 +7,6 @@ import org.apache.hadoop.mapreduce.Mapper;
 import org.apache.hadoop.mapreduce.Reducer;
 
 import pt.um.mrc.util.control.JobInformable;
-import pt.um.mrc.util.control.JobRunner;
 import pt.um.mrc.util.io.JClassInputFormat;
 
 public class VolumeByClassMisc implements JobInformable
@@ -48,17 +47,17 @@ public class VolumeByClassMisc implements JobInformable
     {
         return "Usage: VolumeByClassMisc <in> <out>";
     }
-    
-    public static void main(String[] args)
+
+    // public static void main(String[] args)
+    // {
+    // VolumeByClassMisc me = new VolumeByClassMisc();
+    // JobRunner.setJob(args, me);
+    // JobRunner.runJob();
+    // }
+
+    @Override
+    public int getArgCount()
     {
-        VolumeByClassMisc me = new VolumeByClassMisc();
-        JobRunner.setJob(args, me);
-        JobRunner.runJob();
+        return 2;
     }
-
-	@Override
-	public int getArgCount() {
-		return 2;
-	}
-
 }
