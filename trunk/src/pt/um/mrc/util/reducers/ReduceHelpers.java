@@ -1,6 +1,6 @@
 package pt.um.mrc.util.reducers;
 
-import java.util.ArrayList;
+import java.util.TreeSet;
 
 import org.apache.hadoop.io.Text;
 
@@ -31,7 +31,7 @@ public class ReduceHelpers
     {
         // Auxiliary ArrayList to serve as an intermediate structure in
         // converting the values into a String array
-        ArrayList<Text> aux = new ArrayList<Text>();
+        TreeSet<Text> aux = new TreeSet<Text>();
 
         // Add all the values to the auxiliary ArrayList
         for (Text elem : values)
@@ -41,10 +41,6 @@ public class ReduceHelpers
 
         }
 
-        
-        aux.trimToSize();
-
-        
         // Create and initialize a string array
         int size = aux.size();
         Text[] array = new Text[size];
