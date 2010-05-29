@@ -28,9 +28,9 @@ public class FindPackagesMapper extends Mapper<Text, Text, Text, Text> {
 	
 	int i=0;
 	
-	static {;
+	static {
 		if (true)
-			;
+			i=0;
 	}
 	
 	//here is some commentary
