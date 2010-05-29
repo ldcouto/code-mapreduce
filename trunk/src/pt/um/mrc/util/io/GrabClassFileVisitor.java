@@ -11,7 +11,7 @@ import org.apache.hadoop.io.Text;
 import pt.um.mrc.util.datatypes.FileID;
 
 
-public class Misc2ClassVisitor extends GrabbingVisitor<FileID> {
+public class GrabClassFileVisitor extends GrabbingVisitor<FileID> {
 	
 		public void visit(CompilationUnit c, Object arg) {
 			StringBuilder sb = new StringBuilder();
