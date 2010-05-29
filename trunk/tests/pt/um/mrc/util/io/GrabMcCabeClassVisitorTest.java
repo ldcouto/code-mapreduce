@@ -1,0 +1,18 @@
+package pt.um.mrc.util.io;
+
+
+import org.junit.After;
+import org.junit.Before;
+
+
+public class GrabMcCabeClassVisitorTest {
+
+	@Before
+	public void setUp() throws Exception {
+	}
+
+	@After
+	public void tearDown() throws Exception {
+	}
+
+}
