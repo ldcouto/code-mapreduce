@@ -24,21 +24,24 @@ import org.apache.hadoop.mapreduce.lib.input.FileSplit;
 import pt.um.mrc.util.Constants;
 
 /**
- * A generic RecordReader that processes Java Files and feeds them to a Mapper. Files
- * are processed and fed in a record-oriented manner. The reader passes
+ * A generic RecordReader that processes Java Files and feeds them to a Mapper.
+ * Files are processed and fed in a record-oriented manner. The reader passes
  * information in the form of (Key, Value) pairs.
  * 
- * The key is must be a WritableComparable and is one of the parameters of the generic declaration. 
- * The other parameter is the parser (and specifically Visitor) that will be used to generate the values.
+ * The key must implement the WritableComparable interface and is one of the
+ * parameters of the generic declaration. The other parameter is the parser
+ * (specifically Visitor) that will be used to generate the values.
  * 
- * This record reader should never be used directly. Rather, it should be extended by other, more specific ones.
+ * This record reader can't be used directly. Rather, it should be extended by
+ * other, more specific ones.
  * 
  * @author Luis Duarte Couto
  * @author Tiago Alves Veloso
  * 
  */
 
-public class JRecordReader<ID extends WritableComparable<ID>, V extends GrabbingVisitor<ID>> extends RecordReader<ID, Text> {
+public abstract class JRecordReader<ID extends WritableComparable<ID>, V extends GrabbingVisitor<ID>>
+		extends RecordReader<ID, Text> {
 
 	protected Map<ID, Text> elems = new HashMap<ID, Text>();
 	protected String packageName;
@@ -49,7 +52,7 @@ public class JRecordReader<ID extends WritableComparable<ID>, V extends Grabbing
 	protected List<ID> keys;
 	protected int curr = -1;
 	protected V visitor;
-	
+
 	public Map<ID, Text> getMethods() {
 		return elems;
 	}
@@ -81,19 +84,15 @@ public class JRecordReader<ID extends WritableComparable<ID>, V extends Grabbing
 	protected int getCurrM() {
 		return curr;
 	}
-	
-	public JRecordReader(V v){
+
+	public JRecordReader(V v) {
 		visitor = v;
 	}
-	
-	
-	
-	
+
 	public List<ID> getKeys() {
 		return keys;
 	}
 
-	
 	public void setKeys(List<ID> keys) {
 		this.keys = keys;
 	}
@@ -104,13 +103,13 @@ public class JRecordReader<ID extends WritableComparable<ID>, V extends Grabbing
 	 * Hadoop so there is no need to worry about them.
 	 * 
 	 * It should be noted that after initialization the reader does <b>not</b>
-	 * have a Key or Value loader. The internal iterator must be moved forward
+	 * have a Key or Value loaded. The internal iterator must be moved forward
 	 * with the {@link nextKeyValue()} method.
 	 */
 
 	@Override
 	public void initialize(InputSplit inSplit, TaskAttemptContext tac) throws IOException,
-		InterruptedException {
+			InterruptedException {
 
 		// currMethodID = new MethodID();
 		// currMethod = new Text();
@@ -137,10 +136,10 @@ public class JRecordReader<ID extends WritableComparable<ID>, V extends Grabbing
 			else
 				packageName = "<default>";
 		}
-		
+
 		visitor.init(fileName, packageName, elems);
 		visitor.visit(cu, null);
-		
+
 		if (elems.keySet().size() > 0)
 			keys = new ArrayList<ID>(elems.keySet());
 	}
@@ -172,7 +171,6 @@ public class JRecordReader<ID extends WritableComparable<ID>, V extends Grabbing
 	 */
 	@Override
 	public ID getCurrentKey() throws IOException, InterruptedException {
-	//TODO remove	System.out.println("Passei a chave" + keys.get(curr).toString());
 		return keys.get(curr);
 	}
 
@@ -185,7 +183,6 @@ public class JRecordReader<ID extends WritableComparable<ID>, V extends Grabbing
 	 */
 	@Override
 	public Text getCurrentValue() throws IOException, InterruptedException {
-	//TODO remove	System.out.println("Passei a chave" + elems.get(keys.get(curr).toString()));
 		return elems.get(keys.get(curr));
 	}
 
@@ -218,8 +215,5 @@ public class JRecordReader<ID extends WritableComparable<ID>, V extends Grabbing
 		elems = null;
 		keys = null;
 	}
-
-
-
 
 }
