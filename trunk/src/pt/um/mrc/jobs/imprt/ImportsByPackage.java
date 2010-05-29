@@ -1,7 +1,5 @@
 package pt.um.mrc.jobs.imprt;
 
-import org.apache.hadoop.conf.Configuration;
-import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.InputFormat;
@@ -22,10 +20,7 @@ import pt.um.mrc.util.io.JavaFileInputFormat;
 
 public class ImportsByPackage implements JobInformable
 {
-
-    static Configuration conf = new Configuration();
-    static FileSystem fs;
-    static Path cache = new Path("tmpCacheIBP/");
+    private static Path cache = new Path("tmpCacheIBP/");
 
     public static void main(String[] args) throws Exception
     {
