@@ -89,14 +89,6 @@ public abstract class JRecordReader<ID extends WritableComparable<ID>, V extends
 		visitor = v;
 	}
 
-	public List<ID> getKeys() {
-		return keys;
-	}
-
-	public void setKeys(List<ID> keys) {
-		this.keys = keys;
-	}
-
 	/**
 	 * Called at startup. Reads the file, applies the parser and loads the
 	 * auxiliary control structures. The parameters are only used internally by
