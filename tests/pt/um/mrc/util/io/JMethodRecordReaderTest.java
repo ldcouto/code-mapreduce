@@ -29,7 +29,7 @@ import pt.um.mrc.util.datatypes.MethodID;
 
 public class JMethodRecordReaderTest
 {
-
+// This test needs to stay lengthy since it's done that covers JRecordReader
     JMethodRecordReader javaRRGoodFile = new JMethodRecordReader();
     JMethodRecordReader javaRREmptyFile = new JMethodRecordReader();
     JMethodRecordReader javaRRClassFile = new JMethodRecordReader();
