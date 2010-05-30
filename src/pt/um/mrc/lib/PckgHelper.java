@@ -23,7 +23,7 @@ public class PckgHelper
             String matchedKey = packageMatcher.group().replaceAll(";", "");
 
             // Split the string by white spaces
-            String[] tmp = matchedKey.split("\\s");
+            String[] tmp = matchedKey.split(Patterns.WHITESPACES_REGEX);
 
             pckg = tmp[1];
         }

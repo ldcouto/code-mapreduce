@@ -30,4 +30,6 @@ public class Patterns
             + andClause + "|" + orClause + ")";
 
     public static Pattern CONTROL_STATEMENT_PATTERN = Pattern.compile(controlStatementsClause);
+    
+    public static String WHITESPACES_REGEX ="\\s";
 }
