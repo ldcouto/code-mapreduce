@@ -1,7 +1,6 @@
 package pt.um.mrc.util.io.rr;
 
 import japa.parser.JavaParser;
-import japa.parser.ParseException;
 import japa.parser.ast.CompilationUnit;
 
 import java.io.IOException;
@@ -26,7 +25,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import pt.um.mrc.util.datatypes.MethodID;
-import pt.um.mrc.util.io.rr.JMethodRecordReader;
 
 public class JMethodRecordReaderTest
 {
@@ -99,9 +97,6 @@ public class JMethodRecordReaderTest
         List<MethodID> actualMKeys = jrrToTest.getmKeys();
         int actualCurrM = jrrToTest.getCurrM();
 
-        // FIXME can't seem to test the InputStreams (will read from the stream
-        // and compare against expected
-        // Assert.assertSame(expectedFileIn, actualFileIn);
         Assert.assertEquals(expectedMethods, actualMethods);
         Assert.assertEquals(expectedPackageName, actualPackageName);
         Assert.assertEquals(expectedFileName, actualFileName);

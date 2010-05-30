@@ -1,8 +1,7 @@
 package pt.um.mrc.lib;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNotSame;
+
+import static org.junit.Assert.*;
 
 import java.util.ArrayList;
 
@@ -61,7 +60,7 @@ public class ClassHelperTest
     }
     
     @Test
-    public final void testFindClasses_ValidInput()
+    public final void testFindClasses_ValidInput01()
     {
          String input = "public class Test{\n" +
          		"   public class Sapo{\n" +
@@ -75,5 +74,56 @@ public class ClassHelperTest
          ArrayList<String> result = ClassHelper.findClasses(input);
          
          assertEquals(expected, result);
+    }
+    
+    @Test
+    public final void testFindClasses_ValidInput02()
+    {
+        String input = "public class TestClass extends TestSuperClass{\n";
+        
+        ArrayList<String> expected = new ArrayList<String>();
+        expected.add(new String("TestClass"));
+        
+        ArrayList<String> actual = ClassHelper.findClasses(input);
+        
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public final void testFindClasses_ValidInput03()
+    {
+        String input = "public class TestClass implements TestInterface{\n";
+        
+        ArrayList<String> expected = new ArrayList<String>();
+        expected.add(new String("TestClass"));
+        
+        ArrayList<String> actual = ClassHelper.findClasses(input);
+        
+        assertEquals(expected, actual);
+    }
+    
+    @Test
+    public final void testFindClasses_ValidInput04()
+    {
+        String input = "public class TestClass extends TestSuperClass implements TestInterface{\n";
+        
+        ArrayList<String> expected = new ArrayList<String>();
+        expected.add(new String("TestClass"));
+        
+        ArrayList<String> actual = ClassHelper.findClasses(input);
+        
+        assertEquals(expected, actual);
+    }
+    
+    @Test
+    public final void testFindClasses_InvalidInput()
+    {
+        String input = "package pt.um.mrc.jobs.imprt;";
+        
+        ArrayList<String> expected = new ArrayList<String>();
+        
+        ArrayList<String> actual = ClassHelper.findClasses(input);
+        
+        assertEquals(expected, actual);
     }
 }
