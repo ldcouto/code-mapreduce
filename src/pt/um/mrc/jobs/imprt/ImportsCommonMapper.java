@@ -15,12 +15,6 @@ public class ImportsCommonMapper<KI, VI, KO, VO> extends CachedPackageInfoMapper
     private Text importedPackage = new Text();
 
     @Override
-    protected void setup(Context context) throws IOException, InterruptedException
-    {
-        super.setup(context);
-    }
-
-    @Override
     protected void map(Text key, Text value, Context context) throws IOException, InterruptedException
     {
         // Find the imported packages
