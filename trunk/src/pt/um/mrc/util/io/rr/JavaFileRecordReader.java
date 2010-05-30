@@ -7,8 +7,6 @@ import org.apache.hadoop.fs.FSDataInputStream;
 import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.Text;
-import org.apache.hadoop.io.compress.CompressionCodec;
-import org.apache.hadoop.io.compress.CompressionCodecFactory;
 import org.apache.hadoop.mapreduce.InputSplit;
 import org.apache.hadoop.mapreduce.RecordReader;
 import org.apache.hadoop.mapreduce.TaskAttemptContext;
@@ -41,9 +39,6 @@ public class JavaFileRecordReader extends RecordReader<Text, Text>
 
     /** The end. */
     private long end;
-
-    /** The compression codecs. */
-    private CompressionCodecFactory compressionCodecs = null;
 
     /** The Line Reader. */
     private LineReader in;
@@ -102,16 +97,6 @@ public class JavaFileRecordReader extends RecordReader<Text, Text>
     }
 
     /**
-     * Gets the compression codecs.
-     * 
-     * @return the compression codecs
-     */
-    protected CompressionCodecFactory getCompressionCodecs()
-    {
-        return compressionCodecs;
-    }
-
-    /**
      * Gets the LineReader.
      * 
      * @return the LineReader
@@ -152,21 +137,12 @@ public class JavaFileRecordReader extends RecordReader<Text, Text>
         start = split.getStart();
         end = start + split.getLength();
         final Path file = split.getPath();
-        compressionCodecs = new CompressionCodecFactory(job);
-        final CompressionCodec codec = compressionCodecs.getCodec(file);
-
+ 
         // Open the file
         FileSystem fs = file.getFileSystem(job);
         FSDataInputStream fileIn = fs.open(split.getPath());
-        if (codec != null)
-        {
-            in = new LineReader(codec.createInputStream(fileIn), job);
-        }
-        else
-        {
             in = new LineReader(fileIn, job);
-        }
-    }
+	}
 
     /**
      * In this case it just stores the filename in <code>key</code> and reads
