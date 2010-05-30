@@ -11,11 +11,12 @@ import org.apache.hadoop.io.Text;
 
 import pt.um.mrc.util.datatypes.FileID;
 
-
 public class MiscGrabberFileVisitor extends GrabbingVisitor<FileID> {
-	
-		public void visit(CompilationUnit c, Object arg) {
-			StringBuilder sb = new StringBuilder();
+
+	StringBuilder sb;
+
+	public void visit(CompilationUnit c, Object arg) {
+			sb = new StringBuilder();
 
 			if (c.getPackage() != null) {
 				sb.append(c.getPackage().toString());
@@ -29,30 +30,33 @@ public class MiscGrabberFileVisitor extends GrabbingVisitor<FileID> {
 				}
 			}
 
-			if (c.getTypes() != null) {
-				for (TypeDeclaration t : c.getTypes()) {
-					if (t instanceof EnumDeclaration) {
+			processTypes(c);
+		}
+
+	private void processTypes(CompilationUnit c) {
+		if (c.getTypes() != null) {
+			for (TypeDeclaration t : c.getTypes()) {
+				if (t instanceof EnumDeclaration) {
+					t.setAnnotations(null);
+					t.setJavaDoc(null);
+					sb.append(t.toString());
+					sb.append("\n");
+				}
+				
+				if (t instanceof ClassOrInterfaceDeclaration) {
+					if (((ClassOrInterfaceDeclaration) t).isInterface()) {
+						for (BodyDeclaration b : t.getMembers()){
+							b.setAnnotations(null);
+							b.setJavaDoc(null);
+						}
 						t.setAnnotations(null);
 						t.setJavaDoc(null);
 						sb.append(t.toString());
-						sb.append("\n");
-					}
-					if (t instanceof ClassOrInterfaceDeclaration) {
-						if (((ClassOrInterfaceDeclaration) t).isInterface()) {
-							for (BodyDeclaration b : t.getMembers()){
-								b.setAnnotations(null);
-								b.setJavaDoc(null);
-							}
-							t.setAnnotations(null);
-							t.setJavaDoc(null);
-							sb.append(t.toString());
-						}
 					}
 				}
 			}
-			FileID aux = new FileID(fileName,packageName);
-			elems.put(aux,new Text(sb.toString()));
-	//		everything = sb.toString();
 		}
-
+		FileID aux = new FileID(fileName,packageName);
+		elems.put(aux,new Text(sb.toString()));
+	}
 }
