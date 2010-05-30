@@ -6,7 +6,7 @@ import org.apache.hadoop.io.Text;
 import org.junit.Before;
 import org.junit.Test;
 
-import pt.um.mrc.util.io.JavaFileInputFormat;
+import pt.um.mrc.util.io.iformats.JavaFileInputFormat;
 
 public class ImportsByPackageTest
 {

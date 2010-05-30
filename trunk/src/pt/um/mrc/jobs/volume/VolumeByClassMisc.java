@@ -7,7 +7,7 @@ import org.apache.hadoop.mapreduce.Mapper;
 import org.apache.hadoop.mapreduce.Reducer;
 
 import pt.um.mrc.util.control.JobInformable;
-import pt.um.mrc.util.io.JClassInputFormat;
+import pt.um.mrc.util.io.iformats.JClassInputFormat;
 
 public class VolumeByClassMisc implements JobInformable
 {

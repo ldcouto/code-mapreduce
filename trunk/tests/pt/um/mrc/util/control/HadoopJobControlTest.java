@@ -13,7 +13,7 @@ import org.junit.Test;
 
 import pt.um.mrc.jobs.pckg.PackageByFileMapper;
 import pt.um.mrc.jobs.pckg.PackageByFileReducer;
-import pt.um.mrc.util.io.JavaFileInputFormat;
+import pt.um.mrc.util.io.iformats.JavaFileInputFormat;
 
 public class HadoopJobControlTest {
 

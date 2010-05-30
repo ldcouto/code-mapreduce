@@ -5,7 +5,7 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
-import pt.um.mrc.util.io.JMethodInputFormat;
+import pt.um.mrc.util.io.iformats.JMethodInputFormat;
 
 public class JobConfigurerTest
 {
