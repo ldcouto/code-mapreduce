@@ -77,13 +77,13 @@ public class JavaFileRecordReaderTest {
 	public final void testInitialize_InputSplit_TaskAttemptContext()
 			throws IOException, InterruptedException {
 		JavaFileRecordReader jrrToTest = new JavaFileRecordReader();
-		jrrToTest.initialize(fileSplitEmpty, tac);
+		jrrToTest.initialize(fileSplitGood, tac);
 		Text expectedKey = null;
 		Text expectedValue = null;
 		long expectedStart = 0;
 		long expectedPos = 0;
-		long expectedEnd = 0;
-		FileSplit expectedSplit = fileSplitEmpty;
+		long expectedEnd = 149;
+		FileSplit expectedSplit = fileSplitGood;
 		
 		Configuration auxJob=mapMockContext.getConfiguration();
 		CompressionCodecFactory expectedFactory = new CompressionCodecFactory(auxJob);
@@ -101,7 +101,7 @@ public class JavaFileRecordReaderTest {
 		CompressionCodecFactory actualFactory = jrrToTest.getCompressionCodecs();
 		LineReader actualReader = jrrToTest.getIn();
 		
-		// TODO: Can't compare codecs and line reader
+		// TODO: Can't compare codecs
 		Assert.assertEquals(expectedKey, actualKey);
 		Assert.assertEquals(expectedValue, actualValue);
 		Assert.assertEquals(expectedStart, actualStart);
@@ -109,7 +109,15 @@ public class JavaFileRecordReaderTest {
 		Assert.assertEquals(expectedEnd, actualEnd);
 		Assert.assertEquals(expectedSplit, actualSplit);
 		//Assert.assertSame(expectedFactory, actualFactory);
-		//Assert.assertEquals(expectedReader, actualReader);
+		
+		// Compare the reader.
+		Text expectedReadText = new Text();
+		expectedReader.readLine(expectedReadText);
+		
+		Text actualReadText = new Text();
+		actualReader.readLine(actualReadText);
+		
+		Assert.assertEquals(expectedReadText, actualReadText);
 	}
 
 	@Test
