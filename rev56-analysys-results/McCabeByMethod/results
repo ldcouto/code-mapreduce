@@ -1,0 +1,138 @@
+pt.um.mrc.jobs.imprt-FindPackagesMapper.java-FindPackagesMapper-map[Text key, Text value, Context context]	1
+pt.um.mrc.jobs.imprt-FindPackagesReducer.java-FindPackagesReducer-reduce[Text key, Iterable<Text> values, Context context]	1
+pt.um.mrc.jobs.imprt-ImportsByFile.java-ImportsByFile-main[String[] args]	3
+pt.um.mrc.jobs.imprt-ImportsByFile.java-ImportsByFile-runJob1[String[] otherArgs]	2
+pt.um.mrc.jobs.imprt-ImportsByFile.java-ImportsByFile-runJob2[String[] otherArgs]	1
+pt.um.mrc.jobs.imprt-ImportsByPackage.java-ImportsByPackage-main[String[] args]	3
+pt.um.mrc.jobs.imprt-ImportsByPackage.java-ImportsByPackage-runJob1[String[] otherArgs]	2
+pt.um.mrc.jobs.imprt-ImportsByPackage.java-ImportsByPackage-runJob2[String[] otherArgs]	1
+pt.um.mrc.jobs.imprt-ImportsByPackageMapper.java-ImportsByPackageMapper-map[Text key, Text value, Context context]	1
+pt.um.mrc.jobs.imprt-ImportsCommonMapper.java-ImportsCommonMapper-map[Text key, Text value, Context context]	5
+pt.um.mrc.jobs.mccabe-McCabeByClass.java-McCabeByClass-main[String[] args]	1
+pt.um.mrc.jobs.mccabe-McCabeByFile.java-McCabeByFile-main[String[] args]	1
+pt.um.mrc.jobs.mccabe-McCabeByMethod.java-McCabeByMethod-main[String[] args]	1
+pt.um.mrc.jobs.mccabe-McCabeByMethodMapper.java-McCabeByMethodMapper-map[MethodID key, Text value, Context context]	1
+pt.um.mrc.jobs.mccabe-McCabeByPackage.java-McCabeByPackage-main[String[] args]	1
+pt.um.mrc.jobs.pckg-PackageByFile.java-PackageByFile-main[String[] args]	1
+pt.um.mrc.jobs.pckg-PackageByFileMapper.java-PackageByFileMapper-map[Text key, Text value, Context context]	1
+pt.um.mrc.jobs.volume-VolumeByClass.java-VolumeByClass-main[String[] args]	1
+pt.um.mrc.jobs.volume-VolumeByFile.java-VolumeByFile-getInputFormatClass[ ]	1
+pt.um.mrc.jobs.volume-VolumeByFile.java-VolumeByFile-getMapperClass[ ]	1
+pt.um.mrc.jobs.volume-VolumeByFile.java-VolumeByFile-getMapperKeyClass[ ]	1
+pt.um.mrc.jobs.volume-VolumeByFile.java-VolumeByFile-getMapperValueClass[ ]	1
+pt.um.mrc.jobs.volume-VolumeByFile.java-VolumeByFile-getUsage[ ]	1
+pt.um.mrc.jobs.volume-VolumeByFile.java-VolumeByFile-main[String[] args]	1
+pt.um.mrc.jobs.volume-VolumeByMethod.java-VolumeByMethod-main[String[] args]	1
+pt.um.mrc.jobs.volume-VolumeByMethodMapper.java-VolumeByMethodMapper-map[MethodID key, Text value, Context context]	1
+pt.um.mrc.jobs.volume-VolumeByPackage.java-VolumeByPackage-main[String[] args]	1
+pt.um.mrc.lib-ClassHelper.java-ClassHelper-ClassHelper[ ]	1
+pt.um.mrc.lib-ClassHelper.java-ClassHelper-findClassAndSuperClass[String text]	3
+pt.um.mrc.lib-ImprtHelper.java-ImprtHelper-ImprtHelper[ ]	1
+pt.um.mrc.lib-ImprtHelper.java-ImprtHelper-findImportedPackages[String text]	2
+pt.um.mrc.lib-ImprtHelper.java-ImprtHelper-importMatcher[String packageToCheck, List<String> importedPackages]	5
+pt.um.mrc.lib-McCabeHelper.java-McCabeHelper-McCabeHelper[ ]	1
+pt.um.mrc.lib-McCabeHelper.java-McCabeHelper-countMcCabeNumber[String text]	2
+pt.um.mrc.lib-Patterns.java-Patterns-Patterns[ ]	1
+pt.um.mrc.lib-PckgHelper.java-PckgHelper-PckgHelper[ ]	1
+pt.um.mrc.lib-PckgHelper.java-PckgHelper-findPackage[String text]	2
+pt.um.mrc.lib-VolumeHelper.java-VolumeHelper-VolumeHelper[ ]	1
+pt.um.mrc.lib-VolumeHelper.java-VolumeHelper-countLinesOfCode[String code]	1
+pt.um.mrc.util.control-CheckedJobInfo.java-CheckedJobInfo-CheckedJobInfo[Configuration conf, String uM]	1
+pt.um.mrc.util.control-CheckedJobInfo.java-CheckedJobInfo-getConf[ ]	1
+pt.um.mrc.util.control-CheckedJobInfo.java-CheckedJobInfo-getUsageMessage[ ]	1
+pt.um.mrc.util.control-HadoopJobControl.java-HadoopJobControl-checkArguments[String[] args, CheckedJobInfo cji]	2
+pt.um.mrc.util.control-HadoopJobControl.java-HadoopJobControl-configureSimpleJob[Job job, JobConfigurer jc, MapperConfigurer mc, Class<? extends Reducer<?, ?, ?, ?>> reducer]	1
+pt.um.mrc.util.control-JobConfigurer.java-JobConfigurer-JobConfigurer[Class<?> classJar, Class<? extends InputFormat<?, ?>> intputFormat, Path inputPath, Path outputPath]	1
+pt.um.mrc.util.control-JobConfigurer.java-JobConfigurer-getClassJar[ ]	1
+pt.um.mrc.util.control-JobConfigurer.java-JobConfigurer-getInputPath[ ]	1
+pt.um.mrc.util.control-JobConfigurer.java-JobConfigurer-getIntputFormat[ ]	1
+pt.um.mrc.util.control-JobConfigurer.java-JobConfigurer-getOutputPath[ ]	1
+pt.um.mrc.util.control-JobInformable.java-JobInformable-getInputFormatClass[ ]	1
+pt.um.mrc.util.control-JobInformable.java-JobInformable-getMapperClass[ ]	1
+pt.um.mrc.util.control-JobInformable.java-JobInformable-getMapperKeyClass[ ]	1
+pt.um.mrc.util.control-JobInformable.java-JobInformable-getMapperValueClass[ ]	1
+pt.um.mrc.util.control-JobInformable.java-JobInformable-getUsage[ ]	1
+pt.um.mrc.util.control-JobRunner.java-JobRunner-runJob[ ]	1
+pt.um.mrc.util.control-JobRunner.java-JobRunner-setJob[String[] args, JobInformable ji]	1
+pt.um.mrc.util.control-MapperConfigurer.java-MapperConfigurer-MapperConfigurer[Class<? extends Mapper<?, ?, ?, ?>> mapper, Class<?> mapOutKey, Class<?> mapOutValue]	1
+pt.um.mrc.util.control-MapperConfigurer.java-MapperConfigurer-getMapOutKey[ ]	1
+pt.um.mrc.util.control-MapperConfigurer.java-MapperConfigurer-getMapOutValue[ ]	1
+pt.um.mrc.util.control-MapperConfigurer.java-MapperConfigurer-getMapperClass[ ]	1
+pt.um.mrc.util.datatypes-CollectionWritablePrintable.java-CollectionWritablePrintable-CollectionWritablePrintable[ ]	1
+pt.um.mrc.util.datatypes-CollectionWritablePrintable.java-CollectionWritablePrintable-CollectionWritablePrintable[Class<? extends Writable> valueClass, Writable[] values]	1
+pt.um.mrc.util.datatypes-CollectionWritablePrintable.java-CollectionWritablePrintable-toString[ ]	3
+pt.um.mrc.util.datatypes-MethodID.java-MethodID-MethodID[ ]	1
+pt.um.mrc.util.datatypes-MethodID.java-MethodID-MethodID[String aggre]	1
+pt.um.mrc.util.datatypes-MethodID.java-MethodID-MethodID[String methodName, String className, String fileName, String packageName]	1
+pt.um.mrc.util.datatypes-MethodID.java-MethodID-compareTo[MethodID o]	5
+pt.um.mrc.util.datatypes-MethodID.java-MethodID-equals[Object obj]	16
+pt.um.mrc.util.datatypes-MethodID.java-MethodID-getClassName[ ]	1
+pt.um.mrc.util.datatypes-MethodID.java-MethodID-getFileName[ ]	1
+pt.um.mrc.util.datatypes-MethodID.java-MethodID-getMethodName[ ]	1
+pt.um.mrc.util.datatypes-MethodID.java-MethodID-getPackageName[ ]	1
+pt.um.mrc.util.datatypes-MethodID.java-MethodID-hashCode[ ]	1
+pt.um.mrc.util.datatypes-MethodID.java-MethodID-prettyString[ ]	1
+pt.um.mrc.util.datatypes-MethodID.java-MethodID-readFields[DataInput in]	1
+pt.um.mrc.util.datatypes-MethodID.java-MethodID-setClassName[String className]	1
+pt.um.mrc.util.datatypes-MethodID.java-MethodID-setFileName[String fileName]	1
+pt.um.mrc.util.datatypes-MethodID.java-MethodID-setMethodName[String methodName]	1
+pt.um.mrc.util.datatypes-MethodID.java-MethodID-setPackageName[String packageName]	1
+pt.um.mrc.util.datatypes-MethodID.java-MethodID-toString[ ]	1
+pt.um.mrc.util.datatypes-MethodID.java-MethodID-write[DataOutput out]	1
+pt.um.mrc.util.datatypes-Pair.java-Pair-equals[Object other]	1
+pt.um.mrc.util.datatypes-Pair.java-Pair-getKey[ ]	1
+pt.um.mrc.util.datatypes-Pair.java-Pair-getValue[ ]	1
+pt.um.mrc.util.datatypes-Pair.java-Pair-hashCode[ ]	1
+pt.um.mrc.util.datatypes-Pair.java-Pair-setKey[K k]	1
+pt.um.mrc.util.datatypes-Pair.java-Pair-setValue[V v]	1
+pt.um.mrc.util.datatypes-PairImpl.java-PairImpl-PairImpl[ ]	1
+pt.um.mrc.util.datatypes-PairImpl.java-PairImpl-PairImpl[K key, V value]	1
+pt.um.mrc.util.datatypes-PairImpl.java-PairImpl-equals[Object obj]	10
+pt.um.mrc.util.datatypes-PairImpl.java-PairImpl-getKey[ ]	1
+pt.um.mrc.util.datatypes-PairImpl.java-PairImpl-getValue[ ]	1
+pt.um.mrc.util.datatypes-PairImpl.java-PairImpl-hashCode[ ]	1
+pt.um.mrc.util.datatypes-PairImpl.java-PairImpl-setKey[K k]	1
+pt.um.mrc.util.datatypes-PairImpl.java-PairImpl-setValue[V v]	1
+pt.um.mrc.util.io-JMethodInputFormat.java-JMethodInputFormat-createRecordReader[InputSplit arg0, TaskAttemptContext arg1]	1
+pt.um.mrc.util.io-JMethodInputFormat.java-JMethodInputFormat-isSplitable[JobContext context, Path filename]	1
+pt.um.mrc.util.io-JMethodRecordReader.java-JMethodRecordReader-close[ ]	2
+pt.um.mrc.util.io-JMethodRecordReader.java-JMethodRecordReader-getCu[ ]	1
+pt.um.mrc.util.io-JMethodRecordReader.java-JMethodRecordReader-getCurrM[ ]	1
+pt.um.mrc.util.io-JMethodRecordReader.java-JMethodRecordReader-getCurrentKey[ ]	1
+pt.um.mrc.util.io-JMethodRecordReader.java-JMethodRecordReader-getCurrentValue[ ]	1
+pt.um.mrc.util.io-JMethodRecordReader.java-JMethodRecordReader-getFileIn[ ]	1
+pt.um.mrc.util.io-JMethodRecordReader.java-JMethodRecordReader-getFileName[ ]	1
+pt.um.mrc.util.io-JMethodRecordReader.java-JMethodRecordReader-getMethods[ ]	1
+pt.um.mrc.util.io-JMethodRecordReader.java-JMethodRecordReader-getPackageName[ ]	1
+pt.um.mrc.util.io-JMethodRecordReader.java-JMethodRecordReader-getProgress[ ]	2
+pt.um.mrc.util.io-JMethodRecordReader.java-JMethodRecordReader-getfSplit[ ]	1
+pt.um.mrc.util.io-JMethodRecordReader.java-JMethodRecordReader-getmKeys[ ]	1
+pt.um.mrc.util.io-JMethodRecordReader.java-JMethodRecordReader-initialize[InputSplit inSplit, TaskAttemptContext tac]	5
+pt.um.mrc.util.io-JMethodRecordReader.java-JMethodRecordReader-nextKeyValue[ ]	3
+pt.um.mrc.util.io-JavaFileInputFormat.java-JavaFileInputFormat-createRecordReader[InputSplit split, TaskAttemptContext context]	1
+pt.um.mrc.util.io-JavaFileInputFormat.java-JavaFileInputFormat-isSplitable[JobContext context, Path filename]	1
+pt.um.mrc.util.io-JavaFileRecordReader.java-JavaFileRecordReader-close[ ]	2
+pt.um.mrc.util.io-JavaFileRecordReader.java-JavaFileRecordReader-getCompressionCodecs[ ]	1
+pt.um.mrc.util.io-JavaFileRecordReader.java-JavaFileRecordReader-getCurrentKey[ ]	1
+pt.um.mrc.util.io-JavaFileRecordReader.java-JavaFileRecordReader-getCurrentValue[ ]	1
+pt.um.mrc.util.io-JavaFileRecordReader.java-JavaFileRecordReader-getEnd[ ]	1
+pt.um.mrc.util.io-JavaFileRecordReader.java-JavaFileRecordReader-getIn[ ]	1
+pt.um.mrc.util.io-JavaFileRecordReader.java-JavaFileRecordReader-getKey[ ]	1
+pt.um.mrc.util.io-JavaFileRecordReader.java-JavaFileRecordReader-getPos[ ]	1
+pt.um.mrc.util.io-JavaFileRecordReader.java-JavaFileRecordReader-getProgress[ ]	2
+pt.um.mrc.util.io-JavaFileRecordReader.java-JavaFileRecordReader-getSplit[ ]	1
+pt.um.mrc.util.io-JavaFileRecordReader.java-JavaFileRecordReader-getStart[ ]	1
+pt.um.mrc.util.io-JavaFileRecordReader.java-JavaFileRecordReader-getValue[ ]	1
+pt.um.mrc.util.io-JavaFileRecordReader.java-JavaFileRecordReader-initialize[InputSplit genericSplit, TaskAttemptContext context]	2
+pt.um.mrc.util.io-JavaFileRecordReader.java-JavaFileRecordReader-nextKeyValue[ ]	6
+pt.um.mrc.util.mappers-LineValuesMapper.java-LineValuesMapper-map[LongWritable key, Text value, Context context]	1
+pt.um.mrc.util.mappers-LineValuesMapper.java-LineValuesMapper-processLine[String text]	2
+pt.um.mrc.util.mappers-PackageInfoMapper.java-PackageInfoMapper-buildCache[Path[] localFiles]	3
+pt.um.mrc.util.mappers-PackageInfoMapper.java-PackageInfoMapper-getInternalPackages[ ]	1
+pt.um.mrc.util.mappers-PackageInfoMapper.java-PackageInfoMapper-setInternalPackages[ArrayList<String> internalPackages]	1
+pt.um.mrc.util.mappers-PackageInfoMapper.java-PackageInfoMapper-setup[Context context]	1
+pt.um.mrc.util.reducers-CollectionReducer.java-CollectionReducer-reduce[KI key, Iterable<Text> values, Context context]	1
+pt.um.mrc.util.reducers-IdentityReducer.java-IdentityReducer-reduce[KI key, Iterable<VI> values, Context context]	1
+pt.um.mrc.util.reducers-ReduceHelpers.java-ReduceHelpers-ReduceHelpers[ ]	1
+pt.um.mrc.util.reducers-ReduceHelpers.java-ReduceHelpers-toTextArray[Iterable<? extends Text> values]	2
+pt.um.mrc.util.reducers-SumReducer.java-SumReducer-reduce[KI key, Iterable<IntWritable> values, Context context]	2

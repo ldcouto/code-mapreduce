@@ -1,0 +1,40 @@
+ClassHelper.java	{ pt.um.mrc.util.datatypes.PairImpl}
+CollectionReducer.java	{ pt.um.mrc.util.datatypes.CollectionWritablePrintable}
+FindPackagesMapper.java	{ pt.um.mrc.lib.PckgHelper}
+ImportsByFile.java	{ pt.um.mrc.util.control.CheckedJobInfo pt.um.mrc.util.control.HadoopJobControl pt.um.mrc.util.control.JobConfigurer pt.um.mrc.util.control.MapperConfigurer pt.um.mrc.util.io.JavaFileInputFormat}
+ImportsByFileReducer.java	{ pt.um.mrc.util.datatypes.CollectionWritablePrintable pt.um.mrc.util.reducers.CollectionReducer}
+ImportsByPackage.java	{ pt.um.mrc.util.control.CheckedJobInfo pt.um.mrc.util.control.HadoopJobControl pt.um.mrc.util.control.JobConfigurer pt.um.mrc.util.control.MapperConfigurer pt.um.mrc.util.io.JavaFileInputFormat}
+ImportsByPackageMapper.java	{ pt.um.mrc.lib.PckgHelper}
+ImportsByPackageReducer.java	{ pt.um.mrc.util.datatypes.CollectionWritablePrintable pt.um.mrc.util.reducers.CollectionReducer}
+ImportsCommonMapper.java	{ pt.um.mrc.lib.ImprtHelper pt.um.mrc.util.mappers.PackageInfoMapper}
+JMethodInputFormat.java	{ pt.um.mrc.util.datatypes.MethodID}
+JMethodRecordReader.java	{ pt.um.mrc.util.datatypes.MethodID}
+JobRunner.java	{ pt.um.mrc.jobs.volume.VolumeByFileReducer}
+LineValuesMapper.java	{ pt.um.mrc.util.datatypes.PairImpl}
+McCabeByClass.java	{ pt.um.mrc.util.control.CheckedJobInfo pt.um.mrc.util.control.HadoopJobControl pt.um.mrc.util.control.JobConfigurer pt.um.mrc.util.control.MapperConfigurer}
+McCabeByClassMapper.java	{ pt.um.mrc.util.mappers.LineValuesMapper}
+McCabeByClassReducer.java	{ pt.um.mrc.util.reducers.SumReducer}
+McCabeByFile.java	{ pt.um.mrc.util.control.CheckedJobInfo pt.um.mrc.util.control.HadoopJobControl pt.um.mrc.util.control.JobConfigurer pt.um.mrc.util.control.MapperConfigurer}
+McCabeByFileMapper.java	{ pt.um.mrc.util.mappers.LineValuesMapper}
+McCabeByFileReducer.java	{ pt.um.mrc.util.reducers.SumReducer}
+McCabeByMethod.java	{ pt.um.mrc.util.control.CheckedJobInfo pt.um.mrc.util.control.HadoopJobControl pt.um.mrc.util.control.JobConfigurer pt.um.mrc.util.control.MapperConfigurer pt.um.mrc.util.datatypes.MethodID pt.um.mrc.util.io.JMethodInputFormat}
+McCabeByMethodMapper.java	{ pt.um.mrc.lib.McCabeHelper pt.um.mrc.util.datatypes.MethodID}
+McCabeByMethodReducer.java	{ pt.um.mrc.util.datatypes.MethodID pt.um.mrc.util.reducers.SumReducer}
+McCabeByPackage.java	{ pt.um.mrc.util.control.CheckedJobInfo pt.um.mrc.util.control.HadoopJobControl pt.um.mrc.util.control.JobConfigurer pt.um.mrc.util.control.MapperConfigurer}
+McCabeByPackageMapper.java	{ pt.um.mrc.util.mappers.LineValuesMapper}
+McCabeByPackageReducer.java	{ pt.um.mrc.util.reducers.SumReducer}
+PackageByFile.java	{ pt.um.mrc.util.control.CheckedJobInfo pt.um.mrc.util.control.HadoopJobControl pt.um.mrc.util.control.JobConfigurer pt.um.mrc.util.control.MapperConfigurer pt.um.mrc.util.io.JavaFileInputFormat}
+PackageByFileMapper.java	{ pt.um.mrc.lib.PckgHelper}
+PackageByFileReducer.java	{ pt.um.mrc.util.reducers.IdentityReducer}
+VolumeByClass.java	{ pt.um.mrc.util.control.CheckedJobInfo pt.um.mrc.util.control.HadoopJobControl pt.um.mrc.util.control.JobConfigurer pt.um.mrc.util.control.MapperConfigurer}
+VolumeByClassMapper.java	{ pt.um.mrc.util.mappers.LineValuesMapper}
+VolumeByClassReducer.java	{ pt.um.mrc.util.reducers.SumReducer}
+VolumeByFile.java	{ pt.um.mrc.util.control.JobRunner}
+VolumeByFileMapper.java	{ pt.um.mrc.util.mappers.LineValuesMapper}
+VolumeByFileReducer.java	{ pt.um.mrc.util.reducers.SumReducer}
+VolumeByMethod.java	{ pt.um.mrc.util.control.CheckedJobInfo pt.um.mrc.util.control.HadoopJobControl pt.um.mrc.util.control.JobConfigurer pt.um.mrc.util.control.MapperConfigurer pt.um.mrc.util.datatypes.MethodID pt.um.mrc.util.io.JMethodInputFormat}
+VolumeByMethodMapper.java	{ pt.um.mrc.lib.VolumeHelper pt.um.mrc.util.datatypes.MethodID}
+VolumeByMethodReducer.java	{ pt.um.mrc.util.datatypes.MethodID pt.um.mrc.util.reducers.SumReducer}
+VolumeByPackage.java	{ pt.um.mrc.util.control.CheckedJobInfo pt.um.mrc.util.control.HadoopJobControl pt.um.mrc.util.control.JobConfigurer pt.um.mrc.util.control.MapperConfigurer}
+VolumeByPackageMapper.java	{ pt.um.mrc.util.mappers.LineValuesMapper}
+VolumeByPackageReducer.java	{ pt.um.mrc.util.reducers.SumReducer}
