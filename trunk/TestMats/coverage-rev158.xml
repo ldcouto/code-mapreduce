@@ -4,16 +4,16 @@
   <stats>
     <packages value="13"/>
     <classes value="168"/>
-    <methods value="910"/>
+    <methods value="909"/>
     <srcfiles value="168"/>
-    <srclines value="3615"/>
+    <srclines value="3612"/>
   </stats>
   <data>
     <all name="all classes">
       <coverage type="class, %" value="98%  (165/168)"/>
-      <coverage type="method, %" value="90%  (821/910)"/>
-      <coverage type="block, %" value="85%  (11700/13713)"/>
-      <coverage type="line, %" value="86%  (3106.9/3615)"/>
+      <coverage type="method, %" value="90%  (821/909)"/>
+      <coverage type="block, %" value="86%  (11732/13715)"/>
+      <coverage type="line, %" value="86%  (3110.9/3612)"/>
 
       <package name="pt.um.mrc.util.datatypes">
         <coverage type="class, %" value="85%  (11/13)"/>
@@ -1748,9 +1748,9 @@
       </package>
       <package name="pt.um.mrc.util.io.visitors">
         <coverage type="class, %" value="91%  (10/11)"/>
-        <coverage type="method, %" value="91%  (30/33)"/>
-        <coverage type="block, %" value="85%  (809/951)"/>
-        <coverage type="line, %" value="83%  (172.2/207)"/>
+        <coverage type="method, %" value="94%  (31/33)"/>
+        <coverage type="block, %" value="87%  (841/963)"/>
+        <coverage type="line, %" value="86%  (179.2/208)"/>
 
         <srcfile name="ClassGrabberFileVisitor.java">
           <coverage type="class, %" value="0%   (0/1)"/>
@@ -1773,30 +1773,6 @@
               <coverage type="method, %" value="0%   (0/1)"/>
               <coverage type="block, %" value="0%   (0/99)"/>
               <coverage type="line, %" value="0%   (0/19)"/>
-            </method>
-          </class>
-        </srcfile>
-        <srcfile name="MiscGrabberFileVisitor.java">
-          <coverage type="class, %" value="100% (1/1)"/>
-          <coverage type="method, %" value="100% (2/2)"/>
-          <coverage type="block, %" value="89%  (117/132)"/>
-          <coverage type="line, %" value="85%  (23/27)"/>
-
-          <class name="MiscGrabberFileVisitor">
-            <coverage type="class, %" value="100% (1/1)"/>
-            <coverage type="method, %" value="100% (2/2)"/>
-            <coverage type="block, %" value="89%  (117/132)"/>
-            <coverage type="line, %" value="85%  (23/27)"/>
-
-            <method name="visit (CompilationUnit, Object): void">
-              <coverage type="method, %" value="100% (1/1)"/>
-              <coverage type="block, %" value="88%  (114/129)"/>
-              <coverage type="line, %" value="85%  (22/26)"/>
-            </method>
-            <method name="MiscGrabberFileVisitor (): void">
-              <coverage type="method, %" value="100% (1/1)"/>
-              <coverage type="block, %" value="100% (3/3)"/>
-              <coverage type="line, %" value="100% (1/1)"/>
             </method>
           </class>
         </srcfile>
@@ -1868,46 +1844,17 @@
             </method>
           </class>
         </srcfile>
-        <srcfile name="GrabbingVisitor.java">
-          <coverage type="class, %" value="100% (1/1)"/>
-          <coverage type="method, %" value="67%  (2/3)"/>
-          <coverage type="block, %" value="95%  (18/19)"/>
-          <coverage type="line, %" value="88%  (7/8)"/>
-
-          <class name="GrabbingVisitor">
-            <coverage type="class, %" value="100% (1/1)"/>
-            <coverage type="method, %" value="67%  (2/3)"/>
-            <coverage type="block, %" value="95%  (18/19)"/>
-            <coverage type="line, %" value="88%  (7/8)"/>
-
-            <method name="visit (Node, Object): void">
-              <coverage type="method, %" value="0%   (0/1)"/>
-              <coverage type="block, %" value="0%   (0/1)"/>
-              <coverage type="line, %" value="0%   (0/1)"/>
-            </method>
-            <method name="GrabbingVisitor (): void">
-              <coverage type="method, %" value="100% (1/1)"/>
-              <coverage type="block, %" value="100% (8/8)"/>
-              <coverage type="line, %" value="100% (3/3)"/>
-            </method>
-            <method name="init (String, String, Map): void">
-              <coverage type="method, %" value="100% (1/1)"/>
-              <coverage type="block, %" value="100% (10/10)"/>
-              <coverage type="line, %" value="100% (4/4)"/>
-            </method>
-          </class>
-        </srcfile>
         <srcfile name="GrabClassMiscVisitorTest.java">
           <coverage type="class, %" value="100% (1/1)"/>
           <coverage type="method, %" value="100% (4/4)"/>
-          <coverage type="block, %" value="96%  (109/114)"/>
-          <coverage type="line, %" value="92%  (23.8/26)"/>
+          <coverage type="block, %" value="95%  (97/102)"/>
+          <coverage type="line, %" value="90%  (20.8/23)"/>
 
           <class name="GrabClassMiscVisitorTest">
             <coverage type="class, %" value="100% (1/1)"/>
             <coverage type="method, %" value="100% (4/4)"/>
-            <coverage type="block, %" value="96%  (109/114)"/>
-            <coverage type="line, %" value="92%  (23.8/26)"/>
+            <coverage type="block, %" value="95%  (97/102)"/>
+            <coverage type="line, %" value="90%  (20.8/23)"/>
 
             <method name="setUp (): void">
               <coverage type="method, %" value="100% (1/1)"/>
@@ -1926,22 +1873,22 @@
             </method>
             <method name="testVisitClassOrInterfaceDeclarationObject (): void">
               <coverage type="method, %" value="100% (1/1)"/>
-              <coverage type="block, %" value="100% (66/66)"/>
-              <coverage type="line, %" value="100% (14/14)"/>
+              <coverage type="block, %" value="100% (54/54)"/>
+              <coverage type="line, %" value="100% (11/11)"/>
             </method>
           </class>
         </srcfile>
         <srcfile name="GrabClassFileVisitorTest.java">
           <coverage type="class, %" value="100% (1/1)"/>
           <coverage type="method, %" value="100% (4/4)"/>
-          <coverage type="block, %" value="96%  (116/121)"/>
-          <coverage type="line, %" value="92%  (25.8/28)"/>
+          <coverage type="block, %" value="96%  (128/133)"/>
+          <coverage type="line, %" value="93%  (28.8/31)"/>
 
           <class name="GrabClassFileVisitorTest">
             <coverage type="class, %" value="100% (1/1)"/>
             <coverage type="method, %" value="100% (4/4)"/>
-            <coverage type="block, %" value="96%  (116/121)"/>
-            <coverage type="line, %" value="92%  (25.8/28)"/>
+            <coverage type="block, %" value="96%  (128/133)"/>
+            <coverage type="line, %" value="93%  (28.8/31)"/>
 
             <method name="setUp (): void">
               <coverage type="method, %" value="100% (1/1)"/>
@@ -1960,42 +1907,8 @@
             </method>
             <method name="testVisitCompilationUnitObject (): void">
               <coverage type="method, %" value="100% (1/1)"/>
-              <coverage type="block, %" value="100% (73/73)"/>
-              <coverage type="line, %" value="100% (16/16)"/>
-            </method>
-          </class>
-        </srcfile>
-        <srcfile name="MethodGrabberClassVisitor.java">
-          <coverage type="class, %" value="100% (1/1)"/>
-          <coverage type="method, %" value="100% (4/4)"/>
-          <coverage type="block, %" value="97%  (127/131)"/>
-          <coverage type="line, %" value="96%  (27/28)"/>
-
-          <class name="MethodGrabberClassVisitor">
-            <coverage type="class, %" value="100% (1/1)"/>
-            <coverage type="method, %" value="100% (4/4)"/>
-            <coverage type="block, %" value="97%  (127/131)"/>
-            <coverage type="line, %" value="96%  (27/28)"/>
-
-            <method name="buildEntry (MethodID, ConstructorDeclaration): void">
-              <coverage type="method, %" value="100% (1/1)"/>
-              <coverage type="block, %" value="91%  (40/44)"/>
-              <coverage type="line, %" value="90%  (9/10)"/>
-            </method>
-            <method name="MethodGrabberClassVisitor (): void">
-              <coverage type="method, %" value="100% (1/1)"/>
-              <coverage type="block, %" value="100% (3/3)"/>
-              <coverage type="line, %" value="100% (1/1)"/>
-            </method>
-            <method name="buildEntry (MethodID, MethodDeclaration): void">
-              <coverage type="method, %" value="100% (1/1)"/>
-              <coverage type="block, %" value="100% (44/44)"/>
-              <coverage type="line, %" value="100% (10/10)"/>
-            </method>
-            <method name="visit (ClassOrInterfaceDeclaration, Object): void">
-              <coverage type="method, %" value="100% (1/1)"/>
-              <coverage type="block, %" value="100% (40/40)"/>
-              <coverage type="line, %" value="100% (7/7)"/>
+              <coverage type="block, %" value="100% (85/85)"/>
+              <coverage type="line, %" value="100% (19/19)"/>
             </method>
           </class>
         </srcfile>
@@ -2044,6 +1957,93 @@
               <coverage type="method, %" value="100% (1/1)"/>
               <coverage type="block, %" value="100% (62/62)"/>
               <coverage type="line, %" value="100% (12/12)"/>
+            </method>
+          </class>
+        </srcfile>
+        <srcfile name="GrabbingVisitor.java">
+          <coverage type="class, %" value="100% (1/1)"/>
+          <coverage type="method, %" value="100% (2/2)"/>
+          <coverage type="block, %" value="100% (18/18)"/>
+          <coverage type="line, %" value="100% (7/7)"/>
+
+          <class name="GrabbingVisitor">
+            <coverage type="class, %" value="100% (1/1)"/>
+            <coverage type="method, %" value="100% (2/2)"/>
+            <coverage type="block, %" value="100% (18/18)"/>
+            <coverage type="line, %" value="100% (7/7)"/>
+
+            <method name="GrabbingVisitor (): void">
+              <coverage type="method, %" value="100% (1/1)"/>
+              <coverage type="block, %" value="100% (8/8)"/>
+              <coverage type="line, %" value="100% (3/3)"/>
+            </method>
+            <method name="init (String, String, Map): void">
+              <coverage type="method, %" value="100% (1/1)"/>
+              <coverage type="block, %" value="100% (10/10)"/>
+              <coverage type="line, %" value="100% (4/4)"/>
+            </method>
+          </class>
+        </srcfile>
+        <srcfile name="MethodGrabberClassVisitor.java">
+          <coverage type="class, %" value="100% (1/1)"/>
+          <coverage type="method, %" value="100% (4/4)"/>
+          <coverage type="block, %" value="100% (131/131)"/>
+          <coverage type="line, %" value="100% (28/28)"/>
+
+          <class name="MethodGrabberClassVisitor">
+            <coverage type="class, %" value="100% (1/1)"/>
+            <coverage type="method, %" value="100% (4/4)"/>
+            <coverage type="block, %" value="100% (131/131)"/>
+            <coverage type="line, %" value="100% (28/28)"/>
+
+            <method name="MethodGrabberClassVisitor (): void">
+              <coverage type="method, %" value="100% (1/1)"/>
+              <coverage type="block, %" value="100% (3/3)"/>
+              <coverage type="line, %" value="100% (1/1)"/>
+            </method>
+            <method name="buildEntry (MethodID, ConstructorDeclaration): void">
+              <coverage type="method, %" value="100% (1/1)"/>
+              <coverage type="block, %" value="100% (44/44)"/>
+              <coverage type="line, %" value="100% (10/10)"/>
+            </method>
+            <method name="buildEntry (MethodID, MethodDeclaration): void">
+              <coverage type="method, %" value="100% (1/1)"/>
+              <coverage type="block, %" value="100% (44/44)"/>
+              <coverage type="line, %" value="100% (10/10)"/>
+            </method>
+            <method name="visit (ClassOrInterfaceDeclaration, Object): void">
+              <coverage type="method, %" value="100% (1/1)"/>
+              <coverage type="block, %" value="100% (40/40)"/>
+              <coverage type="line, %" value="100% (7/7)"/>
+            </method>
+          </class>
+        </srcfile>
+        <srcfile name="MiscGrabberFileVisitor.java">
+          <coverage type="class, %" value="100% (1/1)"/>
+          <coverage type="method, %" value="100% (3/3)"/>
+          <coverage type="block, %" value="100% (145/145)"/>
+          <coverage type="line, %" value="100% (29/29)"/>
+
+          <class name="MiscGrabberFileVisitor">
+            <coverage type="class, %" value="100% (1/1)"/>
+            <coverage type="method, %" value="100% (3/3)"/>
+            <coverage type="block, %" value="100% (145/145)"/>
+            <coverage type="line, %" value="100% (29/29)"/>
+
+            <method name="MiscGrabberFileVisitor (): void">
+              <coverage type="method, %" value="100% (1/1)"/>
+              <coverage type="block, %" value="100% (3/3)"/>
+              <coverage type="line, %" value="100% (1/1)"/>
+            </method>
+            <method name="processTypes (CompilationUnit): void">
+              <coverage type="method, %" value="100% (1/1)"/>
+              <coverage type="block, %" value="100% (92/92)"/>
+              <coverage type="line, %" value="100% (18/18)"/>
+            </method>
+            <method name="visit (CompilationUnit, Object): void">
+              <coverage type="method, %" value="100% (1/1)"/>
+              <coverage type="block, %" value="100% (50/50)"/>
+              <coverage type="line, %" value="100% (10/10)"/>
             </method>
           </class>
         </srcfile>
@@ -5223,110 +5223,21 @@
       </package>
       <package name="pt.um.mrc.util.io.rr">
         <coverage type="class, %" value="100% (12/12)"/>
-        <coverage type="method, %" value="99%  (66/67)"/>
-        <coverage type="block, %" value="98%  (1286/1307)"/>
-        <coverage type="line, %" value="98%  (332/338)"/>
+        <coverage type="method, %" value="98%  (65/66)"/>
+        <coverage type="block, %" value="99%  (1286/1297)"/>
+        <coverage type="line, %" value="99%  (329/334)"/>
 
-        <srcfile name="JavaFileRecordReader.java">
-          <coverage type="class, %" value="100% (1/1)"/>
-          <coverage type="method, %" value="100% (15/15)"/>
-          <coverage type="block, %" value="95%  (209/219)"/>
-          <coverage type="line, %" value="98%  (52/53)"/>
-
-          <class name="JavaFileRecordReader">
-            <coverage type="class, %" value="100% (1/1)"/>
-            <coverage type="method, %" value="100% (15/15)"/>
-            <coverage type="block, %" value="95%  (209/219)"/>
-            <coverage type="line, %" value="98%  (52/53)"/>
-
-            <method name="initialize (InputSplit, TaskAttemptContext): void">
-              <coverage type="method, %" value="100% (1/1)"/>
-              <coverage type="block, %" value="85%  (55/65)"/>
-              <coverage type="line, %" value="92%  (12/13)"/>
-            </method>
-            <method name="JavaFileRecordReader (): void">
-              <coverage type="method, %" value="100% (1/1)"/>
-              <coverage type="block, %" value="100% (12/12)"/>
-              <coverage type="line, %" value="100% (4/4)"/>
-            </method>
-            <method name="close (): void">
-              <coverage type="method, %" value="100% (1/1)"/>
-              <coverage type="block, %" value="100% (7/7)"/>
-              <coverage type="line, %" value="100% (3/3)"/>
-            </method>
-            <method name="getCompressionCodecs (): CompressionCodecFactory">
-              <coverage type="method, %" value="100% (1/1)"/>
-              <coverage type="block, %" value="100% (3/3)"/>
-              <coverage type="line, %" value="100% (1/1)"/>
-            </method>
-            <method name="getCurrentKey (): Text">
-              <coverage type="method, %" value="100% (1/1)"/>
-              <coverage type="block, %" value="100% (3/3)"/>
-              <coverage type="line, %" value="100% (1/1)"/>
-            </method>
-            <method name="getCurrentValue (): Text">
-              <coverage type="method, %" value="100% (1/1)"/>
-              <coverage type="block, %" value="100% (3/3)"/>
-              <coverage type="line, %" value="100% (1/1)"/>
-            </method>
-            <method name="getEnd (): long">
-              <coverage type="method, %" value="100% (1/1)"/>
-              <coverage type="block, %" value="100% (3/3)"/>
-              <coverage type="line, %" value="100% (1/1)"/>
-            </method>
-            <method name="getIn (): LineReader">
-              <coverage type="method, %" value="100% (1/1)"/>
-              <coverage type="block, %" value="100% (3/3)"/>
-              <coverage type="line, %" value="100% (1/1)"/>
-            </method>
-            <method name="getKey (): Text">
-              <coverage type="method, %" value="100% (1/1)"/>
-              <coverage type="block, %" value="100% (3/3)"/>
-              <coverage type="line, %" value="100% (1/1)"/>
-            </method>
-            <method name="getPos (): long">
-              <coverage type="method, %" value="100% (1/1)"/>
-              <coverage type="block, %" value="100% (3/3)"/>
-              <coverage type="line, %" value="100% (1/1)"/>
-            </method>
-            <method name="getProgress (): float">
-              <coverage type="method, %" value="100% (1/1)"/>
-              <coverage type="block, %" value="100% (24/24)"/>
-              <coverage type="line, %" value="100% (3/3)"/>
-            </method>
-            <method name="getSplit (): FileSplit">
-              <coverage type="method, %" value="100% (1/1)"/>
-              <coverage type="block, %" value="100% (3/3)"/>
-              <coverage type="line, %" value="100% (1/1)"/>
-            </method>
-            <method name="getStart (): long">
-              <coverage type="method, %" value="100% (1/1)"/>
-              <coverage type="block, %" value="100% (3/3)"/>
-              <coverage type="line, %" value="100% (1/1)"/>
-            </method>
-            <method name="getValue (): Text">
-              <coverage type="method, %" value="100% (1/1)"/>
-              <coverage type="block, %" value="100% (3/3)"/>
-              <coverage type="line, %" value="100% (1/1)"/>
-            </method>
-            <method name="nextKeyValue (): boolean">
-              <coverage type="method, %" value="100% (1/1)"/>
-              <coverage type="block, %" value="100% (81/81)"/>
-              <coverage type="line, %" value="100% (20/20)"/>
-            </method>
-          </class>
-        </srcfile>
         <srcfile name="JavaFileRecordReaderTest.java">
           <coverage type="class, %" value="100% (1/1)"/>
           <coverage type="method, %" value="91%  (10/11)"/>
-          <coverage type="block, %" value="98%  (337/345)"/>
-          <coverage type="line, %" value="97%  (86/89)"/>
+          <coverage type="block, %" value="98%  (318/326)"/>
+          <coverage type="line, %" value="97%  (83/86)"/>
 
           <class name="JavaFileRecordReaderTest">
             <coverage type="class, %" value="100% (1/1)"/>
             <coverage type="method, %" value="91%  (10/11)"/>
-            <coverage type="block, %" value="98%  (337/345)"/>
-            <coverage type="line, %" value="97%  (86/89)"/>
+            <coverage type="block, %" value="98%  (318/326)"/>
+            <coverage type="line, %" value="97%  (83/86)"/>
 
             <method name="testClose (): void">
               <coverage type="method, %" value="0%   (0/1)"/>
@@ -5370,8 +5281,8 @@
             </method>
             <method name="testInitialize_InputSplit_TaskAttemptContext (): void">
               <coverage type="method, %" value="100% (1/1)"/>
-              <coverage type="block, %" value="100% (122/122)"/>
-              <coverage type="line, %" value="100% (34/34)"/>
+              <coverage type="block, %" value="100% (103/103)"/>
+              <coverage type="line, %" value="100% (31/31)"/>
             </method>
             <method name="testNextKeyValue_EmptyFile (): void">
               <coverage type="method, %" value="100% (1/1)"/>
@@ -5669,14 +5580,14 @@
         <srcfile name="JMethodRecordReaderTest.java">
           <coverage type="class, %" value="100% (1/1)"/>
           <coverage type="method, %" value="100% (10/10)"/>
-          <coverage type="block, %" value="100% (462/462)"/>
-          <coverage type="line, %" value="100% (117/117)"/>
+          <coverage type="block, %" value="100% (500/500)"/>
+          <coverage type="line, %" value="100% (122/122)"/>
 
           <class name="JMethodRecordReaderTest">
             <coverage type="class, %" value="100% (1/1)"/>
             <coverage type="method, %" value="100% (10/10)"/>
-            <coverage type="block, %" value="100% (462/462)"/>
-            <coverage type="line, %" value="100% (117/117)"/>
+            <coverage type="block, %" value="100% (500/500)"/>
+            <coverage type="line, %" value="100% (122/122)"/>
 
             <method name="JMethodRecordReaderTest (): void">
               <coverage type="method, %" value="100% (1/1)"/>
@@ -5715,8 +5626,8 @@
             </method>
             <method name="testInitializeInputSplitTaskAttemptContext (): void">
               <coverage type="method, %" value="100% (1/1)"/>
-              <coverage type="block, %" value="100% (102/102)"/>
-              <coverage type="line, %" value="100% (32/32)"/>
+              <coverage type="block, %" value="100% (140/140)"/>
+              <coverage type="line, %" value="100% (37/37)"/>
             </method>
             <method name="testNextKeyValue_EmptyFile (): void">
               <coverage type="method, %" value="100% (1/1)"/>
@@ -5727,6 +5638,90 @@
               <coverage type="method, %" value="100% (1/1)"/>
               <coverage type="block, %" value="100% (12/12)"/>
               <coverage type="line, %" value="100% (4/4)"/>
+            </method>
+          </class>
+        </srcfile>
+        <srcfile name="JavaFileRecordReader.java">
+          <coverage type="class, %" value="100% (1/1)"/>
+          <coverage type="method, %" value="100% (14/14)"/>
+          <coverage type="block, %" value="100% (190/190)"/>
+          <coverage type="line, %" value="100% (47/47)"/>
+
+          <class name="JavaFileRecordReader">
+            <coverage type="class, %" value="100% (1/1)"/>
+            <coverage type="method, %" value="100% (14/14)"/>
+            <coverage type="block, %" value="100% (190/190)"/>
+            <coverage type="line, %" value="100% (47/47)"/>
+
+            <method name="JavaFileRecordReader (): void">
+              <coverage type="method, %" value="100% (1/1)"/>
+              <coverage type="block, %" value="100% (9/9)"/>
+              <coverage type="line, %" value="100% (3/3)"/>
+            </method>
+            <method name="close (): void">
+              <coverage type="method, %" value="100% (1/1)"/>
+              <coverage type="block, %" value="100% (7/7)"/>
+              <coverage type="line, %" value="100% (3/3)"/>
+            </method>
+            <method name="getCurrentKey (): Text">
+              <coverage type="method, %" value="100% (1/1)"/>
+              <coverage type="block, %" value="100% (3/3)"/>
+              <coverage type="line, %" value="100% (1/1)"/>
+            </method>
+            <method name="getCurrentValue (): Text">
+              <coverage type="method, %" value="100% (1/1)"/>
+              <coverage type="block, %" value="100% (3/3)"/>
+              <coverage type="line, %" value="100% (1/1)"/>
+            </method>
+            <method name="getEnd (): long">
+              <coverage type="method, %" value="100% (1/1)"/>
+              <coverage type="block, %" value="100% (3/3)"/>
+              <coverage type="line, %" value="100% (1/1)"/>
+            </method>
+            <method name="getIn (): LineReader">
+              <coverage type="method, %" value="100% (1/1)"/>
+              <coverage type="block, %" value="100% (3/3)"/>
+              <coverage type="line, %" value="100% (1/1)"/>
+            </method>
+            <method name="getKey (): Text">
+              <coverage type="method, %" value="100% (1/1)"/>
+              <coverage type="block, %" value="100% (3/3)"/>
+              <coverage type="line, %" value="100% (1/1)"/>
+            </method>
+            <method name="getPos (): long">
+              <coverage type="method, %" value="100% (1/1)"/>
+              <coverage type="block, %" value="100% (3/3)"/>
+              <coverage type="line, %" value="100% (1/1)"/>
+            </method>
+            <method name="getProgress (): float">
+              <coverage type="method, %" value="100% (1/1)"/>
+              <coverage type="block, %" value="100% (24/24)"/>
+              <coverage type="line, %" value="100% (3/3)"/>
+            </method>
+            <method name="getSplit (): FileSplit">
+              <coverage type="method, %" value="100% (1/1)"/>
+              <coverage type="block, %" value="100% (3/3)"/>
+              <coverage type="line, %" value="100% (1/1)"/>
+            </method>
+            <method name="getStart (): long">
+              <coverage type="method, %" value="100% (1/1)"/>
+              <coverage type="block, %" value="100% (3/3)"/>
+              <coverage type="line, %" value="100% (1/1)"/>
+            </method>
+            <method name="getValue (): Text">
+              <coverage type="method, %" value="100% (1/1)"/>
+              <coverage type="block, %" value="100% (3/3)"/>
+              <coverage type="line, %" value="100% (1/1)"/>
+            </method>
+            <method name="initialize (InputSplit, TaskAttemptContext): void">
+              <coverage type="method, %" value="100% (1/1)"/>
+              <coverage type="block, %" value="100% (42/42)"/>
+              <coverage type="line, %" value="100% (9/9)"/>
+            </method>
+            <method name="nextKeyValue (): boolean">
+              <coverage type="method, %" value="100% (1/1)"/>
+              <coverage type="block, %" value="100% (81/81)"/>
+              <coverage type="line, %" value="100% (20/20)"/>
             </method>
           </class>
         </srcfile>
