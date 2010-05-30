@@ -33,14 +33,14 @@ public class HadoopJobControl
      *            the mc
      * @param reducer
      *            the reducer
-     * @throws IOException 
+     * @throws IOException
      * @throws IOException
      * @throws Exception
      * @throws Exception
      *             the exception
      */
-    public static void configureSimpleJob(Job job, JobConfigHolder jc, MapperConfigHolder mc,
-            Class<? extends Reducer<?, ?, ?, ?>> reducer) throws Exception
+    public static void configureSimpleJob(Job job, JobConfigHolder jc, MapperConfigHolder mc, Class<? extends Reducer<?, ?, ?, ?>> reducer)
+            throws Exception
     {
 
         // Configure generic Job stuff
@@ -48,13 +48,14 @@ public class HadoopJobControl
         job.setInputFormatClass(jc.getIntputFormat());
 
         int i;
-        for (i=0; i<jc.getPaths().length-1;i++){
-        	
-        	FileInputFormat.addInputPath(job, new Path(jc.getPaths()[i]));
+        for (i = 0; i < jc.getPaths().length - 1; i++)
+        {
+
+            FileInputFormat.addInputPath(job, new Path(jc.getPaths()[i]));
         }
-//        FileInputFormat.setInputPaths(job, jc.getInputPath());
+        // FileInputFormat.setInputPaths(job, jc.getInputPath());
         FileOutputFormat.setOutputPath(job, new Path(jc.getPaths()[i]));
-        
+
         // TODO uncomment me when the loop works
         // configureInputs(job, jc.getInputPath());
 

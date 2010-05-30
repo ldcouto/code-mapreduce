@@ -37,8 +37,7 @@ public class JavaFileInputFormat extends FileInputFormat<Text, Text>
      * read an entire file all at once.
      */
     @Override
-    public RecordReader<Text, Text> createRecordReader(InputSplit split, TaskAttemptContext context)
-            throws IOException, InterruptedException
+    public RecordReader<Text, Text> createRecordReader(InputSplit split, TaskAttemptContext context) throws IOException, InterruptedException
     {
         return new JavaFileRecordReader();
     }

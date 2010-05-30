@@ -13,7 +13,6 @@ import org.apache.hadoop.io.Text;
  */
 public class ReduceHelpers
 {
-
     /**
      * Protect constructor since it is a static only class
      */
@@ -36,7 +35,7 @@ public class ReduceHelpers
         // Add all the values to the auxiliary ArrayList
         for (Text elem : values)
         {
-        	//TODO investigate why this silly workaround is needed
+            // TODO investigate why this silly workaround is needed
             aux.add(new Text(elem.toString()));
 
         }

@@ -108,7 +108,7 @@ public class JavaFileRecordReaderTest {
 		Assert.assertEquals(expectedPos, actualPos);
 		Assert.assertEquals(expectedEnd, actualEnd);
 		Assert.assertEquals(expectedSplit, actualSplit);
-		//Assert.assertSame(expectedFactory, actualFactory);
+		Assert.assertSame(expectedFactory.getCodec(fileSplitGood.getPath()), actualFactory.getCodec(fileSplitGood.getPath()));
 		
 		// Compare the reader.
 		Text expectedReadText = new Text();

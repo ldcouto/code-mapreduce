@@ -11,7 +11,6 @@ import org.apache.hadoop.mapreduce.InputFormat;
  */
 public class JobConfigHolder
 {
-
     private String[] paths;
 
     /** The class jar. */
@@ -20,8 +19,7 @@ public class JobConfigHolder
     /** The input format. */
     private Class<? extends InputFormat<?, ?>> inputFormat;
 
-    public JobConfigHolder(Class<?> classjar, Class<? extends InputFormat<?, ?>> inputFormat,
-            String[] args)
+    public JobConfigHolder(Class<?> classjar, Class<? extends InputFormat<?, ?>> inputFormat, String[] args)
     {
         this.classJar = classjar;
         this.inputFormat = inputFormat;
@@ -52,5 +50,4 @@ public class JobConfigHolder
     {
         return paths;
     }
-
 }

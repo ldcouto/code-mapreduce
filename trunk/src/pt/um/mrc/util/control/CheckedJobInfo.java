@@ -21,7 +21,6 @@ public class CheckedJobInfo
 
     public CheckedJobInfo(String usageMessage, Configuration conf, int argNum)
     {
-        super();
         this.usageMessage = usageMessage;
         this.conf = conf;
         this.argNum = argNum;

@@ -20,8 +20,12 @@ import pt.um.mrc.util.mappers.LineValuesMapper;
 public class VolumeByFileMapper extends LineValuesMapper<LongWritable, Text, Text, IntWritable>
 {
 
-    /* (non-Javadoc)
-     * @see org.apache.hadoop.mapreduce.Mapper#setup(org.apache.hadoop.mapreduce.Mapper.Context)
+    /*
+     * (non-Javadoc)
+     * 
+     * @see
+     * org.apache.hadoop.mapreduce.Mapper#setup(org.apache.hadoop.mapreduce.
+     * Mapper.Context)
      */
     @Override
     protected void setup(Context context) throws IOException, InterruptedException

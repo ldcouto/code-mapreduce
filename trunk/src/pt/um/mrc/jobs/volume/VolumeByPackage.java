@@ -80,12 +80,11 @@ public class VolumeByPackage implements JobInformable
     {
         return VolumeByPackageReducer.class;
     }
-    
 
-	@Override
-	public int getArgCount() {
-		return 2;
-	}
+    public int getArgCount()
+    {
+        return 2;
+    }
 
     /**
      * The main method.

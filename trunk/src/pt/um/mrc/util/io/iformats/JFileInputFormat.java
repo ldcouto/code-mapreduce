@@ -21,10 +21,9 @@ public class JFileInputFormat extends FileInputFormat<FileID, Text>
     {
         return false;
     }
-    
+
     @Override
-    public RecordReader<FileID, Text> createRecordReader(InputSplit arg0, TaskAttemptContext arg1)
-            throws IOException, InterruptedException
+    public RecordReader<FileID, Text> createRecordReader(InputSplit arg0, TaskAttemptContext arg1) throws IOException, InterruptedException
     {
         return new JFileRecordReader();
     }

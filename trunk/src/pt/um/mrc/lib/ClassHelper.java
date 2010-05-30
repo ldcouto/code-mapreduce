@@ -16,8 +16,7 @@ public class ClassHelper
         ArrayList<String> r = new ArrayList<String>();
 
         Matcher classMatcher = Patterns.CLASS_HEADER_PATTERN.matcher(text);
-        
-        
+
         while (classMatcher.find())
         {
             String classHeader = new String(classMatcher.group().replaceAll("\\{", ""));

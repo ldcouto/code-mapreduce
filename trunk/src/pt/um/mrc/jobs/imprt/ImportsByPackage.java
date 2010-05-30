@@ -20,57 +20,48 @@ import pt.um.mrc.util.io.iformats.JavaFileInputFormat;
 
 public class ImportsByPackage implements JobInformable
 {
-    private static Path cache = new Path("tmpCacheIBP/");
-
     public static void main(String[] args) throws Exception
     {
         PkgAndClassCache job1 = new PkgAndClassCache();
         ImportsByPackage job2 = new ImportsByPackage();
+        Path cache = new Path("tmpCacheIBP/");
 
         int status = JobRunner.runCachedJob(job1, job2, cache, args);
         System.exit(status);
-
     }
 
-    @Override
-    public int getArgCount()
-    {
-        return 2;
-    }
-
-    @Override
     public Class<? extends InputFormat<?, ?>> getInputFormatClass()
     {
         return JavaFileInputFormat.class;
     }
 
-    @Override
     public Class<? extends Mapper<?, ?, ?, ?>> getMapperClass()
     {
         return ImportsByPackageMapper.class;
     }
 
-    @Override
     public Class<?> getMapperKeyOutClass()
     {
         return Text.class;
     }
 
-    @Override
     public Class<?> getMapperValueOutClass()
     {
         return Text.class;
     }
 
-    @Override
     public Class<? extends Reducer<?, ?, ?, ?>> getReducerClass()
     {
         return ImportsByPackageReducer.class;
     }
 
-    @Override
     public String getUsage()
     {
-        return "Usage: ImportsByPackage <cache> <out>";
+        return "Usage: ImportsByPackage <in> <out>";
+    }
+    
+    public int getArgCount()
+    {
+        return 2;
     }
 }

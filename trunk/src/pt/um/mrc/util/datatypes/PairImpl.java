@@ -1,17 +1,20 @@
 package pt.um.mrc.util.datatypes;
 
+import pt.um.mrc.util.Constants;
+
 /**
  * The Class PairImpl.
- *
- * @param <K> the key type
- * @param <V> the value type
+ * 
+ * @param <K>
+ *            the key type
+ * @param <V>
+ *            the value type
  */
 public class PairImpl<K, V> implements Pair<K, V>
 {
-    
     /** The key. */
     private K key;
-    
+
     /** The value. */
     private V value;
 
@@ -23,9 +26,11 @@ public class PairImpl<K, V> implements Pair<K, V>
 
     /**
      * Instantiates a new pair.
-     *
-     * @param key the key
-     * @param value the value
+     * 
+     * @param key
+     *            the key
+     * @param value
+     *            the value
      */
     public PairImpl(K key, V value)
     {
@@ -34,7 +39,9 @@ public class PairImpl<K, V> implements Pair<K, V>
         this.value = value;
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see pt.um.mrc.util.datatypes.Pair#getKey()
      */
     @Override
@@ -43,7 +50,9 @@ public class PairImpl<K, V> implements Pair<K, V>
         return key;
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see pt.um.mrc.util.datatypes.Pair#getValue()
      */
     @Override
@@ -52,7 +61,9 @@ public class PairImpl<K, V> implements Pair<K, V>
         return value;
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see pt.um.mrc.util.datatypes.Pair#setKey(java.lang.Object)
      */
     @Override
@@ -61,7 +72,9 @@ public class PairImpl<K, V> implements Pair<K, V>
         this.key = k;
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see pt.um.mrc.util.datatypes.Pair#setValue(java.lang.Object)
      */
     @Override
@@ -70,20 +83,24 @@ public class PairImpl<K, V> implements Pair<K, V>
         this.value = v;
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see java.lang.Object#hashCode()
      */
     @Override
     public int hashCode()
     {
-        final int prime = 31;
+        final int prime = Constants.HASH_CODE_PRIME;
         int result = 1;
         result = prime * result + ((key == null) ? 0 : key.hashCode());
         result = prime * result + ((value == null) ? 0 : value.hashCode());
         return result;
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see java.lang.Object#equals(java.lang.Object)
      */
     @SuppressWarnings("unchecked")

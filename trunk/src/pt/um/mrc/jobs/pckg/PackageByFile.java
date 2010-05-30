@@ -18,8 +18,9 @@ import pt.um.mrc.util.io.iformats.JFileInputFormat;
  */
 public class PackageByFile implements JobInformable
 {
-    
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see pt.um.mrc.util.control.JobInformable#getUsage()
      */
     public String getUsage()
@@ -27,7 +28,9 @@ public class PackageByFile implements JobInformable
         return "Usage: PackageByFile <in> <out>";
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see pt.um.mrc.util.control.JobInformable#getMapperClass()
      */
     public Class<? extends Mapper<?, ?, ?, ?>> getMapperClass()
@@ -35,7 +38,9 @@ public class PackageByFile implements JobInformable
         return PackageByFileMapper.class;
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see pt.um.mrc.util.control.JobInformable#getMapperKeyClass()
      */
     public Class<?> getMapperKeyOutClass()
@@ -43,7 +48,9 @@ public class PackageByFile implements JobInformable
         return Text.class;
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see pt.um.mrc.util.control.JobInformable#getMapperValueClass()
      */
     public Class<?> getMapperValueOutClass()
@@ -51,7 +58,9 @@ public class PackageByFile implements JobInformable
         return Text.class;
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see pt.um.mrc.util.control.JobInformable#getInputFormatClass()
      */
     public Class<? extends InputFormat<?, ?>> getInputFormatClass()
@@ -59,7 +68,9 @@ public class PackageByFile implements JobInformable
         return JFileInputFormat.class;
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see pt.um.mrc.util.control.JobInformable#getReducerClass()
      */
     public Class<? extends Reducer<?, ?, ?, ?>> getReducerClass()
@@ -69,9 +80,11 @@ public class PackageByFile implements JobInformable
 
     /**
      * The main method.
-     *
-     * @param args the arguments
-     * @throws Exception the exception
+     * 
+     * @param args
+     *            the arguments
+     * @throws Exception
+     *             the exception
      */
     public static void main(String[] args)
     {
@@ -80,8 +93,8 @@ public class PackageByFile implements JobInformable
         JobRunner.runJob();
     }
 
-	@Override
-	public int getArgCount() {
-		return 2;
-	}
+    public int getArgCount()
+    {
+        return 2;
+    }
 }

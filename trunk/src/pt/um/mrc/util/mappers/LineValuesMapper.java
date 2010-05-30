@@ -13,18 +13,15 @@ import pt.um.mrc.util.datatypes.PairImpl;
 
 public class LineValuesMapper<KI, VI, KO, VO> extends Mapper<LongWritable, Text, Text, IntWritable>
 {
-
     private Text outKey = new Text();
     private IntWritable outValue = new IntWritable();
     protected IDType lineContents;
 
     @Override
-    protected void map(LongWritable key, Text value, Context context) throws IOException,
-            InterruptedException
+    protected void map(LongWritable key, Text value, Context context) throws IOException, InterruptedException
     {
         Pair<String, Integer> kv = this.processLine(value.toString());
-        
-        //TODO remove this debug item
+
         outKey.set(kv.getKey());
         outValue.set(kv.getValue());
 
@@ -67,5 +64,4 @@ public class LineValuesMapper<KI, VI, KO, VO> extends Mapper<LongWritable, Text,
 
         return p;
     }
-
 }
