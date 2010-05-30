@@ -6,15 +6,14 @@ import org.apache.hadoop.io.Text;
 
 import pt.um.mrc.util.datatypes.ClassID;
 
-public class PkgGrabberClassVisitor extends GrabbingVisitor<ClassID>
-{
+public class PkgGrabberClassVisitor extends GrabbingVisitor<ClassID> {
 
-    public void visit(ClassOrInterfaceDeclaration c, Object arg)
-    {
-        if (!c.isInterface())
-        {
-            ClassID aux = new ClassID(c.getName(), fileName, packageName);
-            elems.put(aux, new Text(""));
-        }
-    }
+	public void visit(ClassOrInterfaceDeclaration c, Object arg) {
+		if (!c.isInterface()) {
+			c.setAnnotations(null);
+			c.setJavaDoc(null);
+			ClassID aux = new ClassID(c.getName(), fileName, packageName);
+			elems.put(aux, new Text(""));
+		}
+	}
 }
