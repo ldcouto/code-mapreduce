@@ -39,9 +39,6 @@ public class VolumeHelperTest
         String input = "public void helloWorld(){\n" + 
                         "\n" +
                         "System.out.println(\"Hello World\")\n" +
-                        "      \n" +
-                        "\t\n" +
-                        "\t\t \n" +
                         "}";
         
         int expected = 3;
