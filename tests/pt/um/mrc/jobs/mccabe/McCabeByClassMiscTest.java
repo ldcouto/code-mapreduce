@@ -7,7 +7,7 @@ import org.apache.hadoop.io.Text;
 import org.junit.Before;
 import org.junit.Test;
 
-import pt.um.mrc.util.io.JMcClassInputFormat;
+import pt.um.mrc.util.io.iformats.JMcClassInputFormat;
 
 public class McCabeByClassMiscTest
 {

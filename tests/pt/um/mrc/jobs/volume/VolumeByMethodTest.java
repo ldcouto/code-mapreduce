@@ -7,7 +7,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import pt.um.mrc.util.datatypes.MethodID;
-import pt.um.mrc.util.io.JMethodInputFormat;
+import pt.um.mrc.util.io.iformats.JMethodInputFormat;
 
 public class VolumeByMethodTest
 {

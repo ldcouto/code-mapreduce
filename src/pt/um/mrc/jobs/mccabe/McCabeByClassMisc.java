@@ -7,7 +7,7 @@ import org.apache.hadoop.mapreduce.Mapper;
 import org.apache.hadoop.mapreduce.Reducer;
 
 import pt.um.mrc.util.control.JobInformable;
-import pt.um.mrc.util.io.JMcClassInputFormat;
+import pt.um.mrc.util.io.iformats.JMcClassInputFormat;
 
 public class McCabeByClassMisc implements JobInformable
 {
