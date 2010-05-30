@@ -10,7 +10,6 @@ import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.Text;
-import org.apache.hadoop.io.compress.CompressionCodecFactory;
 import org.apache.hadoop.mapreduce.Counters;
 import org.apache.hadoop.mapreduce.TaskAttemptContext;
 import org.apache.hadoop.mapreduce.lib.input.FileSplit;
@@ -21,8 +20,6 @@ import org.apache.hadoop.util.LineReader;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-
-import pt.um.mrc.util.io.rr.JavaFileRecordReader;
 
 public class JavaFileRecordReaderTest {
 	JavaFileRecordReader javaRRGoodFile;
@@ -86,7 +83,6 @@ public class JavaFileRecordReaderTest {
 		FileSplit expectedSplit = fileSplitGood;
 		
 		Configuration auxJob=mapMockContext.getConfiguration();
-		CompressionCodecFactory expectedFactory = new CompressionCodecFactory(auxJob);
 		Path auxPath=new Path("TestMats/somefile");
 		
 		FileSystem auxFS =  auxPath.getFileSystem(auxJob);
@@ -98,7 +94,6 @@ public class JavaFileRecordReaderTest {
 		long actualPos = jrrToTest.getPos();
 		long actualEnd = jrrToTest.getEnd();
 		FileSplit actualSplit = jrrToTest.getSplit();
-		CompressionCodecFactory actualFactory = jrrToTest.getCompressionCodecs();
 		LineReader actualReader = jrrToTest.getIn();
 		
 		// TODO: Can't compare codecs
@@ -108,7 +103,6 @@ public class JavaFileRecordReaderTest {
 		Assert.assertEquals(expectedPos, actualPos);
 		Assert.assertEquals(expectedEnd, actualEnd);
 		Assert.assertEquals(expectedSplit, actualSplit);
-		Assert.assertSame(expectedFactory.getCodec(fileSplitGood.getPath()), actualFactory.getCodec(fileSplitGood.getPath()));
 		
 		// Compare the reader.
 		Text expectedReadText = new Text();
