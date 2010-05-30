@@ -59,6 +59,10 @@ public class GrabClassFileVisitorTest {
 		sb.append("    public void meth1t();\n\n");
 		sb.append("    public void meth1();\n");
 		sb.append("}");
+		sb.append("public enum Day {\n\n");
+		sb.append("    SUNDAY, MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY\n");
+		sb.append("}\n");
+		
 		
 		HashMap<FileID, Text> expected = new HashMap<FileID, Text>();
 		expected.put(new FileID(fileName, "pt.um.mrc.jobs.imprt"), new Text(sb.toString()));

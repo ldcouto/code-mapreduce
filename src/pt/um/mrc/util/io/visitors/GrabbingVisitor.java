@@ -1,6 +1,5 @@
 package pt.um.mrc.util.io.visitors;
 
-import japa.parser.ast.Node;
 import japa.parser.ast.visitor.VoidVisitorAdapter;
 
 import java.util.HashMap;
@@ -27,6 +26,5 @@ public abstract class GrabbingVisitor<ID extends WritableComparable<ID>> extends
         this.elems = elems;
     }
 
-    public void visit(Node c, Object arg)
-    {}
+
 }

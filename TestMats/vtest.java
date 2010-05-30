@@ -12,14 +12,15 @@ public interface jnter{
 	public void meth1();
 }
 
+public enum Day {
+    SUNDAY, MONDAY, TUESDAY, WEDNESDAY, 
+    THURSDAY, FRIDAY, SATURDAY 
+}
+
 
 
 public class FindPackagesMapper extends Mapper<Text, Text, Text, Text> {
 
-	public enum Day {
-	    SUNDAY, MONDAY, TUESDAY, WEDNESDAY, 
-	    THURSDAY, FRIDAY, SATURDAY 
-	}
 
 	
 	public FindPackagesMapper(){}
