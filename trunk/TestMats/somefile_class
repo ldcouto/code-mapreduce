@@ -1,2 +1,4 @@
 
-class Potato{}
+class Potato{
+	public Potato(){}
+}

@@ -52,9 +52,6 @@ public class GrabClassMiscVisitorTest {
 		HashMap<ClassID,Text> expected = new HashMap<ClassID,Text>();
 		StringBuilder sb = new StringBuilder();
 	
-		sb.append("public enum Day {\n\n");
-		sb.append("    SUNDAY, MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY\n");
-		sb.append("}\n");
 		sb.append("private Text packge;\n");
 		sb.append("int i = 0;\n");
 		sb.append("static {\n");

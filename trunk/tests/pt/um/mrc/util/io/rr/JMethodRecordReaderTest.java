@@ -5,6 +5,7 @@ import japa.parser.ast.CompilationUnit;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -76,10 +77,15 @@ public class JMethodRecordReaderTest
         jrrToTest.initialize(fileSplitClass, tac);
 
         Map<MethodID, Text> expectedMethods = new HashMap<MethodID, Text>();
+        MethodID mid =new MethodID("Potato[ ]","Potato","somefile_class","<default>");
+        StringBuilder sb = new StringBuilder();
+        sb.append("public Potato() {\n");
+        sb.append("}");
+        expectedMethods.put(mid, new Text(sb.toString()));
         String expectedPackageName = "<default>";
         String expectedFileName = "somefile_class";
         FileSplit expectedSplit = fileSplitClass;
-        List<MethodID> expectedMKeys = null;
+        List<MethodID> expectedMKeys = new ArrayList<MethodID>(Arrays.asList(mid));
         int expectedCurrM = -1;
 
         Configuration auxJob = tac.getConfiguration();
