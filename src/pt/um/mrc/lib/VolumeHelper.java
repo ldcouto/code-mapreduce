@@ -1,5 +1,9 @@
 package pt.um.mrc.lib;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+
 public class VolumeHelper
 {
     protected VolumeHelper()
@@ -7,7 +11,15 @@ public class VolumeHelper
 
     public static int countLinesOfCode(String code)
     {
-        // TODO: Review this RegEx
-        return code.split("[^\\s]*\\n").length;
+        int lines = 0;
+        
+        Pattern p = Pattern.compile("[^\\s]*\\n");
+        Matcher m = p.matcher(code);
+        
+        while(m.find()){
+            lines++;
+        }
+        
+        return lines;
     }
 }
