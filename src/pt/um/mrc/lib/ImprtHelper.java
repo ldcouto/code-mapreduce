@@ -8,7 +8,6 @@ import java.util.regex.Pattern;
 
 public class ImprtHelper
 {
-
     protected ImprtHelper()
     {}
 
@@ -92,7 +91,7 @@ public class ImprtHelper
                 if (cls.equals(pkgAndClass[1]))
                     r.add(cls);
         }
-            
+
         return r;
     }
 }

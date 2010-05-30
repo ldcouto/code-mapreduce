@@ -81,7 +81,7 @@ public class ImportsByPackageTest
     @Test
     public final void testGetUsage()
     {
-        String expected = "Usage: ImportsByPackage <cache> <out>";
+        String expected = "Usage: ImportsByPackage <in> <out>";
         
         String actual = driver.getUsage();
         

@@ -14,7 +14,6 @@ import org.apache.hadoop.mapreduce.Mapper;
 
 public class CachedPackageInfoMapper<KI, VI, KO, VO> extends Mapper<KI, VI, KO, VO>
 {
-
     protected Map<String, ArrayList<String>> internalClassPkgInfo = new HashMap<String, ArrayList<String>>();
 
     public Map<String, ArrayList<String>> getInternalPackages()
@@ -39,8 +38,6 @@ public class CachedPackageInfoMapper<KI, VI, KO, VO> extends Mapper<KI, VI, KO, 
 
     public void buildCache(Path[] localFiles) throws IOException
     {
-
-        // TODO Should this guard stay?
         if (localFiles != null)
         {
             FileReader fr = new FileReader(localFiles[0].toString());
@@ -54,8 +51,7 @@ public class CachedPackageInfoMapper<KI, VI, KO, VO> extends Mapper<KI, VI, KO, 
             {
                 pkgAndClass = line.split("\\t");
 
-                classes = new ArrayList<String>(Arrays.asList(pkgAndClass[1].replaceAll("\\{|\\}",
-                        "").trim().split(" ")));
+                classes = new ArrayList<String>(Arrays.asList(pkgAndClass[1].replaceAll("\\{|\\}", "").trim().split(" ")));
                 internalClassPkgInfo.put(pkgAndClass[0], classes);
             }
             br.close();
@@ -63,4 +59,3 @@ public class CachedPackageInfoMapper<KI, VI, KO, VO> extends Mapper<KI, VI, KO, 
     }
 
 }
-

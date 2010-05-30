@@ -9,53 +9,78 @@ import org.apache.hadoop.mapreduce.Reducer;
 import pt.um.mrc.util.control.JobInformable;
 import pt.um.mrc.util.io.iformats.JClassInputFormat;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class VolumeByClassMisc.
+ */
 public class VolumeByClassMisc implements JobInformable
 {
 
-    @Override
+    /*
+     * (non-Javadoc)
+     * 
+     * @see pt.um.mrc.util.control.JobInformable#getInputFormatClass()
+     */
     public Class<? extends InputFormat<?, ?>> getInputFormatClass()
     {
         return JClassInputFormat.class;
     }
 
-    @Override
+    /*
+     * (non-Javadoc)
+     * 
+     * @see pt.um.mrc.util.control.JobInformable#getMapperClass()
+     */
     public Class<? extends Mapper<?, ?, ?, ?>> getMapperClass()
     {
         return VolumeMiscMapper.class;
     }
 
-    @Override
+    /*
+     * (non-Javadoc)
+     * 
+     * @see pt.um.mrc.util.control.JobInformable#getMapperKeyOutClass()
+     */
     public Class<?> getMapperKeyOutClass()
     {
         return Text.class;
     }
 
-    @Override
+    /*
+     * (non-Javadoc)
+     * 
+     * @see pt.um.mrc.util.control.JobInformable#getMapperValueOutClass()
+     */
     public Class<?> getMapperValueOutClass()
     {
         return IntWritable.class;
     }
 
-    @Override
+    /*
+     * (non-Javadoc)
+     * 
+     * @see pt.um.mrc.util.control.JobInformable#getReducerClass()
+     */
     public Class<? extends Reducer<?, ?, ?, ?>> getReducerClass()
     {
         return VolumeByClassReducer.class;
     }
 
-    @Override
+    /*
+     * (non-Javadoc)
+     * 
+     * @see pt.um.mrc.util.control.JobInformable#getUsage()
+     */
     public String getUsage()
     {
         return "Usage: VolumeByClassMisc <in> <out>";
     }
 
-    // public static void main(String[] args)
-    // {
-    // VolumeByClassMisc me = new VolumeByClassMisc();
-    // JobRunner.setJob(args, me);
-    // JobRunner.runJob();
-    // }
-
-    @Override
+    /*
+     * (non-Javadoc)
+     * 
+     * @see pt.um.mrc.util.control.JobInformable#getArgCount()
+     */
     public int getArgCount()
     {
         return 2;

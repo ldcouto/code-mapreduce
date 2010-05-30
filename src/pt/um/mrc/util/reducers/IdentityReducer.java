@@ -16,7 +16,7 @@ import org.apache.hadoop.mapreduce.Reducer;
  *            the generic type
  * @param <VO>
  *            the generic type
- *            
+ * 
  * @author Tiago Alves Veloso
  * @author Luis Duarte Couto
  */

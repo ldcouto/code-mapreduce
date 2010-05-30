@@ -20,7 +20,6 @@ import pt.um.mrc.util.io.iformats.JMethodInputFormat;
 
 public class McCabeByMethod implements JobInformable
 {
-
     /*
      * (non-Javadoc)
      * 
@@ -96,8 +95,8 @@ public class McCabeByMethod implements JobInformable
         JobRunner.runJob();
     }
 
-	@Override
-	public int getArgCount() {
-		return 2;
-	}
+    public int getArgCount()
+    {
+        return 2;
+    }
 }

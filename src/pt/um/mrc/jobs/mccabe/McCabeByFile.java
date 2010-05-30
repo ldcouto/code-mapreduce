@@ -19,7 +19,6 @@ import pt.um.mrc.util.control.JobRunner;
  */
 public class McCabeByFile implements JobInformable
 {
-
     /*
      * (non-Javadoc)
      * 
@@ -80,6 +79,11 @@ public class McCabeByFile implements JobInformable
         return McCabeByFileReducer.class;
     }
 
+    public int getArgCount()
+    {
+        return 2;
+    }
+
     /**
      * The main method.
      * 
@@ -90,15 +94,8 @@ public class McCabeByFile implements JobInformable
      */
     public static void main(String[] args)
     {
-    	
-    	//TODO check if this needs work.
         McCabeByFile me = new McCabeByFile();
         JobRunner.setJob(args, me);
         JobRunner.runJob();
     }
-
-	@Override
-	public int getArgCount() {
-		return 2;
-	}
 }

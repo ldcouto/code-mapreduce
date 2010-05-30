@@ -17,7 +17,6 @@ import org.apache.hadoop.mapreduce.Job;
  */
 public class JobRunner
 {
-
     protected static Log LOG = LogFactory.getLog(JobRunner.class);
 
     /** The configuration. */

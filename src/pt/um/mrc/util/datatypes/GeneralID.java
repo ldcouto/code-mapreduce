@@ -6,6 +6,8 @@ import java.io.IOException;
 
 import org.apache.hadoop.io.WritableComparable;
 
+import pt.um.mrc.util.Constants;
+
 // TODO: Auto-generated Javadoc
 /**
  * The Class MethodID represents an Identifier of a method. It's composed by the
@@ -14,7 +16,6 @@ import org.apache.hadoop.io.WritableComparable;
 
 public class GeneralID implements WritableComparable<GeneralID>
 {
-
     /** The method name. */
     String methodName;
 
@@ -52,8 +53,7 @@ public class GeneralID implements WritableComparable<GeneralID>
      * @param packageName
      *            the package name
      */
-    public GeneralID(String methodName, String className, String fileName, String packageName,
-            IDType idt)
+    public GeneralID(String methodName, String className, String fileName, String packageName, IDType idt)
     {
         this.methodName = methodName;
         this.className = className;
@@ -268,7 +268,7 @@ public class GeneralID implements WritableComparable<GeneralID>
     @Override
     public int hashCode()
     {
-        final int prime = 31;
+        final int prime = Constants.HASH_CODE_PRIME;
         int result = 1;
         result = prime * result + ((methodName == null) ? 0 : methodName.hashCode());
         result = prime * result + ((className == null) ? 0 : className.hashCode());
@@ -382,7 +382,6 @@ public class GeneralID implements WritableComparable<GeneralID>
      * @see java.lang.Comparable#compareTo(java.lang.Object)
      */
     @Override
-    // FIXME add ifs
     public int compareTo(GeneralID o)
     {
         int cmpTyp = this.type.compareTo(o.getType());

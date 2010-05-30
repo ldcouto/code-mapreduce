@@ -18,12 +18,14 @@ import pt.um.mrc.util.datatypes.CollectionWritablePrintable;
  * @param <KI>
  *            the generic type.
  * @param <VI>
- *            the generic type should extend the org.apache.hadoop.io.Text class.
+ *            the generic type should extend the org.apache.hadoop.io.Text
+ *            class.
  * @param <KO>
  *            the generic type should be the same type as <KI>.
  * @param <VO>
- *            the generic type should extend the CollectionWritablePrintable class.
- *            
+ *            the generic type should extend the CollectionWritablePrintable
+ *            class.
+ * 
  * @author Tiago Alves Veloso
  * @author Luis Duarte Couto
  */
@@ -39,12 +41,10 @@ public class CollectionReducer<KI, VI extends Text, KO extends KI, VO extends Co
      * java.lang.Iterable, org.apache.hadoop.mapreduce.Reducer.Context)
      */
     @Override
-    public void reduce(KI key, Iterable<Text> values, Context context) throws IOException,
-            InterruptedException
-    {	
-        CollectionWritablePrintable valuesCollection = new CollectionWritablePrintable(
-                Writable.class, ReduceHelpers.toTextArray(values));
-        
+    public void reduce(KI key, Iterable<Text> values, Context context) throws IOException, InterruptedException
+    {
+        CollectionWritablePrintable valuesCollection = new CollectionWritablePrintable(Writable.class, ReduceHelpers.toTextArray(values));
+
         context.write(key, valuesCollection);
     }
 }

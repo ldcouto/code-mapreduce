@@ -8,21 +8,25 @@ import org.apache.hadoop.io.Text;
 
 import pt.um.mrc.util.datatypes.ClassID;
 
-public class GrabMcCabeClassVisitor extends GrabbingVisitor<ClassID> {
+public class GrabMcCabeClassVisitor extends GrabbingVisitor<ClassID>
+{
+    public void visit(ClassOrInterfaceDeclaration c, Object arg)
+    {
+        if (!c.isInterface())
+        {
+            ClassID aux = new ClassID(c.getName(), fileName, packageName);
+            StringBuilder sb = new StringBuilder();
 
-	public void visit(ClassOrInterfaceDeclaration c, Object arg) {
-		if (!c.isInterface()){
-			ClassID aux = new ClassID(c.getName(), fileName, packageName);
-			StringBuilder sb = new StringBuilder();
-
-			for (BodyDeclaration td : c.getMembers()) {
-				if (td instanceof InitializerDeclaration) {
-					sb.append(td.toString());
-					sb.append("\n");
-				}
-			}
-			if (sb.toString().length() > 0)
-				elems.put(aux, new Text(sb.toString()));
-		}
-	}
+            for (BodyDeclaration td : c.getMembers())
+            {
+                if (td instanceof InitializerDeclaration)
+                {
+                    sb.append(td.toString());
+                    sb.append("\n");
+                }
+            }
+            if (sb.toString().length() > 0)
+                elems.put(aux, new Text(sb.toString()));
+        }
+    }
 }

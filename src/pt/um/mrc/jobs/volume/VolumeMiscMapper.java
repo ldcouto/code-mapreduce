@@ -13,14 +13,13 @@ public class VolumeMiscMapper extends Mapper<WritableComparable<?>, Text, Text, 
 {
     private Text keyOut = new Text();
     private IntWritable valueOut = new IntWritable();
-    
+
     @Override
-    protected void map(WritableComparable<?> key, Text value, Context context)
-            throws IOException, InterruptedException
+    protected void map(WritableComparable<?> key, Text value, Context context) throws IOException, InterruptedException
     {
         keyOut.set(key.toString());
         valueOut.set(VolumeHelper.countLinesOfCode(value.toString()));
-        
+
         context.write(keyOut, valueOut);
     }
 }

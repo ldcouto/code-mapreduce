@@ -19,9 +19,10 @@ import pt.um.mrc.util.io.visitors.MethodGrabberClassVisitor;
  * 
  */
 
-public class JMethodRecordReader extends JRecordReader<MethodID,MethodGrabberClassVisitor> {
-
-	public JMethodRecordReader(){
-		super(new MethodGrabberClassVisitor());
-	}
+public class JMethodRecordReader extends JRecordReader<MethodID, MethodGrabberClassVisitor>
+{
+    public JMethodRecordReader()
+    {
+        super(new MethodGrabberClassVisitor());
+    }
 }

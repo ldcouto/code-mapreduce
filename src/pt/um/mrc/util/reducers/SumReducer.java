@@ -18,9 +18,7 @@ import org.apache.hadoop.mapreduce.Reducer;
  * @param <VO>
  *            the generic type should extend IntWritable.
  */
-public class SumReducer<KI, VI extends IntWritable, KO extends KI, VO extends IntWritable>
-                                                                                           extends
-                                                                                           Reducer<KI, IntWritable, KI, IntWritable>
+public class SumReducer<KI, VI extends IntWritable, KO extends KI, VO extends IntWritable> extends Reducer<KI, IntWritable, KI, IntWritable>
 {
 
     /** The total result of the sum. */
@@ -33,8 +31,7 @@ public class SumReducer<KI, VI extends IntWritable, KO extends KI, VO extends In
      * java.lang.Iterable, org.apache.hadoop.mapreduce.Reducer.Context)
      */
     @Override
-    protected void reduce(KI key, Iterable<IntWritable> values, Context context)
-            throws IOException, InterruptedException
+    protected void reduce(KI key, Iterable<IntWritable> values, Context context) throws IOException, InterruptedException
     {
         int sum = 0;
 

@@ -42,8 +42,7 @@ public class JMethodInputFormat extends FileInputFormat<MethodID, Text>
      * org.apache.hadoop.mapreduce.TaskAttemptContext)
      */
     @Override
-    public RecordReader<MethodID, Text> createRecordReader(InputSplit arg0, TaskAttemptContext arg1)
-            throws IOException, InterruptedException
+    public RecordReader<MethodID, Text> createRecordReader(InputSplit arg0, TaskAttemptContext arg1) throws IOException, InterruptedException
     {
         return new JMethodRecordReader();
     }

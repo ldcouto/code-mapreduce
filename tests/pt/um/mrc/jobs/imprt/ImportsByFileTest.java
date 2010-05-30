@@ -71,7 +71,7 @@ public class ImportsByFileTest
     @Test
     public final void testGetUsage()
     {
-        String expected = "Usage: ImportsByFile <cache> <out>";
+        String expected = "Usage: ImportsByFile <in> <out>";
         
         String actual = driver.getUsage();
         

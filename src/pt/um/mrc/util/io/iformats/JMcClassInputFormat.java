@@ -21,10 +21,9 @@ public class JMcClassInputFormat extends FileInputFormat<ClassID, Text>
     {
         return false;
     }
-    
+
     @Override
-    public RecordReader<ClassID, Text> createRecordReader(InputSplit arg0, TaskAttemptContext arg1)
-            throws IOException, InterruptedException
+    public RecordReader<ClassID, Text> createRecordReader(InputSplit arg0, TaskAttemptContext arg1) throws IOException, InterruptedException
     {
         return new JMcClassRecordReader();
     }

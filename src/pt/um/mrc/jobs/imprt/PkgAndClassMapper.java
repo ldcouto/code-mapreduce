@@ -11,14 +11,13 @@ public class PkgAndClassMapper extends Mapper<ClassID, Text, Text, Text>
 {
     private Text cls = new Text();
     private Text pkg = new Text();
-    
+
     @Override
-    protected void map(ClassID key, Text value, Context context) throws IOException,
-            InterruptedException
+    protected void map(ClassID key, Text value, Context context) throws IOException, InterruptedException
     {
-    	cls.set(key.getPackageName()+"."+key.getClassName());
-    	pkg.set(key.getPackageName());
-    	
-    	context.write(pkg, cls);
+        cls.set(key.getPackageName() + "." + key.getClassName());
+        pkg.set(key.getPackageName());
+
+        context.write(pkg, cls);
     }
 }
