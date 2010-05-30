@@ -18,8 +18,12 @@ public class VolumeHelperTest
     @Test
     public final void testCountLinesOfCode()
     {
-        String input = "public void helloWorld(){\n" +
+        String input = "public void helloWorld(){\n" + 
+                        "\n" +
         		"System.out.println(\"Hello World\")\n" +
+        		"      \n" +
+        		"\t\n" +
+        		"\t\t \n" +
         		"}\n";
         
         int expected = 3;
