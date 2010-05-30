@@ -17,7 +17,7 @@ public class Patterns
 
     public static Pattern PACKAGE_PATTERN = Pattern.compile("package(\\s)+[a-zA-Z.]*(\\s)*;");
 
-    public static Pattern NON_EMPTY_LINE = Pattern.compile("[^\\s]+\\n+");
+    public static Pattern NON_EMPTY_LINE = Pattern.compile("[^\\s]+\\n+|}");
     
     private static String ifClause = "(^|\\s)+if(\\s)*\\(";
     private static String forClause = "(^|\\s)+for(\\s)*\\(";
