@@ -8,6 +8,6 @@ public class VolumeHelper
     public static int countLinesOfCode(String code)
     {
         // TODO: Review this RegEx
-        return code.split("\\n").length;
+        return code.split("[^\\s]*\\n").length;
     }
 }
