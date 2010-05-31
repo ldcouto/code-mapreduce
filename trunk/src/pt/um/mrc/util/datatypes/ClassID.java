@@ -119,8 +119,6 @@ public class ClassID extends AbsID implements WritableComparable<ClassID>
             return true;
         if (!super.equals(obj))
             return false;
-        if (getClass() != obj.getClass())
-            return false;
         ClassID other = (ClassID) obj;
         boolean areEquals = true;
         areEquals &= (className == null ? className == other.getClassName() : className.equals(other.getClassName()));
