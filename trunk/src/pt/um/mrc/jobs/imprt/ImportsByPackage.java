@@ -26,8 +26,7 @@ public class ImportsByPackage implements JobInformable
         ImportsByPackage job2 = new ImportsByPackage();
         Path cache = new Path("tmpCacheIBP/");
 
-        int status = JobRunner.startCachedJob(args, job1, job2, cache);
-        System.exit(status);
+        System.exit(JobRunner.startCachedJob(args, job1, job2, cache));
     }
 
     public Class<? extends InputFormat<?, ?>> getInputFormatClass()

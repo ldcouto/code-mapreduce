@@ -88,11 +88,8 @@ public class PackageByFile implements JobInformable
      */
     public static void main(String[] args)
     {
-        PackageByFile me = new PackageByFile();
-
-        int status = JobRunner.startJob(args, me);
-        
-        System.exit(status);
+        PackageByFile me = new PackageByFile();        
+        System.exit(JobRunner.startJob(args, me));
     }
 
     public int getArgCount()

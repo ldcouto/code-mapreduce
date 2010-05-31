@@ -16,8 +16,10 @@ import pt.um.mrc.util.control.JobRunner;
  */
 public class VolumeByClass implements JobInformable
 {
-    
-    /* (non-Javadoc)
+
+    /*
+     * (non-Javadoc)
+     * 
      * @see pt.um.mrc.util.control.JobInformable#getInputFormatClass()
      */
     public Class<? extends InputFormat<?, ?>> getInputFormatClass()
@@ -25,7 +27,9 @@ public class VolumeByClass implements JobInformable
         return TextInputFormat.class;
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see pt.um.mrc.util.control.JobInformable#getMapperClass()
      */
     public Class<? extends Mapper<?, ?, ?, ?>> getMapperClass()
@@ -33,7 +37,9 @@ public class VolumeByClass implements JobInformable
         return VolumeByClassMapper.class;
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see pt.um.mrc.util.control.JobInformable#getMapperKeyOutClass()
      */
     public Class<?> getMapperKeyOutClass()
@@ -41,7 +47,9 @@ public class VolumeByClass implements JobInformable
         return Text.class;
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see pt.um.mrc.util.control.JobInformable#getMapperValueOutClass()
      */
     public Class<?> getMapperValueOutClass()
@@ -49,7 +57,9 @@ public class VolumeByClass implements JobInformable
         return IntWritable.class;
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see pt.um.mrc.util.control.JobInformable#getReducerClass()
      */
     public Class<? extends Reducer<?, ?, ?, ?>> getReducerClass()
@@ -57,7 +67,9 @@ public class VolumeByClass implements JobInformable
         return VolumeByClassReducer.class;
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see pt.um.mrc.util.control.JobInformable#getUsage()
      */
     public String getUsage()
@@ -65,7 +77,9 @@ public class VolumeByClass implements JobInformable
         return "Usage: VolumeByClass <methodloc> <in> <out>";
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see pt.um.mrc.util.control.JobInformable#getArgCount()
      */
     public int getArgCount()
@@ -75,9 +89,11 @@ public class VolumeByClass implements JobInformable
 
     /**
      * The main method.
-     *
-     * @param args the arguments
-     * @throws Exception the exception
+     * 
+     * @param args
+     *            the arguments
+     * @throws Exception
+     *             the exception
      */
     public static void main(String[] args)
     {
@@ -85,10 +101,6 @@ public class VolumeByClass implements JobInformable
         VolumeByClass j2 = new VolumeByClass();
         String tempFolder = "tmpClsLoc/";
 
-        int status = JobRunner.startJob(args, j1, j2, tempFolder);
-
-        System.exit(status);
+        System.exit(JobRunner.startJob(args, j1, j2, tempFolder));
     }
-
-
 }

@@ -100,10 +100,8 @@ public class VolumeByFile implements JobInformable
         VolumeByFileMisc j1 = new VolumeByFileMisc();
         VolumeByFile j2 = new VolumeByFile();
         String tempFolder = "tmpFile/";
-
-        int status = JobRunner.startJob(args, j1, j2, tempFolder);
         
-        System.exit(status);
+        System.exit(JobRunner.startJob(args, j1, j2, tempFolder));
     }
 
 }

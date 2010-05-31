@@ -92,8 +92,7 @@ public class VolumeByMethod implements JobInformable
     public static void main(String[] args)
     {
         VolumeByMethod me = new VolumeByMethod();
-        int status = JobRunner.startJob(args, me);
-        System.exit(status);
+        System.exit(JobRunner.startJob(args, me));
     }
 
     public int getArgCount()

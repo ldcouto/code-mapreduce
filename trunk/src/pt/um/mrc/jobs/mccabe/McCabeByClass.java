@@ -99,9 +99,7 @@ public class McCabeByClass implements JobInformable
         McCabeByClassMisc j1 = new McCabeByClassMisc();
         McCabeByClass j2 = new McCabeByClass();
         String tempFolder = "tmpClsMcCabe/";
-
-        int status = JobRunner.startJob(args, j1, j2, tempFolder);
-
-        System.exit(status);
+        
+        System.exit(JobRunner.startJob(args, j1, j2, tempFolder));
     }
 }
