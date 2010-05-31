@@ -152,8 +152,6 @@ public class MethodID extends AbsID implements WritableComparable<MethodID>
             return true;
         if (!super.equals(obj))
             return false;
-        if (getClass() != obj.getClass())
-            return false;
         MethodID other = (MethodID) obj;
         boolean areEquals = true;
         areEquals &= (className == null ? className == other.getClassName() : className.equals(other.getClassName()));
