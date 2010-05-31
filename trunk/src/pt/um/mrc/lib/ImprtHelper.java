@@ -16,7 +16,7 @@ public class ImprtHelper
         ArrayList<String> importedPackages = new ArrayList<String>();
 
         // Import RegEx
-        Matcher m = Patterns.IMPORT_PATTERN.matcher(text);
+        Matcher m = RegexConstants.IMPORT_PATTERN.matcher(text);
 
         // Get the package name
         while (m.find())
@@ -26,7 +26,7 @@ public class ImprtHelper
             matchedKey = matchedKey.replaceAll("static ", "");
 
             // Split the matched key by whitespaces
-            String[] tmp = matchedKey.split("\\s");
+            String[] tmp = matchedKey.split(RegexConstants.WHITESPACES_REGEX);
 
             // Set the output value to the imported package
             importedPackages.add(tmp[1]);
@@ -38,7 +38,7 @@ public class ImprtHelper
     public static boolean importMatcher(String packageToCheck, List<String> importedPackages)
     {
 
-        Pattern mulImport = Pattern.compile("(\\.\\*)$");
+        Pattern mulImport = Pattern.compile(RegexConstants.DOTSTAR_REGEX);
 
         for (String s : importedPackages)
         {
@@ -60,7 +60,7 @@ public class ImprtHelper
     public static List<String> compImportedClasses(String s, Map<String, ArrayList<String>> internalClassPkgInfo)
     {
 
-        Pattern multImport = Pattern.compile("(\\.\\*)$");
+        Pattern multImport = Pattern.compile(RegexConstants.DOTSTAR_REGEX);
         Matcher m = multImport.matcher(s);
 
         if (m.find())

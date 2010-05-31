@@ -100,7 +100,7 @@ public class McCabeByClass implements JobInformable
     {
         McCabeByClassMisc j1 = new McCabeByClassMisc();
         McCabeByClass j2 = new McCabeByClass();
-        String tempFolder = "tmpCls/";
+        String tempFolder = "tmpClsMcCabe/";
 
         int status = JobRunner.runDoubleJob(j1, j2, tempFolder, args);
         FileSystem.get(JobRunner.getConf()).delete(new Path(tempFolder), true);

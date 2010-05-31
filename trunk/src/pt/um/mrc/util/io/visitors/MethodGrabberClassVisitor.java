@@ -7,6 +7,7 @@ import japa.parser.ast.body.MethodDeclaration;
 
 import org.apache.hadoop.io.Text;
 
+import pt.um.mrc.lib.RegexConstants;
 import pt.um.mrc.util.datatypes.MethodID;
 
 public class MethodGrabberClassVisitor extends GrabbingVisitor<MethodID>
@@ -34,7 +35,7 @@ public class MethodGrabberClassVisitor extends GrabbingVisitor<MethodID>
         if (md.getParameters() != null)
             sb.append(md.getParameters().toString());
         else
-            sb.append("[ ]");
+            sb.append(RegexConstants.EMPTY_ARGUMENTS);
         aux.setMethodName(sb.toString());
         md.setAnnotations(null);
         md.setJavaDoc(null);
@@ -48,7 +49,7 @@ public class MethodGrabberClassVisitor extends GrabbingVisitor<MethodID>
         if (cd.getParameters() != null)
             sb.append(cd.getParameters().toString());
         else
-            sb.append("[ ]");
+            sb.append(RegexConstants.EMPTY_ARGUMENTS);
         aux.setMethodName(sb.toString());
         cd.setAnnotations(null);
         cd.setJavaDoc(null);

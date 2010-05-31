@@ -2,13 +2,10 @@ package pt.um.mrc.lib;
 
 import java.util.regex.Pattern;
 
-public class Patterns
+public class RegexConstants
 {
-    protected Patterns()
+    protected RegexConstants()
     {}
-
-    public static Pattern CLASS_NAME_PATTERN = Pattern
-            .compile("(public|protected|private|abstract|static|final|native|synchronized|transient|volatile|strictfp|\\s+)class\\s+([a-zA-Z0-9_]*).*\\s*\\{");
 
     public static Pattern CLASS_HEADER_PATTERN = Pattern
             .compile("(public|protected|private|abstract|static|final|native|synchronized|transient|volatile|strictfp|\\s)+class\\s+[a-zA-Z0-9.,<> \\_]*\\s*\\{");
@@ -32,4 +29,16 @@ public class Patterns
     public static Pattern CONTROL_STATEMENT_PATTERN = Pattern.compile(controlStatementsClause);
     
     public static String WHITESPACES_REGEX ="\\s";
+    
+    public static String DOTSTAR_REGEX = "(\\.\\*)$";
+    
+    public static String CLASS_LITERAL = "class";
+    
+    public static String EXTENDS_LITERAL = "extends";
+    
+    public static String IMPLEMENTS_LITERAL = "implements";
+    
+    public static String CLASS_HEADER_TERMINATOR = "\\{";
+    
+    public static String EMPTY_ARGUMENTS = "[ ]";
 }

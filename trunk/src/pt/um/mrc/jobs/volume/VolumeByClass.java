@@ -85,7 +85,7 @@ public class VolumeByClass implements JobInformable
     {
         VolumeByClassMisc j1 = new VolumeByClassMisc();
         VolumeByClass j2 = new VolumeByClass();
-        String tempFolder = "tmpCls/";
+        String tempFolder = "tmpClsLoc/";
 
         int status = JobRunner.runDoubleJob(j1, j2, tempFolder, args);
         FileSystem.get(JobRunner.getConf()).delete(new Path(tempFolder), true);

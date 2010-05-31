@@ -14,7 +14,7 @@ public class PckgHelper
         String pckg = "default package";
 
         // Package RegEx
-        Matcher packageMatcher = Patterns.PACKAGE_PATTERN.matcher(text);
+        Matcher packageMatcher = RegexConstants.PACKAGE_PATTERN.matcher(text);
 
         // Get the package name
         if (packageMatcher.find())
@@ -23,7 +23,7 @@ public class PckgHelper
             String matchedKey = packageMatcher.group().replaceAll(";", "");
 
             // Split the string by white spaces
-            String[] tmp = matchedKey.split(Patterns.WHITESPACES_REGEX);
+            String[] tmp = matchedKey.split(RegexConstants.WHITESPACES_REGEX);
 
             pckg = tmp[1];
         }

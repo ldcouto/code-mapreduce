@@ -11,7 +11,7 @@ public class McCabeHelper
     {
         int mcCabe = 1;
 
-        Matcher m = Patterns.CONTROL_STATEMENT_PATTERN.matcher(text);
+        Matcher m = RegexConstants.CONTROL_STATEMENT_PATTERN.matcher(text);
 
         while (m.find())
         {
