@@ -1,0 +1,10 @@
+pt.um.mrc.jobs.imprt	22
+pt.um.mrc.jobs.mccabe	9
+pt.um.mrc.jobs.pckg	3
+pt.um.mrc.jobs.volume	13
+pt.um.mrc.lib	21
+pt.um.mrc.util.control	23
+pt.um.mrc.util.datatypes	71
+pt.um.mrc.util.io	48
+pt.um.mrc.util.mappers	9
+pt.um.mrc.util.reducers	7
