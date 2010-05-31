@@ -10,7 +10,8 @@ import pt.um.mrc.util.control.JobRunner;
 /**
  * This job relates classes with their cyclomatic complexity. <br>
  * 
- * It takes two parameters. The input and the output folder. The input folder
+ * It takes three parameters. The folder with the calculations returned by the
+ * {@link McCabeByMethod} job, the input and the output folder. The input folder
  * must contain a set of source files. And the output folder cannot exist. <br>
  * 
  * <br>

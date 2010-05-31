@@ -8,13 +8,20 @@ import pt.um.mrc.util.control.JobInformable;
 import pt.um.mrc.util.control.JobRunner;
 
 /**
- * This class contains the configuration for the job that relates methods with
- * their McCabe number.
+ * This job relates methods with their cyclomatic complexity. <br>
+ * 
+ * It takes two parameters. The input and the output folder. The input folder
+ * must contain a set of source files. And the output folder cannot exist. <br>
+ * 
+ * <br>
+ * The output produced comes in the form: <br>
+ * <br>
+ * 
+ * PACKAGENAME-FILENAME-CLASSNAME-METHODNAME[ARGS] CYCLOMATIC_COMPLEXITY
  * 
  * @author Luis Duarte Couto
  * @author Tiago Alves Veloso
  */
-
 public class McCabeByMethod extends ByMethodJob implements JobInformable
 {
     /*
@@ -51,9 +58,8 @@ public class McCabeByMethod extends ByMethodJob implements JobInformable
      * The main method.
      * 
      * @param args
-     *            the arguments from the command line
-     * @throws Exception
-     *             the exception
+     *            the arguments from the command line, the input and the output
+     *            folders
      */
     public static void main(String[] args)
     {
@@ -61,6 +67,11 @@ public class McCabeByMethod extends ByMethodJob implements JobInformable
         System.exit(JobRunner.startJob(args, me));
     }
 
+    /*
+     * (non-Javadoc)
+     * 
+     * @see pt.um.mrc.util.control.JobInformable#getArgCount()
+     */
     public int getArgCount()
     {
         return 2;

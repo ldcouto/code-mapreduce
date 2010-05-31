@@ -11,7 +11,8 @@ import pt.um.mrc.util.control.JobRunner;
  * This job relates files with their cyclomatic complexity. <br>
  * 
  * It takes two parameters. The input and the output folder. The input folder
- * must contain a set of source files. And the output folder cannot exist. <br>
+ * must contain the calculations computed by the {@link McCabeByClass} job. And
+ * the output folder cannot exist. <br>
  * 
  * <br>
  * The output produced comes in the form: <br>
@@ -54,6 +55,11 @@ public class McCabeByFile extends Text2IntJob implements JobInformable
         return McCabeByFileReducer.class;
     }
 
+    /*
+     * (non-Javadoc)
+     * 
+     * @see pt.um.mrc.util.control.JobInformable#getArgCount()
+     */
     public int getArgCount()
     {
         return 2;
@@ -63,9 +69,8 @@ public class McCabeByFile extends Text2IntJob implements JobInformable
      * The main method.
      * 
      * @param args
-     *            the arguments from the command line
-     * @throws Exception
-     *             the exception
+     *            the arguments from the command line, the input and the output
+     *            folders
      */
     public static void main(String[] args)
     {
