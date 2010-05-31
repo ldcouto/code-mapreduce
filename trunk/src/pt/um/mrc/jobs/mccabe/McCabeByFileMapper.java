@@ -10,21 +10,17 @@ import pt.um.mrc.util.datatypes.IDType;
 import pt.um.mrc.util.mappers.LineValuesMapper;
 
 /**
- * This class is the Mapper for the job that relates files with their McCabe
- * number.
+ * This class is the mapper for the {@link McCabeByFile} job. It extends the
+ * {@link LineValuesMapper} class which handles the map step.
  * 
  * @author Luis Duarte Couto
  * @author Tiago Alves Veloso
  */
-
 public class McCabeByFileMapper extends LineValuesMapper<LongWritable, Text, Text, IntWritable>
 {
-    /*
-     * (non-Javadoc)
-     * 
-     * @see
-     * org.apache.hadoop.mapreduce.Mapper#setup(org.apache.hadoop.mapreduce.
-     * Mapper.Context)
+    /**
+     * This overriden method simply flags the LineValuesMapper to process
+     * information for classes.
      */
     @Override
     protected void setup(Context context) throws IOException, InterruptedException

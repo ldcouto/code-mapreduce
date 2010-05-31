@@ -4,54 +4,65 @@ import org.apache.hadoop.mapreduce.InputFormat;
 import org.apache.hadoop.mapreduce.Mapper;
 import org.apache.hadoop.mapreduce.Reducer;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Interface JobInformable.
+ * The Interface JobInformable is implemented by all job configuration classes.
+ * 
+ * The classes that implement this interface provide all the information
+ * required to set up and run a job, which is in turn used by {@link JobRunner}
+ * to set up and run the job.
  */
 public interface JobInformable
 {
 
+    /**
+     * Gets the valid number of arguments for the job.
+     * 
+     * @return the valid number of arguments
+     */
     public abstract int getArgCount();
 
     /**
-     * Gets the usage message.
+     * Gets the defined usage message for the job.
      * 
-     * @return the usage message
+     * @return the defined usage message for the job
      */
     public abstract String getUsage();
 
     /**
-     * Gets the mapper class.
+     * Gets the defined mapper class for the job.
      * 
-     * @return the mapper class
+     * @return the the defined mapper class for the job
      */
     public abstract Class<? extends Mapper<?, ?, ?, ?>> getMapperClass();
 
     /**
-     * Gets the reducer class.
+     * Gets the defined reducer class for the job.
      * 
-     * @return the reducer class
+     * @return the the defined reducer class for the job
      */
     public abstract Class<? extends Reducer<?, ?, ?, ?>> getReducerClass();
 
     /**
-     * Gets the mapper output key class.
+     * Gets the class of the keys outputted by the mapper. Needed to ensure that
+     * the job is properly typed.
      * 
-     * @return the mapper output key class
+     * @return the class of the keys outputted by the mapper
      */
     public abstract Class<?> getMapperKeyOutClass();
 
     /**
-     * Gets the mapper output value class.
+     * Gets the class of the values outputted by the mapper. Needed to ensure
+     * that the job is properly typed.
      * 
-     * @return the mapper output value class
+     * @return the class of the values outputted by the mapper
      */
     public abstract Class<?> getMapperValueOutClass();
 
     /**
-     * Gets the InputFormatClass.
+     * Gets the class of the InputFormat of the key/value pairs used in this
+     * job.
      * 
-     * @return the InputFormatClass
+     * @return the InputFormat class used in this job
      */
     public abstract Class<? extends InputFormat<?, ?>> getInputFormatClass();
 }

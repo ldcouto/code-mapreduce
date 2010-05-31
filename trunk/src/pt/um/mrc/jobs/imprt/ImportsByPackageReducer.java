@@ -6,15 +6,11 @@ import pt.um.mrc.util.datatypes.CollectionWritablePrintable;
 import pt.um.mrc.util.reducers.CollectionReducer;
 
 /**
- * This class is the Reducer for the job that relates packages with the packages
- * they import.
+ * This class is the Reducer for the {@link ImportsByPackage} job. It extends
+ * {@link CollectionReducer}, which handles the reduce step for this job.
  * 
  * @author Luis Duarte Couto
  * @author Tiago Alves Veloso
  */
-
-public class ImportsByPackageReducer extends
-                                    CollectionReducer<Text, Text, Text, CollectionWritablePrintable>
-{
-    
-}
+public class ImportsByPackageReducer extends CollectionReducer<Text, Text, Text, CollectionWritablePrintable>
+{}
