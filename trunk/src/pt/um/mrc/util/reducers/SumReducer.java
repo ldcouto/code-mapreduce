@@ -24,11 +24,9 @@ public class SumReducer<KI, VI extends IntWritable, KO extends KI, VO extends In
     /** The total result of the sum. */
     private IntWritable total = new IntWritable();
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see org.apache.hadoop.mapreduce.Reducer#reduce(KEYIN,
-     * java.lang.Iterable, org.apache.hadoop.mapreduce.Reducer.Context)
+    /**
+     * This overriden reduce method computes the Sum of all the IntWritable
+     * values associated with a key.
      */
     @Override
     protected void reduce(KI key, Iterable<IntWritable> values, Context context) throws IOException, InterruptedException

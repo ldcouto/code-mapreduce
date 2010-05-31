@@ -11,12 +11,36 @@ import pt.um.mrc.util.datatypes.IDType;
 import pt.um.mrc.util.datatypes.Pair;
 import pt.um.mrc.util.datatypes.PairImpl;
 
+/**
+ * This mapper class is the one concentrarion all the work for several mappers
+ * in the volume and mccabe package. It processes a text file line-by-line and
+ * reads information previously computed by other jobs in order to compute new
+ * information.
+ * 
+ * @param <KI>
+ *            the generic type
+ * @param <VI>
+ *            the generic type
+ * @param <KO>
+ *            the generic type
+ * @param <VO>
+ *            the generic type
+ */
 public class LineValuesMapper<KI, VI, KO, VO> extends Mapper<LongWritable, Text, Text, IntWritable>
 {
+
     private Text outKey = new Text();
+
     private IntWritable outValue = new IntWritable();
+
+    /** The line contents. */
     protected IDType lineContents;
 
+    /**
+     * This overriden map method processes the line given as value and
+     * constructs a {@link Pair} with the information in that line and outputs
+     * them.
+     */
     @Override
     protected void map(LongWritable key, Text value, Context context) throws IOException, InterruptedException
     {

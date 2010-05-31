@@ -12,8 +12,7 @@ import org.apache.hadoop.mapreduce.Reducer;
 import pt.um.mrc.util.datatypes.CollectionWritablePrintable;
 
 /**
- * The Class CollectionReducer. This class extends the Reducer Class in order to
- * output a list of values.
+ * This class extends the Reducer Class in order to output a list of values.
  * 
  * @param <KI>
  *            the generic type.
@@ -34,11 +33,11 @@ public class CollectionReducer<KI, VI extends Text, KO extends KI, VO extends Co
                                                                                                            Reducer<KI, Text, KI, CollectionWritablePrintable>
 {
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see org.apache.hadoop.mapreduce.Reducer#reduce(KEYIN,
-     * java.lang.Iterable, org.apache.hadoop.mapreduce.Reducer.Context)
+    /**
+     * This overriden reduce method simply computes a
+     * {@link CollectionWritablePrintable} from the list values associated with
+     * the key. It then outputs the unchanged key with the computed
+     * CollectionWritablePrintable.
      */
     @Override
     public void reduce(KI key, Iterable<Text> values, Context context) throws IOException, InterruptedException
