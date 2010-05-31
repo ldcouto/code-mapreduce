@@ -6,6 +6,14 @@ import java.io.IOException;
 
 import pt.um.mrc.util.Constants;
 
+/**
+ * An abstract ID. This class is inherited by {@link FileID}, {@link ClassID}
+ * and {@link MethodID}. It's purpose is to hold common information for each
+ * FileID, ClassID and MethodID.
+ * 
+ * @author Luis Duarte Couto
+ * @author Tiago Alves Veloso
+ */
 public abstract class AbsID
 {
     /** The file name. */
@@ -14,12 +22,23 @@ public abstract class AbsID
     /** The package name. */
     String packageName;
 
+    /**
+     * Instantiates a new AbsID.
+     */
     public AbsID()
     {
         this.fileName = "";
         this.packageName = "";
     }
 
+    /**
+     * Instantiates a new AbsID.
+     * 
+     * @param fileName
+     *            the file name
+     * @param packageName
+     *            the package name
+     */
     public AbsID(String fileName, String packageName)
     {
         this.fileName = fileName;
@@ -83,6 +102,11 @@ public abstract class AbsID
         return sb.toString();
     }
 
+    /*
+     * (non-Javadoc)
+     * 
+     * @see java.lang.Object#hashCode()
+     */
     @Override
     public int hashCode()
     {
@@ -93,6 +117,11 @@ public abstract class AbsID
         return result;
     }
 
+    /*
+     * (non-Javadoc)
+     * 
+     * @see java.lang.Object#equals(java.lang.Object)
+     */
     @Override
     public boolean equals(Object obj)
     {
@@ -114,6 +143,14 @@ public abstract class AbsID
      * 
      * @see org.apache.hadoop.io.Writable#readFields(java.io.DataInput)
      */
+    /**
+     * Read fields from a data input stram.
+     * 
+     * @param in
+     *            the DataInput stream
+     * @throws IOException
+     *             Signals that an I/O exception has occurred.
+     */
     public void readFields(DataInput in) throws IOException
     {
         packageName = in.readUTF();
@@ -125,12 +162,31 @@ public abstract class AbsID
      * 
      * @see org.apache.hadoop.io.Writable#write(java.io.DataOutput)
      */
+    /**
+     * Writes fields to a data output stream.
+     * 
+     * @param out
+     *            the DataOutput stream
+     * @throws IOException
+     *             Signals that an I/O exception has occurred.
+     */
     public void write(DataOutput out) throws IOException
     {
         out.writeUTF(packageName);
         out.writeUTF(fileName);
     }
 
+    /**
+     * Compares this object with the specified object for order. Returns a
+     * negative integer, zero, or a positive integer as this object is less
+     * than, equal to, or greater than the specified object.
+     * 
+     * @param o
+     *            the object to be compared.
+     * @return the a negative integer, zero, or a positive integer as this
+     *         object is less than, equal to, or greater than the specified
+     *         object.
+     */
     public int compareTo(AbsID o)
     {
         int cmpPkg = this.packageName.compareTo(o.getPackageName());

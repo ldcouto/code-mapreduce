@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.Text;
+import org.apache.hadoop.mapreduce.InputFormat;
 import org.apache.hadoop.mapreduce.InputSplit;
 import org.apache.hadoop.mapreduce.JobContext;
 import org.apache.hadoop.mapreduce.RecordReader;
@@ -12,19 +13,23 @@ import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 
 import pt.um.mrc.util.io.rr.JavaFileRecordReader;
 
+// TODO: Auto-generated Javadoc
 /**
- * This class defines a InputFormat specifically for Java files. It prevents
- * files from being split. It an entire file at once.
+ * This class defines a {@link InputFormat} specifically for Java files. It
+ * prevents files from being split.<br>
  * 
- * @author Tiago Alves Veloso
+ * The outputted keys are the filename and the outputted values are the file
+ * contents <br>
+ * 
  * @author Luis Duarte Couto
+ * @author Tiago Alves Veloso
  */
 
 public class JavaFileInputFormat extends FileInputFormat<Text, Text>
 {
 
-    /**
-     * This method always returns false. It prevents a file from being split.
+    /* (non-Javadoc)
+     * @see org.apache.hadoop.mapreduce.lib.input.FileInputFormat#isSplitable(org.apache.hadoop.mapreduce.JobContext, org.apache.hadoop.fs.Path)
      */
     @Override
     protected boolean isSplitable(JobContext context, Path filename)
@@ -32,9 +37,8 @@ public class JavaFileInputFormat extends FileInputFormat<Text, Text>
         return false;
     }
 
-    /**
-     * This method creates a <code>RecordReader<Text, Text></code> that will
-     * read an entire file all at once.
+    /* (non-Javadoc)
+     * @see org.apache.hadoop.mapreduce.InputFormat#createRecordReader(org.apache.hadoop.mapreduce.InputSplit, org.apache.hadoop.mapreduce.TaskAttemptContext)
      */
     @Override
     public RecordReader<Text, Text> createRecordReader(InputSplit split, TaskAttemptContext context) throws IOException, InterruptedException
