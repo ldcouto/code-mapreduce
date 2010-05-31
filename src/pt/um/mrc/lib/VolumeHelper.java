@@ -12,7 +12,7 @@ public class VolumeHelper
     {
         int lines = 0;
         
-        Matcher m = Patterns.NON_EMPTY_LINE.matcher(code);
+        Matcher m = RegexConstants.NON_EMPTY_LINE.matcher(code);
         
         while(m.find()){
             lines++;

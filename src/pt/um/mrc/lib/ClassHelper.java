@@ -15,26 +15,26 @@ public class ClassHelper
     {
         ArrayList<String> r = new ArrayList<String>();
 
-        Matcher classMatcher = Patterns.CLASS_HEADER_PATTERN.matcher(text);
+        Matcher classMatcher = RegexConstants.CLASS_HEADER_PATTERN.matcher(text);
 
         while (classMatcher.find())
         {
-            String classHeader = new String(classMatcher.group().replaceAll("\\{", ""));
-            if (classHeader.indexOf("extends") >= 0)
+            String classHeader = new String(classMatcher.group().replaceAll(RegexConstants.CLASS_HEADER_TERMINATOR, ""));
+            if (classHeader.indexOf(RegexConstants.EXTENDS_LITERAL) >= 0)
             {
-                String[] classTmp = classHeader.split("extends");
+                String[] classTmp = classHeader.split(RegexConstants.EXTENDS_LITERAL);
 
                 classHeader = classTmp[0].trim();
             }
 
-            if (classHeader.indexOf("implements") >= 0)
+            if (classHeader.indexOf(RegexConstants.IMPLEMENTS_LITERAL) >= 0)
             {
-                String[] classTmp = classHeader.split("implements");
+                String[] classTmp = classHeader.split(RegexConstants.IMPLEMENTS_LITERAL);
 
                 classHeader = classTmp[0].trim();
             }
 
-            String[] classNameAux = classHeader.split("class");
+            String[] classNameAux = classHeader.split(RegexConstants.CLASS_LITERAL);
             classHeader = classNameAux[1].trim();
 
             r.add(classHeader);
@@ -47,19 +47,19 @@ public class ClassHelper
     {
         ArrayList<Pair<String, String>> pairs = new ArrayList<Pair<String, String>>();
 
-        Matcher classMatcher = Patterns.CLASS_HEADER_PATTERN.matcher(text);
+        Matcher classMatcher = RegexConstants.CLASS_HEADER_PATTERN.matcher(text);
 
         while (classMatcher.find())
         {
-            String classHeader = classMatcher.group().replaceAll("\\{", "");
-            String[] classTmp = classHeader.split("extends");
+            String classHeader = classMatcher.group().replaceAll(RegexConstants.CLASS_HEADER_TERMINATOR, "");
+            String[] classTmp = classHeader.split(RegexConstants.EXTENDS_LITERAL);
 
-            String[] classNameAux = classTmp[0].split("class");
+            String[] classNameAux = classTmp[0].split(RegexConstants.CLASS_LITERAL);
             String className = classNameAux[1].trim();
 
             if (classTmp.length > 1)
             {
-                String[] superClassAux = classTmp[1].split("implements");
+                String[] superClassAux = classTmp[1].split(RegexConstants.IMPLEMENTS_LITERAL);
                 String superClass = superClassAux[0].trim();
                 pairs.add(new PairImpl<String, String>(className, superClass));
             }

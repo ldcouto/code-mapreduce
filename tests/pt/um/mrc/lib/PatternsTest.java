@@ -10,7 +10,7 @@ public class PatternsTest
     @Test
     public final void testPatterns()
     {
-        Patterns cls = new Patterns();
+        RegexConstants cls = new RegexConstants();
         
         assertNotNull(cls);
     }
