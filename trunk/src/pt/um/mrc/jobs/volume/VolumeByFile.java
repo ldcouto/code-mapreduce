@@ -6,15 +6,23 @@ import org.apache.hadoop.mapreduce.Reducer;
 import pt.um.mrc.jobs.Text2IntJob;
 import pt.um.mrc.util.control.JobInformable;
 import pt.um.mrc.util.control.JobRunner;
- 
+
 /**
- * This class contains the configuration for the job that relates files with
- * their lines of code volume.
+ * This job relates files with their volume. <br>
+ * 
+ * It takes three parameters. The folder with the calculations returned by the
+ * {@link VolumeByClass} job, the input and the output folder. The input folder
+ * must contain a set of source files. And the output folder cannot exist. <br>
+ * 
+ * <br>
+ * The output produced comes in the form: <br>
+ * <br>
+ * 
+ * PACKAGENAME-FILENAME VOLUME
  * 
  * @author Luis Duarte Couto
  * @author Tiago Alves Veloso
  */
-
 public class VolumeByFile extends Text2IntJob implements JobInformable
 {
 
@@ -48,6 +56,11 @@ public class VolumeByFile extends Text2IntJob implements JobInformable
         return VolumeByFileReducer.class;
     }
 
+    /*
+     * (non-Javadoc)
+     * 
+     * @see pt.um.mrc.util.control.JobInformable#getArgCount()
+     */
     @Override
     public int getArgCount()
     {
@@ -58,16 +71,15 @@ public class VolumeByFile extends Text2IntJob implements JobInformable
      * The main method.
      * 
      * @param args
-     *            the arguments from the command line
-     * @throws Exception
-     *             the exception
+     *            the arguments from the command line, the location of the
+     *            method calculations, the input and the output
      */
-    public static void main(String[] args) 
+    public static void main(String[] args)
     {
         VolumeByFileMisc j1 = new VolumeByFileMisc();
         VolumeByFile j2 = new VolumeByFile();
         String tempFolder = "tmpFile/";
-        
+
         System.exit(JobRunner.startJob(args, j1, j2, tempFolder));
     }
 

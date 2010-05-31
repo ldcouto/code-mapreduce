@@ -6,8 +6,8 @@ import org.apache.hadoop.io.Text;
 import pt.um.mrc.util.reducers.SumReducer;
 
 /**
- * This class is the reducer for the job that relates files with their lines of
- * code volume.
+ * This class is the reducer for the {@link VolumeByFile} job. It exctends the
+ * {@link SumReducer} class which handles the reduce step for this job.
  * 
  * @author Luis Duarte Couto
  * @author Tiago Alves Veloso

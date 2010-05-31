@@ -10,7 +10,7 @@ import pt.um.mrc.util.control.JobInformable;
 import pt.um.mrc.util.io.iformats.JMcClassInputFormat;
 
 /**
- * This is an auxiliary job to the {@link McCabeByClass} job.
+ * This is an auxiliary job to the {@link McCabeByClass} job. <br>
  * 
  * This job computes the cyclomatic complexity of all static blocks inside a
  * class with the exception of methods.

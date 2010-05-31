@@ -11,9 +11,21 @@ import pt.um.mrc.jobs.VolumeMiscJob;
 import pt.um.mrc.util.control.JobInformable;
 import pt.um.mrc.util.control.JobRunner;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class VolumeByClass.
+ * This job relates classes with their volume. <br>
+ * 
+ * It takes three parameters. The folder with the calculations returned by the
+ * {@link VolumeByMethod} job, the input and the output folder. The input folder
+ * must contain a set of source files. And the output folder cannot exist. <br>
+ * 
+ * <br>
+ * The output produced comes in the form: <br>
+ * <br>
+ * 
+ * PACKAGENAME-FILENAME-CLASSNAME VOLUME
+ * 
+ * @author Luis Duarte Couto
+ * @author Tiago Alves Veloso
  */
 public class VolumeByClass extends VolumeMiscJob implements JobInformable
 {
@@ -92,9 +104,8 @@ public class VolumeByClass extends VolumeMiscJob implements JobInformable
      * The main method.
      * 
      * @param args
-     *            the arguments
-     * @throws Exception
-     *             the exception
+     *            the arguments from the command line, the location of the
+     *            method calculations, the input and the output
      */
     public static void main(String[] args)
     {

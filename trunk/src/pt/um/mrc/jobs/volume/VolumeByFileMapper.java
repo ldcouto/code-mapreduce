@@ -10,8 +10,8 @@ import pt.um.mrc.util.datatypes.IDType;
 import pt.um.mrc.util.mappers.LineValuesMapper;
 
 /**
- * This class is the Mapper for the job that relates files with their lines of
- * code volume.
+ * This class is the mapper for the {@link VolumeByFile} job. It extends the
+ * {@link LineValuesMapper} class which handles the map step for this job.
  * 
  * @author Luis Duarte Couto
  * @author Tiago Alves Veloso
@@ -20,12 +20,9 @@ import pt.um.mrc.util.mappers.LineValuesMapper;
 public class VolumeByFileMapper extends LineValuesMapper<LongWritable, Text, Text, IntWritable>
 {
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see
-     * org.apache.hadoop.mapreduce.Mapper#setup(org.apache.hadoop.mapreduce.
-     * Mapper.Context)
+    /**
+     * This overriden method simply flags the LineValuesMapper to process
+     * information for files.
      */
     @Override
     protected void setup(Context context) throws IOException, InterruptedException
