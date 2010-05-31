@@ -26,7 +26,7 @@ public class McCabeMiscMapper extends Mapper<WritableComparable<?>, Text, Text, 
 
     /**
      * This overrides the default map method. This method converts the key into
-     * a <code>Text</code> and computes the cyclomatic complexity of the value given.
+     * a Text value and computes the cyclomatic complexity of the value given.
      */
     @Override
     protected void map(WritableComparable<?> key, Text value, Context context) throws IOException, InterruptedException

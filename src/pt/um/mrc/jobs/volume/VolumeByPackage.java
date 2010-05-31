@@ -8,15 +8,23 @@ import pt.um.mrc.util.control.JobInformable;
 import pt.um.mrc.util.control.JobRunner;
 
 /**
- * This class contains the configuration for the job that relates packages with
- * their lines of code volume.
+ * This job relates packages with their volume. <br>
+ * 
+ * It takes two parameters. The input and the output folder. The input folder
+ * must contain the calculations computed by the {@link VolumeByFile} job. And
+ * the output folder cannot exist. <br>
+ * 
+ * <br>
+ * The output produced comes in the form: <br>
+ * <br>
+ * 
+ * PACKAGENAME CYCLOMATIC_COMPLEXITY
  * 
  * @author Luis Duarte Couto
  * @author Tiago Alves Veloso
  */
-
 public class VolumeByPackage extends Text2IntJob implements JobInformable
-{    
+{
     /*
      * (non-Javadoc)
      * 
@@ -37,7 +45,6 @@ public class VolumeByPackage extends Text2IntJob implements JobInformable
         return VolumeByPackageMapper.class;
     }
 
-
     /*
      * (non-Javadoc)
      * 
@@ -48,6 +55,11 @@ public class VolumeByPackage extends Text2IntJob implements JobInformable
         return VolumeByPackageReducer.class;
     }
 
+    /*
+     * (non-Javadoc)
+     * 
+     * @see pt.um.mrc.util.control.JobInformable#getArgCount()
+     */
     public int getArgCount()
     {
         return 2;
@@ -57,9 +69,8 @@ public class VolumeByPackage extends Text2IntJob implements JobInformable
      * The main method.
      * 
      * @param args
-     *            the arguments from the command line
-     * @throws Exception
-     *             the exception
+     *            the arguments from the command line, the input and the output
+     *            folders
      */
     public static void main(String[] args)
     {

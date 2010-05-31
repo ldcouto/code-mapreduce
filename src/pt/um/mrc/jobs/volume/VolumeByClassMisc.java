@@ -7,9 +7,14 @@ import pt.um.mrc.jobs.VolumeMiscJob;
 import pt.um.mrc.util.control.JobInformable;
 import pt.um.mrc.util.io.iformats.JClassInputFormat;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class VolumeByClassMisc.
+ * This is an auxiliary job to the {@link VolumeByClass} job. <br>
+ * 
+ * This job computes the volume of all fields inside a class with the exception
+ * of methods.
+ * 
+ * @author Luis Duarte Couto
+ * @author Tiago Alves Veloso
  */
 public class VolumeByClassMisc extends VolumeMiscJob implements JobInformable
 {
@@ -23,8 +28,6 @@ public class VolumeByClassMisc extends VolumeMiscJob implements JobInformable
     {
         return JClassInputFormat.class;
     }
-
-
 
     /*
      * (non-Javadoc)
