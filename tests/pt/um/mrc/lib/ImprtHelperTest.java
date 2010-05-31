@@ -38,11 +38,11 @@ public class ImprtHelperTest {
 	public final void testFindImportedPackages_ValidInput01() {
 		String input = "import org.junit.Test;\n" + "import java.util.ArrayList;";
 
-		ArrayList<String> expected = new ArrayList<String>();
+		List<String> expected = new ArrayList<String>();
 		expected.add("org.junit.Test");
 		expected.add("java.util.ArrayList");
 
-		ArrayList<String> result = ImprtHelper.findImports(input);
+		List<String> result = ImprtHelper.findImports(input);
 
 		assertEquals(expected, result);
 	}
@@ -51,11 +51,11 @@ public class ImprtHelperTest {
 	public final void testFindImportedPackages_ValidInput02() {
 		String input = "import org.junit.Test;\n" + "import static org.junit.Assert.*;";
 
-		ArrayList<String> expected = new ArrayList<String>();
+		List<String> expected = new ArrayList<String>();
 		expected.add("org.junit.Test");
 		expected.add("org.junit.Assert.*");
 
-		ArrayList<String> result = ImprtHelper.findImports(input);
+		List<String> result = ImprtHelper.findImports(input);
 
 		assertEquals(expected, result);
 	}
@@ -64,9 +64,9 @@ public class ImprtHelperTest {
 	public final void testFindImportedPackages_InvalidInput02() {
 		String input = "class java.util.ArrayList;";
 
-		ArrayList<String> expected = new ArrayList<String>();
+		List<String> expected = new ArrayList<String>();
 
-		ArrayList<String> result = ImprtHelper.findImports(input);
+		List<String> result = ImprtHelper.findImports(input);
 
 		assertEquals(expected, result);
 	}

@@ -96,7 +96,6 @@ public class JavaFileRecordReaderTest {
 		FileSplit actualSplit = jrrToTest.getSplit();
 		LineReader actualReader = jrrToTest.getIn();
 		
-		// TODO: Can't compare codecs
 		Assert.assertEquals(expectedKey, actualKey);
 		Assert.assertEquals(expectedValue, actualValue);
 		Assert.assertEquals(expectedStart, actualStart);

@@ -3,22 +3,32 @@ package pt.um.mrc.util.control;
 import org.apache.hadoop.mapreduce.InputFormat;
 
 /**
- * The Class JobConfigHolder is used as an auxiliary class to configure a Hadoop
- * job.
+ * The class JobConfigHolder holds configuration information of a given job.
+ * 
+ * It is used as an auxiliary to abstract the configuration of a job.
  * 
  * @author Tiago Alves Veloso
  * @author Luis Duarte Couto
  */
 public class JobConfigHolder
 {
+
     private String[] paths;
 
-    /** The class jar. */
     private Class<?> classJar;
 
-    /** The input format. */
     private Class<? extends InputFormat<?, ?>> inputFormat;
 
+    /**
+     * Instantiates a new JobConfigHolder.
+     * 
+     * @param classjar
+     *            the class where the job is defined
+     * @param inputFormat
+     *            the {@link InputFormat} to be used
+     * @param args
+     *            the input/output paths to be used
+     */
     public JobConfigHolder(Class<?> classjar, Class<? extends InputFormat<?, ?>> inputFormat, String[] args)
     {
         this.classJar = classjar;
@@ -27,9 +37,9 @@ public class JobConfigHolder
     }
 
     /**
-     * Gets the intput format.
+     * Gets the defined IntputFormat class.
      * 
-     * @return the intput format
+     * @return the IntputIormat
      */
     public Class<? extends InputFormat<?, ?>> getIntputFormat()
     {
@@ -37,15 +47,20 @@ public class JobConfigHolder
     }
 
     /**
-     * Gets the class jar.
+     * Gets the class where the job is defined.
      * 
-     * @return the class jar
+     * @return the class where the job is defined
      */
     public Class<?> getClassJar()
     {
         return classJar;
     }
 
+    /**
+     * Gets the input/output paths to be used.
+     * 
+     * @return the input/output paths to be used
+     */
     public String[] getPaths()
     {
         return paths;

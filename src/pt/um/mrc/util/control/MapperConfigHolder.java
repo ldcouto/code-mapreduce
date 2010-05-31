@@ -2,20 +2,18 @@ package pt.um.mrc.util.control;
 
 import org.apache.hadoop.mapreduce.Mapper;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class MapperConfigHolder is an auxiliary class to provide the
  * configuration parameters of a Mapper.
+ * 
+ * 
  */
 public class MapperConfigHolder
 {
-    /** The Mapper class. */
     private Class<? extends Mapper<?, ?, ?, ?>> mapperClass;
 
-    /** The Map Output Key class. */
     private Class<?> mapOutKey;
 
-    /** The Map Output Value class. */
     private Class<?> mapOutValue;
 
     /**

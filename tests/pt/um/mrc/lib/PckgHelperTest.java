@@ -34,7 +34,7 @@ public class PckgHelperTest
     {
         String input = "import java.util.ArrayList;";
         
-        String expected = "default package";
+        String expected = "<default>";
         
         String result = PckgHelper.findPackage(input);
         

@@ -6,12 +6,26 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * A set of useful methods to retrieve information from the imports declarations.
+ */
 public class ImprtHelper
 {
+
+    /**
+     * Protected constructor since it is a static only class
+     */
     protected ImprtHelper()
     {}
 
-    public static ArrayList<String> findImports(String text)
+    /**
+     * Finds declared imports in the given input text..
+     * 
+     * @param text
+     *            the input text
+     * @return the array list of declared imports in the input text.
+     */
+    public static List<String> findImports(String text)
     {
         ArrayList<String> importedPackages = new ArrayList<String>();
 
@@ -35,6 +49,15 @@ public class ImprtHelper
         return importedPackages;
     }
 
+    /**
+     * Import matcher.
+     * 
+     * @param packageToCheck
+     *            the package to check
+     * @param importedPackages
+     *            the imported packages
+     * @return true, if successful
+     */
     public static boolean importMatcher(String packageToCheck, List<String> importedPackages)
     {
 
@@ -57,16 +80,24 @@ public class ImprtHelper
         return false;
     }
 
-    public static List<String> compImportedClasses(String s, Map<String, ArrayList<String>> internalClassPkgInfo)
+    /**
+     * Compute imported classes from the input text.
+     * 
+     * @param text
+     *            the input text
+     * @param internalClassPkgInfo
+     *            the internal package and class information
+     * @return the list of valid imports in the input text
+     */
+    public static List<String> compImportedClasses(String text, Map<String, ArrayList<String>> internalClassPkgInfo)
     {
-
         Pattern multImport = Pattern.compile(RegexConstants.DOTSTAR_REGEX);
-        Matcher m = multImport.matcher(s);
+        Matcher m = multImport.matcher(text);
 
         if (m.find())
-            return compMultImports(s, internalClassPkgInfo);
+            return compMultImports(text, internalClassPkgInfo);
 
-        return compSinglImport(s, internalClassPkgInfo);
+        return compSinglImport(text, internalClassPkgInfo);
     }
 
     private static List<String> compMultImports(String s, Map<String, ArrayList<String>> internalClassPkgInfo)
