@@ -260,6 +260,17 @@ public class MethodIDTest
     }
 
     @Test
+    public final void testEquals_MethodNameBothNullID()
+    {
+        MethodID id1 = new MethodID(null, "Mapper", "Mapper.java", "mapreduce");
+        MethodID id2 = new MethodID(null, "Mapper", "Mapper.java", "mapreduce");
+
+        boolean result = id1.equals(id2);
+
+        assertTrue(result);
+    }
+    
+    @Test
     public final void testEquals_ClassNameNullID()
     {
         MethodID id1 = new MethodID("map", null, "Mapper.java", "mapreduce");
@@ -268,6 +279,17 @@ public class MethodIDTest
         boolean result = id1.equals(id2);
 
         assertFalse(result);
+    }
+    
+    @Test
+    public final void testEquals_ClassNameBothNullID()
+    {
+        MethodID id1 = new MethodID("map", null, "Mapper.java", "mapreduce");
+        MethodID id2 = new MethodID("map", null, "Mapper.java", "mapreduce");
+
+        boolean result = id1.equals(id2);
+
+        assertTrue(result);
     }
 
     @Test

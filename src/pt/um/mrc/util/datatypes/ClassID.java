@@ -6,6 +6,8 @@ import java.io.IOException;
 
 import org.apache.hadoop.io.WritableComparable;
 
+import pt.um.mrc.util.Constants;
+
 // TODO: Auto-generated Javadoc
 /**
  * ClassID represents an Identifier of a Class. It's composed by the class name,
@@ -104,7 +106,7 @@ public class ClassID extends AbsID implements WritableComparable<ClassID>
     @Override
     public int hashCode()
     {
-        final int prime = 31;
+        final int prime = Constants.HASH_CODE_PRIME;
         int result = super.hashCode();
         result = prime * result + ((className == null) ? 0 : className.hashCode());
         return result;
@@ -120,14 +122,9 @@ public class ClassID extends AbsID implements WritableComparable<ClassID>
         if (getClass() != obj.getClass())
             return false;
         ClassID other = (ClassID) obj;
-        if (className == null)
-        {
-            if (other.className != null)
-                return false;
-        }
-        else if (!className.equals(other.className))
-            return false;
-        return true;
+        boolean areEquals = true;
+        areEquals &= (className == null ? className == other.getClassName() : className.equals(other.getClassName()));
+        return areEquals;
     }
 
     /*

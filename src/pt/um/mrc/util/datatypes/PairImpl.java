@@ -114,21 +114,10 @@ public class PairImpl<K, V> implements Pair<K, V>
         if (getClass() != obj.getClass())
             return false;
         PairImpl<K, V> other = (PairImpl<K, V>) obj;
-        if (key == null)
-        {
-            if (other.key != null)
-                return false;
-        }
-        else if (!key.equals(other.key))
-            return false;
-        if (value == null)
-        {
-            if (other.value != null)
-                return false;
-        }
-        else if (!value.equals(other.value))
-            return false;
-        return true;
+        boolean areEquals = true;
+        areEquals &= (key == null ? key == other.getKey() : key.equals(other.getKey()));
+        areEquals &= (value == null ? value == other.getValue() : value.equals(other.getValue()));
+        return areEquals;
     }
 
 }

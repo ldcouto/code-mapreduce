@@ -23,6 +23,5 @@ public class FileID extends AbsID implements WritableComparable<FileID>
     public int compareTo(FileID o)
     {
         return super.compareTo(o);
-    }
-    
+    }    
 }
