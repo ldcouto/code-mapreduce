@@ -6,33 +6,23 @@ import java.io.IOException;
 
 import org.apache.hadoop.io.WritableComparable;
 
-import pt.um.mrc.util.Constants;
-
 // TODO: Auto-generated Javadoc
 /**
  * ClassID represents an Identifier of a Class. It's composed by the class name,
  * the file name and the package name.
  */
-public class ClassID implements WritableComparable<ClassID>
+public class ClassID extends AbsID implements WritableComparable<ClassID>
 {
-
     /** The class name. */
     String className;
-
-    /** The file name. */
-    String fileName;
-
-    /** The package name. */
-    String packageName;
 
     /**
      * Instantiates a new ClassID.
      */
     public ClassID()
     {
-        className = "";
-        fileName = "";
-        packageName = "";
+        super();
+        this.className = "";
     }
 
     /**
@@ -47,9 +37,8 @@ public class ClassID implements WritableComparable<ClassID>
      */
     public ClassID(String className, String fileName, String packageName)
     {
+        super(fileName,packageName);
         this.className = className;
-        this.fileName = fileName;
-        this.packageName = packageName;
     }
 
     /**
@@ -73,48 +62,6 @@ public class ClassID implements WritableComparable<ClassID>
         this.className = className;
     }
 
-    /**
-     * Gets the file name.
-     * 
-     * @return the file name
-     */
-    public String getFileName()
-    {
-        return fileName;
-    }
-
-    /**
-     * Sets the file name.
-     * 
-     * @param fileName
-     *            the new file name
-     */
-    public void setFileName(String fileName)
-    {
-        this.fileName = fileName;
-    }
-
-    /**
-     * Gets the package name.
-     * 
-     * @return the package name
-     */
-    public String getPackageName()
-    {
-        return packageName;
-    }
-
-    /**
-     * Sets the package name.
-     * 
-     * @param packageName
-     *            the new package name
-     */
-    public void setPackageName(String packageName)
-    {
-        this.packageName = packageName;
-    }
-
     /*
      * (non-Javadoc)
      * 
@@ -124,9 +71,7 @@ public class ClassID implements WritableComparable<ClassID>
     public String toString()
     {
         StringBuilder sb = new StringBuilder();
-        sb.append(packageName);
-        sb.append('-');
-        sb.append(fileName);
+        sb.append(super.toString());
         sb.append('-');
         sb.append(className);
         return sb.toString();
@@ -140,8 +85,7 @@ public class ClassID implements WritableComparable<ClassID>
     @Override
     public void readFields(DataInput in) throws IOException
     {
-        packageName = in.readUTF();
-        fileName = in.readUTF();
+        super.readFields(in);
         className = in.readUTF();
     }
 
@@ -153,19 +97,16 @@ public class ClassID implements WritableComparable<ClassID>
     @Override
     public void write(DataOutput out) throws IOException
     {
-        out.writeUTF(packageName);
-        out.writeUTF(fileName);
+        super.write(out);
         out.writeUTF(className);
     }
 
     @Override
     public int hashCode()
     {
-        final int prime = Constants.HASH_CODE_PRIME;
-        int result = 1;
+        final int prime = 31;
+        int result = super.hashCode();
         result = prime * result + ((className == null) ? 0 : className.hashCode());
-        result = prime * result + ((fileName == null) ? 0 : fileName.hashCode());
-        result = prime * result + ((packageName == null) ? 0 : packageName.hashCode());
         return result;
     }
 
@@ -174,7 +115,7 @@ public class ClassID implements WritableComparable<ClassID>
     {
         if (this == obj)
             return true;
-        if (obj == null)
+        if (!super.equals(obj))
             return false;
         if (getClass() != obj.getClass())
             return false;
@@ -185,20 +126,6 @@ public class ClassID implements WritableComparable<ClassID>
                 return false;
         }
         else if (!className.equals(other.className))
-            return false;
-        if (fileName == null)
-        {
-            if (other.fileName != null)
-                return false;
-        }
-        else if (!fileName.equals(other.fileName))
-            return false;
-        if (packageName == null)
-        {
-            if (other.packageName != null)
-                return false;
-        }
-        else if (!packageName.equals(other.packageName))
             return false;
         return true;
     }
@@ -211,19 +138,11 @@ public class ClassID implements WritableComparable<ClassID>
     @Override
     public int compareTo(ClassID o)
     {
-        int cmpPkg = this.packageName.compareTo(o.getPackageName());
-        if (cmpPkg != 0)
-            return cmpPkg;
-
-        int cmpFile = this.fileName.compareTo(o.getFileName());
-        if (cmpFile != 0)
-            return cmpFile;
-
         int cmpClass = this.className.compareTo(o.getClassName());
         if (cmpClass != 0)
             return cmpClass;
 
-        return 0;
+        return super.compareTo(o);
     }
 
 }
