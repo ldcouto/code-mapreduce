@@ -96,6 +96,6 @@ public class VolumeByPackage implements JobInformable
     public static void main(String[] args)
     {
         VolumeByPackage me = new VolumeByPackage();
-        JobRunner.startJob(args, me);
+        System.exit(JobRunner.startJob(args, me));
     }
 }

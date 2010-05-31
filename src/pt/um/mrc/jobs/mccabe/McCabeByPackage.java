@@ -91,8 +91,7 @@ public class McCabeByPackage implements JobInformable
     public static void main(String[] args)
     {
         McCabeByPackage me = new McCabeByPackage();
-        int status = JobRunner.startJob(args, me);
-        System.exit(status);
+        System.exit(JobRunner.startJob(args, me));
     }
 
     public int getArgCount()

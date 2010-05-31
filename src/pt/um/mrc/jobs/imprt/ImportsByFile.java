@@ -26,8 +26,7 @@ public class ImportsByFile implements JobInformable
         ImportsByFile job2 = new ImportsByFile();
         Path cache = new Path("tmpCache/");
         
-        int status = JobRunner.startCachedJob(args, job1, job2, cache);
-        System.exit(status);
+        System.exit(JobRunner.startCachedJob(args, job1, job2, cache));
     }
 
     public Class<? extends InputFormat<?, ?>> getInputFormatClass()
