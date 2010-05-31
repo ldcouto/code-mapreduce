@@ -20,13 +20,13 @@ import pt.um.mrc.util.io.iformats.JavaFileInputFormat;
 
 public class ImportsByFile implements JobInformable
 {
-    public static void main(String[] args) throws Exception
+    public static void main(String[] args)
     {
         PkgAndClassCache job1 = new PkgAndClassCache();
         ImportsByFile job2 = new ImportsByFile();
         Path cache = new Path("tmpCache/");
         
-        int status = JobRunner.runCachedJob(job1, job2, cache, args);
+        int status = JobRunner.startCachedJob(args, job1, job2, cache);
         System.exit(status);
     }
 

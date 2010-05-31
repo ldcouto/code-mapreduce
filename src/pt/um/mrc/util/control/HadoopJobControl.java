@@ -33,14 +33,12 @@ public class HadoopJobControl
      *            the mc
      * @param reducer
      *            the reducer
+     * 
+     *            the exception
      * @throws IOException
-     * @throws IOException
-     * @throws Exception
-     * @throws Exception
-     *             the exception
      */
     public static void configureSimpleJob(Job job, JobConfigHolder jc, MapperConfigHolder mc, Class<? extends Reducer<?, ?, ?, ?>> reducer)
-            throws Exception
+            throws IOException
     {
 
         // Configure generic Job stuff
@@ -53,11 +51,7 @@ public class HadoopJobControl
 
             FileInputFormat.addInputPath(job, new Path(jc.getPaths()[i]));
         }
-        // FileInputFormat.setInputPaths(job, jc.getInputPath());
         FileOutputFormat.setOutputPath(job, new Path(jc.getPaths()[i]));
-
-        // TODO uncomment me when the loop works
-        // configureInputs(job, jc.getInputPath());
 
         // Configure the Mapper Stuff
         job.setMapperClass(mc.getMapperClass());
@@ -68,22 +62,6 @@ public class HadoopJobControl
         job.setReducerClass(reducer);
 
     }
-
-    // FIXME This doesn't work!
-    // private static void configureInputs(Job job, Path inputPath)
-    // throws IOException
-    // {
-    // FileSystem fs = FileSystem.get(job.getConfiguration());
-    //        
-    // for (FileStatus fstatus : fs.listStatus(inputPath))
-    // {
-    // if (fstatus.isDir());
-    // {
-    // FileInputFormat.addInputPath(job, fstatus.getPath());
-    // configureInputs(job, fstatus.getPath());
-    // }
-    // }
-    // }
 
     /**
      * Checks arguments.

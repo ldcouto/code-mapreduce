@@ -1,5 +1,7 @@
 package pt.um.mrc.util.control;
 
+import java.io.IOException;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.hadoop.conf.Configuration;
@@ -17,7 +19,7 @@ import org.apache.hadoop.mapreduce.Job;
  */
 public class JobRunner
 {
-    protected static Log LOG = LogFactory.getLog(JobRunner.class);
+    private static Log LOG = LogFactory.getLog(JobRunner.class);
 
     /** The configuration. */
     protected static Configuration conf;
@@ -46,17 +48,16 @@ public class JobRunner
      *            the arguments from the command line
      * @param ji
      *            the JobInformaer for the job to configure
-     * @throws Exception
-     * @throws Exception
+     * @throws IOException
      *             the exception
      */
-    public static void setJob(String[] args, JobInformable ji)
+    public static void setJob(String[] args, JobInformable ji) throws IOException
     {
         conf = new Configuration();
         setJob(args, ji, conf);
     }
 
-    public static void setJob(String[] args, JobInformable ji, Configuration conf)
+    public static void setJob(String[] args, JobInformable ji, Configuration conf) throws IOException
     {
         cji = new CheckedJobInfo(ji.getUsage(), conf, ji.getArgCount());
 
@@ -66,41 +67,31 @@ public class JobRunner
 
         jc = new JobConfigHolder(ji.getClass(), ji.getInputFormatClass(), otherArgs);
 
-        try
-        {
-            job = new Job(conf);
-            HadoopJobControl.configureSimpleJob(job, jc, mc, ji.getReducerClass());
-
-        } catch (Exception e)
-        {
-            LOG.fatal(e.getMessage());
-            System.exit(2);
-        }
+        job = new Job(conf);
+        HadoopJobControl.configureSimpleJob(job, jc, mc, ji.getReducerClass());
     }
 
     /**
      * Run job.
      * 
+     * @throws ClassNotFoundException
+     * @throws InterruptedException
+     * @throws IOException
+     * 
      * @throws Exception
      *             the exception
      */
-    public static int runJob()
+    public static int runJob() throws IOException, InterruptedException, ClassNotFoundException
     {
         int r = 2;
 
-        try
-        {
-            r = job.waitForCompletion(true) ? 0 : 1;
-        } catch (Exception e)
-        {
-            LOG.fatal(e.getMessage());
-            System.exit(2);
-        }
+        r = job.waitForCompletion(true) ? 0 : 1;
 
         return r;
     }
 
-    public static int runDoubleJob(JobInformable job1, JobInformable job2, String tempFolder, String[] args)
+    public static int runDoubleJob(JobInformable job1, JobInformable job2, String tempFolder, String[] args) throws IOException,
+            InterruptedException, ClassNotFoundException
     {
         String[] argsJob1 = { args[1], tempFolder };
         JobRunner.setJob(argsJob1, job1);
@@ -117,7 +108,8 @@ public class JobRunner
         return status;
     }
 
-    public static int runCachedJob(JobInformable job1, JobInformable job2, Path cacheFolder, String[] args) throws Exception
+    public static int runCachedJob(JobInformable job1, JobInformable job2, Path cacheFolder, String[] args) throws IOException, InterruptedException,
+            ClassNotFoundException
     {
         String[] j1Args = args.clone();
         j1Args[1] = cacheFolder.getName();
@@ -139,7 +131,7 @@ public class JobRunner
         return status;
     }
 
-    public static void configureDistCache(Path path) throws Exception
+    public static void configureDistCache(Path path) throws IOException
     {
         for (FileStatus fstatus : FileSystem.get(conf).listStatus(path))
         {
@@ -150,4 +142,62 @@ public class JobRunner
         }
     }
 
+    public static int startJob(String[] args, JobInformable me)
+    {
+        int status = -1;
+        try
+        {
+            JobRunner.setJob(args, me);
+            status = JobRunner.runJob();
+        } catch (IOException e)
+        {
+            LOG.fatal(e.getMessage());
+        } catch (InterruptedException e)
+        {
+            LOG.fatal(e.getMessage());
+        } catch (ClassNotFoundException e)
+        {
+            LOG.fatal(e.getMessage());
+        }
+        return status;
+    }
+
+    public static int startJob(String[] args, JobInformable j1, JobInformable j2, String tempFolder)
+    {
+        int status = -1;
+        try
+        {
+            status = JobRunner.runDoubleJob(j1, j2, tempFolder, args);
+            FileSystem.get(JobRunner.getConf()).delete(new Path(tempFolder), true);
+        } catch (IOException e)
+        {
+            e.printStackTrace();
+        } catch (InterruptedException e)
+        {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e)
+        {
+            e.printStackTrace();
+        }
+        return status;
+    }
+
+    public static int startCachedJob(String[] args, JobInformable job1, JobInformable job2, Path cache)
+    {
+        int status = -1;
+        try
+        {
+            status = JobRunner.runCachedJob(job1, job2, cache, args);
+        } catch (IOException e)
+        {
+            LOG.fatal(e.getMessage());
+        } catch (InterruptedException e)
+        {
+            LOG.fatal(e.getMessage());
+        } catch (ClassNotFoundException e)
+        {
+            LOG.fatal(e.getMessage());
+        }
+        return status;
+    }
 }

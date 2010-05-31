@@ -19,8 +19,7 @@ import pt.um.mrc.util.control.JobRunner;
  */
 
 public class VolumeByPackage implements JobInformable
-{
-
+{    
     /*
      * (non-Javadoc)
      * 
@@ -97,8 +96,6 @@ public class VolumeByPackage implements JobInformable
     public static void main(String[] args)
     {
         VolumeByPackage me = new VolumeByPackage();
-        JobRunner.setJob(args, me);
-        JobRunner.runJob();
+        JobRunner.startJob(args, me);
     }
-
 }

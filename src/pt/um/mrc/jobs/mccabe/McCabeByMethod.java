@@ -91,8 +91,8 @@ public class McCabeByMethod implements JobInformable
     public static void main(String[] args)
     {
         McCabeByMethod me = new McCabeByMethod();
-        JobRunner.setJob(args, me);
-        JobRunner.runJob();
+        int status = JobRunner.startJob(args, me);
+        System.exit(status);
     }
 
     public int getArgCount()
