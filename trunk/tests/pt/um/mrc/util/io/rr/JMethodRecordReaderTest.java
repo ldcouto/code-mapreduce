@@ -138,7 +138,7 @@ public class JMethodRecordReaderTest
     public final void testGetCurrentKey() throws IOException, InterruptedException
     {
         javaRRGoodFile.nextKeyValue();
-        MethodID expected = new MethodID("jj_3R_173[ ]", "ASTParser", "somefile", "japa.parser");
+        MethodID expected = new MethodID("jj_3R_49[ ]", "ASTParser", "somefile", "japa.parser");
         MethodID actual = javaRRGoodFile.getCurrentKey();
         Assert.assertEquals(expected, actual);
     }
