@@ -15,7 +15,10 @@ import pt.um.mrc.util.io.rr.JMethodRecordReader;
 
 /**
  * The Class JMethodInputFormat specifically defines an InputFormat to read the
- * Identifiers and Bodies of methods defined in a file..
+ * Identifiers and Bodies of methods defined in a file.
+ * 
+ * @author Luis Duarte Couto
+ * @author Tiago Alves Veloso
  */
 public class JMethodInputFormat extends FileInputFormat<MethodID, Text>
 {

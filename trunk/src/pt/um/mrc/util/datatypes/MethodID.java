@@ -8,10 +8,12 @@ import org.apache.hadoop.io.WritableComparable;
 
 import pt.um.mrc.util.Constants;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class MethodID represents an Identifier of a method. It's composed by the
  * method name, the class name, the file name and the package name.
+ * 
+ * @author Luis Duarte Couto
+ * @author Tiago Alves Veloso
  */
 public class MethodID extends AbsID implements WritableComparable<MethodID>
 {

@@ -1,12 +1,15 @@
 package pt.um.mrc.util.datatypes;
 
 /**
- * The Interface Pair for Pairs.
+ * An interface for Pairs.
  * 
  * @param <K>
  *            the key type
  * @param <V>
  *            the value type
+ * 
+ * @author Luis Duarte Couto
+ * @author Tiago Alves Veloso
  */
 public interface Pair<K, V>
 {

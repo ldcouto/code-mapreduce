@@ -9,6 +9,10 @@ import pt.um.mrc.util.Constants;
  *            the key type
  * @param <V>
  *            the value type
+ *            
+ *            
+ * @author Luis Duarte Couto
+ * @author Tiago Alves Veloso
  */
 public class PairImpl<K, V> implements Pair<K, V>
 {

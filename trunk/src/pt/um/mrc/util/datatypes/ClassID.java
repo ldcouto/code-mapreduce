@@ -11,7 +11,10 @@ import pt.um.mrc.util.Constants;
 // TODO: Auto-generated Javadoc
 /**
  * ClassID represents an Identifier of a Class. It's composed by the class name,
- * the file name and the package name.
+ * the file name and the package name. It extends {@link AbsID}.
+ * 
+ * @author Luis Duarte Couto
+ * @author Tiago Alves Veloso
  */
 public class ClassID extends AbsID implements WritableComparable<ClassID>
 {
@@ -39,7 +42,7 @@ public class ClassID extends AbsID implements WritableComparable<ClassID>
      */
     public ClassID(String className, String fileName, String packageName)
     {
-        super(fileName,packageName);
+        super(fileName, packageName);
         this.className = className;
     }
 
@@ -103,6 +106,11 @@ public class ClassID extends AbsID implements WritableComparable<ClassID>
         out.writeUTF(className);
     }
 
+    /*
+     * (non-Javadoc)
+     * 
+     * @see pt.um.mrc.util.datatypes.AbsID#hashCode()
+     */
     @Override
     public int hashCode()
     {
@@ -112,6 +120,11 @@ public class ClassID extends AbsID implements WritableComparable<ClassID>
         return result;
     }
 
+    /*
+     * (non-Javadoc)
+     * 
+     * @see pt.um.mrc.util.datatypes.AbsID#equals(java.lang.Object)
+     */
     @Override
     public boolean equals(Object obj)
     {

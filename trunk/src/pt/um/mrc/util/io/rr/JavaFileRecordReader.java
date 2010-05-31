@@ -15,13 +15,14 @@ import org.apache.hadoop.util.LineReader;
 
 import pt.um.mrc.util.Constants;
 
+// TODO: Auto-generated Javadoc
 /**
  * The JavaFileRecordReader extends org.apache.hadoop.mapreduce.RecordReader.
  * 
  * Treats the key as filename and value as the file content.
  * 
- * @author Tiago Alves Veloso
  * @author Luis Duarte Couto
+ * @author Tiago Alves Veloso
  */
 public class JavaFileRecordReader extends RecordReader<Text, Text>
 {
@@ -116,17 +117,8 @@ public class JavaFileRecordReader extends RecordReader<Text, Text>
         return split;
     }
 
-    /**
-     * Called once at start up.
-     * 
-     * @param genericSplit
-     *            the generic split
-     * @param context
-     *            the context
-     * @throws IOException
-     *             Signals that an I/O exception has occurred.
-     * @throws InterruptedException
-     *             the interrupted exception
+    /* (non-Javadoc)
+     * @see org.apache.hadoop.mapreduce.RecordReader#initialize(org.apache.hadoop.mapreduce.InputSplit, org.apache.hadoop.mapreduce.TaskAttemptContext)
      */
     @Override
     public void initialize(InputSplit genericSplit, TaskAttemptContext context) throws IOException, InterruptedException
@@ -137,12 +129,12 @@ public class JavaFileRecordReader extends RecordReader<Text, Text>
         start = split.getStart();
         end = start + split.getLength();
         final Path file = split.getPath();
- 
+
         // Open the file
         FileSystem fs = file.getFileSystem(job);
         FSDataInputStream fileIn = fs.open(split.getPath());
-            in = new LineReader(fileIn, job);
-	}
+        in = new LineReader(fileIn, job);
+    }
 
     /**
      * In this case it just stores the filename in <code>key</code> and reads
@@ -211,14 +203,8 @@ public class JavaFileRecordReader extends RecordReader<Text, Text>
         }
     }
 
-    /**
-     * Get the current key.
-     * 
-     * @return The current key.
-     * @throws IOException
-     *             Signals that an I/O exception has occurred.
-     * @throws InterruptedException
-     *             the interrupted exception
+    /* (non-Javadoc)
+     * @see org.apache.hadoop.mapreduce.RecordReader#getCurrentKey()
      */
     @Override
     public Text getCurrentKey() throws IOException, InterruptedException
@@ -226,14 +212,8 @@ public class JavaFileRecordReader extends RecordReader<Text, Text>
         return key;
     }
 
-    /**
-     * Get the current value.
-     * 
-     * @return The current value.
-     * @throws IOException
-     *             Signals that an I/O exception has occurred.
-     * @throws InterruptedException
-     *             the interrupted exception
+    /* (non-Javadoc)
+     * @see org.apache.hadoop.mapreduce.RecordReader#getCurrentValue()
      */
     @Override
     public Text getCurrentValue() throws IOException, InterruptedException
@@ -241,14 +221,8 @@ public class JavaFileRecordReader extends RecordReader<Text, Text>
         return value;
     }
 
-    /**
-     * Get the progress within the split.
-     * 
-     * @return the progress of the reading process.
-     * @throws IOException
-     *             Signals that an I/O exception has occurred.
-     * @throws InterruptedException
-     *             the interrupted exception
+    /* (non-Javadoc)
+     * @see org.apache.hadoop.mapreduce.RecordReader#getProgress()
      */
     @Override
     public float getProgress() throws IOException, InterruptedException
@@ -263,11 +237,10 @@ public class JavaFileRecordReader extends RecordReader<Text, Text>
         }
     }
 
-    /**
-     * Close the input stream when done.
+    /*
+     * (non-Javadoc)
      * 
-     * @throws IOException
-     *             Signals that an I/O exception has occurred.
+     * @see org.apache.hadoop.mapreduce.RecordReader#close()
      */
     @Override
     public void close() throws IOException
@@ -276,6 +249,5 @@ public class JavaFileRecordReader extends RecordReader<Text, Text>
         {
             in.close();
         }
-
     }
 }

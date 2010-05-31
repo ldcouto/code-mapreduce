@@ -35,64 +35,119 @@ import pt.um.mrc.util.io.visitors.GrabbingVisitor;
  * 
  * This record reader can't be used directly. Rather, it should be extended by
  * other, more specific ones.
+ *
+ * @param <ID> the generic type
+ * @param <V> the value type
  * 
  * @author Luis Duarte Couto
  * @author Tiago Alves Veloso
- * 
  */
-
 public abstract class JRecordReader<ID extends WritableComparable<ID>, V extends GrabbingVisitor<ID>> extends RecordReader<ID, Text>
 {
+    
     protected Map<ID, Text> elems = new HashMap<ID, Text>();
+    
     protected String packageName;
+    
     protected String fileName;
+    
     protected CompilationUnit cu;
+    
     protected FileSplit fSplit;
+    
     protected FSDataInputStream fileIn;
+    
     protected List<ID> keys;
+    
     protected int curr = -1;
+    
     protected V visitor;
 
+    /**
+     * Gets the methods.
+     *
+     * @return the methods
+     */
     public Map<ID, Text> getMethods()
     {
         return elems;
     }
 
+    /**
+     * Gets the package name.
+     *
+     * @return the package name
+     */
     protected String getPackageName()
     {
         return packageName;
     }
 
+    /**
+     * Gets the file name.
+     *
+     * @return the file name
+     */
     protected String getFileName()
     {
         return fileName;
     }
 
+    /**
+     * Gets the cu.
+     *
+     * @return the cu
+     */
     protected CompilationUnit getCu()
     {
         return cu;
     }
 
+    /**
+     * Gets the f split.
+     *
+     * @return the f split
+     */
     protected FileSplit getfSplit()
     {
         return fSplit;
     }
 
+    /**
+     * Gets the file in.
+     *
+     * @return the file in
+     */
     protected FSDataInputStream getFileIn()
     {
         return fileIn;
     }
 
+    /**
+     * Gets the m keys.
+     *
+     * @return the m keys
+     */
     protected List<ID> getmKeys()
     {
         return keys;
     }
 
+    /**
+     * Gets the curr m.
+     *
+     * @return the curr m
+     */
     protected int getCurrM()
     {
         return curr;
     }
 
+    /**
+     * Instantiates a new j record reader.
+     *
+     * @param v the v
+     */
     public JRecordReader(V v)
     {
         visitor = v;
@@ -106,6 +161,11 @@ public abstract class JRecordReader<ID extends WritableComparable<ID>, V extends
      * It should be noted that after initialization the reader does <b>not</b>
      * have a Key or Value loaded. The internal iterator must be moved forward
      * with the {@link nextKeyValue()} method.
+     *
+     * @param inSplit the in split
+     * @param tac the tac
+     * @throws IOException Signals that an I/O exception has occurred.
+     * @throws InterruptedException the interrupted exception
      */
 
     @Override
@@ -151,7 +211,10 @@ public abstract class JRecordReader<ID extends WritableComparable<ID>, V extends
     /**
      * Checks if there is another pair available and, if so, moves the internal
      * iterator so it points to that position.
-     * 
+     *
+     * @return true, if successful
+     * @throws IOException Signals that an I/O exception has occurred.
+     * @throws InterruptedException the interrupted exception
      * @returns True if another pair is available. False, otherwise.
      */
 
@@ -173,8 +236,10 @@ public abstract class JRecordReader<ID extends WritableComparable<ID>, V extends
      * Returns the key currently being pointed to by the iterator. The reader
      * does not check if the position is valid. That responsibility lies with
      * whoever is calling the method.
-     * 
+     *
      * @return The current key.
+     * @throws IOException Signals that an I/O exception has occurred.
+     * @throws InterruptedException the interrupted exception
      */
     @Override
     public ID getCurrentKey() throws IOException, InterruptedException
@@ -186,8 +251,10 @@ public abstract class JRecordReader<ID extends WritableComparable<ID>, V extends
      * Returns the value currently being pointed to by the iterator. The reader
      * does not check if the position is valid. That responsibility lies with
      * whoever is calling the method.
-     * 
+     *
      * @return The current value
+     * @throws IOException Signals that an I/O exception has occurred.
+     * @throws InterruptedException the interrupted exception
      */
     @Override
     public Text getCurrentValue() throws IOException, InterruptedException
@@ -199,9 +266,11 @@ public abstract class JRecordReader<ID extends WritableComparable<ID>, V extends
      * Computes and returns an estimate of the progress. Ie, how much of the
      * file has been read and passed, This method is typically used internally
      * by hadoop.
-     * 
+     *
      * @return a progress estimation, defined as (Current-Position /
-     *         Total-of-Positions)
+     * Total-of-Positions)
+     * @throws IOException Signals that an I/O exception has occurred.
+     * @throws InterruptedException the interrupted exception
      */
     @Override
     public float getProgress() throws IOException, InterruptedException
@@ -216,6 +285,8 @@ public abstract class JRecordReader<ID extends WritableComparable<ID>, V extends
     /**
      * Closes the reader by closing the FileInputStream and resetting auxiliary
      * structures.
+     *
+     * @throws IOException Signals that an I/O exception has occurred.
      */
     @Override
     public void close() throws IOException
