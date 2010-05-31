@@ -7,6 +7,7 @@ import org.apache.hadoop.mapreduce.Mapper;
 import org.apache.hadoop.mapreduce.Reducer;
 import org.apache.hadoop.mapreduce.lib.input.TextInputFormat;
 
+import pt.um.mrc.jobs.VolumeMiscJob;
 import pt.um.mrc.util.control.JobInformable;
 import pt.um.mrc.util.control.JobRunner;
 
@@ -14,7 +15,7 @@ import pt.um.mrc.util.control.JobRunner;
 /**
  * The Class VolumeByClass.
  */
-public class VolumeByClass implements JobInformable
+public class VolumeByClass extends VolumeMiscJob implements JobInformable
 {
 
     /*

@@ -1,15 +1,12 @@
 package pt.um.mrc.jobs.volume;
 
-import org.apache.hadoop.io.IntWritable;
-import org.apache.hadoop.io.Text;
-import org.apache.hadoop.mapreduce.InputFormat;
 import org.apache.hadoop.mapreduce.Mapper;
 import org.apache.hadoop.mapreduce.Reducer;
-import org.apache.hadoop.mapreduce.lib.input.TextInputFormat;
 
+import pt.um.mrc.jobs.Text2IntJob;
 import pt.um.mrc.util.control.JobInformable;
 import pt.um.mrc.util.control.JobRunner;
-
+ 
 /**
  * This class contains the configuration for the job that relates files with
  * their lines of code volume.
@@ -18,7 +15,7 @@ import pt.um.mrc.util.control.JobRunner;
  * @author Tiago Alves Veloso
  */
 
-public class VolumeByFile implements JobInformable
+public class VolumeByFile extends Text2IntJob implements JobInformable
 {
 
     /*
@@ -39,36 +36,6 @@ public class VolumeByFile implements JobInformable
     public Class<? extends Mapper<?, ?, ?, ?>> getMapperClass()
     {
         return VolumeByFileMapper.class;
-    }
-
-    /*
-     * (non-Javadoc)
-     * 
-     * @see pt.um.mrc.util.control.JobInformable#getMapperKeyClass()
-     */
-    public Class<?> getMapperKeyOutClass()
-    {
-        return Text.class;
-    }
-
-    /*
-     * (non-Javadoc)
-     * 
-     * @see pt.um.mrc.util.control.JobInformable#getMapperValueClass()
-     */
-    public Class<?> getMapperValueOutClass()
-    {
-        return IntWritable.class;
-    }
-
-    /*
-     * (non-Javadoc)
-     * 
-     * @see pt.um.mrc.util.control.JobInformable#getInputFormatClass()
-     */
-    public Class<? extends InputFormat<?, ?>> getInputFormatClass()
-    {
-        return TextInputFormat.class;
     }
 
     /*
