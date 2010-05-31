@@ -23,8 +23,9 @@ public class RegexConstants
     private static String catchClause = "(^|\\s)+catch(\\s)*\\(";
     private static String andClause = "(^|\\s)+\\&\\&(\\s)+";
     private static String orClause = "(^|\\s)+\\|\\|(\\s)+";
+    private static String ternaryOpClause = "(\\s)+\\?(\\s)+";
     private static String controlStatementsClause = "(" + ifClause + "|" + forClause + "|" + whileClause + "|" + caseClause + "|" + catchClause + "|"
-            + andClause + "|" + orClause + ")";
+            + andClause + "|" + orClause + "|" + ternaryOpClause + ")";
 
     public static Pattern CONTROL_STATEMENT_PATTERN = Pattern.compile(controlStatementsClause);
     

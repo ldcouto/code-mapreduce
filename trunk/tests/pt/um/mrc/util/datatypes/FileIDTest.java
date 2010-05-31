@@ -190,6 +190,17 @@ public class FileIDTest
     }
 
     @Test
+    public final void testEquals_FileNameBothNullID()
+    {
+        FileID id1 = new FileID(null, "mapreduce");
+        FileID id2 = new FileID(null, "mapreduce");
+
+        boolean result = id1.equals(id2);
+
+        assertTrue(result);
+    }
+    
+    @Test
     public final void testEquals_PackageNameNullID()
     {
         FileID id1 = new FileID("Mapper.java", null);
@@ -198,6 +209,17 @@ public class FileIDTest
         boolean result = id1.equals(id2);
 
         assertFalse(result);
+    }
+    
+    @Test
+    public final void testEquals_PackageNameBothNullID()
+    {
+        FileID id1 = new FileID("Mapper.java", null);
+        FileID id2 = new FileID("Mapper.java", null);
+
+        boolean result = id1.equals(id2);
+
+        assertTrue(result);
     }
 
     @Test

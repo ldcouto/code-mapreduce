@@ -150,17 +150,9 @@ public class JMethodRecordReaderTest
 
         StringBuilder sb = new StringBuilder();
 
-        sb.append("private boolean jj_3R_173() {\n");
-        sb.append("    Token xsp;\n");
-        sb.append("    xsp = jj_scanpos;\n");
-        sb.append("    if (jj_3_6()) {\n");
-        sb.append("       jj_scanpos = xsp;\n");
-        sb.append("       if (jj_3R_200()) {\n");
-        sb.append("           jj_scanpos = xsp;\n");
-        sb.append("           if (jj_3R_201()) {\n");
-        sb.append("               return true;\n");
-        sb.append("           }\n");
-        sb.append("       }\n");
+        sb.append("private boolean jj_3R_49(){\n");
+        sb.append("    if(jj_scan_token (PUBLIC)){\n");
+        sb.append("        return true;\n");
         sb.append("    }\n");
         sb.append("    return false;\n");
         sb.append("}\n");

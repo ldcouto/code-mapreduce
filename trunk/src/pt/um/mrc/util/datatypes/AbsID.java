@@ -103,21 +103,10 @@ public abstract class AbsID
         if (getClass() != obj.getClass())
             return false;
         AbsID other = (AbsID) obj;
-        if (fileName == null)
-        {
-            if (other.fileName != null)
-                return false;
-        }
-        else if (!fileName.equals(other.fileName))
-            return false;
-        if (packageName == null)
-        {
-            if (other.packageName != null)
-                return false;
-        }
-        else if (!packageName.equals(other.packageName))
-            return false;
-        return true;
+        boolean areEquals = true;
+        areEquals &= (fileName == null ? fileName == other.getFileName() : fileName.equals(other.getFileName()));
+        areEquals &= (packageName == null ? packageName == other.getPackageName() : packageName.equals(other.getPackageName()));
+        return areEquals;
     }
 
     /*

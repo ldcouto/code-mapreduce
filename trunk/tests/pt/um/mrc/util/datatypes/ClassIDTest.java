@@ -155,7 +155,8 @@ public class ClassIDTest
     @Test
     public final void testEquals_SomeObject()
     {
-        boolean result = testID.equals(new Object());
+        Object obj = (Object) new FileID(testID.getFileName(), testID.getPackageName());
+        boolean result = testID.equals(obj);
 
         assertFalse(result);
     }
@@ -224,6 +225,17 @@ public class ClassIDTest
         boolean result = id1.equals(id2);
 
         assertFalse(result);
+    }
+    
+    @Test
+    public final void testEquals_ClassNameBothNullID()
+    {
+        ClassID id1 = new ClassID(null, "Mapper.java", "mapreduce");
+        ClassID id2 = new ClassID(null, "Mapper.java", "mapreduce");
+
+        boolean result = id1.equals(id2);
+
+        assertTrue(result);
     }
 
     @Test

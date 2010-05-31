@@ -32,12 +32,13 @@ public class McCabeByMethodMapperTest
         sb.append("    case a :\n");
         sb.append("    catch (Exception e)\n");
         sb.append("    for (int i; i< 20; i++ )\n");
+        sb.append("    a ? b : c\n");
         sb.append("}\n");
         
         MethodID key = new MethodID("manyControlStatements", "SomeClass", "SomeClass.java", "test");
         
         driver.withInput(key, new Text(sb.toString()));
-        driver.withOutput(key, new IntWritable(8));
+        driver.withOutput(key, new IntWritable(9));
         driver.runTest();
     }
 }

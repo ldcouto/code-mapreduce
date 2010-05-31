@@ -178,6 +178,17 @@ public class PairImplTest
     }
 
     @Test
+    public final void testEquals_PairBothNullKey()
+    {
+        PairImpl<Integer, String> p1 = new PairImpl<Integer, String>(null, "Text");
+        PairImpl<Integer, String> p2 = new PairImpl<Integer, String>(null, "Text");
+
+        boolean result = p1.equals(p2);
+
+        assertTrue(result);
+    }
+    
+    @Test
     public final void testEquals_PairNullValue()
     {
         PairImpl<Integer, String> p1 = new PairImpl<Integer, String>(1, null);
@@ -188,6 +199,17 @@ public class PairImplTest
         assertFalse(result);
     }
 
+    @Test
+    public final void testEquals_PairBothNullValue()
+    {
+        PairImpl<Integer, String> p1 = new PairImpl<Integer, String>(1, null);
+        PairImpl<Integer, String> p2 = new PairImpl<Integer, String>(1, null);
+
+        boolean result = p1.equals(p2);
+
+        assertTrue(result);
+    }
+    
     @Test
     public final void testHashCode_NullPair()
     {
