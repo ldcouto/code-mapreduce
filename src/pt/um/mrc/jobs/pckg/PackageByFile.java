@@ -10,8 +10,16 @@ import pt.um.mrc.util.control.JobRunner;
 import pt.um.mrc.util.io.iformats.JFileInputFormat;
 
 /**
- * This class contains the configuration for the job that relates files with the
- * package they define.
+ * This job relates files with the package they define. <br>
+ * 
+ * It takes two parameters. The input and the output folder. The input folder
+ * must contain a set of source files. And the output folder cannot exist. <br>
+ * 
+ * <br>
+ * The output produced comes in the form: <br>
+ * <br>
+ * 
+ * FILENAME PACKAGENAME
  * 
  * @author Luis Duarte Couto
  * @author Tiago Alves Veloso
@@ -82,16 +90,20 @@ public class PackageByFile implements JobInformable
      * The main method.
      * 
      * @param args
-     *            the arguments
-     * @throws Exception
-     *             the exception
+     *            the arguments from the command line, the input and the output
+     *            folders
      */
     public static void main(String[] args)
     {
-        PackageByFile me = new PackageByFile();        
+        PackageByFile me = new PackageByFile();
         System.exit(JobRunner.startJob(args, me));
     }
 
+    /*
+     * (non-Javadoc)
+     * 
+     * @see pt.um.mrc.util.control.JobInformable#getArgCount()
+     */
     public int getArgCount()
     {
         return 2;

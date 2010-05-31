@@ -20,7 +20,7 @@ public class McCabeByFileMapper extends LineValuesMapper<LongWritable, Text, Tex
 {
     /**
      * This overriden method simply flags the LineValuesMapper to process
-     * information for classes.
+     * information for files.
      */
     @Override
     protected void setup(Context context) throws IOException, InterruptedException
