@@ -1,12 +1,9 @@
 package pt.um.mrc.jobs.mccabe;
 
-import org.apache.hadoop.io.IntWritable;
-import org.apache.hadoop.io.Text;
-import org.apache.hadoop.mapreduce.InputFormat;
 import org.apache.hadoop.mapreduce.Mapper;
 import org.apache.hadoop.mapreduce.Reducer;
-import org.apache.hadoop.mapreduce.lib.input.TextInputFormat;
 
+import pt.um.mrc.jobs.Text2IntJob;
 import pt.um.mrc.util.control.JobInformable;
 import pt.um.mrc.util.control.JobRunner;
 
@@ -18,7 +15,7 @@ import pt.um.mrc.util.control.JobRunner;
  * @author Tiago Alves Veloso
  */
 
-public class McCabeByPackage implements JobInformable
+public class McCabeByPackage extends Text2IntJob implements JobInformable
 {
     /*
      * (non-Javadoc)
@@ -38,36 +35,6 @@ public class McCabeByPackage implements JobInformable
     public Class<? extends Mapper<?, ?, ?, ?>> getMapperClass()
     {
         return McCabeByPackageMapper.class;
-    }
-
-    /*
-     * (non-Javadoc)
-     * 
-     * @see pt.um.mrc.util.control.JobInformable#getMapperKeyClass()
-     */
-    public Class<?> getMapperKeyOutClass()
-    {
-        return Text.class;
-    }
-
-    /*
-     * (non-Javadoc)
-     * 
-     * @see pt.um.mrc.util.control.JobInformable#getMapperValueClass()
-     */
-    public Class<?> getMapperValueOutClass()
-    {
-        return IntWritable.class;
-    }
-
-    /*
-     * (non-Javadoc)
-     * 
-     * @see pt.um.mrc.util.control.JobInformable#getInputFormatClass()
-     */
-    public Class<? extends InputFormat<?, ?>> getInputFormatClass()
-    {
-        return TextInputFormat.class;
     }
 
     /*

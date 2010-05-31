@@ -1,11 +1,9 @@
 package pt.um.mrc.jobs.volume;
 
-import org.apache.hadoop.io.IntWritable;
-import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.InputFormat;
-import org.apache.hadoop.mapreduce.Mapper;
 import org.apache.hadoop.mapreduce.Reducer;
 
+import pt.um.mrc.jobs.VolumeMiscJob;
 import pt.um.mrc.util.control.JobInformable;
 import pt.um.mrc.util.io.iformats.JClassInputFormat;
 
@@ -13,7 +11,7 @@ import pt.um.mrc.util.io.iformats.JClassInputFormat;
 /**
  * The Class VolumeByClassMisc.
  */
-public class VolumeByClassMisc implements JobInformable
+public class VolumeByClassMisc extends VolumeMiscJob implements JobInformable
 {
 
     /*
@@ -26,35 +24,7 @@ public class VolumeByClassMisc implements JobInformable
         return JClassInputFormat.class;
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see pt.um.mrc.util.control.JobInformable#getMapperClass()
-     */
-    public Class<? extends Mapper<?, ?, ?, ?>> getMapperClass()
-    {
-        return VolumeMiscMapper.class;
-    }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see pt.um.mrc.util.control.JobInformable#getMapperKeyOutClass()
-     */
-    public Class<?> getMapperKeyOutClass()
-    {
-        return Text.class;
-    }
-
-    /*
-     * (non-Javadoc)
-     * 
-     * @see pt.um.mrc.util.control.JobInformable#getMapperValueOutClass()
-     */
-    public Class<?> getMapperValueOutClass()
-    {
-        return IntWritable.class;
-    }
 
     /*
      * (non-Javadoc)

@@ -1,14 +1,11 @@
 package pt.um.mrc.jobs.mccabe;
 
-import org.apache.hadoop.io.IntWritable;
-import org.apache.hadoop.mapreduce.InputFormat;
 import org.apache.hadoop.mapreduce.Mapper;
 import org.apache.hadoop.mapreduce.Reducer;
 
+import pt.um.mrc.jobs.ByMethodJob;
 import pt.um.mrc.util.control.JobInformable;
 import pt.um.mrc.util.control.JobRunner;
-import pt.um.mrc.util.datatypes.MethodID;
-import pt.um.mrc.util.io.iformats.JMethodInputFormat;
 
 /**
  * This class contains the configuration for the job that relates methods with
@@ -18,7 +15,7 @@ import pt.um.mrc.util.io.iformats.JMethodInputFormat;
  * @author Tiago Alves Veloso
  */
 
-public class McCabeByMethod implements JobInformable
+public class McCabeByMethod extends ByMethodJob implements JobInformable
 {
     /*
      * (non-Javadoc)
@@ -38,36 +35,6 @@ public class McCabeByMethod implements JobInformable
     public Class<? extends Mapper<?, ?, ?, ?>> getMapperClass()
     {
         return McCabeByMethodMapper.class;
-    }
-
-    /*
-     * (non-Javadoc)
-     * 
-     * @see pt.um.mrc.util.control.JobInformable#getMapperKeyClass()
-     */
-    public Class<?> getMapperKeyOutClass()
-    {
-        return MethodID.class;
-    }
-
-    /*
-     * (non-Javadoc)
-     * 
-     * @see pt.um.mrc.util.control.JobInformable#getMapperValueClass()
-     */
-    public Class<?> getMapperValueOutClass()
-    {
-        return IntWritable.class;
-    }
-
-    /*
-     * (non-Javadoc)
-     * 
-     * @see pt.um.mrc.util.control.JobInformable#getInputFormatClass()
-     */
-    public Class<? extends InputFormat<?, ?>> getInputFormatClass()
-    {
-        return JMethodInputFormat.class;
     }
 
     /*
