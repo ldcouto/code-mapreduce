@@ -1,7 +1,5 @@
 package pt.um.mrc.jobs.volume;
 
-import org.apache.hadoop.fs.FileSystem;
-import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.InputFormat;
@@ -81,15 +79,16 @@ public class VolumeByClass implements JobInformable
      * @param args the arguments
      * @throws Exception the exception
      */
-    public static void main(String[] args) throws Exception
+    public static void main(String[] args)
     {
         VolumeByClassMisc j1 = new VolumeByClassMisc();
         VolumeByClass j2 = new VolumeByClass();
         String tempFolder = "tmpClsLoc/";
 
-        int status = JobRunner.runDoubleJob(j1, j2, tempFolder, args);
-        FileSystem.get(JobRunner.getConf()).delete(new Path(tempFolder), true);
+        int status = JobRunner.startJob(args, j1, j2, tempFolder);
 
         System.exit(status);
     }
+
+
 }

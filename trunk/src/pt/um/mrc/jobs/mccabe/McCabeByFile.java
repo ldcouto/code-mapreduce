@@ -95,7 +95,7 @@ public class McCabeByFile implements JobInformable
     public static void main(String[] args)
     {
         McCabeByFile me = new McCabeByFile();
-        JobRunner.setJob(args, me);
-        JobRunner.runJob();
+        int status = JobRunner.startJob(args, me);
+        System.exit(status);
     }
 }

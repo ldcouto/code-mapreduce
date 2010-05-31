@@ -1,7 +1,5 @@
 package pt.um.mrc.jobs.mccabe;
 
-import org.apache.hadoop.fs.FileSystem;
-import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.InputFormat;
@@ -102,8 +100,7 @@ public class McCabeByClass implements JobInformable
         McCabeByClass j2 = new McCabeByClass();
         String tempFolder = "tmpClsMcCabe/";
 
-        int status = JobRunner.runDoubleJob(j1, j2, tempFolder, args);
-        FileSystem.get(JobRunner.getConf()).delete(new Path(tempFolder), true);
+        int status = JobRunner.startJob(args, j1, j2, tempFolder);
 
         System.exit(status);
     }
