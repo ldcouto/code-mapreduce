@@ -8,8 +8,16 @@ import pt.um.mrc.util.control.JobInformable;
 import pt.um.mrc.util.control.JobRunner;
 
 /**
- * This class contains the configuration for the job that relates files with
- * their McCabe number.
+ * This job relates files with their cyclomatic complexity. <br>
+ * 
+ * It takes two parameters. The input and the output folder. The input folder
+ * must contain a set of source files. And the output folder cannot exist. <br>
+ * 
+ * <br>
+ * The output produced comes in the form: <br>
+ * <br>
+ * 
+ * PACKAGENAME-FILENAME CYCLOMATIC_COMPLEXITY
  * 
  * @author Luis Duarte Couto
  * @author Tiago Alves Veloso

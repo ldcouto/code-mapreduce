@@ -3,8 +3,8 @@ package pt.um.mrc.jobs.imprt;
 import org.apache.hadoop.io.Text;
 
 /**
- * This class is the Mapper for the job that relates files with the packages
- * they import.
+ * This class is the mapper for the {@link ImportsByFile} job. It extends
+ * {@link ImportsCommonMapper} which handles the map step for this job.
  * 
  * @author Luis Duarte Couto
  * @author Tiago Alves Veloso

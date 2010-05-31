@@ -6,8 +6,8 @@ import org.apache.hadoop.io.Text;
 import pt.um.mrc.util.reducers.SumReducer;
 
 /**
- * This class is the Reducer for the job that relates classes with their McCabe
- * number.
+ * This class is the reducer for the {@link McCabeByClass} job. It extends
+ * {@link SumReducer} class which handles the reduce step for this job.
  * 
  * @author Luis Duarte Couto
  * @author Tiago Alves Veloso
