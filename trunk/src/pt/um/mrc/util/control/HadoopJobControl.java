@@ -15,27 +15,27 @@ import org.apache.hadoop.util.GenericOptionsParser;
  * The Class HadoopJobControl contains some helper methods to configure an
  * Hadoop job.
  * 
- * @author Tiago Alves Veloso
  * @author Luis Duarte Couto
+ * @author Tiago Alves Veloso
  */
 public class HadoopJobControl
 {
-    protected static Log LOG = LogFactory.getLog(HadoopJobControl.class);
+    /** The LOG. */
+    private static Log LOG = LogFactory.getLog(HadoopJobControl.class);
 
     /**
-     * Configures a simple job.
+     * Configures a simple hadoop job.
      * 
      * @param job
-     *            the Job to be configured
+     *            the job to be configured
      * @param jc
-     *            the JobConfigHolder to use in configuration of the Job
+     *            the holder of the job configuration
      * @param mc
-     *            the mc
+     *            the holder of the mapper configuration
      * @param reducer
-     *            the reducer
-     * 
-     *            the exception
+     *            the reducer class to be used
      * @throws IOException
+     *             Signals that an I/O exception has occurred.
      */
     public static void configureSimpleJob(Job job, JobConfigHolder jc, MapperConfigHolder mc, Class<? extends Reducer<?, ?, ?, ?>> reducer)
             throws IOException
@@ -64,13 +64,13 @@ public class HadoopJobControl
     }
 
     /**
-     * Checks arguments.
+     * Checks that the given arguments are correct.
      * 
      * @param args
-     *            the argument array to be checked
+     *            the arguments to be checked
      * @param cji
-     *            the CheckedJobInfo with the configuration for the job.
-     * @return the string[]
+     *            the correct configuration of the arguments
+     * @return the valid arguments
      */
     public static String[] checkArguments(String[] args, CheckedJobInfo cji)
     {

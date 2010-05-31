@@ -3,11 +3,13 @@ package pt.um.mrc.util.control;
 import org.apache.hadoop.conf.Configuration;
 
 /**
- * The Class CheckedJobInfo is used as an auxiliary abstraction to configure a
- * Hadoop job.
+ * The class CheckedJobInfo is where the correct information for job arguments
+ * is stored.
  * 
- * @author Tiago Alves Veloso
+ * It is used as an abstraction to configure a job.
+ * 
  * @author Luis Duarte Couto
+ * @author Tiago Alves Veloso
  */
 public class CheckedJobInfo
 {
@@ -17,8 +19,20 @@ public class CheckedJobInfo
     /** The configuration for the job. */
     private Configuration conf;
 
+    /** The number of arguments. */
     private int argNum;
 
+    /**
+     * Instantiates a new CheckedJobInfo.
+     * 
+     * @param usageMessage
+     *            the usage message to be used in case wrong arguments are
+     *            passed
+     * @param conf
+     *            the configuration to be used in the job
+     * @param argNum
+     *            the valida number of arguments
+     */
     public CheckedJobInfo(String usageMessage, Configuration conf, int argNum)
     {
         this.usageMessage = usageMessage;
@@ -26,6 +40,11 @@ public class CheckedJobInfo
         this.argNum = argNum;
     }
 
+    /**
+     * Gets the number of valid arguments.
+     * 
+     * @return the the number of valid arguments
+     */
     public int getArgNum()
     {
         return argNum;

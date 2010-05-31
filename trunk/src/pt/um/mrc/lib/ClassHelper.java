@@ -6,11 +6,25 @@ import java.util.regex.Matcher;
 import pt.um.mrc.util.datatypes.Pair;
 import pt.um.mrc.util.datatypes.PairImpl;
 
+/**
+ * A set of useful methods to retrieve information from class headers.
+ */
 public class ClassHelper
 {
+
+    /**
+     * Protected constructor since it is a static only class
+     */
     protected ClassHelper()
     {}
 
+    /**
+     * Finds declared classes in the given input text.
+     * 
+     * @param text
+     *            the input text
+     * @return the array list of classes defined within the input text
+     */
     public static ArrayList<String> findClasses(String text)
     {
         ArrayList<String> r = new ArrayList<String>();
@@ -43,6 +57,15 @@ public class ClassHelper
         return r;
     }
 
+    /**
+     * Finds classes and their super classes in the given input text. If no
+     * super class is found for a given class, then that class is not outputted.
+     * 
+     * @param text
+     *            the input text
+     * @return the array list of pairs that associates classes with their super
+     *         classes.
+     */
     public static ArrayList<Pair<String, String>> findClassAndSuperClass(String text)
     {
         ArrayList<Pair<String, String>> pairs = new ArrayList<Pair<String, String>>();

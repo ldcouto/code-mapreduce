@@ -10,6 +10,9 @@ import org.apache.hadoop.mapreduce.Reducer;
  * The classes that implement this interface provide all the information
  * required to set up and run a job, which is in turn used by {@link JobRunner}
  * to set up and run the job.
+ * 
+ * @author Luis Duarte Couto
+ * @author Tiago Alves Veloso
  */
 public interface JobInformable
 {
@@ -59,7 +62,7 @@ public interface JobInformable
     public abstract Class<?> getMapperValueOutClass();
 
     /**
-     * Gets the class of the InputFormat of the key/value pairs used in this
+     * Gets the class of the {@link InputFormat} of the key/value pairs used in this
      * job.
      * 
      * @return the InputFormat class used in this job
