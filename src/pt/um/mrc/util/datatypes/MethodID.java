@@ -169,6 +169,9 @@ public class MethodID extends AbsID implements WritableComparable<MethodID>
     @Override
     public int compareTo(MethodID o)
     {
+        int cmpSuper = super.compareTo(o);
+        if (cmpSuper !=0)
+            return cmpSuper;
         int cmpClass = this.className.compareTo(o.getClassName());
         if (cmpClass != 0)
             return cmpClass;
@@ -176,7 +179,7 @@ public class MethodID extends AbsID implements WritableComparable<MethodID>
         int cmpMetd = this.methodName.compareTo(o.getMethodName());
         if (cmpMetd != 0)
             return cmpMetd;
+        return 0;
 
-        return super.compareTo(o);
     }
 }

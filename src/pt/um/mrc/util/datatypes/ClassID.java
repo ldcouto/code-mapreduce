@@ -146,11 +146,15 @@ public class ClassID extends AbsID implements WritableComparable<ClassID>
     @Override
     public int compareTo(ClassID o)
     {
+        int cmpSuper = super.compareTo(o);
+        if (cmpSuper !=0)
+            return cmpSuper;
+        
         int cmpClass = this.className.compareTo(o.getClassName());
         if (cmpClass != 0)
             return cmpClass;
 
-        return super.compareTo(o);
+        return 0;
     }
 
 }
