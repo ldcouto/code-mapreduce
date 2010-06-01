@@ -25,6 +25,10 @@ public class MethodGrabberClassVisitor extends GrabbingVisitor<MethodID>
             {
                 buildEntry(aux, (ConstructorDeclaration) td);
             }
+            if (td instanceof ClassOrInterfaceDeclaration)
+            {
+                visit((ClassOrInterfaceDeclaration) td, arg);
+            }
         }
     }
 
