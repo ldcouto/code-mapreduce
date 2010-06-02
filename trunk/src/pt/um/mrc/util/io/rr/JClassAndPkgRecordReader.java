@@ -3,7 +3,7 @@ package pt.um.mrc.util.io.rr;
 import pt.um.mrc.util.datatypes.ClassID;
 import pt.um.mrc.util.io.visitors.PkgGrabberClassVisitor;
 /**
- * An extension of {@link JRecordReader} to read the package name off a class <br>
+ * An extension of {@link JRecordReader} to read the package name from a class. <br>
  * <br>
  * The key of this reader is composed of the package, file and class names
  * and is represented by a ClassID. <br>
