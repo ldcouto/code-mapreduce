@@ -47,4 +47,20 @@ public class VolumeHelperTest
         
         assertEquals(expected, actual);
     }
+    
+    @Test
+    public final void testCountLoCUnformatted()
+    {
+        String input = "// This methods prints \"Hello World\" to the console\n" +
+        		"public void helloWorld(){\n" + 
+                        "\n" +
+                        "System.out.println(\"Hello World\")\n" +
+                        "}";
+        
+        int expected = 3;
+        
+        int actual = VolumeHelper.countLoCUnformatted(input);
+        
+        assertEquals(expected, actual);
+    }
 }

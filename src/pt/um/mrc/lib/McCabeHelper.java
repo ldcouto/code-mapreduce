@@ -28,11 +28,7 @@ public class McCabeHelper
     {
         int mcCabe = 1;
 
-        Matcher m = RegexConstants.STRING_LITERAL.matcher(text);
-        
-        text = m.replaceAll("");
-        
-        m = RegexConstants.CONTROL_STATEMENT_PATTERN.matcher(text);
+        Matcher m = RegexConstants.CONTROL_STATEMENT_PATTERN.matcher(removeStrings(text));
 
         while (m.find())
         {
@@ -40,6 +36,13 @@ public class McCabeHelper
         }
 
         return mcCabe;
+    }
+
+    private static String removeStrings(String text)
+    {
+        Matcher m = RegexConstants.STRING_LITERAL.matcher(text);
+
+        return m.replaceAll("");
     }
 
 }
