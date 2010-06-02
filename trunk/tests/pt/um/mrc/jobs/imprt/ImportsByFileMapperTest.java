@@ -48,9 +48,9 @@ public class ImportsByFileMapperTest
         List<Pair<Text, Text>> actual = new ArrayList<Pair<Text, Text>>();
         List<Pair<Text, Text>> expected = new ArrayList<Pair<Text, Text>>();
 
-        expected.add(new Pair<Text, Text>(new Text("<default>.f1.java"), new Text("pt.um.mrc.util.mappers.CachedPackageInfoMapper")));
-        expected.add(new Pair<Text, Text>(new Text("<default>.f1.java"), new Text("pt.um.mrc.util.mappers.LineValuesMapper")));        
-        expected.add(new Pair<Text, Text>(new Text("<default>.f1.java"), new Text("pt.um.mrc.util.reducers.IdentityReducer")));
+        expected.add(new Pair<Text, Text>(new Text("<default>-f1.java"), new Text("pt.um.mrc.util.mappers.CachedPackageInfoMapper")));
+        expected.add(new Pair<Text, Text>(new Text("<default>-f1.java"), new Text("pt.um.mrc.util.mappers.LineValuesMapper")));        
+        expected.add(new Pair<Text, Text>(new Text("<default>-f1.java"), new Text("pt.um.mrc.util.reducers.IdentityReducer")));
         
         actual = driver.run();
 
