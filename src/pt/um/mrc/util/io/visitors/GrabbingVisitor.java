@@ -43,11 +43,13 @@ public abstract class GrabbingVisitor<ID extends WritableComparable<ID>> extends
 	}
 
 	/**
-	 * Initializess the.
+	 * Initializes the visitor with the name and package of the file being visited and the map being used by the
+	 * RecordReader. This cannot be done at instantiation since that is done too early in 
+	 * the RecordReader initialization process.
 	 *
 	 * @param fileName the file name
 	 * @param packageName the package name
-	 * @param elems the elems
+	 * @param elems the elements map
 	 */
 	public void init(String fileName, String packageName, Map<ID, Text> elems) {
 		this.fileName = fileName;

@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.Text;
+import org.apache.hadoop.mapreduce.InputFormat;
 import org.apache.hadoop.mapreduce.InputSplit;
 import org.apache.hadoop.mapreduce.JobContext;
 import org.apache.hadoop.mapreduce.RecordReader;
@@ -13,9 +14,13 @@ import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import pt.um.mrc.util.datatypes.FileID;
 import pt.um.mrc.util.io.rr.JFileRecordReader;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class JFileInputFormat.
+ * The Class JFileInputFormat defines an  {@link InputFormat} to read non-class elements 
+ * such as Interfaces and Enums.
+ *
+ * <br>
+ * <br>
+ * It also prevents Haddop from splitting the file during the set up phase.
  * 
  * @author Luis Duarte Couto
  * @author Tiago Alves Veloso
@@ -23,27 +28,12 @@ import pt.um.mrc.util.io.rr.JFileRecordReader;
 public class JFileInputFormat extends FileInputFormat<FileID, Text>
 {
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see
-     * org.apache.hadoop.mapreduce.lib.input.FileInputFormat#isSplitable(org
-     * .apache.hadoop.mapreduce.JobContext, org.apache.hadoop.fs.Path)
-     */
     @Override
     protected boolean isSplitable(JobContext context, Path filename)
     {
         return false;
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see
-     * org.apache.hadoop.mapreduce.InputFormat#createRecordReader(org.apache
-     * .hadoop.mapreduce.InputSplit,
-     * org.apache.hadoop.mapreduce.TaskAttemptContext)
-     */
     @Override
     public RecordReader<FileID, Text> createRecordReader(InputSplit arg0, TaskAttemptContext arg1) throws IOException, InterruptedException
     {
