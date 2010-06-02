@@ -30,6 +30,8 @@ public class McCabeHelperTest
                 + "        String[] classTmp = classHeader.split(\"extends\");\n"
                 + "        String[] classNameAux = classTmp[0].split(\"class\");\n"
                 + "        String className = classNameAux[1].trim();\n"
+                + "        \"if (A == B) then C\""
+                + "        \"for (a very big number)\""
                 + "        if (classTmp.length > 1)\n"
                 + "        {\n"
                 + "                String[] superClassAux = classTmp[1].split(\"implements\");\n"

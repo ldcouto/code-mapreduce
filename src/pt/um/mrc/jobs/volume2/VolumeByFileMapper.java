@@ -1,21 +1,15 @@
-package pt.um.mrc.jobs.imprt;
+package pt.um.mrc.jobs.volume2;
 
 import java.io.IOException;
 
+import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.Text;
 
 import pt.um.mrc.lib.PckgHelper;
 
-/**
- * This class is the mapper for the {@link ImportsByFile} job. It extends
- * {@link ImportsCommonMapper} which handles the map step for this job.
- * 
- * @author Luis Duarte Couto
- * @author Tiago Alves Veloso
- */
-
-public class ImportsByFileMapper extends ImportsCommonMapper<Text, Text, Text, Text>
+public class VolumeByFileMapper extends VolumeCommonMapper<Text, Text, Text, IntWritable>
 {
+
     @Override
     protected void map(Text key, Text value, Context context) throws IOException, InterruptedException
     {

@@ -25,6 +25,8 @@ public class VolumeHelper
     {
         int lines = 0;
 
+        text = text.replaceAll(RegexConstants.COMMENT_REGEX, "");
+        
         Matcher m = RegexConstants.NON_EMPTY_LINE.matcher(text);
 
         while (m.find())

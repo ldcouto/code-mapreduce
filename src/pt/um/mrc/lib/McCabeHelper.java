@@ -28,7 +28,11 @@ public class McCabeHelper
     {
         int mcCabe = 1;
 
-        Matcher m = RegexConstants.CONTROL_STATEMENT_PATTERN.matcher(text);
+        Matcher m = RegexConstants.STRING_LITERAL.matcher(text);
+        
+        text = m.replaceAll("");
+        
+        m = RegexConstants.CONTROL_STATEMENT_PATTERN.matcher(text);
 
         while (m.find())
         {

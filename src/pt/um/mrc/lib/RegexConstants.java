@@ -44,7 +44,7 @@ public class RegexConstants
     /** The white space regex. */
     public static String WHITESPACES_REGEX = "\\s";
 
-    /** The  dot star regex. */
+    /** The dot star regex. */
     public static String DOTSTAR_REGEX = "(\\.\\*)$";
 
     /** The class literal. */
@@ -59,6 +59,12 @@ public class RegexConstants
     /** The class header terminator. */
     public static String CLASS_HEADER_TERMINATOR = "\\{";
 
-    /** The  empty arguments string. */
+    /** The empty arguments string. */
     public static String EMPTY_ARGUMENTS = "[ ]";
+
+    /** Comment regex */
+    public static String COMMENT_REGEX = "(/\\*([^*]|[\\r\\n]|(\\*+([^*/]|[\\r\\n])))*\\*+/)|(//.*)";
+    
+    /** String literal regex */
+    public static Pattern STRING_LITERAL = Pattern.compile("\".*?\"");
 }
