@@ -14,11 +14,11 @@ import org.junit.Before;
 import org.junit.Test;
 
 import pt.um.mrc.util.datatypes.ClassID;
-import pt.um.mrc.util.io.visitors.ClassMiscMcCabeGrabberFileVisitor;
+import pt.um.mrc.util.io.visitors.ClassMiscGrabberFileVisitor;
 
 
 public class GrabClassMiscVisitorTest {
-	ClassMiscMcCabeGrabberFileVisitor visitor;
+	ClassMiscGrabberFileVisitor visitor;
 	CompilationUnit cu;
 	String fileName = "TestMats/vtest.java";
 	Map<ClassID, Text> elems;
@@ -27,7 +27,7 @@ public class GrabClassMiscVisitorTest {
 	public void setUp() throws Exception {
 		FileInputStream in = new FileInputStream(fileName);
 		
-		visitor = new ClassMiscMcCabeGrabberFileVisitor();
+		visitor = new ClassMiscGrabberFileVisitor();
 		try {
 			// parse the file
 			cu = JavaParser.parse(in);
