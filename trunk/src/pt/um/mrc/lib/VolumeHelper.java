@@ -25,8 +25,6 @@ public class VolumeHelper
     {
         int lines = 0;
 
-        text = text.replaceAll(RegexConstants.COMMENT_REGEX, "");
-        
         Matcher m = RegexConstants.NON_EMPTY_LINE.matcher(text);
 
         while (m.find())
@@ -35,5 +33,16 @@ public class VolumeHelper
         }
 
         return lines;
+    }
+    
+    public static int countLoCUnformatted(String code){
+        String s = removeComments(code);
+        return countLinesOfCode(s);
+    }
+
+  
+    private static String removeComments(String input){
+        String r = input.replaceAll(RegexConstants.COMMENT_REGEX, "");
+        return r;
     }
 }

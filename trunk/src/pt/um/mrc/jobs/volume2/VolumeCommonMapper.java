@@ -20,7 +20,7 @@ public class VolumeCommonMapper<KI, VI, KO extends KI, VO> extends Mapper<KI, Te
     @Override
     protected void map(KI key, Text value, Context context) throws IOException, InterruptedException
     {
-        lines.set(VolumeHelper.countLinesOfCode(value.toString()));
+        lines.set(VolumeHelper.countLoCUnformatted(value.toString()));
         context.write(key, lines);
     }
 }
