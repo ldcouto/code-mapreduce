@@ -8,11 +8,14 @@ import pt.um.mrc.jobs.volume.VolumeByClassMisc;
 import pt.um.mrc.jobs.volume.VolumeByFileMisc;
 import pt.um.mrc.jobs.volume.VolumeMiscMapper;
 
-// TODO: Auto-generated Javadoc
 /**
  * This class contains common information between the {@link VolumeByClassMisc}
  * and {@link VolumeByFileMisc} auxiliary jobs.
+ *
+ * @author Luis Duarte Couto
+ * @author Tiago Alves Veloso
  */
+ 
 public abstract class VolumeMiscJob
 {
 

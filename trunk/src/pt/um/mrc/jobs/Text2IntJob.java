@@ -9,7 +9,11 @@ import org.apache.hadoop.mapreduce.lib.input.TextInputFormat;
  * This class contains common information used by several jobs, namely the jobs
  * that use {@link TextInputFormat} as the {@link InputFormat}, Text as the key output of the
  * mapper and finally {@link IntWritable} as the output value of mapper.
+ * 
+ * @author Luis Duarte Couto
+ * @author Tiago Alves Veloso
  */
+ 
 public abstract class Text2IntJob
 {
 
