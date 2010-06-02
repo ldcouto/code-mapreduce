@@ -95,13 +95,13 @@ public class JMethodRecordReaderTest
         CompilationUnit expectedCU = JavaParser.parse(expectedFileIn);
 
         FSDataInputStream actualFileIn = jrrToTest.getFileIn();
-        Map<MethodID, Text> actualMethods = jrrToTest.getMethods();
+        Map<MethodID, Text> actualMethods = jrrToTest.getElems();
         String actualPackageName = jrrToTest.getPackageName();
         String actualFileName = jrrToTest.getFileName();
         CompilationUnit actualCU = jrrToTest.getCu();
         FileSplit actualSplit = jrrToTest.getfSplit();
         List<MethodID> actualMKeys = jrrToTest.getmKeys();
-        int actualCurrM = jrrToTest.getCurrM();
+        int actualCurrM = jrrToTest.getCurrK();
 
         Assert.assertEquals(expectedMethods, actualMethods);
         Assert.assertEquals(expectedPackageName, actualPackageName);
@@ -199,8 +199,8 @@ public class JMethodRecordReaderTest
         JavaParser.parse(expectedFileIn);
         
         FSDataInputStream actualFileIn = javaRRGoodFile.getFileIn();
-        int actualCurrM = javaRRGoodFile.getCurrM();
-        Map<MethodID, Text> actualMethods = javaRRGoodFile.getMethods();
+        int actualCurrM = javaRRGoodFile.getCurrK();
+        Map<MethodID, Text> actualMethods = javaRRGoodFile.getElems();
         List<MethodID> actualKeys = javaRRGoodFile.getmKeys();
 
         Assert.assertEquals(expectedCurrM, actualCurrM);

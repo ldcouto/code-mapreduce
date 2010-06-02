@@ -7,7 +7,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import pt.um.mrc.util.io.rr.JClassRecordReader;
-import pt.um.mrc.util.io.visitors.ClassMiscMcCabeGrabberFileVisitor;
+import pt.um.mrc.util.io.visitors.ClassMiscGrabberFileVisitor;
 
 public class JClassRecordReaderTest {
 
@@ -24,7 +24,7 @@ public class JClassRecordReaderTest {
 
 		JClassRecordReader jrr = new JClassRecordReader();
 
-		Class<?> expected = ClassMiscMcCabeGrabberFileVisitor.class;
+		Class<?> expected = ClassMiscGrabberFileVisitor.class;
 
 		Class<?> actual = jrr.visitor.getClass();
 

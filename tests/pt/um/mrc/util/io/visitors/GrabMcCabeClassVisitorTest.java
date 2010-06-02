@@ -15,12 +15,12 @@ import org.junit.Before;
 import org.junit.Test;
 
 import pt.um.mrc.util.datatypes.ClassID;
-import pt.um.mrc.util.io.visitors.GrabMcCabeClassVisitor;
+import pt.um.mrc.util.io.visitors.McCabeGrabberClassVisitor;
 
 
 public class GrabMcCabeClassVisitorTest {
 	
-	GrabMcCabeClassVisitor visitor;
+	McCabeGrabberClassVisitor visitor;
 	CompilationUnit cu;
 	String fileName = "TestMats/vtest.java";
 	Map<ClassID, Text> elems;
@@ -30,7 +30,7 @@ public class GrabMcCabeClassVisitorTest {
 		
 		FileInputStream in = new FileInputStream(fileName);
 		
-		visitor = new GrabMcCabeClassVisitor();
+		visitor = new McCabeGrabberClassVisitor();
 		try {
 			// parse the file
 			cu = JavaParser.parse(in);
