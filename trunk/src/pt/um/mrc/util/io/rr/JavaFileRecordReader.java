@@ -15,7 +15,6 @@ import org.apache.hadoop.util.LineReader;
 
 import pt.um.mrc.util.Constants;
 
-// TODO: Auto-generated Javadoc
 /**
  * The JavaFileRecordReader extends org.apache.hadoop.mapreduce.RecordReader.
  * 

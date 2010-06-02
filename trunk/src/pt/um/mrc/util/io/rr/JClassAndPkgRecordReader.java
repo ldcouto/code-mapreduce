@@ -2,10 +2,16 @@ package pt.um.mrc.util.io.rr;
 
 import pt.um.mrc.util.datatypes.ClassID;
 import pt.um.mrc.util.io.visitors.PkgGrabberClassVisitor;
-
-// TODO: Auto-generated Javadoc
 /**
- * The Class JClassAndPkgRecordReader.
+ * An extension of {@link JRecordReader} to read the package name off a class <br>
+ * <br>
+ * The key of this reader is composed of the package, file and class names
+ * and is represented by a ClassID. <br>
+ * <br>
+ * The value is an empty Text object since all relevant information is already in the Key.
+ * 
+ * @author Luis Duarte Couto
+ * @author Tiago Alves Veloso
  */
 public class JClassAndPkgRecordReader extends JRecordReader<ClassID, PkgGrabberClassVisitor>
 {
