@@ -11,6 +11,9 @@ import pt.um.mrc.util.io.iformats.JMethodInputFormat;
 /**
  * This class contains common information for the the {@link McCabeByMethod} and
  * {@link VolumeByMethod} jobs.
+ *
+ * @author Luis Duarte Couto
+ * @author Tiago Alves Veloso
  */
 public abstract class ByMethodJob
 {

@@ -15,18 +15,24 @@ import org.apache.hadoop.mapreduce.Mapper;
 import pt.um.mrc.jobs.imprt.ImportsCommonMapper;
 
 /**
- * This mapper server as an auxiliary to the {@link ImportsCommonMapper}. It
+ * This Mapper serves as an auxiliary to the {@link ImportsCommonMapper}. It
  * reads information from the {@link DistributedCache} and stores it in an
  * auxiliary structure for easier access.
+ * <br><br>
+ * Any Mapper that needs to work with Project and Class information could consider extending this one.
+ * 
  * 
  * @param <KI>
- *            the generic type
+ *            the generic type of the Input Key
  * @param <VI>
- *            the generic type
+ *            the generic type of the Input Value
  * @param <KO>
- *            the generic type
+ *            the generic type of the Output Key
  * @param <VO>
- *            the generic type
+ *            the generic type of the Output Value
+ *
+ * @author Luis Duarte Couto
+ * @author Tiago Alves Veloso
  */
 public class CachedPackageInfoMapper<KI, VI, KO, VO> extends Mapper<KI, VI, KO, VO>
 {

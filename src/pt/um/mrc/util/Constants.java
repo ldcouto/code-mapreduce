@@ -1,8 +1,13 @@
 package pt.um.mrc.util;
 
 /**
- * A set of constants used around the project.
+ * A set of constants used in the project.
+ *
+ * @author Luis Duarte Couto
+ * @author Tiago Alves Veloso
  */
+
+
 public class Constants
 {
 
