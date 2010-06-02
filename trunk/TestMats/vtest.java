@@ -21,7 +21,7 @@ public enum Day {
 
 public class FindPackagesMapper extends Mapper<Text, Text, Text, Text> {
 
-
+    private class A{}
 	
 	public FindPackagesMapper(){}
 	
