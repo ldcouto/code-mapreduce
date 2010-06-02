@@ -1,13 +1,21 @@
 package pt.um.mrc.util.io.rr;
 
 import pt.um.mrc.util.datatypes.ClassID;
-import pt.um.mrc.util.io.visitors.ClassMiscMcCabeGrabberFileVisitor;
+import pt.um.mrc.util.io.visitors.ClassMiscGrabberFileVisitor;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class JClassRecordReader.
+ * An extension of {@link JRecordReader} to read non-method portions of a Class. <br>
+ * <br>
+ * The key of this reader is composed of the package, file and class names
+ * and is represented by a ClassID. <br>
+ * <br>
+ * The value is composed of all elements in a single Text object, separated by \n.
+ * 
+ * @author Luis Duarte Couto
+ * @author Tiago Alves Veloso
  */
-public class JClassRecordReader extends JRecordReader<ClassID, ClassMiscMcCabeGrabberFileVisitor>
+
+public class JClassRecordReader extends JRecordReader<ClassID, ClassMiscGrabberFileVisitor>
 {
     
     /**
@@ -15,6 +23,6 @@ public class JClassRecordReader extends JRecordReader<ClassID, ClassMiscMcCabeGr
      */
     public JClassRecordReader()
     {
-        super(new ClassMiscMcCabeGrabberFileVisitor());
+        super(new ClassMiscGrabberFileVisitor());
     }
 }
