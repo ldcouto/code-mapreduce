@@ -7,17 +7,17 @@ import org.junit.Test;
 
 import pt.um.mrc.util.io.iformats.JMethodInputFormat;
 
-public class JobConfigurerTest
+public class JobConfigHolderTest
 {
     @Test
     public final void testJobConfigurer()
     {
-        Class<JobConfigurerTest> expectedClassJar = JobConfigurerTest.class;
+        Class<JobConfigHolderTest> expectedClassJar = JobConfigHolderTest.class;
         Class<JMethodInputFormat> expectedInputFormat = JMethodInputFormat.class;
         String[] expectedInputOutputPaths = { "Some/In/Path", "Some/Other/In/Path", "Some/Out/Path" };
 
         String[] paths = { "Some/In/Path", "Some/Other/In/Path", "Some/Out/Path" };
-        JobConfigHolder jc = new JobConfigHolder(JobConfigurerTest.class, JMethodInputFormat.class,
+        JobConfigHolder jc = new JobConfigHolder(JobConfigHolderTest.class, JMethodInputFormat.class,
                 paths);
 
         assertEquals(expectedClassJar, jc.getClassJar());

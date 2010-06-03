@@ -16,7 +16,7 @@ import org.junit.Test;
 
 import pt.um.mrc.util.datatypes.CollectionWritablePrintable;
 
-public class TextCollectionReducerTest
+public class CollectionReducerTest
 {
     private Reducer<Text, Text, Text, CollectionWritablePrintable> reducer;
     private ReduceDriver<Text, Text, Text, CollectionWritablePrintable> driver;

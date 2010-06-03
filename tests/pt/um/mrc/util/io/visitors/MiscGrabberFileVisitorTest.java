@@ -16,12 +16,12 @@ import org.junit.Test;
 import pt.um.mrc.util.datatypes.FileID;
 import pt.um.mrc.util.io.visitors.MiscGrabberFileVisitor;
 
-public class GrabClassFileVisitorTest {
+public class MiscGrabberFileVisitorTest {
 
-	MiscGrabberFileVisitor visitor;
-	CompilationUnit cu;
-	String fileName = "TestMats/vtest.java";
-	Map<FileID, Text> elems;
+    private MiscGrabberFileVisitor visitor;
+    private CompilationUnit cu;
+    private String fileName = "TestMats/vtest.java";
+    private Map<FileID, Text> elems;
 
 	@Before
 	public void setUp() throws Exception {

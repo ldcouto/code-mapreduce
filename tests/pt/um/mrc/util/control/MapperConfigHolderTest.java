@@ -7,7 +7,7 @@ import org.junit.Test;
 
 import pt.um.mrc.jobs.pckg.PackageByFileMapper;
 
-public class MapperConfigurerTest
+public class MapperConfigHolderTest
 {
     @Test
     public final void testMapperConfigurer()

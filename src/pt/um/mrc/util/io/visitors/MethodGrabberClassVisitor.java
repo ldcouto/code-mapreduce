@@ -14,20 +14,23 @@ public class MethodGrabberClassVisitor extends GrabbingVisitor<MethodID>
 {
     public void visit(ClassOrInterfaceDeclaration c, Object arg)
     {
-        for (BodyDeclaration td : c.getMembers())
+        if (!c.isInterface())
         {
-            MethodID aux = new MethodID("", c.getName(), fileName, packageName);
-            if (td instanceof MethodDeclaration)
+            for (BodyDeclaration td : c.getMembers())
             {
-                buildEntry(aux, (MethodDeclaration) td);
-            }
-            if (td instanceof ConstructorDeclaration)
-            {
-                buildEntry(aux, (ConstructorDeclaration) td);
-            }
-            if (td instanceof ClassOrInterfaceDeclaration)
-            {
-                visit((ClassOrInterfaceDeclaration) td, arg);
+                MethodID aux = new MethodID("", c.getName(), fileName, packageName);
+                if (td instanceof MethodDeclaration)
+                {
+                    buildEntry(aux, (MethodDeclaration) td);
+                }
+                if (td instanceof ConstructorDeclaration)
+                {
+                    buildEntry(aux, (ConstructorDeclaration) td);
+                }
+                if (td instanceof ClassOrInterfaceDeclaration)
+                {
+                    visit((ClassOrInterfaceDeclaration) td, arg);
+                }
             }
         }
     }
