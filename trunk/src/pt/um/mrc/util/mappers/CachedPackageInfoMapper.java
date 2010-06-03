@@ -17,9 +17,10 @@ import pt.um.mrc.jobs.imprt.ImportsCommonMapper;
 /**
  * This Mapper serves as an auxiliary to the {@link ImportsCommonMapper}. It
  * reads information from the {@link DistributedCache} and stores it in an
- * auxiliary structure for easier access.
- * <br><br>
- * Any Mapper that needs to work with Project and Class information could consider extending this one.
+ * auxiliary structure for easier access. <br>
+ * <br>
+ * Any Mapper that needs to work with Project and Class information could
+ * consider extending this one.
  * 
  * 
  * @param <KI>
@@ -30,7 +31,7 @@ import pt.um.mrc.jobs.imprt.ImportsCommonMapper;
  *            the generic type of the Output Key
  * @param <VO>
  *            the generic type of the Output Value
- *
+ * 
  * @author Luis Duarte Couto
  * @author Tiago Alves Veloso
  */
@@ -87,22 +88,24 @@ public class CachedPackageInfoMapper<KI, VI, KO, VO> extends Mapper<KI, VI, KO, 
     {
         if (localFiles != null)
         {
-            FileReader fr = new FileReader(localFiles[0].toString());
-            BufferedReader br = new BufferedReader(fr);
-
-            String line;
-            String[] pkgAndClass;
-            ArrayList<String> classes;
-
-            while ((line = br.readLine()) != null)
+            for (int i = 0; i < localFiles.length; i++)
             {
-                pkgAndClass = line.split("\\t");
+                FileReader fr = new FileReader(localFiles[i].toString());
+                BufferedReader br = new BufferedReader(fr);
 
-                classes = new ArrayList<String>(Arrays.asList(pkgAndClass[1].replaceAll("\\{|\\}", "").trim().split(" ")));
-                internalClassPkgInfo.put(pkgAndClass[0], classes);
+                String line;
+                String[] pkgAndClass;
+                ArrayList<String> classes;
+
+                while ((line = br.readLine()) != null)
+                {
+                    pkgAndClass = line.split("\\t");
+
+                    classes = new ArrayList<String>(Arrays.asList(pkgAndClass[1].replaceAll("\\{|\\}", "").trim().split(" ")));
+                    internalClassPkgInfo.put(pkgAndClass[0], classes);
+                }
+                br.close();
             }
-            br.close();
         }
     }
-
 }

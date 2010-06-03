@@ -66,5 +66,5 @@ public class RegexConstants
     public static String COMMENT_REGEX = "(/\\*([^*]|[\\r\\n]|(\\*+([^*/]|[\\r\\n])))*\\*+/)|(//.*\n)";
     
     /** String literal regex */
-    public static Pattern STRING_LITERAL = Pattern.compile("\".*?\"");
+    public static Pattern STRING_LITERAL = Pattern.compile("\\\"([^\"\\\\]|\\\\.)*\\\"");
 }
