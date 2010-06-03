@@ -7,7 +7,11 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * A set of useful methods to retrieve information from the imports declarations.
+ * A set of useful methods to retrieve information from the imports
+ * declarations.
+ * 
+ * @author Luis Duarte Couto
+ * @author Tiago Alves Veloso
  */
 public class ImprtHelper
 {

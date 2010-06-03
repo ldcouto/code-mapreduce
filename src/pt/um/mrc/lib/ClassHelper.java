@@ -8,6 +8,9 @@ import pt.um.mrc.util.datatypes.PairImpl;
 
 /**
  * A set of useful methods to retrieve information from class headers.
+ * 
+ * @author Luis Duarte Couto
+ * @author Tiago Alves Veloso
  */
 public class ClassHelper
 {

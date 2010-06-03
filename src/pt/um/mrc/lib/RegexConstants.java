@@ -4,6 +4,9 @@ import java.util.regex.Pattern;
 
 /**
  * Regular expressions constants used all around the project.
+ * 
+ * @author Luis Duarte Couto
+ * @author Tiago Alves Veloso
  */
 public class RegexConstants
 {
@@ -64,7 +67,7 @@ public class RegexConstants
 
     /** Comment regex */
     public static String COMMENT_REGEX = "(/\\*([^*]|[\\r\\n]|(\\*+([^*/]|[\\r\\n])))*\\*+/)|(//.*\n)";
-    
+
     /** String literal regex */
     public static Pattern STRING_LITERAL = Pattern.compile("\\\"([^\"\\\\]|\\\\.)*\\\"");
 }

@@ -5,6 +5,9 @@ import java.util.regex.Pattern;
 
 /**
  * A set of useful methods to retrieve information from the package declaration.
+ * 
+ * @author Luis Duarte Couto
+ * @author Tiago Alves Veloso
  */
 public class PckgHelper
 {
