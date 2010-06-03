@@ -16,13 +16,13 @@ import org.junit.Test;
 import pt.um.mrc.util.datatypes.ClassID;
 import pt.um.mrc.util.io.visitors.PkgGrabberClassVisitor;
 
-public class GrabClassAndPkgVisitorTest
+public class PkgGrabberClassVisitorTest
 {
 
-    PkgGrabberClassVisitor visitor;
-    CompilationUnit cu;
-    String fileName = "TestMats/vtest.java";
-    Map<ClassID, Text> elems;
+    private PkgGrabberClassVisitor visitor;
+    private CompilationUnit cu;
+    private String fileName = "TestMats/vtest.java";
+    private Map<ClassID, Text> elems;
 
     @Before
     public void setUp() throws Exception

@@ -9,26 +9,28 @@ import org.junit.Test;
 import pt.um.mrc.util.io.rr.JClassRecordReader;
 import pt.um.mrc.util.io.visitors.ClassMiscGrabberFileVisitor;
 
-public class JClassRecordReaderTest {
+public class JClassRecordReaderTest
+{
 
-	@Before
-	public void setUp() throws Exception {
-	}
+    @Before
+    public void setUp() throws Exception
+    {}
 
-	@After
-	public void tearDown() throws Exception {
-	}
+    @After
+    public void tearDown() throws Exception
+    {}
 
-	@Test
-	public void testJClassRecordReader() {
+    @Test
+    public void testJClassRecordReader()
+    {
 
-		JClassRecordReader jrr = new JClassRecordReader();
+        JClassRecordReader jrr = new JClassRecordReader();
 
-		Class<?> expected = ClassMiscGrabberFileVisitor.class;
+        Class<?> expected = ClassMiscGrabberFileVisitor.class;
 
-		Class<?> actual = jrr.visitor.getClass();
+        Class<?> actual = jrr.visitor.getClass();
 
-		assertEquals(expected, actual);
-	}
+        assertEquals(expected, actual);
+    }
 
 }
