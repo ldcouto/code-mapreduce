@@ -5,6 +5,9 @@ import java.util.regex.Matcher;
 /**
  * A set of useful methods to retrieve the cyclomatic complexity from the given
  * input.
+ * 
+ * @author Luis Duarte Couto
+ * @author Tiago Alves Veloso
  */
 public class McCabeHelper
 {

@@ -4,6 +4,9 @@ import java.util.regex.Matcher;
 
 /**
  * A set of useful methods to retrieve the volume from the given input.
+ * 
+ * @author Luis Duarte Couto
+ * @author Tiago Alves Veloso
  */
 public class VolumeHelper
 {
@@ -34,14 +37,15 @@ public class VolumeHelper
 
         return lines;
     }
-    
-    public static int countLoCUnformatted(String code){
+
+    public static int countLoCUnformatted(String code)
+    {
         String s = removeComments(code);
         return countLinesOfCode(s);
     }
 
-  
-    private static String removeComments(String input){
+    private static String removeComments(String input)
+    {
         String r = input.replaceAll(RegexConstants.COMMENT_REGEX, "");
         return r;
     }
