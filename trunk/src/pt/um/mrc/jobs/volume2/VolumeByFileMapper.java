@@ -37,7 +37,6 @@ public class VolumeByFileMapper extends Mapper<Text, Text, Text, IntWritable> {
 		String filename = key.toString();
 		String packageName = PckgHelper.findPackage(value.toString());
 		Text newKey = new Text(packageName + "-" + filename);
-		super.map(newKey, value, context);
 		lines.set(VolumeHelper.countLoCUnformatted(value.toString()));
 		context.write(newKey, lines);
 	}

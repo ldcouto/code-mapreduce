@@ -1,19 +1,19 @@
-<?xml version="1.0" encoding="UTF-8"?><!-- EMMA v2.0.5312 EclEmma Fix 1 report, generated Thu Jun 03 19:25:36 WEST 2010 -->
+<?xml version="1.0" encoding="UTF-8"?><!-- EMMA v2.0.5312 EclEmma Fix 1 report, generated Thu Jun 03 20:23:22 WEST 2010 -->
 
 <report>
   <stats>
     <packages value="15"/>
-    <classes value="186"/>
-    <methods value="896"/>
-    <srcfiles value="186"/>
-    <srclines value="3403"/>
+    <classes value="178"/>
+    <methods value="868"/>
+    <srcfiles value="178"/>
+    <srclines value="3309"/>
   </stats>
   <data>
     <all name="all classes">
-      <coverage type="class, %" value="100% (186/186)"/>
-      <coverage type="method, %" value="97%  (873/896)"/>
-      <coverage type="block, %" value="97%  (12609/13026)"/>
-      <coverage type="line, %" value="97%  (3288.7/3403)"/>
+      <coverage type="class, %" value="100% (178/178)"/>
+      <coverage type="method, %" value="97%  (846/868)"/>
+      <coverage type="block, %" value="97%  (12279/12687)"/>
+      <coverage type="line, %" value="97%  (3197.7/3309)"/>
 
       <package name="pt.um.mrc.util.control">
         <coverage type="class, %" value="100% (10/10)"/>
@@ -3402,10 +3402,10 @@
         </srcfile>
       </package>
       <package name="pt.um.mrc.jobs.volume2">
-        <coverage type="class, %" value="100% (14/14)"/>
-        <coverage type="method, %" value="96%  (49/51)"/>
-        <coverage type="block, %" value="97%  (599/617)"/>
-        <coverage type="line, %" value="96%  (165/171)"/>
+        <coverage type="class, %" value="100% (6/6)"/>
+        <coverage type="method, %" value="96%  (22/23)"/>
+        <coverage type="block, %" value="97%  (269/278)"/>
+        <coverage type="line, %" value="96%  (74/77)"/>
 
         <srcfile name="VolumeByFile.java">
           <coverage type="class, %" value="100% (1/1)"/>
@@ -3446,66 +3446,27 @@
             </method>
           </class>
         </srcfile>
-        <srcfile name="VolumeByPackage.java">
-          <coverage type="class, %" value="100% (1/1)"/>
-          <coverage type="method, %" value="80%  (4/5)"/>
-          <coverage type="block, %" value="50%  (9/18)"/>
-          <coverage type="line, %" value="57%  (4/7)"/>
-
-          <class name="VolumeByPackage">
-            <coverage type="class, %" value="100% (1/1)"/>
-            <coverage type="method, %" value="80%  (4/5)"/>
-            <coverage type="block, %" value="50%  (9/18)"/>
-            <coverage type="line, %" value="57%  (4/7)"/>
-
-            <method name="main (String []): void">
-              <coverage type="method, %" value="0%   (0/1)"/>
-              <coverage type="block, %" value="0%   (0/9)"/>
-              <coverage type="line, %" value="0%   (0/3)"/>
-            </method>
-            <method name="VolumeByPackage (): void">
-              <coverage type="method, %" value="100% (1/1)"/>
-              <coverage type="block, %" value="100% (3/3)"/>
-              <coverage type="line, %" value="100% (1/1)"/>
-            </method>
-            <method name="getMapperClass (): Class">
-              <coverage type="method, %" value="100% (1/1)"/>
-              <coverage type="block, %" value="100% (2/2)"/>
-              <coverage type="line, %" value="100% (1/1)"/>
-            </method>
-            <method name="getReducerClass (): Class">
-              <coverage type="method, %" value="100% (1/1)"/>
-              <coverage type="block, %" value="100% (2/2)"/>
-              <coverage type="line, %" value="100% (1/1)"/>
-            </method>
-            <method name="getUsage (): String">
-              <coverage type="method, %" value="100% (1/1)"/>
-              <coverage type="block, %" value="100% (2/2)"/>
-              <coverage type="line, %" value="100% (1/1)"/>
-            </method>
-          </class>
-        </srcfile>
         <srcfile name="VolumeByFileMapper.java">
           <coverage type="class, %" value="100% (1/1)"/>
           <coverage type="method, %" value="100% (2/2)"/>
-          <coverage type="block, %" value="100% (30/30)"/>
-          <coverage type="line, %" value="100% (6/6)"/>
+          <coverage type="block, %" value="100% (41/41)"/>
+          <coverage type="line, %" value="100% (8/8)"/>
 
           <class name="VolumeByFileMapper">
             <coverage type="class, %" value="100% (1/1)"/>
             <coverage type="method, %" value="100% (2/2)"/>
-            <coverage type="block, %" value="100% (30/30)"/>
-            <coverage type="line, %" value="100% (6/6)"/>
+            <coverage type="block, %" value="100% (41/41)"/>
+            <coverage type="line, %" value="100% (8/8)"/>
 
             <method name="VolumeByFileMapper (): void">
               <coverage type="method, %" value="100% (1/1)"/>
-              <coverage type="block, %" value="100% (3/3)"/>
-              <coverage type="line, %" value="100% (1/1)"/>
+              <coverage type="block, %" value="100% (8/8)"/>
+              <coverage type="line, %" value="100% (2/2)"/>
             </method>
             <method name="map (Text, Text, Mapper$Context): void">
               <coverage type="method, %" value="100% (1/1)"/>
-              <coverage type="block, %" value="100% (27/27)"/>
-              <coverage type="line, %" value="100% (5/5)"/>
+              <coverage type="block, %" value="100% (33/33)"/>
+              <coverage type="line, %" value="100% (6/6)"/>
             </method>
           </class>
         </srcfile>
@@ -3642,219 +3603,6 @@
               <coverage type="method, %" value="100% (1/1)"/>
               <coverage type="block, %" value="100% (10/10)"/>
               <coverage type="line, %" value="100% (4/4)"/>
-            </method>
-          </class>
-        </srcfile>
-        <srcfile name="VolumeByPackageMapper.java">
-          <coverage type="class, %" value="100% (1/1)"/>
-          <coverage type="method, %" value="100% (2/2)"/>
-          <coverage type="block, %" value="100% (16/16)"/>
-          <coverage type="line, %" value="100% (4/4)"/>
-
-          <class name="VolumeByPackageMapper">
-            <coverage type="class, %" value="100% (1/1)"/>
-            <coverage type="method, %" value="100% (2/2)"/>
-            <coverage type="block, %" value="100% (16/16)"/>
-            <coverage type="line, %" value="100% (4/4)"/>
-
-            <method name="VolumeByPackageMapper (): void">
-              <coverage type="method, %" value="100% (1/1)"/>
-              <coverage type="block, %" value="100% (3/3)"/>
-              <coverage type="line, %" value="100% (1/1)"/>
-            </method>
-            <method name="map (Text, Text, Mapper$Context): void">
-              <coverage type="method, %" value="100% (1/1)"/>
-              <coverage type="block, %" value="100% (13/13)"/>
-              <coverage type="line, %" value="100% (3/3)"/>
-            </method>
-          </class>
-        </srcfile>
-        <srcfile name="VolumeByPackageMapperTest.java">
-          <coverage type="class, %" value="100% (1/1)"/>
-          <coverage type="method, %" value="100% (3/3)"/>
-          <coverage type="block, %" value="100% (77/77)"/>
-          <coverage type="line, %" value="100% (18/18)"/>
-
-          <class name="VolumeByPackageMapperTest">
-            <coverage type="class, %" value="100% (1/1)"/>
-            <coverage type="method, %" value="100% (3/3)"/>
-            <coverage type="block, %" value="100% (77/77)"/>
-            <coverage type="line, %" value="100% (18/18)"/>
-
-            <method name="VolumeByPackageMapperTest (): void">
-              <coverage type="method, %" value="100% (1/1)"/>
-              <coverage type="block, %" value="100% (3/3)"/>
-              <coverage type="line, %" value="100% (1/1)"/>
-            </method>
-            <method name="setUp (): void">
-              <coverage type="method, %" value="100% (1/1)"/>
-              <coverage type="block, %" value="100% (13/13)"/>
-              <coverage type="line, %" value="100% (3/3)"/>
-            </method>
-            <method name="testMap (): void">
-              <coverage type="method, %" value="100% (1/1)"/>
-              <coverage type="block, %" value="100% (61/61)"/>
-              <coverage type="line, %" value="100% (14/14)"/>
-            </method>
-          </class>
-        </srcfile>
-        <srcfile name="VolumeByPackageReducer.java">
-          <coverage type="class, %" value="100% (1/1)"/>
-          <coverage type="method, %" value="100% (1/1)"/>
-          <coverage type="block, %" value="100% (3/3)"/>
-          <coverage type="line, %" value="100% (1/1)"/>
-
-          <class name="VolumeByPackageReducer">
-            <coverage type="class, %" value="100% (1/1)"/>
-            <coverage type="method, %" value="100% (1/1)"/>
-            <coverage type="block, %" value="100% (3/3)"/>
-            <coverage type="line, %" value="100% (1/1)"/>
-
-            <method name="VolumeByPackageReducer (): void">
-              <coverage type="method, %" value="100% (1/1)"/>
-              <coverage type="block, %" value="100% (3/3)"/>
-              <coverage type="line, %" value="100% (1/1)"/>
-            </method>
-          </class>
-        </srcfile>
-        <srcfile name="VolumeByPackageReducerTest.java">
-          <coverage type="class, %" value="100% (1/1)"/>
-          <coverage type="method, %" value="100% (3/3)"/>
-          <coverage type="block, %" value="100% (58/58)"/>
-          <coverage type="line, %" value="100% (12/12)"/>
-
-          <class name="VolumeByPackageReducerTest">
-            <coverage type="class, %" value="100% (1/1)"/>
-            <coverage type="method, %" value="100% (3/3)"/>
-            <coverage type="block, %" value="100% (58/58)"/>
-            <coverage type="line, %" value="100% (12/12)"/>
-
-            <method name="VolumeByPackageReducerTest (): void">
-              <coverage type="method, %" value="100% (1/1)"/>
-              <coverage type="block, %" value="100% (3/3)"/>
-              <coverage type="line, %" value="100% (1/1)"/>
-            </method>
-            <method name="setUp (): void">
-              <coverage type="method, %" value="100% (1/1)"/>
-              <coverage type="block, %" value="100% (13/13)"/>
-              <coverage type="line, %" value="100% (3/3)"/>
-            </method>
-            <method name="testReduce (): void">
-              <coverage type="method, %" value="100% (1/1)"/>
-              <coverage type="block, %" value="100% (42/42)"/>
-              <coverage type="line, %" value="100% (8/8)"/>
-            </method>
-          </class>
-        </srcfile>
-        <srcfile name="VolumeByPackageTest.java">
-          <coverage type="class, %" value="100% (1/1)"/>
-          <coverage type="method, %" value="100% (9/9)"/>
-          <coverage type="block, %" value="100% (81/81)"/>
-          <coverage type="line, %" value="100% (31/31)"/>
-
-          <class name="VolumeByPackageTest">
-            <coverage type="class, %" value="100% (1/1)"/>
-            <coverage type="method, %" value="100% (9/9)"/>
-            <coverage type="block, %" value="100% (81/81)"/>
-            <coverage type="line, %" value="100% (31/31)"/>
-
-            <method name="VolumeByPackageTest (): void">
-              <coverage type="method, %" value="100% (1/1)"/>
-              <coverage type="block, %" value="100% (3/3)"/>
-              <coverage type="line, %" value="100% (1/1)"/>
-            </method>
-            <method name="setUp (): void">
-              <coverage type="method, %" value="100% (1/1)"/>
-              <coverage type="block, %" value="100% (6/6)"/>
-              <coverage type="line, %" value="100% (2/2)"/>
-            </method>
-            <method name="testGetArgCount (): void">
-              <coverage type="method, %" value="100% (1/1)"/>
-              <coverage type="block, %" value="100% (12/12)"/>
-              <coverage type="line, %" value="100% (4/4)"/>
-            </method>
-            <method name="testGetInputFormatClass (): void">
-              <coverage type="method, %" value="100% (1/1)"/>
-              <coverage type="block, %" value="100% (10/10)"/>
-              <coverage type="line, %" value="100% (4/4)"/>
-            </method>
-            <method name="testGetMapperClass (): void">
-              <coverage type="method, %" value="100% (1/1)"/>
-              <coverage type="block, %" value="100% (10/10)"/>
-              <coverage type="line, %" value="100% (4/4)"/>
-            </method>
-            <method name="testGetMapperKeyOutClass (): void">
-              <coverage type="method, %" value="100% (1/1)"/>
-              <coverage type="block, %" value="100% (10/10)"/>
-              <coverage type="line, %" value="100% (4/4)"/>
-            </method>
-            <method name="testGetMapperValueOutClass (): void">
-              <coverage type="method, %" value="100% (1/1)"/>
-              <coverage type="block, %" value="100% (10/10)"/>
-              <coverage type="line, %" value="100% (4/4)"/>
-            </method>
-            <method name="testGetReducerClass (): void">
-              <coverage type="method, %" value="100% (1/1)"/>
-              <coverage type="block, %" value="100% (10/10)"/>
-              <coverage type="line, %" value="100% (4/4)"/>
-            </method>
-            <method name="testGetUsage (): void">
-              <coverage type="method, %" value="100% (1/1)"/>
-              <coverage type="block, %" value="100% (10/10)"/>
-              <coverage type="line, %" value="100% (4/4)"/>
-            </method>
-          </class>
-        </srcfile>
-        <srcfile name="VolumeCommonMapper.java">
-          <coverage type="class, %" value="100% (1/1)"/>
-          <coverage type="method, %" value="100% (2/2)"/>
-          <coverage type="block, %" value="100% (20/20)"/>
-          <coverage type="line, %" value="100% (5/5)"/>
-
-          <class name="VolumeCommonMapper">
-            <coverage type="class, %" value="100% (1/1)"/>
-            <coverage type="method, %" value="100% (2/2)"/>
-            <coverage type="block, %" value="100% (20/20)"/>
-            <coverage type="line, %" value="100% (5/5)"/>
-
-            <method name="VolumeCommonMapper (): void">
-              <coverage type="method, %" value="100% (1/1)"/>
-              <coverage type="block, %" value="100% (8/8)"/>
-              <coverage type="line, %" value="100% (2/2)"/>
-            </method>
-            <method name="map (Object, Text, Mapper$Context): void">
-              <coverage type="method, %" value="100% (1/1)"/>
-              <coverage type="block, %" value="100% (12/12)"/>
-              <coverage type="line, %" value="100% (3/3)"/>
-            </method>
-          </class>
-        </srcfile>
-        <srcfile name="VolumeCommonMapperTest.java">
-          <coverage type="class, %" value="100% (1/1)"/>
-          <coverage type="method, %" value="100% (3/3)"/>
-          <coverage type="block, %" value="100% (77/77)"/>
-          <coverage type="line, %" value="100% (18/18)"/>
-
-          <class name="VolumeCommonMapperTest">
-            <coverage type="class, %" value="100% (1/1)"/>
-            <coverage type="method, %" value="100% (3/3)"/>
-            <coverage type="block, %" value="100% (77/77)"/>
-            <coverage type="line, %" value="100% (18/18)"/>
-
-            <method name="VolumeCommonMapperTest (): void">
-              <coverage type="method, %" value="100% (1/1)"/>
-              <coverage type="block, %" value="100% (3/3)"/>
-              <coverage type="line, %" value="100% (1/1)"/>
-            </method>
-            <method name="setUp (): void">
-              <coverage type="method, %" value="100% (1/1)"/>
-              <coverage type="block, %" value="100% (13/13)"/>
-              <coverage type="line, %" value="100% (3/3)"/>
-            </method>
-            <method name="testMap (): void">
-              <coverage type="method, %" value="100% (1/1)"/>
-              <coverage type="block, %" value="100% (61/61)"/>
-              <coverage type="line, %" value="100% (14/14)"/>
             </method>
           </class>
         </srcfile>
