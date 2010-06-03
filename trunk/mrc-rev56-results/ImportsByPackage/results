@@ -1,9 +1,9 @@
 pt.um.mrc.jobs.imprt	{ pt.um.mrc.lib.ImprtHelper pt.um.mrc.lib.PckgHelper pt.um.mrc.util.control.CheckedJobInfo pt.um.mrc.util.control.HadoopJobControl pt.um.mrc.util.control.JobConfigurer pt.um.mrc.util.control.MapperConfigurer pt.um.mrc.util.datatypes.CollectionWritablePrintable pt.um.mrc.util.io.JavaFileInputFormat pt.um.mrc.util.mappers.PackageInfoMapper pt.um.mrc.util.reducers.CollectionReducer}
 pt.um.mrc.jobs.mccabe	{ pt.um.mrc.lib.McCabeHelper pt.um.mrc.util.control.CheckedJobInfo pt.um.mrc.util.control.HadoopJobControl pt.um.mrc.util.control.JobConfigurer pt.um.mrc.util.control.MapperConfigurer pt.um.mrc.util.datatypes.MethodID pt.um.mrc.util.io.JMethodInputFormat pt.um.mrc.util.mappers.LineValuesMapper pt.um.mrc.util.reducers.SumReducer}
 pt.um.mrc.jobs.pckg	{ pt.um.mrc.lib.PckgHelper pt.um.mrc.util.control.CheckedJobInfo pt.um.mrc.util.control.HadoopJobControl pt.um.mrc.util.control.JobConfigurer pt.um.mrc.util.control.MapperConfigurer pt.um.mrc.util.io.JavaFileInputFormat pt.um.mrc.util.reducers.IdentityReducer}
-pt.um.mrc.jobs.volume	{ pt.um.mrc.lib.VolumeHelper pt.um.mrc.util.control.CheckedJobInfo pt.um.mrc.util.control.HadoopJobControl pt.um.mrc.util.control.JobConfigurer pt.um.mrc.util.control.JobRunner pt.um.mrc.util.control.MapperConfigurer pt.um.mrc.util.datatypes.MethodID pt.um.mrc.util.io.JMethodInputFormat pt.um.mrc.util.mappers.LineValuesMapper pt.um.mrc.util.reducers.SumReducer}
-pt.um.mrc.lib	{ pt.um.mrc.util.datatypes.PairImpl}
+pt.um.mrc.jobs.volume	{ pt.um.mrc.lib.VolumeHelper pt.um.mrc.util.control.CheckedJobInfo pt.um.mrc.util.control.HadoopJobControl pt.um.mrc.util.control.JobConfigurer pt.um.mrc.util.control.JobInformable pt.um.mrc.util.control.JobRunner pt.um.mrc.util.control.MapperConfigurer pt.um.mrc.util.datatypes.MethodID pt.um.mrc.util.io.JMethodInputFormat pt.um.mrc.util.mappers.LineValuesMapper pt.um.mrc.util.reducers.SumReducer}
+pt.um.mrc.lib	{ pt.um.mrc.util.datatypes.Pair pt.um.mrc.util.datatypes.PairImpl}
 pt.um.mrc.util.control	{ pt.um.mrc.jobs.volume.VolumeByFileReducer}
 pt.um.mrc.util.io	{ pt.um.mrc.util.datatypes.MethodID}
-pt.um.mrc.util.mappers	{ pt.um.mrc.util.datatypes.PairImpl}
+pt.um.mrc.util.mappers	{ pt.um.mrc.util.datatypes.Pair pt.um.mrc.util.datatypes.PairImpl}
 pt.um.mrc.util.reducers	{ pt.um.mrc.util.datatypes.CollectionWritablePrintable}
