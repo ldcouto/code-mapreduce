@@ -5,5 +5,8 @@ import org.apache.hadoop.io.Text;
 
 import pt.um.mrc.util.reducers.SumReducer;
 
+/**
+ * The Class VolumeByFileReducer.
+ */
 public class VolumeByFileReducer extends SumReducer<Text, IntWritable, Text, IntWritable>
 {}
