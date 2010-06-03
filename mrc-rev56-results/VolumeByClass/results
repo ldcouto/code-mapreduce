@@ -51,7 +51,8 @@ pt.um.mrc.util.datatypes-MethodID.java-MethodID	116
 pt.um.mrc.util.datatypes-Pair.java-Pair	0
 pt.um.mrc.util.datatypes-PairImpl.java-PairImpl	43
 pt.um.mrc.util.io-JMethodInputFormat.java-JMethodInputFormat	6
-pt.um.mrc.util.io-JMethodRecordReader.java-JMethodRecordReader	95
+pt.um.mrc.util.io-JMethodRecordReader.java-ClassVisitor	14
+pt.um.mrc.util.io-JMethodRecordReader.java-JMethodRecordReader	79
 pt.um.mrc.util.io-JavaFileInputFormat.java-JavaFileInputFormat	6
 pt.um.mrc.util.io-JavaFileRecordReader.java-JavaFileRecordReader	97
 pt.um.mrc.util.mappers-LineValuesMapper.java-LineValuesMapper	22
