@@ -6,6 +6,7 @@ import org.apache.hadoop.mapreduce.Mapper;
 import org.apache.hadoop.mapreduce.Reducer;
 
 import pt.um.mrc.util.control.JobInformable;
+import pt.um.mrc.util.control.JobRunner;
 import pt.um.mrc.util.io.iformats.JClassAndPkgInputFormat;
 
 /**
@@ -91,5 +92,12 @@ public class PkgAndClassCache implements JobInformable
     public int getArgCount()
     {
         return 2;
+    }
+    
+    public static void main(String[] args)
+    {
+        PkgAndClassCache job1 = new PkgAndClassCache();
+        
+        System.exit(JobRunner.startJob(args, job1));
     }
 }

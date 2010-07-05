@@ -10,6 +10,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.FSDataInputStream;
 import org.apache.hadoop.fs.FileSystem;
@@ -48,7 +50,8 @@ import pt.um.mrc.util.io.visitors.GrabbingVisitor;
  */
 public abstract class JRecordReader<ID extends WritableComparable<ID>, V extends GrabbingVisitor<ID>> extends RecordReader<ID, Text>
 {
-    
+	private Log LOG = LogFactory.getLog(JRecordReader.class);
+	
     protected Map<ID, Text> elems = new HashMap<ID, Text>();
     
     protected String packageName;
@@ -189,6 +192,7 @@ public abstract class JRecordReader<ID extends WritableComparable<ID>, V extends
             cu = JavaParser.parse(fileIn);
         } catch (ParseException e)
         {
+        	LOG.fatal("Could no parse " + fSplit.getPath().getName());
             e.printStackTrace();
         }
 
@@ -200,7 +204,7 @@ public abstract class JRecordReader<ID extends WritableComparable<ID>, V extends
             else
                 packageName = "<default>";
         }
-
+        
         visitor.init(fileName, packageName, elems);
         visitor.visit(cu, null);
 
