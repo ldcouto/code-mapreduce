@@ -4,9 +4,6 @@ import java.util.regex.Pattern;
 
 /**
  * Regular expressions constants used all around the project.
- * 
- * @author Luis Duarte Couto
- * @author Tiago Alves Veloso
  */
 public class RegexConstants
 {
@@ -22,10 +19,10 @@ public class RegexConstants
             .compile("(public|protected|private|abstract|static|final|native|synchronized|transient|volatile|strictfp|\\s)+class\\s+[a-zA-Z0-9.,<> \\_]*\\s*\\{");
 
     /** The import declaration pattern. */
-    public static Pattern IMPORT_PATTERN = Pattern.compile("import(static|\\s)+[\\w.]*(\\*)?(\\s)*;");
-
+    public static Pattern IMPORT_PATTERN = Pattern.compile("(;|^ *)import(static|\\s)+[\\w.]*(\\*)?(\\s)*;",Pattern.MULTILINE);
+    
     /** The package declaration pattern. */
-    public static Pattern PACKAGE_PATTERN = Pattern.compile("package(\\s)+[a-zA-Z.]*(\\s)*;");
+    public static Pattern PACKAGE_PATTERN = Pattern.compile("package(\\s)+[a-zA-Z0-9.]*(\\s)*;");
 
     /** The non empty line regex. */
     public static Pattern NON_EMPTY_LINE = Pattern.compile("[^\\s]+\\n+|}");
@@ -67,7 +64,7 @@ public class RegexConstants
 
     /** Comment regex */
     public static String COMMENT_REGEX = "(/\\*([^*]|[\\r\\n]|(\\*+([^*/]|[\\r\\n])))*\\*+/)|(//.*\n)";
-
+    
     /** String literal regex */
-    public static Pattern STRING_LITERAL = Pattern.compile("\\\"([^\"\\\\]|\\\\.)*\\\"");
+    public static Pattern STRING_LITERAL = Pattern.compile("\"[^\"]*\"");
 }

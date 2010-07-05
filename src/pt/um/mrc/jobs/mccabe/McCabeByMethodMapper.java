@@ -27,6 +27,7 @@ public class McCabeByMethodMapper extends Mapper<MethodID, Text, MethodID, IntWr
     @Override
     protected void map(MethodID key, Text value, Context context) throws IOException, InterruptedException
     {
+    	//System.err.println("McCabeByMethodMapper vai processar " + key.toString());
         mcCabeNumber.set(McCabeHelper.countMcCabe(value.toString()));
         context.write(key, mcCabeNumber);
     }

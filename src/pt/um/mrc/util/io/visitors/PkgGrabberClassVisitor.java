@@ -9,17 +9,17 @@ import org.apache.hadoop.io.Text;
 
 import pt.um.mrc.util.datatypes.ClassID;
 
-public class PkgGrabberClassVisitor extends GrabbingVisitor<ClassID>
-{
-    public void visit(CompilationUnit cu, Object arg)
-    {
-        for (TypeDeclaration td : cu.getTypes())
-        if (td instanceof ClassOrInterfaceDeclaration || td instanceof EnumDeclaration)
-        {
-            td.setAnnotations(null);
-            td.setJavaDoc(null);
-            ClassID aux = new ClassID(td.getName(), fileName, packageName);
-            elems.put(aux, new Text(""));
-        }
-    }
+public class PkgGrabberClassVisitor extends GrabbingVisitor<ClassID> {
+
+	public void visit(CompilationUnit cu, Object arg) {
+		if (cu.getTypes() != null) {
+			for (TypeDeclaration td : cu.getTypes())
+				if (td instanceof ClassOrInterfaceDeclaration || td instanceof EnumDeclaration) {
+					td.setAnnotations(null);
+					td.setJavaDoc(null);
+					ClassID aux = new ClassID(td.getName(), fileName, packageName);
+					elems.put(aux, new Text(""));
+				}
+		}
+	}
 }
