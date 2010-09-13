@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mrunit.mapreduce.MapDriver;
 import org.apache.hadoop.mrunit.types.Pair;
@@ -18,7 +19,7 @@ public class ImportsByPackageMapperTest
 {
     Map<String,ArrayList<String>> packages;
     private ImportsByPackageMapper mapper;
-    private MapDriver<Text, Text, Text, Text> driver;
+    private MapDriver<LongWritable, Text, Text, Text> driver;
     
     @Before
     public void setUp() throws Exception
@@ -32,7 +33,7 @@ public class ImportsByPackageMapperTest
 		packages.put("pt.um.mrc.util.mappers", maps);
 	
         mapper = new ImportsByPackageMapper();
-        driver = new MapDriver<Text, Text, Text, Text>(mapper);
+        driver = new MapDriver<LongWritable, Text, Text, Text>(mapper);
     }
 
 
@@ -40,12 +41,9 @@ public class ImportsByPackageMapperTest
     public void testMap() throws IOException
     {
         StringBuilder sb = new StringBuilder();
-        sb.append("package foo.bar;");
-        sb.append("import pt.um.mrc.util.mappers.*; \n");
-        sb.append("import pt.um.mrc.util.reducers.IdentityReducer;");
-        sb.append("import java.util.*");
-        driver.withInput(new Text("f1.java"), new Text(sb.toString()));
-        mapper.setInternalPackages(packages);
+        sb.append("foo.bar-f1.java\t{ pt.um.mrc.util.mappers.CachedPackageInfoMapper pt.um.mrc.util.mappers.LineValuesMapper pt.um.mrc.util.reducers.IdentityReducer}");
+        driver.withInput(new LongWritable(), new Text(sb.toString()));
+//        mapper.setInternalPackages(packages);
 
         List<Pair<Text, Text>> actual = new ArrayList<Pair<Text, Text>>();
         List<Pair<Text, Text>> expected = new ArrayList<Pair<Text, Text>>();
