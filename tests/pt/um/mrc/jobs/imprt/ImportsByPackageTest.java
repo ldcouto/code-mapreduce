@@ -1,12 +1,11 @@
 package pt.um.mrc.jobs.imprt;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import org.apache.hadoop.io.Text;
+import org.apache.hadoop.mapreduce.lib.input.TextInputFormat;
 import org.junit.Before;
 import org.junit.Test;
-
-import pt.um.mrc.util.io.iformats.JavaFileInputFormat;
 
 public class ImportsByPackageTest
 {
@@ -31,7 +30,7 @@ public class ImportsByPackageTest
     @Test
     public final void testGetInputFormatClass()
     {
-        Class<?> expected = JavaFileInputFormat.class;
+        Class<?> expected = TextInputFormat.class;
         
         Class<?> actual = driver.getInputFormatClass();
         
@@ -81,7 +80,7 @@ public class ImportsByPackageTest
     @Test
     public final void testGetUsage()
     {
-        String expected = "Usage: ImportsByPackage <in> <out>";
+        String expected = "Usage: ImportsByPackage <IBF results> <out>";
         
         String actual = driver.getUsage();
         
