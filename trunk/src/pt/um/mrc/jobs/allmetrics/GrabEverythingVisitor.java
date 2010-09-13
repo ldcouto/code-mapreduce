@@ -44,15 +44,17 @@ public class GrabEverythingVisitor extends GrabbingVisitor<ElemID> {
 				aux.setFileName(fileName);
 				aux.setPackageName(packageName);
 				aux.setClassName(c.getName());
-				aux.setType(IDType.CLASS);
+				aux.setIDType(IDType.CLASS);
 
-				for (BodyDeclaration td : c.getMembers()) {
-					td.setAnnotations(null);
-					td.setJavaDoc(null);
-					if (!(td instanceof MethodDeclaration)
-							&& !(td instanceof ConstructorDeclaration)) {
-						sb.append(td.toString());
-						sb.append("\n");
+				if (!c.getMembers().isEmpty()) {
+					for (BodyDeclaration td : c.getMembers()) {
+						td.setAnnotations(null);
+						td.setJavaDoc(null);
+						if (!(td instanceof MethodDeclaration)
+								&& !(td instanceof ConstructorDeclaration)) {
+							sb.append(td.toString());
+							sb.append("\n");
+						}
 					}
 				}
 				elems.put(aux, new Text(sb.toString()));
@@ -60,56 +62,58 @@ public class GrabEverythingVisitor extends GrabbingVisitor<ElemID> {
 		}
 	}
 
-
 	public class MethodVisitor extends VoidVisitorAdapter<Object> {
 
 		public void visit(ClassOrInterfaceDeclaration c, Object arg) {
 
-			for (BodyDeclaration td : c.getMembers()) {
-				ElemID aux = new ElemID("", c.getName(), fileName, packageName, IDType.METHOD, "<NO_METRIC>");
-				
-				if (td instanceof MethodDeclaration) {
-					buildEntry(aux, (MethodDeclaration) td);
-				}
-				if (td instanceof ConstructorDeclaration) {
-					buildEntry(aux, (ConstructorDeclaration) td);
+			if (!c.getMembers().isEmpty()) {
+				for (BodyDeclaration td : c.getMembers()) {
+					ElemID aux = new ElemID("", c.getName(), fileName,
+							packageName, IDType.METHOD, null);
+
+					if (td instanceof MethodDeclaration) {
+						buildEntry(aux, (MethodDeclaration) td);
+					}
+					if (td instanceof ConstructorDeclaration) {
+						buildEntry(aux, (ConstructorDeclaration) td);
+					}
 				}
 			}
 		}
 
 		private void buildEntry(ElemID aux, MethodDeclaration md) {
-			
+
 			StringBuilder sb = new StringBuilder();
 			sb.append(md.getName());
-			
+
 			if (md.getParameters() != null)
 				sb.append(md.getParameters().toString());
 			else
 				sb.append("[ ]");
-			
+
 			aux.setMethodName(sb.toString());
-			
+
 			md.setAnnotations(null);
 			md.setJavaDoc(null);
-			
+
 			elems.put(aux, new Text(md.toString()));
 		}
 
 		private void buildEntry(ElemID aux, ConstructorDeclaration cd) {
-			
+
 			StringBuilder sb = new StringBuilder();
 			sb.append(cd.getName());
-			
+
 			if (cd.getParameters() != null)
 				sb.append(cd.getParameters().toString());
 			else
 				sb.append("[ ]");
-			
+
 			aux.setMethodName(sb.toString());
-			
+
 			cd.setAnnotations(null);
 			cd.setJavaDoc(null);
-			
+
 			elems.put(aux, new Text(cd.toString()));
 		}
 	}
@@ -117,7 +121,7 @@ public class GrabEverythingVisitor extends GrabbingVisitor<ElemID> {
 	public void visit(CompilationUnit c, Object arg) {
 		ElemID aux = new ElemID();
 
-		aux.setType(IDType.FILE);
+		aux.setIDType(IDType.FILE);
 		aux.setFileName(fileName);
 		aux.setPackageName(packageName);
 
@@ -125,10 +129,10 @@ public class GrabEverythingVisitor extends GrabbingVisitor<ElemID> {
 
 		if (c.getImports() != null)
 			sbFile.append(c.getImports().toString() + '\n');
-		
+
 		if (c.getPackage() != null)
 			sbFile.append(c.getPackage().toString() + '\n');
-		
+
 		else
 			sbFile.append("<default>\n");
 
@@ -136,24 +140,25 @@ public class GrabEverythingVisitor extends GrabbingVisitor<ElemID> {
 			t.setAnnotations(null);
 			t.setJavaDoc(null);
 
-			if (t instanceof EnumDeclaration) {
-				for (BodyDeclaration b : t.getMembers()){
-					b.setAnnotations(null);
-					b.setJavaDoc(null);
-				}
-				sbFile.append(t.toString());
-			}
-
-			if (t instanceof ClassOrInterfaceDeclaration) {
-				if (((ClassOrInterfaceDeclaration) t).isInterface()){
-					for (BodyDeclaration b : t.getMembers()){
+			if (!t.getMembers().isEmpty()) {
+				if (t instanceof EnumDeclaration) {
+					for (BodyDeclaration b : t.getMembers()) {
 						b.setAnnotations(null);
 						b.setJavaDoc(null);
 					}
-					sbFile.append(t.toString());	
+					sbFile.append(t.toString());
+				}
+
+				if (t instanceof ClassOrInterfaceDeclaration) {
+					if (((ClassOrInterfaceDeclaration) t).isInterface()) {
+						for (BodyDeclaration b : t.getMembers()) {
+							b.setAnnotations(null);
+							b.setJavaDoc(null);
+						}
+						sbFile.append(t.toString());
+					}
 				}
 			}
-			
 			elems.put(aux, new Text(sbFile.toString()));
 		}
 	}
