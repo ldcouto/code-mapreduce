@@ -6,17 +6,17 @@ import java.io.IOException;
 
 import org.apache.hadoop.io.WritableComparable;
 
-public class IntOrText implements WritableComparable<IntOrText> {
+public class MetricValue implements WritableComparable<MetricValue> {
 
 	Boolean isText;
 	String text;
 	Integer intw;
 
-	public IntOrText() {
+	public MetricValue() {
 		text = new String();
 	}
 
-	public IntOrText(String text, Integer intw, Boolean isText) {
+	public MetricValue(String text, Integer intw, Boolean isText) {
 		this.isText = isText;
 		this.intw = intw;
 		this.text = text;
@@ -85,7 +85,7 @@ public class IntOrText implements WritableComparable<IntOrText> {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		IntOrText other = (IntOrText) obj;
+		MetricValue other = (MetricValue) obj;
 		if (intw == null) {
 			if (other.intw != null)
 				return false;
@@ -105,7 +105,7 @@ public class IntOrText implements WritableComparable<IntOrText> {
 	}
 
 	@Override
-	public int compareTo(IntOrText o) {
+	public int compareTo(MetricValue o) {
 		if (isText) 
 			return text.compareTo(o.getText());
 		return intw.compareTo(o.getIntw());
