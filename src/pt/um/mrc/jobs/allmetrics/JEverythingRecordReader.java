@@ -55,7 +55,7 @@ public class JEverythingRecordReader extends RecordReader<ElemID, Text> {
 	protected MethodVisitor mVisitor;
 	protected GrabEverythingVisitor visitor;
 
-	public Map<ElemID, Text> getMethods() {
+	public Map<ElemID, Text> getElems() {
 		return elems;
 	}
 
