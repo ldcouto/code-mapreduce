@@ -34,11 +34,13 @@ public class GrabEverythingVisitorTest {
 		}
 
 		elems = new HashMap<ElemID, Text>();
-		visitor.init(fileName, cu.getPackage().getName().toString(), elems);
+		//visitor.init(fileName, cu.getPackage().getName().toString(), elems);
 	}
 
 	@Test
 	public void testVisit() {
+		visitor.init(fileName, cu.getPackage().getName().toString(), elems);
+
 		visitor.visit(cu, null);
 
 		HashMap<ElemID, Text> expected = new HashMap<ElemID, Text>();
