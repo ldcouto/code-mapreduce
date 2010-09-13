@@ -10,13 +10,13 @@ public class IntOrText implements WritableComparable<IntOrText> {
 
 	Boolean isText;
 	String text;
-	int intw;
+	Integer intw;
 
 	public IntOrText() {
 		text = new String();
 	}
 
-	public IntOrText(String text, int intw, Boolean isText) {
+	public IntOrText(String text, Integer intw, Boolean isText) {
 		this.isText = isText;
 		this.intw = intw;
 		this.text = text;
@@ -38,11 +38,11 @@ public class IntOrText implements WritableComparable<IntOrText> {
 		this.text = text;
 	}
 
-	public int getIntw() {
+	public Integer getIntw() {
 		return intw;
 	}
 
-	public void setIntw(int intw) {
+	public void setIntw(Integer intw) {
 		this.intw = intw;
 	}
 
@@ -57,21 +57,21 @@ public class IntOrText implements WritableComparable<IntOrText> {
 	public void readFields(DataInput in) throws IOException {
 		isText = in.readBoolean();
 		text = in.readUTF();
-		intw = in.readInt();
+		intw = new Integer(in.readInt());
 	}
 
 	@Override
 	public void write(DataOutput out) throws IOException {
 		out.writeBoolean(isText);
 		out.writeUTF(text);
-		out.writeInt(intw);
+		out.writeInt(intw.intValue());
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + intw;
+		result = prime * result + ((intw == null) ? 0 : intw.hashCode());
 		result = prime * result + ((isText == null) ? 0 : isText.hashCode());
 		result = prime * result + ((text == null) ? 0 : text.hashCode());
 		return result;
@@ -86,7 +86,10 @@ public class IntOrText implements WritableComparable<IntOrText> {
 		if (getClass() != obj.getClass())
 			return false;
 		IntOrText other = (IntOrText) obj;
-		if (intw != other.intw)
+		if (intw == null) {
+			if (other.intw != null)
+				return false;
+		} else if (!intw.equals(other.intw))
 			return false;
 		if (isText == null) {
 			if (other.isText != null)
@@ -103,16 +106,9 @@ public class IntOrText implements WritableComparable<IntOrText> {
 
 	@Override
 	public int compareTo(IntOrText o) {
-
-		int cmpIT = this.isText.compareTo(o.getIsText());
-		if (cmpIT != 0)
-			return cmpIT;
-		if (isText) {
-			int cmpTxt = text.compareTo(o.getText());
-			if (cmpTxt != 0)
-				return cmpTxt;
-		}
-		return new Integer(intw).compareTo(new Integer(o.getIntw()));
+		if (isText) 
+			return text.compareTo(o.getText());
+		return intw.compareTo(o.getIntw());
 	}
 
 }
