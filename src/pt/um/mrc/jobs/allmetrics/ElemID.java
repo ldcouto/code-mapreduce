@@ -29,9 +29,9 @@ public class ElemID implements WritableComparable<ElemID> {
 	/** The package name. */
 	String packageName;
 
-	String metricName;
+	MetricType metricType;
 
-	IDType type;
+	IDType idType;
 
 	/**
 	 * Instantiates a new MethodID.
@@ -41,7 +41,7 @@ public class ElemID implements WritableComparable<ElemID> {
 		className = "";
 		fileName = "";
 		packageName = "";
-		metricName = "";
+		metricType = null;
 	}
 
 	/**
@@ -57,30 +57,33 @@ public class ElemID implements WritableComparable<ElemID> {
 	 *            the package name
 	 */
 	public ElemID(String methodName, String className, String fileName, String packageName,
-			IDType idt, String metricName) {
+			IDType idt, MetricType metricType) {
 		this.methodName = methodName;
 		this.className = className;
 		this.fileName = fileName;
 		this.packageName = packageName;
-		this.type = idt;
-		this.metricName = metricName;
+		this.idType = idt;
+		this.metricType = metricType;
 	}
 
-	public String getMetricName() {
-		return metricName;
+	public MetricType getMetricType() {
+		return metricType;
 	}
 
-	public void setMetricName(String metricName) {
-		this.metricName = metricName;
+	public void setMetricType(MetricType metricType) {
+		this.metricType = metricType;
 	}
 
-	public IDType getType() {
-		return type;
+	public IDType getIDType() {
+		return idType;
+	}
+	
+	public void setIDType(IDType idType) {
+		this.idType = idType;
 	}
 
-	public void setType(IDType type) {
-		this.type = type;
-	}
+	
+
 
 	/**
 	 * Gets the method name.
@@ -167,7 +170,7 @@ public class ElemID implements WritableComparable<ElemID> {
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
 		sb.append(packageName);
-		switch (type) {
+		switch (idType) {
 		case FILE:
 			sb.append(fileToString());
 			break;
@@ -215,14 +218,15 @@ public class ElemID implements WritableComparable<ElemID> {
 	 */
 	@Override
 	public void readFields(DataInput in) throws IOException {
-		type = IDType.valueOf(in.readUTF());
+		metricType = MetricType.valueOf(in.readUTF());
+		idType = IDType.valueOf(in.readUTF());
 		packageName = in.readUTF();
-		if (type.equals(IDType.FILE)) {
+		if (idType.equals(IDType.FILE)) {
 			fileName = in.readUTF();
-		} else if (type.equals(IDType.CLASS)) {
+		} else if (idType.equals(IDType.CLASS)) {
 			fileName = in.readUTF();
 			className = in.readUTF();
-		} else if (type.equals(IDType.METHOD)) {
+		} else if (idType.equals(IDType.METHOD)) {
 			fileName = in.readUTF();
 			className = in.readUTF();
 			methodName = in.readUTF();
@@ -236,14 +240,15 @@ public class ElemID implements WritableComparable<ElemID> {
 	 */
 	@Override
 	public void write(DataOutput out) throws IOException {
-		out.writeUTF(type.toString());
+		out.writeUTF(metricType.toString());
+		out.writeUTF(idType.toString());
 		out.writeUTF(packageName);
-		if (type.equals(IDType.FILE)) {
+		if (idType.equals(IDType.FILE)) {
 			out.writeUTF(fileName);
-		} else if (type.equals(IDType.CLASS)) {
+		} else if (idType.equals(IDType.CLASS)) {
 			out.writeUTF(fileName);
 			out.writeUTF(className);
-		} else if (type.equals(IDType.METHOD)) {
+		} else if (idType.equals(IDType.METHOD)) {
 			out.writeUTF(fileName);
 			out.writeUTF(className);
 			out.writeUTF(methodName);
@@ -258,8 +263,8 @@ public class ElemID implements WritableComparable<ElemID> {
 		result = prime * result + ((className == null) ? 0 : className.hashCode());
 		result = prime * result + ((fileName == null) ? 0 : fileName.hashCode());
 		result = prime * result + ((packageName == null) ? 0 : packageName.hashCode());
-		result = prime * result + ((type == null) ? 0 : type.hashCode());
-		result = prime * result + ((metricName == null) ? 0 : metricName.hashCode());
+		result = prime * result + ((idType == null) ? 0 : idType.hashCode());
+		result = prime * result + ((metricType == null) ? 0 : metricType.hashCode());
 		return result;
 	}
 
@@ -272,13 +277,13 @@ public class ElemID implements WritableComparable<ElemID> {
 		if (getClass() != obj.getClass())
 			return false;
 		ElemID other = (ElemID) obj;
-		if (type == null) {
-			if (other.type != null)
+		if (idType == null) {
+			if (other.idType != null)
 				return false;
-		} else if (!type.equals(other.type))
+		} else if (!idType.equals(other.idType))
 			return false;
 
-		if (!metricName.equals(other.metricName))
+		if (!metricType.equals(other.metricType))
 			return false;
 		
 		if (packageName == null) {
@@ -287,15 +292,15 @@ public class ElemID implements WritableComparable<ElemID> {
 		} else if (!packageName.equals(other.packageName))
 			return false;
 
-		if (type == IDType.FILE) {
+		if (idType == IDType.FILE) {
 			return fileEquals(other);
 		}
 
-		if (type == IDType.CLASS) {
+		if (idType == IDType.CLASS) {
 			return classEquals(other);
 		}
 
-		if (type == IDType.METHOD) {
+		if (idType == IDType.METHOD) {
 			return methodEquals(other);
 		}
 		
@@ -349,11 +354,11 @@ public class ElemID implements WritableComparable<ElemID> {
 	 */
 	@Override
 	public int compareTo(ElemID o) {
-		int cmpTyp = this.type.compareTo(o.getType());
+		int cmpTyp = this.idType.compareTo(o.getIDType());
 		if (cmpTyp != 0)
 			return cmpTyp;
 
-		int cmpMet = this.metricName.compareTo(o.getMetricName());
+		int cmpMet = this.metricType.compareTo(o.getMetricType());
 		if (cmpMet != 0)
 			return cmpMet;
 		
