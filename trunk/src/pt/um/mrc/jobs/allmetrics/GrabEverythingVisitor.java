@@ -44,7 +44,7 @@ public class GrabEverythingVisitor extends GrabbingVisitor<ElemID> {
 				aux.setFileName(fileName);
 				aux.setPackageName(packageName);
 				aux.setClassName(c.getName());
-				aux.setType(IDType.CLASS);
+				aux.setIDType(IDType.CLASS);
 
 				for (BodyDeclaration td : c.getMembers()) {
 					td.setAnnotations(null);
@@ -66,7 +66,7 @@ public class GrabEverythingVisitor extends GrabbingVisitor<ElemID> {
 		public void visit(ClassOrInterfaceDeclaration c, Object arg) {
 
 			for (BodyDeclaration td : c.getMembers()) {
-				ElemID aux = new ElemID("", c.getName(), fileName, packageName, IDType.METHOD, "<NO_METRIC>");
+				ElemID aux = new ElemID("", c.getName(), fileName, packageName, IDType.METHOD, null);
 				
 				if (td instanceof MethodDeclaration) {
 					buildEntry(aux, (MethodDeclaration) td);
@@ -117,7 +117,7 @@ public class GrabEverythingVisitor extends GrabbingVisitor<ElemID> {
 	public void visit(CompilationUnit c, Object arg) {
 		ElemID aux = new ElemID();
 
-		aux.setType(IDType.FILE);
+		aux.setIDType(IDType.FILE);
 		aux.setFileName(fileName);
 		aux.setPackageName(packageName);
 
