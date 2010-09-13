@@ -20,17 +20,17 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-public class IntOrTextTest {
+public class MetricValueTest {
 
-	private IntOrText textIOT;
-	private IntOrText numIOT;
-	private IntOrText testIOT;
+	private MetricValue textIOT;
+	private MetricValue numIOT;
+	private MetricValue testIOT;
 
 	@Before
 	public void setUp() throws Exception {
-		textIOT = new IntOrText("text", null, true);
-		numIOT = new IntOrText(null, new Integer(1), false);
-		testIOT = new IntOrText("text", 1, true);
+		textIOT = new MetricValue("text", null, true);
+		numIOT = new MetricValue(null, new Integer(1), false);
+		testIOT = new MetricValue("text", 1, true);
 	}
 
 	@After
@@ -43,7 +43,7 @@ public class IntOrTextTest {
 		Integer expectedNum = 1;
 		Boolean expectedFlag = true;
 
-		IntOrText iot = new IntOrText("map", 1, true);
+		MetricValue iot = new MetricValue("map", 1, true);
 
 		String actualText = iot.getText();
 		Integer actualNum = iot.getIntw();
@@ -58,7 +58,7 @@ public class IntOrTextTest {
 	public final void testHashCode_Null() {
 		int expected = 29791;
 
-		IntOrText iot = new IntOrText(null, null, null);
+		MetricValue iot = new MetricValue(null, null, null);
 
 		int actual = iot.hashCode();
 
@@ -67,7 +67,7 @@ public class IntOrTextTest {
 
 	@Test
 	public final void testHashCode_EqualTexts() {
-		IntOrText iot1 = new IntOrText("text", null, true);
+		MetricValue iot1 = new MetricValue("text", null, true);
 
 		int hash1 = iot1.hashCode();
 		int hash2 = textIOT.hashCode();
@@ -77,7 +77,7 @@ public class IntOrTextTest {
 
 	@Test
 	public final void testHashCode_EqualNums() {
-		IntOrText iot1 = new IntOrText(null, 1, false);
+		MetricValue iot1 = new MetricValue(null, 1, false);
 
 		int hash1 = iot1.hashCode();
 		int hash2 = numIOT.hashCode();
@@ -96,10 +96,10 @@ public class IntOrTextTest {
 
 	@Test
 	public final void testIntorText_NullConstructor() {
-		IntOrText iot = new IntOrText();
+		MetricValue iot = new MetricValue();
 
 		assertNotNull(iot);
-		assertTrue(iot instanceof IntOrText);
+		assertTrue(iot instanceof MetricValue);
 	}
 
 	@Test
@@ -174,7 +174,7 @@ public class IntOrTextTest {
 		DataOutput out = new DataOutputStream(new FileOutputStream("TestMats/iot"));
 		DataInput in = new DataInputStream(new FileInputStream("TestMats/iot"));
 
-		IntOrText expected = new IntOrText();
+		MetricValue expected = new MetricValue();
 
 		testIOT.write(out);
 		expected.readFields(in);
@@ -184,8 +184,8 @@ public class IntOrTextTest {
 
 	@Test
 	public void testEquals_Identical_Flag() {
-		IntOrText iot1 = new IntOrText("text", 1, true);
-		IntOrText iot2 = new IntOrText("text", 1, false);
+		MetricValue iot1 = new MetricValue("text", 1, true);
+		MetricValue iot2 = new MetricValue("text", 1, false);
 
 		boolean result = iot1.equals(iot2);
 		assertFalse(result);
@@ -193,8 +193,8 @@ public class IntOrTextTest {
 
 	@Test
 	public void testEquals_Identical_Num() {
-		IntOrText iot1 = new IntOrText("text", 1, true);
-		IntOrText iot2 = new IntOrText("text", 2, false);
+		MetricValue iot1 = new MetricValue("text", 1, true);
+		MetricValue iot2 = new MetricValue("text", 2, false);
 
 		boolean result = iot1.equals(iot2);
 		assertFalse(result);
@@ -202,8 +202,8 @@ public class IntOrTextTest {
 
 	@Test
 	public void testEquals_Identical_Text() {
-		IntOrText iot1 = new IntOrText("text1", 1, true);
-		IntOrText iot2 = new IntOrText("text2", 1, false);
+		MetricValue iot1 = new MetricValue("text1", 1, true);
+		MetricValue iot2 = new MetricValue("text2", 1, false);
 
 		boolean result = iot1.equals(iot2);
 		assertFalse(result);
@@ -211,8 +211,8 @@ public class IntOrTextTest {
 
 	@Test
 	public void testEquals_DifferentNums() {
-		IntOrText iot1 = new IntOrText(null, 1, true);
-		IntOrText iot2 = new IntOrText(null, 2, true);
+		MetricValue iot1 = new MetricValue(null, 1, true);
+		MetricValue iot2 = new MetricValue(null, 2, true);
 
 		boolean result = iot1.equals(iot2);
 		assertFalse(result);
@@ -220,8 +220,8 @@ public class IntOrTextTest {
 
 	@Test
 	public void testEquals_DifferentTexts() {
-		IntOrText iot1 = new IntOrText("text1", null, true);
-		IntOrText iot2 = new IntOrText("text2", null, true);
+		MetricValue iot1 = new MetricValue("text1", null, true);
+		MetricValue iot2 = new MetricValue("text2", null, true);
 
 		boolean result = iot1.equals(iot2);
 		assertFalse(result);
@@ -229,8 +229,8 @@ public class IntOrTextTest {
 
 	@Test
 	public void testEquals_Equal() {
-		IntOrText iot1 = new IntOrText("text", 1, true);
-		IntOrText iot2 = new IntOrText("text", 1, true);
+		MetricValue iot1 = new MetricValue("text", 1, true);
+		MetricValue iot2 = new MetricValue("text", 1, true);
 
 		boolean result = iot1.equals(iot2);
 		assertTrue(result);
@@ -238,8 +238,8 @@ public class IntOrTextTest {
 
 	@Test
 	public void testEquals_NullFlag() {
-		IntOrText iot1 = new IntOrText("text", 1, null);
-		IntOrText iot2 = new IntOrText("text", 1, true);
+		MetricValue iot1 = new MetricValue("text", 1, null);
+		MetricValue iot2 = new MetricValue("text", 1, true);
 
 		boolean result = iot1.equals(iot2);
 		assertFalse(result);
@@ -247,8 +247,8 @@ public class IntOrTextTest {
 
 	@Test
 	public void testEquals_NullBothFlags() {
-		IntOrText iot1 = new IntOrText("text", 1, null);
-		IntOrText iot2 = new IntOrText("text", 1, null);
+		MetricValue iot1 = new MetricValue("text", 1, null);
+		MetricValue iot2 = new MetricValue("text", 1, null);
 
 		boolean result = iot1.equals(iot2);
 		assertTrue(result);
@@ -256,8 +256,8 @@ public class IntOrTextTest {
 
 	@Test
 	public void testEquals_NullText() {
-		IntOrText iot1 = new IntOrText(null, 1, true);
-		IntOrText iot2 = new IntOrText("text", 1, true);
+		MetricValue iot1 = new MetricValue(null, 1, true);
+		MetricValue iot2 = new MetricValue("text", 1, true);
 
 		boolean result = iot1.equals(iot2);
 		assertFalse(result);
@@ -265,8 +265,8 @@ public class IntOrTextTest {
 
 	@Test
 	public void testEquals_NullBothTexts() {
-		IntOrText iot1 = new IntOrText(null, 1, true);
-		IntOrText iot2 = new IntOrText(null, 1, true);
+		MetricValue iot1 = new MetricValue(null, 1, true);
+		MetricValue iot2 = new MetricValue(null, 1, true);
 
 		boolean result = iot1.equals(iot2);
 		assertTrue(result);
@@ -274,8 +274,8 @@ public class IntOrTextTest {
 
 	@Test
 	public void testEquals_NullNum() {
-		IntOrText iot1 = new IntOrText("text", null, true);
-		IntOrText iot2 = new IntOrText("text", 1, true);
+		MetricValue iot1 = new MetricValue("text", null, true);
+		MetricValue iot2 = new MetricValue("text", 1, true);
 
 		boolean result = iot1.equals(iot2);
 		assertFalse(result);
@@ -283,8 +283,8 @@ public class IntOrTextTest {
 
 	@Test
 	public void testEquals_NullBothNums() {
-		IntOrText iot1 = new IntOrText("text", null, true);
-		IntOrText iot2 = new IntOrText("text", null, true);
+		MetricValue iot1 = new MetricValue("text", null, true);
+		MetricValue iot2 = new MetricValue("text", null, true);
 
 		boolean result = iot1.equals(iot2);
 		assertTrue(result);
@@ -292,7 +292,7 @@ public class IntOrTextTest {
 
 	@Test
 	public void testEquals_NullIOT() {
-		IntOrText iot1 = null;
+		MetricValue iot1 = null;
 
 		boolean result = textIOT.equals(iot1);
 
@@ -309,8 +309,8 @@ public class IntOrTextTest {
 
 	@Test
 	public void testCompareTo_SameText() {
-		IntOrText iot1 = new IntOrText("test", null, true);
-		IntOrText iot2 = new IntOrText("test", null, true);
+		MetricValue iot1 = new MetricValue("test", null, true);
+		MetricValue iot2 = new MetricValue("test", null, true);
 
 		int expected = 0;
 		int actual = iot1.compareTo(iot2);
@@ -320,8 +320,8 @@ public class IntOrTextTest {
 
 	@Test
 	public void testCompareTo_SameNum() {
-		IntOrText iot1 = new IntOrText(null, 3, false);
-		IntOrText iot2 = new IntOrText(null, 3, false);
+		MetricValue iot1 = new MetricValue(null, 3, false);
+		MetricValue iot2 = new MetricValue(null, 3, false);
 
 		int expected = 0;
 		int actual = iot1.compareTo(iot2);
@@ -331,8 +331,8 @@ public class IntOrTextTest {
 
 	@Test
 	public void testCompareTo_DiffText() {
-		IntOrText iot1 = new IntOrText("text1", null, true);
-		IntOrText iot2 = new IntOrText("text2", null, true);
+		MetricValue iot1 = new MetricValue("text1", null, true);
+		MetricValue iot2 = new MetricValue("text2", null, true);
 
 		int expected = "text1".compareTo("text2");
 		int actual = iot1.compareTo(iot2);
@@ -342,8 +342,8 @@ public class IntOrTextTest {
 
 	@Test
 	public void testCompareTo_DiffNum() {
-		IntOrText iot1 = new IntOrText(null, 3, false);
-		IntOrText iot2 = new IntOrText(null, 5, false);
+		MetricValue iot1 = new MetricValue(null, 3, false);
+		MetricValue iot2 = new MetricValue(null, 5, false);
 
 		int expected = new Integer(3).compareTo(new Integer(5));
 		int actual = iot1.compareTo(iot2);
