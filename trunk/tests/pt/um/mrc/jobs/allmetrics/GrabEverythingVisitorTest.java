@@ -34,32 +34,42 @@ public class GrabEverythingVisitorTest {
 		}
 
 		elems = new HashMap<ElemID, Text>();
-		//visitor.init(fileName, cu.getPackage().getName().toString(), elems);
+		visitor.init(fileName, cu.getPackage().getName().toString(), elems);
 	}
 
 	@Test
 	public void testVisit() {
-		visitor.init(fileName, cu.getPackage().getName().toString(), elems);
-
 		visitor.visit(cu, null);
 
 		HashMap<ElemID, Text> expected = new HashMap<ElemID, Text>();
 		StringBuilder sb = new StringBuilder();
 
-		sb.append("private Text packge;\n");
-		sb.append("int i = 0;\n");
-		sb.append("static {\n");
-		sb.append("    if (true) i = 0;\n");
-		sb.append("}\n");
+		sb.append("package pt.um.mrc.jobs.imprt;");
+		sb.append("import java.io.IOException;");
+		sb.append("import org.apache.hadoop.io.Text;");
+		sb.append("import org.apache.hadoop.mapreduce.Mapper;");
+		sb.append("import pt.um.mrc.lib.PckgHelper;");
+		sb.append("public interface jnter{");
+		sb.append("    public void meth1t();");
+		sb.append("    public void meth1();");
+		sb.append("}");
+		sb.append("public enum Day {");
+		sb.append("    SUNDAY, MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY");
+		sb.append("}");
 
-		ElemID key = new ElemID("", "FindPackagesMapper", fileName, "pt.um.mrc.jobs.imprt",IDType.CLASS, null);
+		ElemID key = new ElemID();
+		key.setFileName(fileName);
+		key.setPackageName("pt.um.mrc.jobs.imprt");
+		key.setIDType(IDType.FILE);
 		
 		expected.put(key, new Text(sb.toString()));
-			
-		ElemID key2 = new ElemID("", "A", fileName, "pt.um.mrc.jobs.imprt",IDType.CLASS, null);
-		
-		expected.put(key2, new Text(""));
 
-		assertEquals(expected, elems);
+		Text txt = elems.get(key);
+		
+		String actual = txt.toString();
+		actual = actual.replaceAll("[\\t\\n\\x0B\\f\\r]", "");
+		
+		assertEquals(expected.keySet(), elems.keySet());
+		assertEquals(sb.toString().replaceAll("[\\t\\n\\x0B\\f\\r]",""), actual);
 	}
 }
