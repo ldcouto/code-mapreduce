@@ -60,7 +60,7 @@ public class AllMetricsMapper extends CachedPackageInfoMapper<ElemID, Text, Elem
 
 		key.setMetricType(mt);
 		mv.setIsText(true);
-		mv.setIntw(null);		
+		mv.setIntw(0);		
 		
 		// Find the imported packages
 		List<String> imports = ImprtHelper.findImports(value.toString());
@@ -138,7 +138,7 @@ public class AllMetricsMapper extends CachedPackageInfoMapper<ElemID, Text, Elem
 
 		String source = value.toString();
 		mv.setIsText(false);
-		mv.setText(null);
+		mv.setText("");
 
 		mv.setIntw(VolumeHelper.countLinesOfCode(source));
 		key.setMetricType(mtv);
