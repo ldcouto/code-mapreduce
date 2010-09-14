@@ -1,6 +1,7 @@
 package pt.um.mrc.jobs.allmetrics;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -9,15 +10,23 @@ import pt.um.mrc.util.datatypes.IDType;
 
 public class ElemIDTest {
 
+	ElemID testEID;
+
 	@Before
-	public void setUp()
-	{
-		ElemID id = new ElemID("ElemMethod","ElemClass","ElemFile","ElemPackage",IDType.METHOD,"ElemMetric");
+	public void setUp() {
+		testEID = new ElemID("ElemMethod", "ElemClass", "ElemFile", "ElemPackage", IDType.METHOD,
+						MetricType.VOLUME_BY_METHOD);
 	}
-	
+
 	@Test
-	public void testHashCode() {
-		fail("Not yet implemented");
+	public void testHashCode_Null() {
+		int expected = 29791;
+
+		MetricValue iot = new MetricValue(null, null, null);
+
+		int actual = iot.hashCode();
+
+		assertEquals(expected, actual);
 	}
 
 	@Test
@@ -27,7 +36,28 @@ public class ElemIDTest {
 
 	@Test
 	public void testElemID_Constructor_Parameters() {
-		fail("Not yet implemented");
+			String expectedMethd = "method";
+			String expectedClass = "class";
+			String expectedFile = "file";
+			String expectedPackage = "package";
+			IDType expectedIDT = IDType.METHOD;
+			MetricType expectedMT = MetricType.NONE;
+			
+			ElemID eid = new ElemID("method","class","file","package",IDType.METHOD,MetricType.NONE);
+			
+			String actualMethd = eid.getMethodName();
+			String actualClass = eid.getClassName();
+			String actualFile = eid.getFileName();
+			String actualPackage = eid.getPackageName();
+			IDType actualIDT = eid.getIDType();
+			MetricType actualMT = eid.getMetricType();
+			
+			assertEquals(expectedMethd, actualMethd);
+			assertEquals(expectedClass, actualClass);
+			assertEquals(expectedFile, actualFile);
+			assertEquals(expectedPackage, actualPackage);
+			assertEquals(expectedIDT, actualIDT);
+			assertEquals(expectedMT, actualMT);
 	}
 
 	@Test

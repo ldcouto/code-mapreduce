@@ -3,13 +3,13 @@ package pt.um.mrc.jobs.allmetrics;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.mapreduce.InputFormat;
 import org.apache.hadoop.mapreduce.Mapper;
+import org.apache.hadoop.mapreduce.OutputFormat;
 import org.apache.hadoop.mapreduce.Reducer;
 
 import pt.um.mrc.jobs.imprt.PkgAndClassCache;
-import pt.um.mrc.util.control.JobInformable;
 import pt.um.mrc.util.control.JobRunner;
 
-public class AMJob implements JobInformable {
+public class AMJob implements JobInformableTextFormat {
 
 	@Override
 	public int getArgCount() {
@@ -45,6 +45,11 @@ public class AMJob implements JobInformable {
 	public String getUsage() {
 		return "Usage: AMJob <in> <out>";
 	}
+	
+	@Override
+	public Class<? extends OutputFormat<?, ?>> getOutputFormatClass() {
+		return CSTextOutputFormat.class;
+	}
 
 	public static void main(String[] args) {
 		PkgAndClassCache job1 = new PkgAndClassCache();
@@ -53,4 +58,6 @@ public class AMJob implements JobInformable {
 
 		System.exit(JobRunner.startCachedJobTextFormat2(args, job1, job2, cache));
 	}
+
+
 }

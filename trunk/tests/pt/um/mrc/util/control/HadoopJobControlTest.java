@@ -37,12 +37,12 @@ public class HadoopJobControlTest {
 		Class<JavaFileInputFormat> inputFormat = JavaFileInputFormat.class;
 		String inputPath = "some/dir";
 		String outputPath = "other/dir";
-		String[] args = {inputPath, outputPath};
+		String[] args = { inputPath, outputPath };
 
-		JobConfigHolder jc = new JobConfigHolder(classJar, inputFormat, args);
+		JobConfigHolder jc = new JobConfigHolder(classJar, inputFormat, null, args);
 
 		MapperConfigHolder mc =
-			new MapperConfigHolder(PackageByFileMapper.class, Text.class, Text.class);
+				new MapperConfigHolder(PackageByFileMapper.class, Text.class, Text.class);
 
 		HadoopJobControl.configureSimpleJob(job, jc, mc, PackageByFileReducer.class);
 
@@ -52,8 +52,10 @@ public class HadoopJobControlTest {
 		assertEquals(Text.class, job.getMapOutputValueClass());
 		assertEquals(JavaFileInputFormat.class, job.getInputFormatClass());
 
-		// Can't compare this. While setting the input path, the path given is resolved to a full path
-		//assertEquals(inputPath, FileInputFormat.getInputPaths(job).toString());
+		// Can't compare this. While setting the input path, the path given is
+		// resolved to a full path
+		// assertEquals(inputPath,
+		// FileInputFormat.getInputPaths(job).toString());
 		assertEquals(outputPath, FileOutputFormat.getOutputPath(job).toString());
 	}
 

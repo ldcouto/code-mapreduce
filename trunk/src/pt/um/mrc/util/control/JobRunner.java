@@ -11,6 +11,8 @@ import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.mapreduce.Job;
 
+import pt.um.mrc.jobs.allmetrics.JobInformableTextFormat;
+
 // TODO: Auto-generated Javadoc
 /**
  * The Class JobRunner is an auxiliary class with methods to configure and run a
@@ -84,31 +86,15 @@ public class JobRunner {
 		mc =
 				new MapperConfigHolder(ji.getMapperClass(), ji.getMapperKeyOutClass(), ji
 						.getMapperValueOutClass());
-
-		jc = new JobConfigHolder(ji.getClass(), ji.getInputFormatClass(), otherArgs);
+		if (ji instanceof JobInformableTextFormat){
+			jc = new JobConfigHolder(ji.getClass(), ji.getInputFormatClass(), ((JobInformableTextFormat) ji).getOutputFormatClass(), otherArgs);
+		}
+		jc = new JobConfigHolder(ji.getClass(), ji.getInputFormatClass(), null, otherArgs);
 
 		job = new Job(conf);
-		 HadoopJobControl.configureSimpleJob(job, jc, mc,
-		 ji.getReducerClass());
+		HadoopJobControl.configureSimpleJob(job, jc, mc, ji.getReducerClass());
 	}
 
-	public static void setJob2(String[] args, JobInformable ji, Configuration conf)
-	throws IOException {
-cji = new CheckedJobInfo(ji.getUsage(), conf, ji.getArgCount());
-
-String[] otherArgs = HadoopJobControl.checkArguments(args, cji);
-
-mc =
-		new MapperConfigHolder(ji.getMapperClass(), ji.getMapperKeyOutClass(), ji
-				.getMapperValueOutClass());
-
-jc = new JobConfigHolder(ji.getClass(), ji.getInputFormatClass(), otherArgs);
-
-job = new Job(conf);
- HadoopJobControl.configureSimpleJob2(job, jc, mc,
- ji.getReducerClass());
-}
-	
 	/**
 	 * Run job.
 	 * 
@@ -223,7 +209,7 @@ job = new Job(conf);
 
 		String[] j2Args = args.clone();
 
-		JobRunner.setJob2(j2Args, job2, JobRunner.getConf());
+		JobRunner.setJob(j2Args, job2, JobRunner.getConf());
 		status = JobRunner.runJob();
 		FileSystem.get(JobRunner.getConf()).delete(cacheFolder, true);
 

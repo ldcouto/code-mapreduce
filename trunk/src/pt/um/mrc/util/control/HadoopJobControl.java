@@ -11,8 +11,6 @@ import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 import org.apache.hadoop.util.GenericOptionsParser;
 
-import pt.um.mrc.jobs.allmetrics.TextOutputFormat2;
-
 /**
  * The Class HadoopJobControl contains some helper methods to configure an
  * Hadoop job.
@@ -45,7 +43,8 @@ public class HadoopJobControl {
 		// Configure generic Job stuff
 		job.setJarByClass(jc.getClassJar());
 		job.setInputFormatClass(jc.getIntputFormat());
-
+		if (jc.getOutputFormat() != null)
+			job.setOutputFormatClass(jc.getOutputFormat());
 		int i;
 		for (i = 0; i < jc.getPaths().length - 1; i++) {
 
@@ -62,33 +61,6 @@ public class HadoopJobControl {
 		job.setReducerClass(reducer);
 
 		// Change the outputformat
-	}
-
-	public static void configureSimpleJob2(Job job, JobConfigHolder jc, MapperConfigHolder mc,
-			Class<? extends Reducer<?, ?, ?, ?>> reducer) throws IOException {
-
-		// Configure generic Job stuff
-		job.setJarByClass(jc.getClassJar());
-		job.setInputFormatClass(jc.getIntputFormat());
-
-		int i;
-		for (i = 0; i < jc.getPaths().length - 1; i++) {
-
-			FileInputFormat.addInputPath(job, new Path(jc.getPaths()[i]));
-		}
-		FileOutputFormat.setOutputPath(job, new Path(jc.getPaths()[i]));
-
-		// Configure the Mapper Stuff
-		job.setMapperClass(mc.getMapperClass());
-		job.setMapOutputKeyClass(mc.getMapOutKey());
-		job.setMapOutputValueClass(mc.getMapOutValue());
-
-		// Configure the Reducer Class
-		job.setReducerClass(reducer);
-
-		// Change the outputformat
-		job.setOutputFormatClass(TextOutputFormat2.class);
-
 	}
 
 	/**
