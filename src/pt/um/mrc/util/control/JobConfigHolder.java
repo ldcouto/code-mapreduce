@@ -1,6 +1,7 @@
 package pt.um.mrc.util.control;
 
 import org.apache.hadoop.mapreduce.InputFormat;
+import org.apache.hadoop.mapreduce.OutputFormat;
 
 /**
  * The class JobConfigHolder holds configuration information of a given job.
@@ -19,6 +20,8 @@ public class JobConfigHolder
 
     private Class<? extends InputFormat<?, ?>> inputFormat;
 
+    private Class<? extends OutputFormat<?, ?>> outputFormat;
+    
     /**
      * Instantiates a new JobConfigHolder.
      * 
@@ -29,17 +32,28 @@ public class JobConfigHolder
      * @param args
      *            the input/output paths to be used
      */
-    public JobConfigHolder(Class<?> classjar, Class<? extends InputFormat<?, ?>> inputFormat, String[] args)
+    public JobConfigHolder(Class<?> classjar, Class<? extends InputFormat<?, ?>> inputFormat, Class<? extends OutputFormat<?, ?>> outputFormat, String[] args)
     {
         this.classJar = classjar;
         this.inputFormat = inputFormat;
+        this.outputFormat = outputFormat;
         this.paths = args;
     }
 
-    /**
+    
+	/**
+     * Gets the defined OutpurFormat class.
+     * 
+     * @return the OutputFormat
+     */
+	public Class<? extends OutputFormat<?, ?>> getOutputFormat() {
+		return outputFormat;
+	}
+
+	/**
      * Gets the defined IntputFormat class.
      * 
-     * @return the IntputIormat
+     * @return the IntputFormat
      */
     public Class<? extends InputFormat<?, ?>> getIntputFormat()
     {
