@@ -23,6 +23,8 @@ public class AllMetricsReducer extends Reducer<ElemID, MetricValue, ElemID, Text
             }
         }
         
-        context.write(key, new Text("\""+aux.toString()+"\""));
+        if (key.getMetricType() != MetricType.IMPORTS_BY_FILE && key.getMetricType() != MetricType.IMPORTS_BY_PACKAGE)
+        	context.write(key, new Text("\""+aux.toString()+"\""));
+
     }
 }
