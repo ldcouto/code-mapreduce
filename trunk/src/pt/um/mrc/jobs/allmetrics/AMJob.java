@@ -51,6 +51,6 @@ public class AMJob implements JobInformable {
 		AMJob job2 = new AMJob();
 		Path cache = new Path("tmpCache/");
 
-		System.exit(JobRunner.startCachedJob(args, job1, job2, cache));
+		System.exit(JobRunner.startCachedJobTextFormat2(args, job1, job2, cache));
 	}
 }

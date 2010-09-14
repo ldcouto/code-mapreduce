@@ -20,73 +20,94 @@ import pt.um.mrc.jobs.allmetrics.TextOutputFormat2;
  * @author Luis Duarte Couto
  * @author Tiago Alves Veloso
  */
-public class HadoopJobControl
-{
-    /** The LOG. */
-    private static Log LOG = LogFactory.getLog(HadoopJobControl.class);
+public class HadoopJobControl {
 
-    /**
-     * Configures a simple hadoop job.
-     * 
-     * @param job
-     *            the job to be configured
-     * @param jc
-     *            the holder of the job configuration
-     * @param mc
-     *            the holder of the mapper configuration
-     * @param reducer
-     *            the reducer class to be used
-     * @throws IOException
-     *             Signals that an I/O exception has occurred.
-     */
-    public static void configureSimpleJob(Job job, JobConfigHolder jc, MapperConfigHolder mc, Class<? extends Reducer<?, ?, ?, ?>> reducer)
-            throws IOException
-    {
+	/** The LOG. */
+	private static Log LOG = LogFactory.getLog(HadoopJobControl.class);
 
-        // Configure generic Job stuff
-        job.setJarByClass(jc.getClassJar());
-        job.setInputFormatClass(jc.getIntputFormat());
+	/**
+	 * Configures a simple hadoop job.
+	 * 
+	 * @param job
+	 *            the job to be configured
+	 * @param jc
+	 *            the holder of the job configuration
+	 * @param mc
+	 *            the holder of the mapper configuration
+	 * @param reducer
+	 *            the reducer class to be used
+	 * @throws IOException
+	 *             Signals that an I/O exception has occurred.
+	 */
+	public static void configureSimpleJob(Job job, JobConfigHolder jc, MapperConfigHolder mc,
+			Class<? extends Reducer<?, ?, ?, ?>> reducer) throws IOException {
 
-        int i;
-        for (i = 0; i < jc.getPaths().length - 1; i++)
-        {
+		// Configure generic Job stuff
+		job.setJarByClass(jc.getClassJar());
+		job.setInputFormatClass(jc.getIntputFormat());
 
-            FileInputFormat.addInputPath(job, new Path(jc.getPaths()[i]));
-        }
-        FileOutputFormat.setOutputPath(job, new Path(jc.getPaths()[i]));
+		int i;
+		for (i = 0; i < jc.getPaths().length - 1; i++) {
 
-        // Configure the Mapper Stuff
-        job.setMapperClass(mc.getMapperClass());
-        job.setMapOutputKeyClass(mc.getMapOutKey());
-        job.setMapOutputValueClass(mc.getMapOutValue());
+			FileInputFormat.addInputPath(job, new Path(jc.getPaths()[i]));
+		}
+		FileOutputFormat.setOutputPath(job, new Path(jc.getPaths()[i]));
 
-        // Configure the Reducer Class
-        job.setReducerClass(reducer);
-        
-        // Change the outputformat
-	    job.setOutputFormatClass(TextOutputFormat2.class);
+		// Configure the Mapper Stuff
+		job.setMapperClass(mc.getMapperClass());
+		job.setMapOutputKeyClass(mc.getMapOutKey());
+		job.setMapOutputValueClass(mc.getMapOutValue());
 
-    }
+		// Configure the Reducer Class
+		job.setReducerClass(reducer);
 
-    /**
-     * Checks that the given arguments are correct.
-     * 
-     * @param args
-     *            the arguments to be checked
-     * @param cji
-     *            the correct configuration of the arguments
-     * @return the valid arguments
-     */
-    public static String[] checkArguments(String[] args, CheckedJobInfo cji)
-    {
-        String[] otherArgs = new GenericOptionsParser(cji.getConf(), args).getRemainingArgs();
+		// Change the outputformat
+	}
 
-        if (otherArgs.length != cji.getArgNum())
-        {
-            LOG.fatal(cji.getUsageMessage());
-            System.exit(2);
-        }
+	public static void configureSimpleJob2(Job job, JobConfigHolder jc, MapperConfigHolder mc,
+			Class<? extends Reducer<?, ?, ?, ?>> reducer) throws IOException {
 
-        return otherArgs;
-    }
+		// Configure generic Job stuff
+		job.setJarByClass(jc.getClassJar());
+		job.setInputFormatClass(jc.getIntputFormat());
+
+		int i;
+		for (i = 0; i < jc.getPaths().length - 1; i++) {
+
+			FileInputFormat.addInputPath(job, new Path(jc.getPaths()[i]));
+		}
+		FileOutputFormat.setOutputPath(job, new Path(jc.getPaths()[i]));
+
+		// Configure the Mapper Stuff
+		job.setMapperClass(mc.getMapperClass());
+		job.setMapOutputKeyClass(mc.getMapOutKey());
+		job.setMapOutputValueClass(mc.getMapOutValue());
+
+		// Configure the Reducer Class
+		job.setReducerClass(reducer);
+
+		// Change the outputformat
+		job.setOutputFormatClass(TextOutputFormat2.class);
+
+	}
+
+	/**
+	 * Checks that the given arguments are correct.
+	 * 
+	 * @param args
+	 *            the arguments to be checked
+	 * @param cji
+	 *            the correct configuration of the arguments
+	 * @return the valid arguments
+	 */
+	public static String[] checkArguments(String[] args, CheckedJobInfo cji) {
+		String[] otherArgs = new GenericOptionsParser(cji.getConf(), args).getRemainingArgs();
+
+		if (otherArgs.length != cji.getArgNum()) {
+			LOG.fatal(cji.getUsageMessage());
+			System.exit(2);
+		}
+
+		return otherArgs;
+	}
 }
