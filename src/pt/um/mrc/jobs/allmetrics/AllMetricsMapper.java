@@ -46,13 +46,13 @@ public class AllMetricsMapper extends CachedPackageInfoMapper<ElemID, Text, Elem
 		ElemID pkgAux = new ElemID();
 		pkgAux.setIDType(IDType.PACKAGE);
 		pkgAux.setPackageName(key.getPackageName());
-		importCalc(key, value, MetricType.IMPORTS_BY_PACKAGE, context);
+		importCalc(pkgAux, value, MetricType.IMPORTS_BY_PACKAGE, context);
 
 		ElemID fileAux = new ElemID();
 		fileAux.setIDType(IDType.FILE);
 		fileAux.setPackageName(key.getPackageName());
 		fileAux.setFileName(key.getFileName());
-		importCalc(key, value, MetricType.IMPORTS_BY_FILE, context);
+		importCalc(fileAux, value, MetricType.IMPORTS_BY_FILE, context);
 	}
 
 	private void importCalc(ElemID key, Text value, MetricType mt, Context context) throws IOException,
