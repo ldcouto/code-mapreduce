@@ -169,6 +169,8 @@ public class ElemID implements WritableComparable<ElemID> {
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
+		sb.append(this.metricToString());
+		sb.append(",\"");
 		sb.append(packageName);
 		switch (idType) {
 		case FILE:
@@ -181,8 +183,30 @@ public class ElemID implements WritableComparable<ElemID> {
 			sb.append(methodToString());
 			break;
 		}
-
+		sb.append('"');
 		return sb.toString();
+	}
+
+	private Object metricToString() {
+		switch (metricType) {
+		case VOLUME_BY_METHOD:
+			return "\"VOLUME\",\"METHOD\"";
+		case VOLUME_BY_CLASS:
+			return "\"VOLUME\",\"CLASS\"";
+		case VOLUME_BY_PACKAGE:
+			return "\"VOLUME\",\"PACKAGE\"";
+		case MCCABE_BY_METHOD:
+			return "\"MCCABE\",\"METHOD\"";
+		case MCCABE_BY_CLASS:
+			return "\"MCCABE\",\"CLASS\"";
+		case MCCABE_BY_PACKAGE:
+			return "\"MCCABE\",\"PACKAGE\"";
+		case IMPORTS_BY_FILE:
+			return "\"IMPORTS\",\"FILE\"";
+		case IMPORTS_BY_PACKAGE:
+			return "\"IMPORTS\",\"PACKAGE\"";
+		}
+		return "\"NONE\",\"NONE\"";
 	}
 
 	private String fileToString() {
@@ -207,7 +231,6 @@ public class ElemID implements WritableComparable<ElemID> {
 		sb.append(classToString());
 		sb.append("-");
 		sb.append(methodName);
-
 		return sb.toString();
 	}
 
