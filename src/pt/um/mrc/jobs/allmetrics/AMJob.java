@@ -1,9 +1,11 @@
 package pt.um.mrc.jobs.allmetrics;
 
+import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.mapreduce.InputFormat;
 import org.apache.hadoop.mapreduce.Mapper;
 import org.apache.hadoop.mapreduce.Reducer;
 
+import pt.um.mrc.jobs.imprt.PkgAndClassCache;
 import pt.um.mrc.util.control.JobInformable;
 import pt.um.mrc.util.control.JobRunner;
 
@@ -45,7 +47,10 @@ public class AMJob implements JobInformable {
 	}
 
 	public static void main(String[] args) {
-		AMJob me = new AMJob();
-		System.exit(JobRunner.startJob(args, me));
+		PkgAndClassCache job1 = new PkgAndClassCache();
+		AMJob job2 = new AMJob();
+		Path cache = new Path("tmpCache/");
+
+		System.exit(JobRunner.startCachedJob(args, job1, job2, cache));
 	}
 }
