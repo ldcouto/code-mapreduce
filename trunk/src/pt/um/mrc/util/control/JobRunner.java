@@ -89,7 +89,8 @@ public class JobRunner {
 		if (ji instanceof JobInformableTextFormat){
 			jc = new JobConfigHolder(ji.getClass(), ji.getInputFormatClass(), ((JobInformableTextFormat) ji).getOutputFormatClass(), otherArgs);
 		}
-		jc = new JobConfigHolder(ji.getClass(), ji.getInputFormatClass(), null, otherArgs);
+		else
+			jc = new JobConfigHolder(ji.getClass(), ji.getInputFormatClass(), null, otherArgs);
 
 		job = new Job(conf);
 		HadoopJobControl.configureSimpleJob(job, jc, mc, ji.getReducerClass());
@@ -242,7 +243,7 @@ public class JobRunner {
 	 * @return the status of the just executed job
 	 */
 	public static int startJob(String[] args, JobInformable me) {
-		return catcher(args, me, null, null, null, 0);
+		return catcher(args, me, null, null, null);
 	}
 
 	/**
@@ -259,7 +260,7 @@ public class JobRunner {
 	 * @return the status of the job that was just executed
 	 */
 	public static int startJob(String[] args, JobInformable j1, JobInformable j2, String tempFolder) {
-		return catcher(args, j1, j2, null, tempFolder, 0);
+		return catcher(args, j1, j2, null, tempFolder);
 	}
 
 	/**
@@ -277,20 +278,13 @@ public class JobRunner {
 	 */
 	public static int startCachedJob(String[] args, JobInformable job1, JobInformable job2,
 			Path cache) {
-		return catcher(args, job1, job2, cache, null, 0);
+		return catcher(args, job1, job2, cache, null);
 	}
-
-	public static int startCachedJobTextFormat2(String[] args, JobInformable job1,
-			JobInformable job2, Path cache) {
-		return catcher(args, job1, job2, cache, null, 2);
-	}
-
 	private static int catcher(String[] args, JobInformable job1, JobInformable job2, Path cache,
-			String folder, int tfFlag) {
+			String folder) {
 
 		int status = -1;
 		try {
-			if (tfFlag == 0) {
 				if (job2 == null) {
 					JobRunner.setJob(args, job1);
 					status = JobRunner.runJob();
@@ -298,9 +292,6 @@ public class JobRunner {
 					status = JobRunner.runDoubleJob(job1, job2, folder, args);
 				else if (folder == null)
 					status = JobRunner.runCachedJob(job1, job2, cache, args);
-			} else if (tfFlag == 2) {
-				status = JobRunner.runCachedJobTF2(job1, job2, cache, args);
-			}
 		} catch (IOException e) {
 			LOG.fatal(e.getMessage());
 		} catch (InterruptedException e) {
