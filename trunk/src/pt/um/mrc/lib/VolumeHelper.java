@@ -1,6 +1,5 @@
 package pt.um.mrc.lib;
 
-import java.util.regex.Matcher;
 
 /**
  * A set of useful methods to retrieve the volume from the given input.
@@ -26,16 +25,7 @@ public class VolumeHelper
      */
     public static int countLinesOfCode(String text)
     {
-        int lines = 0;
-
-        Matcher m = RegexConstants.NON_EMPTY_LINE.matcher(text);
-
-        while (m.find())
-        {
-            lines++;
-        }
-
-        return lines;
+        return text != null ? text.split(RegexConstants.NEW_LINE_SPLIT).length : 0;
     }
 
     public static int countLoCUnformatted(String code)
