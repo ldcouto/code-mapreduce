@@ -9,5 +9,6 @@ public enum MetricType {
     MCCABE_BY_CLASS,
     MCCABE_BY_PACKAGE,
     IMPORTS_BY_FILE,
-    IMPORTS_BY_PACKAGE;
+    IMPORTS_BY_PACKAGE,
+    NONE;
 }

@@ -41,7 +41,7 @@ public class ElemID implements WritableComparable<ElemID> {
 		className = "";
 		fileName = "";
 		packageName = "";
-		metricType = null;
+		metricType = MetricType.NONE;
 	}
 
 	/**
@@ -357,7 +357,7 @@ public class ElemID implements WritableComparable<ElemID> {
 		int cmpTyp = this.idType.compareTo(o.getIDType());
 		if (cmpTyp != 0)
 			return cmpTyp;
-
+		
 		int cmpMet = this.metricType.compareTo(o.getMetricType());
 		if (cmpMet != 0)
 			return cmpMet;
@@ -377,6 +377,7 @@ public class ElemID implements WritableComparable<ElemID> {
 		int cmpMetd = this.methodName.compareTo(o.getMethodName());
 		if (cmpMetd != 0)
 			return cmpMetd;
+		
 		return 0;
 	}
 
