@@ -16,13 +16,13 @@ public class AllMetricsReducer extends Reducer<ElemID, MetricValue, ElemID, Text
         {
             if (metricValue.getIsText())
             {
-                context.write(key, new Text(metricValue.getText()));
+                context.write(key, new Text("\""+metricValue.getText()+"\""));
             } else 
             {
                 aux += metricValue.getIntw();
             }
         }
         
-        context.write(key, new Text(aux.toString()));
+        context.write(key, new Text("\""+aux.toString()+"\""));
     }
 }

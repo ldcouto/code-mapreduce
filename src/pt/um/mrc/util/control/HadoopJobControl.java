@@ -11,6 +11,8 @@ import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 import org.apache.hadoop.util.GenericOptionsParser;
 
+import pt.um.mrc.jobs.allmetrics.TextOutputFormat2;
+
 /**
  * The Class HadoopJobControl contains some helper methods to configure an
  * Hadoop job.
@@ -60,6 +62,9 @@ public class HadoopJobControl
 
         // Configure the Reducer Class
         job.setReducerClass(reducer);
+        
+        // Change the outputformat
+	    job.setOutputFormatClass(TextOutputFormat2.class);
 
     }
 
