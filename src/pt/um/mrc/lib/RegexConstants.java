@@ -24,6 +24,8 @@ public class RegexConstants
     /** The package declaration pattern. */
     public static Pattern PACKAGE_PATTERN = Pattern.compile("package(\\s)+[a-zA-Z0-9.]*(\\s)*;");
 
+    public static final String NEW_LINE_SPLIT = "(?<!\\ )\\n"; 
+    
     /** The non empty line regex. */
     public static Pattern NON_EMPTY_LINE = Pattern.compile("[^\\s]+\\n+|}");
 
@@ -43,6 +45,7 @@ public class RegexConstants
 
     /** The white space regex. */
     public static String WHITESPACES_REGEX = "\\s";
+    
 
     /** The dot star regex. */
     public static String DOTSTAR_REGEX = "(\\.\\*)$";
