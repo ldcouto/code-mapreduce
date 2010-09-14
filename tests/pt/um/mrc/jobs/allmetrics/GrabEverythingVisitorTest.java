@@ -49,7 +49,7 @@ public class GrabEverythingVisitorTest {
 		sb.append("import org.apache.hadoop.io.Text;");
 		sb.append("import org.apache.hadoop.mapreduce.Mapper;");
 		sb.append("import pt.um.mrc.lib.PckgHelper;");
-		sb.append("public interface jnter{");
+		sb.append("public interface jnter {");
 		sb.append("    public void meth1t();");
 		sb.append("    public void meth1();");
 		sb.append("}");
