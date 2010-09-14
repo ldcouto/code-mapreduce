@@ -69,7 +69,7 @@ public class GrabEverythingVisitor extends GrabbingVisitor<ElemID> {
 			if (!c.getMembers().isEmpty()) {
 				for (BodyDeclaration td : c.getMembers()) {
 					ElemID aux = new ElemID("", c.getName(), fileName,
-							packageName, IDType.METHOD, null);
+							packageName, IDType.METHOD, MetricType.NONE);
 
 					if (td instanceof MethodDeclaration) {
 						buildEntry(aux, (MethodDeclaration) td);

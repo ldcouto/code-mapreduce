@@ -5,6 +5,7 @@ import org.apache.hadoop.mapreduce.Mapper;
 import org.apache.hadoop.mapreduce.Reducer;
 
 import pt.um.mrc.util.control.JobInformable;
+import pt.um.mrc.util.control.JobRunner;
 
 public class AMJob implements JobInformable {
 
@@ -43,4 +44,8 @@ public class AMJob implements JobInformable {
 		return "Usage: AMJob <in> <out>";
 	}
 
+	public static void main(String[] args) {
+		AMJob me = new AMJob();
+		System.exit(JobRunner.startJob(args, me));
+	}
 }
