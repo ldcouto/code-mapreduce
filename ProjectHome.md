@@ -1,0 +1,3 @@
+This project aims at providing code analysis features on top of the MapReduce computational model, using Hadoop.
+To relieve programmers from implementing their analysis directly against Hadoop, this project provides a relational calculus API which translates operations into the respective map and reduce steps.
+Such relational API is then used to implement different kinds of source code analysis and metrics.
